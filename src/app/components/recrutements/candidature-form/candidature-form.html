@@ -1,0 +1,152 @@
+<div class="candidature-form">
+  <div class="form-container">
+    <h3 class="form-title">Formulaire de candidature</h3>
+    
+    <!-- Indicateur de progression des uploads -->
+    <div *ngIf="uploadingCount > 0" class="upload-progress">
+      <div class="progress-info">
+        <i class="fas fa-upload"></i>
+        {{ uploadingCount }} fichier(s) en cours d'upload...
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="uploadProgress"></div>
+      </div>
+    </div>
+
+    <!-- Erreurs -->
+    <div *ngIf="errors.length > 0" class="error-alert">
+      <i class="fas fa-exclamation-triangle"></i>
+      <ul>
+        <li *ngFor="let error of errors">{{ error }}</li>
+      </ul>
+    </div>
+
+    <form (ngSubmit)="submitApplication()" #candidatureForm="ngForm">
+      <!-- Informations personnelles -->
+      <div class="form-section">
+        <h4>Informations personnelles</h4>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="civility">Civilité</label>
+            <select id="civility" [(ngModel)]="form.civility" name="civility">
+              <option value="">Sélectionner</option>
+              <option *ngFor="let option of civilityOptions" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">Prénom *</label>
+            <input type="text" id="first_name" [(ngModel)]="form.first_name" name="first_name" required>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Nom *</label>
+            <input type="text" id="last_name" [(ngModel)]="form.last_name" name="last_name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" [(ngModel)]="form.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Téléphone *</label>
+            <input type="tel" id="phone_number" [(ngModel)]="form.phone_number" name="phone_number" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">Ville *</label>
+            <input type="text" id="city" [(ngModel)]="form.city" name="city" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Adresse *</label>
+            <input type="text" id="address" [(ngModel)]="form.address" name="address" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date_of_birth">Date de naissance</label>
+            <input type="date" id="date_of_birth" [(ngModel)]="form.date_of_birth" name="date_of_birth">
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents requis -->
+      <div class="form-section">
+        <h4>Documents requis</h4>
+        <p class="section-description">Les documents suivants sont obligatoires :</p>
+        
+        <div class="documents-grid">
+          <div *ngFor="let docType of requiredDocuments" class="document-upload">
+            <div class="document-header">
+              <h5>{{ docType }}</h5>
+              <div class="document-status" [ngClass]="getDocumentStatus(docType)">
+                <span *ngIf="getDocumentStatus(docType) === 'pending'">
+                  <i class="fas fa-clock"></i> En attente
+                </span>
+                <span *ngIf="getDocumentStatus(docType) === 'uploading'">
+                  <i class="fas fa-spinner fa-spin"></i> Upload...
+                </span>
+                <span *ngIf="getDocumentStatus(docType) === 'completed'">
+                  <i class="fas fa-check"></i> Uploadé
+                </span>
+                <span *ngIf="getDocumentStatus(docType) === 'error'">
+                  <i class="fas fa-exclamation-triangle"></i> Erreur
+                </span>
+              </div>
+            </div>
+
+            <div class="file-input-container">
+              <input type="file" 
+                     [id]="'file-' + docType"
+                     accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                     (change)="onFileSelected($event, docType)"
+                     class="file-input">
+              <label [for]="'file-' + docType" class="file-label">
+                <i class="fas fa-upload"></i>
+                <span *ngIf="!getSelectedFile(docType)">Choisir un fichier</span>
+                <span *ngIf="getSelectedFile(docType)">{{ getSelectedFile(docType)?.name }}</span>
+              </label>
+            </div>
+
+            <div class="file-info" *ngIf="getSelectedFile(docType)">
+              <small>Fichier sélectionné : {{ getSelectedFile(docType)?.name }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="candidatureForm.reset()">
+          Annuler
+        </button>
+        <button type="submit" 
+                class="btn btn-primary" 
+                [disabled]="!isFormValid() || isSubmitting"
+                [class.loading]="isSubmitting">
+          <span *ngIf="uploadingCount > 0">
+            <i class="fas fa-spinner fa-spin"></i>
+            Upload en cours ({{ uploadingCount }})
+          </span>
+          <span *ngIf="uploadingCount === 0 && uploadProgress < 100 && uploadProgress > 0">
+            <i class="fas fa-upload"></i>
+            Upload {{ uploadProgress }}%
+          </span>
+          <span *ngIf="uploadingCount === 0 && uploadProgress === 100">
+            <i class="fas fa-paper-plane"></i>
+            Soumettre la candidature
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
