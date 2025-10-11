@@ -494,6 +494,35 @@ export class Section1 implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Fermer le modal de candidature sans recharger la page
+   */
+  closeApplicationModalWithoutReload() {
+    this.showApplicationModal = false;
+    this.selectedTraining = null;
+    this.success = false;
+    this.error = null;
+    this.uploadedFiles = {};
+    this.uploadingFiles = {};
+    this.availableSessions = [];
+    this.applicationForm.reset();
+
+    // Nettoyer l'état du modal sans recharger la page
+    if (typeof document !== 'undefined') {
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+
+      const backdrops = document.querySelectorAll('.modal-backdrop');
+      backdrops.forEach(backdrop => backdrop.remove());
+
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        modal.classList.remove('show');
+        (modal as HTMLElement).style.display = 'none';
+      });
+    }
+  }
 
   /**
    * Gérer la sélection de fichier
@@ -506,20 +535,23 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   /**
-   * Uploader un fichier (logique identique à header.ts)
+   * Uploader un fichier
    */
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
     this.uploadingFiles[attachmentType] = true;
-    
-    // Stocker le fichier localement comme dans header.ts
-    this.uploadingFiles[attachmentType] = false;
-    this.uploadedFiles[attachmentType] = {
-      file: file,
-      url: URL.createObjectURL(file), // URL temporaire
-      name: fileName
-    };
-    console.log('📎 [FORMATIONS] Fichier préparé:', this.uploadedFiles[attachmentType]);
+
+    // Stocker le fichier localement pour l'instant
+    // L'upload réel se fera lors de la soumission de la candidature
+    setTimeout(() => {
+      this.uploadingFiles[attachmentType] = false;
+      this.uploadedFiles[attachmentType] = {
+        file: file,
+        url: URL.createObjectURL(file),
+        name: fileName
+      };
+      console.log('📎 [FORMATIONS] Fichier préparé:', this.uploadedFiles[attachmentType]);
+    }, 500);
   }
 
   /**
@@ -565,15 +597,11 @@ export class Section1 implements OnInit, OnDestroy {
     this.submitting = true;
     this.error = null;
 
-    // Préparer les attachments comme dans header.ts
-    const attachments: any[] = [];
-    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
-      attachments.push({
-        name: fileData.name,
-        type: type,
-        url: fileData.url  // Ajouter l'URL du fichier uploadé
-      });
-    }
+     // Préparer les attachments comme des strings (noms de fichiers) selon l'API
+     const attachments: string[] = [];
+     for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+       attachments.push(fileData.name);
+     }
     
     // Préparer les données en convertissant date_of_birth si nécessaire
     const formValue = { ...this.applicationForm.value };
@@ -586,10 +614,15 @@ export class Section1 implements OnInit, OnDestroy {
       delete formValue.date_of_birth;
     }
     
-    const applicationData: StudentApplicationCreateInput = {
-      ...formValue,
-      attachments: attachments
-    };
+     const applicationData: StudentApplicationCreateInput = {
+       email: formValue.email,
+       target_session_id: this.selectedSession?.id || '',
+       first_name: formValue.first_name,
+       last_name: formValue.last_name,
+       phone_number: formValue.phone_number,
+       country_code: formValue.country_code,
+       attachments: attachments
+     };
 
     // Debug: Afficher les données envoyées
     console.log('📤 [FORMATIONS] Données de candidature à envoyer:', applicationData);
@@ -617,6 +650,63 @@ export class Section1 implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Uploader tous les fichiers pour une candidature
+   */
+  uploadAllFiles(applicationId: number) {
+    const uploadObservables = Object.keys(this.uploadedFiles).map(attachmentType => {
+      const fileData = this.uploadedFiles[attachmentType];
+      return this.studentApplicationService.uploadAttachment(
+        applicationId,
+        fileData.name,
+        fileData.file
+      );
+    });
+
+    // Utiliser forkJoin pour attendre tous les uploads
+    forkJoin(uploadObservables).subscribe({
+      next: () => {
+        console.log('✅ [FORMATIONS] Tous les fichiers uploadés');
+
+        // Soumettre la candidature (lance le paiement)
+        this.submitApplication(applicationId);
+      },
+      error: (error: any) => {
+        console.error('❌ [FORMATIONS] Erreur upload fichiers:', error);
+        this.submitting = false;
+        this.error = `Erreur lors de l'upload des fichiers: ${error.message}`;
+      }
+    });
+  }
+
+  /**
+   * Soumettre la candidature (lance le paiement)
+   */
+  submitApplication(applicationId: number) {
+    this.studentApplicationService.submitApplication(applicationId).subscribe({
+      next: (response: any) => {
+        console.log('✅ [FORMATIONS] Candidature soumise, paiement initié:', response);
+        console.log('🔗 [FORMATIONS] Payment URL reçu:', response.data?.payment_link);
+        this.submitting = false;
+        this.success = 'Candidature soumise avec succès ! Redirection vers le paiement...';
+
+        // Rediriger vers le paiement (comme dans header.ts)
+        if (response.data && response.data.payment_link) {
+          console.log("🔗 [FORMATIONS] Payment URL reçu:", response.data.payment_link);
+          // Redirection directe comme dans header.ts
+          window.location.href = response.data.payment_link;
+        } else {
+          console.error('❌ [FORMATIONS] Payment URL manquant:', response);
+          this.error = 'Lien de paiement non disponible';
+        }
+      },
+      error: (error: any) => {
+        console.error('❌ [FORMATIONS] Erreur soumission candidature:', error);
+        this.submitting = false;
+        this.error = `Erreur lors de la soumission: ${error.error?.message || error.message}`;
+      }
+    });
+  }
 
   /**
    * Formater la date
