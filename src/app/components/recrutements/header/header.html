@@ -268,63 +268,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Bloc Sessions disponibles -->
-                                        <div class="details-formation-sessions result">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h4 class="has-border-l lead mb-0">Sessions disponibles</h4>
-                                                <button (click)="openSessionsModal()" class="btn btn-outline-secondary btn-sm">
-                                                    Voir toutes les sessions
-                                                </button>
-                                            </div>
-
-                                            <div class="list-session">
-                                                <div class="list-session-choices">
-                                                    <p>Choisissez une session pour postuler</p>
-                                                </div>
-
-                                                <div class="list-session-results">
-                                                    <div *ngFor="let session of availableSessions" class="list-session-infos">
-                                                        <div class="list-session-infos-item">
-                                                            <div class="d-flex justify-content-between align-items-center">
-
-                                                                <!-- Infos de la session -->
-                                                                <div>
-                                                                    <span class="session-aviriable">{{ session.available_positions }} poste(s) disponible(s)</span>
-                                                                    <strong class="session-date">
-                                                                        Période : {{ formatDate(session.start_date) }} - {{ formatDate(session.end_date) }}
-                                                                    </strong>
-                                                                    <span class="session-aviriable-date">
-                                                                        Date limite d'inscription : {{ formatDate(session.registration_deadline) }}
-                                                                    </span>
-                                                                    <span class="session-location">
-                                                                        <i class="icon-location"></i> {{ session.location }}
-                                                                    </span>
-                                                                </div>
-
-                                                                <!-- Salaire -->
-                                                                <div>
-                                                                    <span class="price-label">Salaire</span>
-                                                                    <span class="regular-price">
-                                                                        {{ formatSalary(selectedJob?.salary || 0,
-                                                                        selectedJob?.currency || '') }}
-                                                                    </span>
-                                                                </div>
-
-                                                                <!-- Bouton Sélectionner -->
-                                                                <div class="d-flex flex-column align-items-center justify-content-center">
-                                                                    <button (click)="selectSession(session)"
-                                                                        class="btn btn-outline-primary"
-                                                                        title="Sélectionner cette session">
-                                                                        Sélectionner
-                                                                    </button>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
 
                                         <!-- Bloc Candidature directe (sans session) -->
                                         <div class="details-formation-sessions result mt-4">

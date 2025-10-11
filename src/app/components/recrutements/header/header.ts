@@ -49,7 +49,7 @@ export class Header implements OnInit, OnDestroy {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       civility: [''],
-      country_code: ['SN'], // Sénégal par défaut
+      country_code: ['SN'], // Sénégal bloqué
       city: [''],
       address: [''],
       date_of_birth: [''],

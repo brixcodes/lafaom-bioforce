@@ -25,7 +25,7 @@ export class Section1 implements OnInit, OnDestroy {
   filteredTrainings: Training[] = []; // Formations filtrées
   loading = false;
   error: string | null = null;
-  
+
   // Propriétés pour les modals de candidature
   showModal = false;
   showApplicationModal = false;
@@ -38,7 +38,7 @@ export class Section1 implements OnInit, OnDestroy {
   uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
   uploadingFiles: { [key: string]: boolean } = {};
   requiredAttachments: string[] = ['CV', 'Lettre de motivation', 'Copie de la pièce d\'identité'];
-  
+
   private refreshSubscription: Subscription | undefined;
   private filterSubscription: Subscription | undefined;
   private readonly REFRESH_INTERVAL = 30000; // 30 secondes
@@ -55,7 +55,7 @@ export class Section1 implements OnInit, OnDestroy {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       civility: [''],
-      country_code: ['SN'], // Sénégal par défaut
+      country_code: ['SN'],  // Sénégal bloqué
       city: [''],
       address: [''],
       date_of_birth: [''],
@@ -83,7 +83,7 @@ export class Section1 implements OnInit, OnDestroy {
     if (typeof window === 'undefined') {
       return; // Ne pas démarrer le rechargement automatique en SSR
     }
-    
+
     // Recharger les formations toutes les 30 secondes
     this.refreshSubscription = interval(this.REFRESH_INTERVAL).subscribe(() => {
       console.log('Rechargement automatique des formations...');
@@ -101,11 +101,11 @@ export class Section1 implements OnInit, OnDestroy {
     if (this.featuredTrainings.length === 0) return;
 
     // Optimisation : vérifier d'abord si des filtres sont actifs
-    const hasActiveFilters = filters.searchTerm || 
-                            filters.specialties.length > 0 || 
-                            filters.locations.length > 0 || 
-                            filters.types.length > 0 || 
-                            filters.durations.length > 0;
+    const hasActiveFilters = filters.searchTerm ||
+      filters.specialties.length > 0 ||
+      filters.locations.length > 0 ||
+      filters.types.length > 0 ||
+      filters.durations.length > 0;
 
     if (!hasActiveFilters) {
       this.filteredTrainings = [...this.featuredTrainings];
@@ -136,8 +136,8 @@ export class Section1 implements OnInit, OnDestroy {
       // Filtre par lieux (le plus coûteux, à la fin)
       if (filters.locations.length > 0) {
         const trainingCities = this.getTrainingCities(training);
-        const hasMatchingLocation = trainingCities.some(city => 
-          filters.locations.some((filterLocation: string) => 
+        const hasMatchingLocation = trainingCities.some(city =>
+          filters.locations.some((filterLocation: string) =>
             city.toLowerCase().includes(filterLocation.toLowerCase())
           )
         );
@@ -155,13 +155,13 @@ export class Section1 implements OnInit, OnDestroy {
       this.loading = false; // Pas de loading automatique
     }
     this.error = null;
-    
+
     this.trainingService.getFeaturedTrainings(5).subscribe({
       next: (response: any) => {
         console.log('Réponse API formations:', response);
         this.featuredTrainings = response.data || [];
         this.filteredTrainings = [...this.featuredTrainings]; // Initialiser avec toutes les formations
-        
+
         // Charger les sessions pour chaque formation
         this.loadSessionsForTrainings();
       },
@@ -180,7 +180,7 @@ export class Section1 implements OnInit, OnDestroy {
     }
 
     // Créer un observable pour chaque formation
-    const sessionObservables = this.featuredTrainings.map(training => 
+    const sessionObservables = this.featuredTrainings.map(training =>
       this.trainingService.getTrainingSessions(training.id.toString(), {
         page: 1,
         page_size: 100
@@ -189,7 +189,7 @@ export class Section1 implements OnInit, OnDestroy {
         map((response: any) => {
           const today = new Date();
           console.log(`Formation ${training.id} - Sessions reçues:`, response.data);
-          
+
           const availableSessions = response.data.filter((session: any) => {
             // Vérifier que la session n'a pas encore commencé ET qu'elle est ouverte aux inscriptions
             if (session.start_date && session.status === 'OPEN_FOR_REGISTRATION') {
@@ -201,10 +201,10 @@ export class Section1 implements OnInit, OnDestroy {
             console.log(`Session ${session.id} rejetée: start_date=${session.start_date}, status=${session.status}`);
             return false;
           });
-          
+
           console.log(`Formation ${training.id} - Sessions disponibles:`, availableSessions.length);
-          return { 
-            trainingId: training.id.toString(), 
+          return {
+            trainingId: training.id.toString(),
             count: availableSessions.length,
             sessions: availableSessions
           };
@@ -223,7 +223,7 @@ export class Section1 implements OnInit, OnDestroy {
         results.forEach((result: any) => {
           this.trainingSessionsCount.set(result.trainingId, result.count);
         });
-        
+
         // Charger les villes des centres pour chaque formation
         this.loadCitiesForTrainings(results);
       },
@@ -251,7 +251,7 @@ export class Section1 implements OnInit, OnDestroy {
     }
 
     // Créer un observable pour chaque centre
-    const centerObservables = Array.from(centerIds).map(centerId => 
+    const centerObservables = Array.from(centerIds).map(centerId =>
       this.trainingService.getOrganizationCenter(centerId).pipe(
         map((response: any) => response.data.city),
         catchError((error: any) => {
@@ -365,7 +365,7 @@ export class Section1 implements OnInit, OnDestroy {
     this.selectedTraining = training;
     this.showModal = true;
     this.loadTrainingSessions(training.id);
-    
+
     // Empêcher le scroll du body quand le modal est ouvert
     if (typeof document !== 'undefined') {
       document.body.classList.add('modal-open');
@@ -379,13 +379,13 @@ export class Section1 implements OnInit, OnDestroy {
     this.showModal = false;
     this.selectedTraining = null;
     this.availableSessions = [];
-    
+
     // Nettoyer l'état du modal
     if (typeof document !== 'undefined') {
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
-      
+
       // Supprimer tous les backdrops existants
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
@@ -414,7 +414,7 @@ export class Section1 implements OnInit, OnDestroy {
   selectSession(session: TrainingSession) {
     this.selectedSession = session;
     this.openApplicationModal(this.selectedTraining!);
-    
+
     // Mettre à jour le formulaire avec l'ID de la session
     this.applicationForm.patchValue({
       target_session_id: session.id
@@ -425,17 +425,17 @@ export class Section1 implements OnInit, OnDestroy {
     // Fermer le modal de détails
     this.showModal = false;
     this.selectedTraining = null;
-    
+
     // Nettoyer l'état du modal de détails
     if (typeof document !== 'undefined') {
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
-      
+
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
     }
-    
+
     // Ouvrir le modal de candidature
     this.selectedTraining = training;
     this.showApplicationModal = true;
@@ -443,16 +443,18 @@ export class Section1 implements OnInit, OnDestroy {
     this.error = null;
     this.uploadedFiles = {};
     this.uploadingFiles = {};
-    
+
     // Charger les sessions disponibles
     this.loadTrainingSessions(training.id);
-    
+
     // Réinitialiser le formulaire
     this.applicationForm.reset();
     this.applicationForm.patchValue({
       country_code: 'SN'
     });
-    
+    // S'assurer que country_code reste bloqué
+    this.applicationForm.get('country_code')?.disable();
+
     // Empêcher le scroll du body quand le modal de candidature est ouvert
     if (typeof document !== 'undefined') {
       document.body.classList.add('modal-open');
@@ -471,26 +473,27 @@ export class Section1 implements OnInit, OnDestroy {
     this.uploadingFiles = {};
     this.availableSessions = [];
     this.applicationForm.reset();
-    
+
     // Nettoyer complètement l'état du modal
     if (typeof document !== 'undefined') {
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
-      
+
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
-      
+
       const modals = document.querySelectorAll('.modal');
       modals.forEach(modal => {
         modal.classList.remove('show');
         (modal as HTMLElement).style.display = 'none';
       });
-      
+
       // Recharger la page entière après fermeture du modal
       window.location.reload();
     }
   }
+
 
   /**
    * Gérer la sélection de fichier
@@ -503,23 +506,20 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   /**
-   * Uploader un fichier
+   * Uploader un fichier (logique identique à header.ts)
    */
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
     this.uploadingFiles[attachmentType] = true;
     
-    // Stocker le fichier localement pour l'instant
-    // L'upload réel se fera lors de la soumission de la candidature
-    setTimeout(() => {
-      this.uploadingFiles[attachmentType] = false;
-      this.uploadedFiles[attachmentType] = {
-        file: file,
-        url: URL.createObjectURL(file),
-        name: fileName
-      };
-      console.log('📎 [FORMATIONS] Fichier préparé:', this.uploadedFiles[attachmentType]);
-    }, 500);
+    // Stocker le fichier localement comme dans header.ts
+    this.uploadingFiles[attachmentType] = false;
+    this.uploadedFiles[attachmentType] = {
+      file: file,
+      url: URL.createObjectURL(file), // URL temporaire
+      name: fileName
+    };
+    console.log('📎 [FORMATIONS] Fichier préparé:', this.uploadedFiles[attachmentType]);
   }
 
   /**
@@ -559,16 +559,20 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   /**
-   * Soumettre la candidature
+   * Soumettre la candidature (logique identique à header.ts)
    */
   onSubmitApplication() {
     this.submitting = true;
     this.error = null;
 
-    // Préparer les attachments
-    const attachments: string[] = [];
+    // Préparer les attachments comme dans header.ts
+    const attachments: any[] = [];
     for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
-      attachments.push(fileData.url);
+      attachments.push({
+        name: fileData.name,
+        type: type,
+        url: fileData.url  // Ajouter l'URL du fichier uploadé
+      });
     }
     
     // Préparer les données en convertissant date_of_birth si nécessaire
@@ -593,76 +597,26 @@ export class Section1 implements OnInit, OnDestroy {
 
     this.studentApplicationService.createApplication(applicationData).subscribe({
       next: (response: any) => {
-        console.log('✅ [FORMATIONS] Candidature créée:', response);
-        const applicationId = response.data.id;
-        
-        // Uploader tous les fichiers
-        this.uploadAllFiles(applicationId);
-      },
-      error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur création candidature:', error);
-        this.error = `Erreur lors de la création de la candidature: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+        this.success = true;
         this.submitting = false;
-      }
-    });
-  }
-
-  /**
-   * Uploader tous les fichiers pour une candidature
-   */
-  uploadAllFiles(applicationId: number) {
-    const uploadObservables = Object.keys(this.uploadedFiles).map(attachmentType => {
-      const fileData = this.uploadedFiles[attachmentType];
-      return this.studentApplicationService.uploadAttachment(
-        applicationId, 
-        fileData.name, 
-        fileData.file
-      );
-    });
-
-    // Utiliser forkJoin pour attendre tous les uploads
-    forkJoin(uploadObservables).subscribe({
-      next: () => {
-        console.log('✅ [FORMATIONS] Tous les fichiers uploadés');
         
-        // Soumettre la candidature (lance le paiement)
-        this.submitApplication(applicationId);
-      },
-      error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur upload fichiers:', error);
-        this.submitting = false;
-        this.error = `Erreur lors de l'upload des fichiers: ${error.message}`;
-      }
-    });
-  }
-
-  /**
-   * Soumettre la candidature (lance le paiement)
-   */
-  submitApplication(applicationId: number) {
-    this.studentApplicationService.submitApplication(applicationId).subscribe({
-      next: (response: any) => {
-        console.log('✅ [FORMATIONS] Candidature soumise, paiement initié:', response);
-        this.submitting = false;
-        this.success = 'Candidature soumise avec succès ! Redirection vers le paiement...';
-        
-        // Rediriger vers le paiement
-        if (response.data && response.data.payment_link) {
-          setTimeout(() => {
-            window.open(response.data.payment_link, '_blank');
-            this.closeApplicationModal();
-          }, 2000);
+        if (response.data && response.data.payment && response.data.payment.payment_link) {
+          window.location.href = response.data.payment.payment_link;
         } else {
-          this.error = 'Lien de paiement non disponible';
+          // Afficher le message de succès puis recharger la page
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }
       },
       error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur soumission candidature:', error);
+        console.error('Erreur lors de la soumission de la candidature:', error);
+        this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
         this.submitting = false;
-        this.error = `Erreur lors de la soumission: ${error.error?.message || error.message}`;
       }
     });
   }
+
 
   /**
    * Formater la date
