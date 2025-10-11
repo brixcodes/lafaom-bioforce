@@ -11,7 +11,8 @@ export const routes: Routes = [
   { path: 'actualites', component: Actualites },
   { 
     path: 'actualite/:id', 
-    loadComponent: () => import('./pages/actualite-details/actualite-details').then(m => m.ActualiteDetails)
+    loadComponent: () => import('./pages/actualite-details/actualite-details').then(m => m.ActualiteDetails),
+    data: { skipPrerender: true }
   },
   { path: 'formations', component: Formations },
   { path: 'recrutements', component: Recrutements },

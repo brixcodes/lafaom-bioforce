@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewsService } from '../../services/news.service';
-import { News, BlogCategory } from '../../models/api.models';
+import { News, BlogCategory, ArticleSection } from '../../models/api.models';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class ActualiteDetails implements OnInit, OnDestroy {
   news: News | null = null;
   category: string = '';
+  sections: ArticleSection[] = [];
   loading = true;
   error: string | null = null;
   private routeSubscription: Subscription | undefined;
@@ -55,6 +56,8 @@ export class ActualiteDetails implements OnInit, OnDestroy {
         if (this.news && this.news.category_id) {
           this.loadCategory(this.news.category_id);
         }
+        // Charger les sections de l'article
+        this.loadArticleSections(id);
         this.loading = false;
       },
       error: (error) => {
@@ -77,7 +80,20 @@ export class ActualiteDetails implements OnInit, OnDestroy {
     });
   }
 
-  formatDate(dateString: string | null): string {
+  loadArticleSections(postId: number) {
+    this.newsService.getArticleSections(postId).subscribe({
+      next: (response) => {
+        this.sections = response.data;
+        console.log('Sections chargées:', this.sections);
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des sections:', error);
+        this.sections = [];
+      }
+    });
+  }
+
+  formatDate(dateString: string | null | undefined): string {
     if (!dateString) return '';
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
@@ -87,7 +103,9 @@ export class ActualiteDetails implements OnInit, OnDestroy {
     });
   }
 
-  getImageUrl(news: News): string {
+  getImageUrl(news: News | null): string {
+    if (!news) return '/assets/images/default-news.jpg';
+    
     if (news.cover_image && news.cover_image.startsWith('http')) {
       return news.cover_image;
     }
@@ -99,8 +117,8 @@ export class ActualiteDetails implements OnInit, OnDestroy {
     return '/assets/images/default-news.jpg';
   }
 
-  getContent(news: News): string {
-    if (!news.content) return '';
+  getContent(news: News | null): string {
+    if (!news || !news.content) return '';
     
     let cleanContent = news.content
       .replace(/&lt;/g, '<')
@@ -113,8 +131,8 @@ export class ActualiteDetails implements OnInit, OnDestroy {
     return cleanContent;
   }
 
-  getSummary(news: News): string {
-    if (!news.summary) return '';
+  getSummary(news: News | null): string {
+    if (!news || !news.summary) return '';
     
     let cleanSummary = news.summary
       .replace(/&lt;/g, '<')
@@ -127,9 +145,19 @@ export class ActualiteDetails implements OnInit, OnDestroy {
     return cleanSummary;
   }
 
-  getTags(news: News): string[] {
-    if (!news.tags) return [];
+  getTags(news: News | null): string[] {
+    if (!news || !news.tags) return [];
     return news.tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+  }
+
+  getSectionMediaUrl(section: ArticleSection): string {
+    if (!section.media_url) return '';
+    
+    if (section.media_url.startsWith('http')) {
+      return section.media_url;
+    }
+    
+    return `https://lafaom.vertex-cam.com${section.media_url}`;
   }
 
   goBack() {

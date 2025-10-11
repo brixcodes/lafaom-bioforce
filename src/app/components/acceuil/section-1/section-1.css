@@ -1,0 +1,76 @@
+/* Styles pour la modal vidéo */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.video-modal-content {
+  position: relative;
+  max-width: 95%;
+  max-height: 95%;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: default;
+}
+
+.video-modal-content video {
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+  max-height: 800px;
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-modal-content {
+    max-width: 98%;
+    max-height: 98%;
+  }
+  
+  .video-modal-content video {
+    max-width: 100%;
+    max-height: 500px;
+  }
+}
+
+/* Pour les très grands écrans */
+@media (min-width: 1400px) {
+  .video-modal-content video {
+    max-width: 1400px;
+    max-height: 900px;
+  }
+}

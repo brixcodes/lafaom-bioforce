@@ -1,31 +1,51 @@
 <div class="content">
-    <div class="container">
+    <div class="container-1440">
         <div class="page-header">
 
+            <!-- Image de couverture -->
             <div class="has-background container-full"
-                style="background-image: url(../wp-content/uploads/2020/03/about-us-1.jpg)">
-                <img decoding="async" src="../wp-content/uploads/2020/03/about-us-1.jpg" alt="">
+                [style.background-image]="news?.cover_image ? 'url(' + getImageUrl(news) + ')' : ''">
+                <img *ngIf="news?.cover_image" [src]="getImageUrl(news)" decoding="async" class="img-fluid">
             </div>
-        
+
+            <!-- En-tête -->
             <div class="page-header-inner">
                 <div class="page-title">
-                    <span class="d-block page-parent"> </span>
-                    <h1 style="text-transform: uppercase;">Trouver ma formation</h1>
+                    <span class="d-block page-parent">{{ category }}</span>
+                    <h1>{{ news?.title }}</h1>
                 </div>
+
                 <div class="page-sub-title">
                     <div>
-                        <span class="has-border-l-t d-block">Formez-vous en quelques clics.</span>
+                        <span class="has-border-l-t d-block" *ngIf="news?.published_at">
+                            {{ formatDate(news?.published_at) }}
+                        </span>
                     </div>
+
                     <div>
-                        <p>Rejoignez une formation unique et engagez-vous pour une justice plus humaine.</p>
+                        <p [innerHTML]="news?.summary"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
+    <!-- Sections de l'article -->
+    <div *ngIf="sections.length > 0">
+        <div class="container-1440" *ngFor="let section of sections; let i = index">
+            <div class="section-textriche">
+                <h2 class="title-h2">{{ section?.title }}</h2>
+
+                <p [innerHTML]="section?.content"></p>
+
+                <!-- Image de la section si elle existe -->
+                <p *ngIf="section?.media_url">
+                    <img [src]="getSectionMediaUrl(section)" [alt]="section?.media_alt || section?.title"
+                        class="alignnone img-fluid" loading="lazy" decoding="async" />
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
 </div>

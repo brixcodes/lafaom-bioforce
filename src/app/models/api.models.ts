@@ -38,6 +38,26 @@ export interface CategoryResponse {
   data: BlogCategory;
 }
 
+// Interface pour les sections d'articles
+export interface ArticleSection {
+  id: number;
+  post_id: number;
+  title: string;
+  content: string;
+  order: number;
+  section_type: 'text' | 'image' | 'video' | 'quote' | 'list';
+  media_url?: string;
+  media_alt?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ArticleSectionsResponse {
+  data: ArticleSection[];
+  message?: string;
+  success: boolean;
+}
+
 // Interfaces pour les offres d'emploi (basées sur la structure réelle du backend)
 export interface JobOffer {
   id: string;

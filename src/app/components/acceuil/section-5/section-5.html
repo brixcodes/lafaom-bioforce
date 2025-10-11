@@ -1,8 +1,8 @@
-    <div data-wpr-lazyrender="1" class="gab-actualites container-1440">
-        <div class="content">
-            <h4 class="titre-prin">
-                activités récentes
-            </h4>
+<div data-wpr-lazyrender="1" class="gab-actualites container-1440">
+    <div class="content">
+        <h4 class="titre-prin">
+            activités récentes
+        </h4>
 
         <!-- Indicateur de chargement -->
         <div *ngIf="loading" class="loading-indicator">
@@ -20,13 +20,11 @@
             <div class="row actualites flex-nowrap">
                 <div *ngFor="let news of recentNews" class="col-md-6 actu">
                     <div class="img">
-                        <img [src]="getImageUrl(news)" 
-                             [alt]="news.title"
-                             [attr.data-lazy-src]="getImageUrl(news)">
+                        <img [src]="getImageUrl(news)" [alt]="news.title" [attr.data-lazy-src]="getImageUrl(news)">
                     </div>
                     <div class="info">
                         <p class="categorie">{{ getCategory(news) }}</p>
-                        <a href="javascript:void(0)" class="a-titre">
+                        <a [routerLink]="['/actualite', news.id]" class="a-titre">
                             <h5 class="titre">{{ news.title }}</h5>
                         </a>
                         <div class="intro" [innerHTML]="getSummary(news)"></div>
@@ -45,13 +43,11 @@
             <div *ngFor="let news of recentNews" class="item actualites">
                 <div class="actu">
                     <div class="img">
-                        <img [src]="getImageUrl(news)" 
-                             [alt]="news.title"
-                             [attr.data-lazy-src]="getImageUrl(news)">
+                        <img [src]="getImageUrl(news)" [alt]="news.title" [attr.data-lazy-src]="getImageUrl(news)">
                     </div>
                     <div class="info">
                         <p class="categorie">{{ getCategory(news) }}</p>
-                        <a href="javascript:void(0)" class="a-titre">
+                        <a [routerLink]="['/actualite', news.id]" class="a-titre">
                             <h5 class="titre">{{ news.title }}</h5>
                         </a>
                         <div class="intro" [innerHTML]="getSummary(news)"></div>

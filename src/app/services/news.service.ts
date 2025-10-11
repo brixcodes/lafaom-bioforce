@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of, catchError } from 'rxjs';
-import { News, NewsResponse, PaginationParams, SearchFilters, BlogCategory, CategoryResponse } from '../models/api.models';
+import { News, NewsResponse, PaginationParams, SearchFilters, BlogCategory, CategoryResponse, ArticleSection, ArticleSectionsResponse } from '../models/api.models';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -121,9 +121,22 @@ export class NewsService {
   getRecentNews(limit: number = 5): Observable<NewsResponse> {
     const params = new HttpParams()
       .set('per_page', limit.toString())
-      .set('page', '1');
+      .set('page', '1')
+      .set('published', 'true'); // Filtrer seulement les actualités publiées
     
-    return this.http.get<NewsResponse>(`${this.baseUrl}/blog/posts`, { params });
+    return this.http.get<NewsResponse>(`${this.baseUrl}/blog/posts`, { params })
+      .pipe(
+        catchError((error: any) => {
+          console.error('Erreur lors du chargement des actualités récentes:', error);
+          // Retourner des données par défaut en cas d'erreur
+          return of({
+            data: [],
+            page: 1,
+            number: 0,
+            total_number: 0
+          });
+        })
+      );
   }
 
   /**
@@ -191,6 +204,24 @@ export class NewsService {
               created_at: '',
               updated_at: ''
             }
+          });
+        })
+      );
+  }
+
+  /**
+   * Récupérer les sections d'un article
+   */
+  getArticleSections(postId: number): Observable<ArticleSectionsResponse> {
+    return this.http.get<ArticleSectionsResponse>(`${this.baseUrl}/blog/posts/${postId}/sections`)
+      .pipe(
+        catchError((error: any) => {
+          console.error(`Erreur lors du chargement des sections de l'article ${postId}:`, error);
+          // Retourner des sections par défaut en cas d'erreur
+          return of({
+            success: false,
+            message: 'Sections non disponibles',
+            data: []
           });
         })
       );

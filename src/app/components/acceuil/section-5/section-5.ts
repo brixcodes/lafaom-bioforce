@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NewsService } from '../../../services/news.service';
 import { News, BlogCategory } from '../../../models/api.models';
 import { Observable, interval, Subscription } from 'rxjs';
@@ -7,7 +8,7 @@ import { Observable, interval, Subscription } from 'rxjs';
 @Component({
   selector: 'app-section-5',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './section-5.html',
   styleUrl: './section-5.css'
 })
