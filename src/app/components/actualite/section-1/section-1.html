@@ -1,27 +1,25 @@
 <div>
     <div class="container-1290">
-        <div class="filters  " data-target=".news-list-results" data-noresult="Aucun résultat trouvé !">
-            <form action="#" class="form-inline align-items-start">
+        <div class="filters" data-target=".news-list-results" data-noresult="Aucun résultat trouvé !">
+            <div class="form-inline align-items-start">
                 <div class="col-md-11">
                     <div class="row">
-                        <div class="form-group  col-md-6 col-lg-4">
-                            <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label class="m-custom-select w-100 s-select-lg bg-secondary">
                                 <span>Catégories</span>
-                                <select name="" class="s-select" multiple>
-                                    
+                                <select name="categories" class="s-select" multiple (change)="onCategoryChange($event)">
+                                    <option *ngFor="let category of categories" [value]="category.id">
+                                        {{ category.title }}
+                                    </option>
                                 </select>
                             </label>
                         </div>
                         <div class="form-group col col-md-6 col-lg-4">
-                            <button class="btn btn-info">Filtrer</button>
+                            <button type="button" class="btn btn-secondary" (click)="resetFilters()">Réinitialiser</button>
                         </div>
                     </div>
                 </div>
-
-                <input type="hidden" name="action" value="actualites-filter">
-                <input type="hidden" name="page" value="1" />
-            </form>
-
+            </div>
         </div>
     </div>
 </div>

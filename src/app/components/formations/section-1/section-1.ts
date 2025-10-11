@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-section-1',
+  selector: 'app-formations-section-1',
   standalone: true,
   imports: [],
   templateUrl: './section-1.html',

@@ -134,9 +134,9 @@ export class CandidatureForm {
 
   // Validation du formulaire
   isFormValid(): boolean {
-    const hasRequiredFields = this.form.first_name && this.form.last_name && 
+    const hasRequiredFields = !!(this.form.first_name && this.form.last_name && 
                             this.form.email && this.form.phone_number && 
-                            this.form.city && this.form.address;
+                            this.form.city && this.form.address);
     
     const allUploadsCompleted = this.requiredDocuments.every(docType => {
       const attachment = this.attachments.find(a => a.type === docType);

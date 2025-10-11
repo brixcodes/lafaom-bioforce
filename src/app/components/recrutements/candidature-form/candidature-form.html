@@ -1,40 +1,44 @@
 <div class="candidature-form">
   <div class="form-container">
-    <h3 class="form-title">Formulaire de candidature</h3>
-    
-    <!-- Indicateur de progression des uploads -->
-    <div *ngIf="uploadingCount > 0" class="upload-progress">
+    <h2 class="form-title">Formulaire de Candidature</h2>
+
+    <!-- Indicateur de progression -->
+    <div class="upload-progress" *ngIf="uploadingCount > 0 || uploadProgress > 0">
       <div class="progress-info">
-        <i class="fas fa-upload"></i>
-        {{ uploadingCount }} fichier(s) en cours d'upload...
+        <span *ngIf="uploadingCount > 0">Upload en cours... ({{uploadingCount}} fichier(s))</span>
+        <span *ngIf="uploadingCount === 0 && uploadProgress > 0">Progression: {{uploadProgress}}%</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" [style.width.%]="uploadProgress"></div>
       </div>
     </div>
 
-    <!-- Erreurs -->
-    <div *ngIf="errors.length > 0" class="error-alert">
-      <i class="fas fa-exclamation-triangle"></i>
+    <!-- Messages d'erreur -->
+    <div class="error-alert" *ngIf="errors.length > 0">
       <ul>
-        <li *ngFor="let error of errors">{{ error }}</li>
+        <li *ngFor="let error of errors">{{error}}</li>
       </ul>
     </div>
 
-    <form (ngSubmit)="submitApplication()" #candidatureForm="ngForm">
+    <form (ngSubmit)="submitApplication()">
       <!-- Informations personnelles -->
       <div class="form-section">
         <h4>Informations personnelles</h4>
+        <p class="section-description">Veuillez remplir vos informations personnelles</p>
         
         <div class="form-row">
           <div class="form-group">
-            <label for="civility">Civilité</label>
-            <select id="civility" [(ngModel)]="form.civility" name="civility">
+            <label for="civility">Civilité *</label>
+            <select id="civility" [(ngModel)]="form.civility" name="civility" required>
               <option value="">Sélectionner</option>
               <option *ngFor="let option of civilityOptions" [value]="option.value">
-                {{ option.label }}
+                {{option.label}}
               </option>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="date_of_birth">Date de naissance</label>
+            <input type="date" id="date_of_birth" [(ngModel)]="form.date_of_birth" name="date_of_birth">
           </div>
         </div>
 
@@ -59,66 +63,117 @@
             <input type="tel" id="phone_number" [(ngModel)]="form.phone_number" name="phone_number" required>
           </div>
         </div>
+      </div>
 
+      <!-- Adresse -->
+      <div class="form-section">
+        <h4>Adresse</h4>
+        <p class="section-description">Votre adresse de résidence</p>
+        
         <div class="form-row">
           <div class="form-group">
             <label for="city">Ville *</label>
             <input type="text" id="city" [(ngModel)]="form.city" name="city" required>
           </div>
           <div class="form-group">
-            <label for="address">Adresse *</label>
-            <input type="text" id="address" [(ngModel)]="form.address" name="address" required>
+            <label for="country_code">Pays</label>
+            <select id="country_code" [(ngModel)]="form.country_code" name="country_code">
+              <option value="SN">Sénégal</option>
+              <option value="ML">Mali</option>
+              <option value="BF">Burkina Faso</option>
+              <option value="CI">Côte d'Ivoire</option>
+              <option value="GN">Guinée</option>
+            </select>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="date_of_birth">Date de naissance</label>
-            <input type="date" id="date_of_birth" [(ngModel)]="form.date_of_birth" name="date_of_birth">
-          </div>
+        <div class="form-group">
+          <label for="address">Adresse complète *</label>
+          <input type="text" id="address" [(ngModel)]="form.address" name="address" required>
         </div>
       </div>
 
       <!-- Documents requis -->
       <div class="form-section">
         <h4>Documents requis</h4>
-        <p class="section-description">Les documents suivants sont obligatoires :</p>
+        <p class="section-description">Veuillez uploader les documents suivants (PDF, DOC, DOCX)</p>
         
         <div class="documents-grid">
-          <div *ngFor="let docType of requiredDocuments" class="document-upload">
+          <!-- CV -->
+          <div class="document-upload">
             <div class="document-header">
-              <h5>{{ docType }}</h5>
-              <div class="document-status" [ngClass]="getDocumentStatus(docType)">
-                <span *ngIf="getDocumentStatus(docType) === 'pending'">
-                  <i class="fas fa-clock"></i> En attente
-                </span>
-                <span *ngIf="getDocumentStatus(docType) === 'uploading'">
-                  <i class="fas fa-spinner fa-spin"></i> Upload...
-                </span>
-                <span *ngIf="getDocumentStatus(docType) === 'completed'">
-                  <i class="fas fa-check"></i> Uploadé
-                </span>
-                <span *ngIf="getDocumentStatus(docType) === 'error'">
-                  <i class="fas fa-exclamation-triangle"></i> Erreur
-                </span>
-              </div>
+              <h5>CV *</h5>
+              <span class="document-status" [ngClass]="getDocumentStatus('CV')">
+                <span *ngIf="getDocumentStatus('CV') === 'pending'">En attente</span>
+                <span *ngIf="getDocumentStatus('CV') === 'uploading'">Upload en cours...</span>
+                <span *ngIf="getDocumentStatus('CV') === 'completed'">✓ Terminé</span>
+                <span *ngIf="getDocumentStatus('CV') === 'error'">✗ Erreur</span>
+              </span>
             </div>
-
             <div class="file-input-container">
               <input type="file" 
-                     [id]="'file-' + docType"
-                     accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                     (change)="onFileSelected($event, docType)"
-                     class="file-input">
-              <label [for]="'file-' + docType" class="file-label">
-                <i class="fas fa-upload"></i>
-                <span *ngIf="!getSelectedFile(docType)">Choisir un fichier</span>
-                <span *ngIf="getSelectedFile(docType)">{{ getSelectedFile(docType)?.name }}</span>
+                     class="file-input" 
+                     (change)="onFileSelected($event, 'CV')"
+                     accept=".pdf,.doc,.docx">
+              <label class="file-label">
+                <span>📄</span>
+                <span>Cliquez pour sélectionner votre CV</span>
               </label>
             </div>
+            <div class="file-info" *ngIf="getSelectedFile('CV')">
+              Fichier sélectionné: {{getSelectedFile('CV')?.name}}
+            </div>
+          </div>
 
-            <div class="file-info" *ngIf="getSelectedFile(docType)">
-              <small>Fichier sélectionné : {{ getSelectedFile(docType)?.name }}</small>
+          <!-- Lettre de motivation -->
+          <div class="document-upload">
+            <div class="document-header">
+              <h5>Lettre de motivation *</h5>
+              <span class="document-status" [ngClass]="getDocumentStatus('COVER_LETTER')">
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'pending'">En attente</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'uploading'">Upload en cours...</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'completed'">✓ Terminé</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'error'">✗ Erreur</span>
+              </span>
+            </div>
+            <div class="file-input-container">
+              <input type="file" 
+                     class="file-input" 
+                     (change)="onFileSelected($event, 'COVER_LETTER')"
+                     accept=".pdf,.doc,.docx">
+              <label class="file-label">
+                <span>📝</span>
+                <span>Cliquez pour sélectionner votre lettre de motivation</span>
+              </label>
+            </div>
+            <div class="file-info" *ngIf="getSelectedFile('COVER_LETTER')">
+              Fichier sélectionné: {{getSelectedFile('COVER_LETTER')?.name}}
+            </div>
+          </div>
+
+          <!-- Diplôme -->
+          <div class="document-upload">
+            <div class="document-header">
+              <h5>Diplôme *</h5>
+              <span class="document-status" [ngClass]="getDocumentStatus('DIPLOMA')">
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'pending'">En attente</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'uploading'">Upload en cours...</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'completed'">✓ Terminé</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'error'">✗ Erreur</span>
+              </span>
+            </div>
+            <div class="file-input-container">
+              <input type="file" 
+                     class="file-input" 
+                     (change)="onFileSelected($event, 'DIPLOMA')"
+                     accept=".pdf,.doc,.docx">
+              <label class="file-label">
+                <span>🎓</span>
+                <span>Cliquez pour sélectionner votre diplôme</span>
+              </label>
+            </div>
+            <div class="file-info" *ngIf="getSelectedFile('DIPLOMA')">
+              Fichier sélectionné: {{getSelectedFile('DIPLOMA')?.name}}
             </div>
           </div>
         </div>
@@ -126,25 +181,25 @@
 
       <!-- Boutons d'action -->
       <div class="form-actions">
-        <button type="button" class="btn btn-secondary" (click)="candidatureForm.reset()">
-          Annuler
+        <button type="button" class="btn btn-secondary" (click)="form = {
+          first_name: '',
+          last_name: '',
+          email: '',
+          phone_number: '',
+          civility: '',
+          city: '',
+          address: '',
+          date_of_birth: '',
+          country_code: 'SN'
+        }; attachments = []; errors = [];">
+          Réinitialiser
         </button>
         <button type="submit" 
                 class="btn btn-primary" 
                 [disabled]="!isFormValid() || isSubmitting"
-                [class.loading]="isSubmitting">
-          <span *ngIf="uploadingCount > 0">
-            <i class="fas fa-spinner fa-spin"></i>
-            Upload en cours ({{ uploadingCount }})
-          </span>
-          <span *ngIf="uploadingCount === 0 && uploadProgress < 100 && uploadProgress > 0">
-            <i class="fas fa-upload"></i>
-            Upload {{ uploadProgress }}%
-          </span>
-          <span *ngIf="uploadingCount === 0 && uploadProgress === 100">
-            <i class="fas fa-paper-plane"></i>
-            Soumettre la candidature
-          </span>
+                [ngClass]="{'loading': isSubmitting}">
+          <span *ngIf="isSubmitting">Soumission en cours...</span>
+          <span *ngIf="!isSubmitting">Soumettre ma candidature</span>
         </button>
       </div>
     </form>

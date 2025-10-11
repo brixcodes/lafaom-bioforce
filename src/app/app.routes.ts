@@ -9,6 +9,10 @@ export const routes: Routes = [
   { path: '', component: Acceuil },
   { path: 'acceuil', component: Acceuil },
   { path: 'actualites', component: Actualites },
+  { 
+    path: 'actualite/:id', 
+    loadComponent: () => import('./pages/actualite-details/actualite-details').then(m => m.ActualiteDetails)
+  },
   { path: 'formations', component: Formations },
   { path: 'recrutements', component: Recrutements },
   { path: 'contact', component: Contact },

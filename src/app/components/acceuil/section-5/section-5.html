@@ -1,193 +1,61 @@
-<div data-wpr-lazyrender="1" class="gab-actualites container-1440">
-    <div class="content">
-        <h4 class="titre-prin">activités récentes</h4>
+    <div data-wpr-lazyrender="1" class="gab-actualites container-1440">
+        <div class="content">
+            <h4 class="titre-prin">
+                activités récentes
+            </h4>
 
-        <div class="customScrollbar">
+        <!-- Indicateur de chargement -->
+        <div *ngIf="loading" class="loading-indicator">
+            <p>Chargement des actualités...</p>
+        </div>
+
+        <!-- Message d'erreur -->
+        <div *ngIf="error" class="error-message">
+            <p>{{ error }}</p>
+            <button (click)="loadRecentNews()" class="btn orange-btn">Réessayer</button>
+        </div>
+
+        <!-- Actualités dynamiques -->
+        <div *ngIf="!loading && !error && recentNews.length > 0" class="customScrollbar">
             <div class="row actualites flex-nowrap">
-                <div class="col-md-6 actu">
+                <div *ngFor="let news of recentNews" class="col-md-6 actu">
                     <div class="img">
-                        <img src="/l1.jpg" alt="Conseil d'administration de validation des documents cadre"
-                            data-lazy-src="/l1.jpg">
+                        <img [src]="getImageUrl(news)" 
+                             [alt]="news.title"
+                             [attr.data-lazy-src]="getImageUrl(news)">
                     </div>
                     <div class="info">
-                        <p class="categorie">gouvernance</p>
+                        <p class="categorie">{{ getCategory(news) }}</p>
                         <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Conseil d'administration de validation des documents cadre du
-                                fonctionnement de l'Institut de formation Lafaom-Mao</h5>
+                            <h5 class="titre">{{ news.title }}</h5>
                         </a>
-                        <div class="intro">Session stratégique du Conseil d'administration à Bremen (9-11 octobre 2025).
-                            Validation des documents cadre, programmes pédagogiques et modalités d'admission des 63
-                            étudiants. Garantie de conformité internationale pour la première école africaine
-                            spécialisée en travail social judiciaire.</div>
-                        <p class="date">09-11/10/2025</p>
-                    </div>
-                </div>
-                <div class="col-md-6 actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Rentrée de l'équipe pédagogique" data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">formation</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Rentrée de l'équipe pédagogique</h5>
-                        </a>
-                        <div class="intro">Rentrée officielle de l'équipe pédagogique le 17 décembre 2025. Phase de
-                            préparation intensive pour l'accueil de 63 étudiants. Experts internationaux et psychologues
-                            cliniciens se préparent à dispenser la formation révolutionnaire de 12 mois basée sur le
-                            système Mao pour créer la première génération d'AVUJ en Afrique.</div>
-                        <p class="date">17/12/2025</p>
-                    </div>
-                </div>
-                <div class="col-md-6 actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Rentrée de l'Institut de formation Lafaom-Mao" data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">formation</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Rentrée de l'Institut de formation Lafaom-Mao</h5>
-                        </a>
-                        <div class="intro">Ouverture historique de l'Institut Lafaom-Mao le 19 janvier 2026 à
-                            Ziguinchor. Première école continentale spécialisée dans la formation des AVUJ. 63 étudiants
-                            répartis en 3 spécialités : Technicien d'Assistance, Appui aux Services Pénitentiaires, et
-                            Accueil-Écoute-Accompagnement. Formation de 12 mois basée sur le système Mao pour
-                            transformer l'approche de la justice pénale en Afrique.</div>
-                        <p class="date">19/01/2026</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Organigramme de l'Institut de formation Lafaom-Mao validé"
-                            data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">gouvernance</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Organigramme de l'Institut de formation Lafaom-Mao validé</h5>
-                        </a>
-                        <div class="intro">Validation officielle de l'organigramme stratégique en octobre 2025.
-                            Architecture organisationnelle définissant les rôles et responsabilités de chaque acteur.
-                            Direction générale, départements pédagogiques, services administratifs et cellules de suivi.
-                            Structure garantissant l'excellence académique et la gouvernance transparente conforme aux
-                            standards internationaux.</div>
-                        <p class="date">Octobre 2025</p>
-                    </div>
-                </div>
-                <div class="col-md-6 actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Validation du projet de budget" data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">gouvernance</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Validation du projet de budget</h5>
-                        </a>
-                        <div class="intro">Validation définitive du budget stratégique 2026 en octobre 2025. Budget
-                            prévisionnel ambitieux couvrant frais pédagogiques, équipements de pointe, salaires
-                            compétitifs et bourses complètes pour 63 étudiants. Élaboré avec les partenaires financiers
-                            internationaux et les autorités sénégalaises, garantissant la viabilité financière et
-                            l'excellence académique.</div>
-                        <p class="date">Octobre 2025</p>
+                        <div class="intro" [innerHTML]="getSummary(news)"></div>
+                        <p class="date">{{ formatDate(news.published_at) }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="owl-carousel owl-theme owl-actu">
-            <div class="item actualites">
-                <div class="actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Conseil d'administration de validation des documents cadre"
-                            data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">gouvernance</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Conseil d'administration de validation des documents cadre du
-                                fonctionnement de l'Institut de formation Lafaom-Mao</h5>
-                        </a>
-                        <div class="intro">Session stratégique du Conseil d'administration à Bremen (9-11 octobre 2025).
-                            Validation des documents cadre, programmes pédagogiques et modalités d'admission des 63
-                            étudiants. Garantie de conformité internationale pour la première école africaine
-                            spécialisée en travail social judiciaire.</div>
-                        <p class="date">09-11/10/2025</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item actualites">
-                <div class="actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Rentrée de l'équipe pédagogique" data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">formation</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Rentrée de l'équipe pédagogique</h5>
-                        </a>
-                        <div class="intro">Rentrée officielle de l'équipe pédagogique le 17 décembre 2025. Phase de
-                            préparation intensive pour l'accueil de 63 étudiants. Experts internationaux et psychologues
-                            cliniciens se préparent à dispenser la formation révolutionnaire de 12 mois basée sur le
-                            système Mao pour créer la première génération d'AVUJ en Afrique.</div>
-                        <p class="date">17/12/2025</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item actualites">
-                <div class="actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Rentrée de l'Institut de formation Lafaom-Mao" data-lazy-src="/l1.jpg">
-                    </div>
 
-                    <div class="info">
-                        <p class="categorie">formation</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Rentrée de l'Institut de formation Lafaom-Mao</h5>
-                        </a>
-                        <div class="intro">Ouverture historique de l'Institut Lafaom-Mao le 19 janvier 2026 à
-                            Ziguinchor. Première école continentale spécialisée dans la formation des AVUJ. 63 étudiants
-                            répartis en 3 spécialités : Technicien d'Assistance, Appui aux Services Pénitentiaires, et
-                            Accueil-Écoute-Accompagnement. Formation de 12 mois basée sur le système Mao pour
-                            transformer l'approche de la justice pénale en Afrique.</div>
-                        <p class="date">19/01/2026</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item actualites">
+        <!-- Message si aucune actualité -->
+        <div *ngIf="!loading && !error && recentNews.length === 0" class="no-news">
+            <p>Aucune actualité disponible pour le moment.</p>
+        </div>
+        <!-- Carousel avec actualités dynamiques -->
+        <div *ngIf="!loading && !error && recentNews.length > 0" class="owl-carousel owl-theme owl-actu">
+            <div *ngFor="let news of recentNews" class="item actualites">
                 <div class="actu">
                     <div class="img">
-                        <img src="/l1.jpg" alt="Organigramme de l'Institut de formation Lafaom-Mao validé"
-                            data-lazy-src="/l1.jpg">
+                        <img [src]="getImageUrl(news)" 
+                             [alt]="news.title"
+                             [attr.data-lazy-src]="getImageUrl(news)">
                     </div>
                     <div class="info">
-                        <p class="categorie">gouvernance</p>
+                        <p class="categorie">{{ getCategory(news) }}</p>
                         <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Organigramme de l'Institut de formation Lafaom-Mao validé</h5>
+                            <h5 class="titre">{{ news.title }}</h5>
                         </a>
-                        <div class="intro">Validation officielle de l'organigramme stratégique en octobre 2025.
-                            Architecture organisationnelle définissant les rôles et responsabilités de chaque acteur.
-                            Direction générale, départements pédagogiques, services administratifs et cellules de suivi.
-                            Structure garantissant l'excellence académique et la gouvernance transparente conforme aux
-                            standards internationaux.</div>
-                        <p class="date">Octobre 2025</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item actualites">
-                <div class="actu">
-                    <div class="img">
-                        <img src="/l1.jpg" alt="Validation du projet de budget" data-lazy-src="/l1.jpg">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">gouvernance</p>
-                        <a href="javascript:void(0)" class="a-titre">
-                            <h5 class="titre">Validation du projet de budget</h5>
-                        </a>
-                        <div class="intro">Validation définitive du budget stratégique 2026 en octobre 2025. Budget
-                            prévisionnel ambitieux couvrant frais pédagogiques, équipements de pointe, salaires
-                            compétitifs et bourses complètes pour 63 étudiants. Élaboré avec les partenaires financiers
-                            internationaux et les autorités sénégalaises, garantissant la viabilité financière et
-                            l'excellence académique.</div>
-                        <p class="date">Octobre 2025</p>
+                        <div class="intro" [innerHTML]="getSummary(news)"></div>
+                        <p class="date">{{ formatDate(news.published_at) }}</p>
                     </div>
                 </div>
             </div>
