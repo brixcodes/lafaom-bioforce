@@ -21,9 +21,10 @@
     </div>
 
     <!-- Formations dynamiques -->
-    <div *ngIf="!loading && !error && featuredTrainings.length > 0" class="p-0 col-md-12 col-lg-12 col-xl-12">
+    <div *ngIf="!loading && !error && filteredTrainings.length > 0" class="p-0 col-md-12 col-lg-12 col-xl-12">
         <div class="p-owl">
-            <article *ngFor="let training of featuredTrainings" class="post-formation" [attr.data-id]="training.id">
+            <article *ngFor="let training of filteredTrainings" class="post-formation" [attr.data-id]="training.id"
+                [class.disabled-training]="isTrainingDisabled(training)">
                 <div>
                     <span class="post-formation-sticker">{{ training.type }}</span>
                     <div
@@ -32,8 +33,7 @@
                             <h3 class="post-formation-title">{{ training.title }}</h3>
                             <span class="post-formation-location">
                                 <i class="icon-location"></i>
-                                <!-- {{ training.location }} -->
-                                <span>Ziguinchor</span>
+                                <span>{{ getFormattedCities(training) }}</span>
                             </span>
                         </div>
                         <div class="mx-2">
@@ -46,15 +46,36 @@
                             </ul>
                         </div>
                         <div class="mx-2">
-                            <span class="post-formation-session-available mx-2">
-                                12 session(s)
-                                disponible(s)</span>
+                            <span class="post-formation-session-available mx-2"
+                                [class.no-sessions]="!hasAvailableSessions(training)">
+                                {{ getAvailableSessionsCount(training) }} session(s)
+                                disponible(s)
+                            </span>
                         </div>
-                        <a [routerLink]="getTrainingUrl(training)" class="btn btn-outline-primary btn-more"
-                            title="lire plus">
+                        <!-- Boutons conditionnels selon la disponibilité -->
+                        <!-- <div *ngIf="hasAvailableSessions(training)" class="d-flex gap-2">
+                            <button (click)="openModal(training)" class="btn btn-outline-info btn-sm" title="Voir les détails">
+                                <i class="icon-eye"></i>
+                                <span class="sr-only">Voir les détails</span>
+                            </button>
+                            <button (click)="openApplicationModal(training)" class="btn btn-primary btn-sm" title="Postuler">
+                                <i class="icon-check"></i>
+                                <span class="sr-only">Postuler</span>
+                            </button>
+                        </div> -->
+
+
+                        <button (click)="openModal(training)" class="btn btn-outline-primary btn-more"
+                            title="Voir les détails">
                             <i class="icon-cross"></i>
-                            <span class="sr-only">lire plus</span>
-                        </a>
+                            <span class="sr-only">Voir les détails</span>
+                        </button>
+
+                        <span *ngIf="!hasAvailableSessions(training)"
+                            class="btn btn-outline-secondary btn-more disabled" title="Aucune session disponible">
+                            <i class="icon-cross"></i>
+                            <span class="sr-only">Aucune session disponible</span>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -62,7 +83,447 @@
     </div>
 
     <!-- Message si aucune formation -->
-    <div *ngIf="!loading && !error && featuredTrainings.length === 0" class="no-trainings">
-        <p>Aucune formation disponible pour le moment.</p>
+    <div *ngIf="!loading && !error && filteredTrainings.length === 0" class="no-trainings">
+        <p>Aucune formation ne correspond à vos critères de recherche.</p>
+        <button (click)="resetFilters()" class="btn btn-outline-primary">Réinitialiser les filtres</button>
+    </div>
+</div>
+
+<!-- Modal overlay -->
+<div *ngIf="showModal" class="modal-backdrop fade show" (click)="closeModal()"></div>
+
+<div *ngIf="showModal" class="modal right fade modal-plug modal-formation show" id="modal-formation" tabindex="-1"
+    role="dialog" aria-labelledby="mapModalLabel" [style.display]="showModal ? 'block' : 'none'" aria-modal="true"
+    (click)="closeModal()">
+    <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-block d-lg-flex">
+                    <div class="modal-content-left">
+                        <article class="post-formation bg-primary">
+                            <div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="icon-post-formation">
+                                        <img src="https://www.bioforce.org/wp-content/uploads/2020/06/05gestion_de_projets.png"
+                                            data-uw-rm-alt-original="" alt="Voir la fiche en détails"
+                                            data-uw-rm-alt="ALT">
+                                    </span>
+                                    <div class="d-md-none post-formation-show-details">
+                                        <span>
+                                            Voir la fiche en détails </span>
+                                        <button type="button" aria-label="details formation" data-uw-rm-empty-ctrl="">
+                                            <span class="sr-only">
+                                                details formation </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <h2 class="post-formation-title" role="presentation" aria-hidden="true"
+                                    data-uw-rm-heading="hide">
+                                    <span>
+                                        Formation : {{ selectedTraining?.title }} </span>
+                                    <strong>
+                                        {{ selectedTraining?.title }} </strong>
+                                </h2>
+                                <ul class="list-inline post-formation-duration">
+                                    <li class="list-inline-item">
+                                        <span>
+                                            {{ selectedTraining?.training_type }} </span>
+                                        <span class="duration">
+                                            {{ formatDuration(selectedTraining?.duration || 0) }} {{
+                                            selectedTraining?.duration_unit }} </span>
+                                    </li>
+                                </ul>
+                                <div class="post-formation-links">
+                                    <a href="" target="_bank" class="btn btn-outline-primary"
+                                        title="télécharger les infos pratiques" data-uw-pdf-br="1" data-uw-pdf-doc="">
+                                        <span>
+                                            Je m'inscris
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="modal-content-right">
+                        <div class="post-details">
+                            <button class="button-close" type="button" (click)="closeModal()" aria-label="Close">
+                                <i class="icon-cross"></i>
+                            </button>
+                            <a href="#" class="go-back" title="Retour à la liste des formations" (click)="closeModal()">
+                                <i class="icon-arrow-left"></i>
+                                <span>
+                                    Retour à la liste des formations </span>
+                            </a>
+                            <div class="details-formation-wrapper" id="printJS-details">
+
+                                <!-- Présentation de la formation -->
+                                <div class="details-formation-intro">
+                                    <h3 class="has-border-l lead" role="heading" aria-level="1"
+                                        data-uw-rm-heading="level">
+                                        Présentation de la formation
+                                    </h3>
+                                    <br>
+
+                                    <div *ngIf="selectedTraining">
+                                        <p><strong>Type de formation :</strong> {{ selectedTraining.training_type }}</p>
+                                        <p><strong>Durée :</strong> {{ formatDuration(selectedTraining.duration) }} {{
+                                            selectedTraining.duration_unit }}</p>
+                                        <p><strong>Statut :</strong> {{ selectedTraining.status }}</p>
+                                        <p><strong>Présentation :</strong></p>
+                                        <div [innerHTML]="selectedTraining.presentation"></div>
+
+                                        <br>
+                                        <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
+                                            data-uw-rm-heading="level">
+                                            Compétences visées :
+                                        </h3>
+                                        <div class="mt-3">
+                                            <div [innerHTML]="selectedTraining.target_skills"></div>
+                                        </div>
+
+                                        <br>
+                                        <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
+                                            data-uw-rm-heading="level">
+                                            Programme :
+                                        </h3>
+                                        <div class="mt-3">
+                                            <div [innerHTML]="selectedTraining.program"></div>
+                                        </div>
+
+                                        <br>
+                                        <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
+                                            data-uw-rm-heading="level">
+                                            Public cible :
+                                        </h3>
+                                        <div class="mt-3">
+                                            <div [innerHTML]="selectedTraining.target_audience"></div>
+                                        </div>
+
+                                        <br>
+                                        <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
+                                            data-uw-rm-heading="level">
+                                            Prérequis :
+                                        </h3>
+                                        <div class="mt-3">
+                                            <div
+                                                [innerHTML]="selectedTraining.prerequisites || 'Aucun prérequis spécifique'">
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
+                                            data-uw-rm-heading="level">
+                                            Modalités d'inscription :
+                                        </h3>
+                                        <div class="mt-3">
+                                            <div [innerHTML]="selectedTraining.enrollment"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bloc Sessions disponibles -->
+                                <div class="details-formation-sessions result">
+                                    <h4 class="has-border-l lead">Sessions disponibles</h4>
+
+                                    <div class="list-session">
+                                        <div class="list-session-choices">
+                                            <p>Choisissez une session pour vous inscrire</p>
+                                        </div>
+
+                                        <div class="list-session-results">
+                                            <div *ngFor="let session of availableSessions" class="list-session-infos">
+                                                <div class="list-session-infos-item">
+                                                    <div class="d-flex justify-content-between align-items-center">
+
+                                                        <!-- Infos de la session -->
+                                                        <div>
+                                                            <span class="session-aviriable">Session disponible</span>
+                                                            <strong class="session-date">
+                                                                Période : {{ formatDate(session.start_date || '') }} -
+                                                                {{ formatDate(session.end_date || '') }}
+                                                            </strong>
+                                                            <span class="session-aviriable-date">
+                                                                Date limite d'inscription : {{
+                                                                formatDate(session.registration_deadline) }}
+                                                            </span>
+                                                            <span *ngIf="session.location" class="session-location">
+                                                                <i class="icon-location"></i> {{ session.location }}
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- Prix -->
+                                                        <div>
+                                                            <span class="price-label">Frais d'inscription</span>
+                                                            <span class="regular-price">
+                                                                {{ formatPrice(session.registration_fee || 0,
+                                                                session.currency) }}
+                                                            </span>
+                                                            <br>
+                                                            <span class="price-label">Frais de formation</span>
+                                                            <span class="regular-price">
+                                                                {{ formatPrice(session.training_fee || 0,
+                                                                session.currency) }}
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- Bouton Sélectionner -->
+                                                        <div
+                                                            class="d-flex flex-column align-items-center justify-content-center">
+                                                            <button (click)="selectSession(session)"
+                                                                class="btn btn-outline-primary"
+                                                                title="Sélectionner cette session">
+                                                                Sélectionner
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de candidature -->
+<div *ngIf="showApplicationModal" class="modal right fade modal-plug modal-formation show" id="modal-application"
+    tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel"
+    [style.display]="showApplicationModal ? 'block' : 'none'" aria-modal="true" (click)="closeApplicationModal()">
+    <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-block d-lg-flex">
+                    <div class="modal-content-right">
+                        <div class="post-details">
+                            <button class="button-close" type="button" (click)="closeApplicationModal()"
+                                aria-label="Close">
+                                <i class="icon-cross"></i>
+                            </button>
+                            <a href="#" style="background-color: transparent;" class="go-back"
+                                title="Retour à la liste des formations" (click)="closeApplicationModal()">
+                            </a>
+                            <div class="details-formation-wrapper" id="printJS-application">
+
+                                <!-- Formulaire de candidature -->
+                                <div class="details-formation-sessions">
+                                    <form [formGroup]="applicationForm" (ngSubmit)="onSubmitApplication()">
+                                        <div class="list-session">
+                                            <div class="list-session-choices">
+                                                <p>Remplissez vos informations personnelles</p>
+                                            </div>
+
+                                            <div class="list-session-results">
+                                                <div class="list-session-infos">
+                                                    <div class="list-session-infos-item">
+                                                        <div class="d-flex flex-column">
+
+                                                            <!-- Informations personnelles -->
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <label for="civility"
+                                                                        class="form-label">Civilité</label>
+                                                                    <select id="civility" formControlName="civility"
+                                                                        class="form-control">
+                                                                        <option value="">Sélectionner</option>
+                                                                        <option value="M.">M.</option>
+                                                                        <option value="Mme">Mme</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="date_of_birth" class="form-label">Date
+                                                                        de naissance</label>
+                                                                    <input type="date" id="date_of_birth"
+                                                                        formControlName="date_of_birth"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <label for="first_name" class="form-label">Prénom
+                                                                        <span class="text-danger">*</span></label>
+                                                                    <input type="text" id="first_name"
+                                                                        formControlName="first_name"
+                                                                        class="form-control" required>
+                                                                    <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched"
+                                                                        class="text-danger small">
+                                                                        Le prénom est obligatoire.
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="last_name" class="form-label">Nom <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text" id="last_name"
+                                                                        formControlName="last_name" class="form-control"
+                                                                        required>
+                                                                    <div *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched"
+                                                                        class="text-danger small">
+                                                                        Le nom est obligatoire.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <label for="email" class="form-label">Email <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="email" id="email"
+                                                                        formControlName="email" class="form-control"
+                                                                        required>
+                                                                    <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched"
+                                                                        class="text-danger small">
+                                                                        Veuillez entrer une adresse email valide.
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="phone_number" class="form-label">Numéro
+                                                                        de téléphone <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text" id="phone_number"
+                                                                        formControlName="phone_number"
+                                                                        class="form-control" required>
+                                                                    <div *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched"
+                                                                        class="text-danger small">
+                                                                        Le numéro de téléphone est obligatoire.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <label for="address"
+                                                                        class="form-label">Adresse</label>
+                                                                    <input type="text" id="address"
+                                                                        formControlName="address" class="form-control">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="city" class="form-label">Ville</label>
+                                                                    <input type="text" id="city" formControlName="city"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Champ pays masqué avec valeur par défaut SN -->
+                                                            <input type="hidden" formControlName="country_code">
+
+                                                            <!-- Affichage de la session sélectionnée -->
+                                                            <div *ngIf="selectedSession" class="mb-3">
+                                                                <div class="alert alert-info">
+                                                                    <h6>Session sélectionnée :</h6>
+                                                                    <p class="mb-1"><strong>Période :</strong> {{
+                                                                        formatDate(selectedSession.start_date || '') }}
+                                                                        - {{ formatDate(selectedSession.end_date || '')
+                                                                        }}</p>
+                                                                    <p class="mb-1"><strong>Date limite d'inscription
+                                                                            :</strong> {{
+                                                                        formatDate(selectedSession.registration_deadline)
+                                                                        }}</p>
+                                                                    <p class="mb-0"><strong>Frais d'inscription
+                                                                            :</strong> {{
+                                                                        formatPrice(selectedSession.registration_fee ||
+                                                                        0, selectedSession.currency) }}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Documents requis -->
+                                                            <div class="mb-4">
+                                                                <h6>Documents requis</h6>
+                                                                <p class="text-muted mb-3">Veuillez télécharger les
+                                                                    documents suivants au format PDF :</p>
+                                                                <div *ngFor="let attachmentType of requiredAttachments"
+                                                                    class="mb-3">
+                                                                    <label class="form-label">{{ attachmentType }} <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="file"
+                                                                        (change)="onFileSelected($event, attachmentType)"
+                                                                        accept=".pdf,application/pdf"
+                                                                        class="form-control">
+
+                                                                    <!-- Indicateur de chargement -->
+                                                                    <div *ngIf="uploadingFiles[attachmentType]"
+                                                                        class="mt-2">
+                                                                        <div
+                                                                            class="alert alert-info d-flex align-items-center">
+                                                                            <span
+                                                                                class="spinner-border spinner-border-sm me-2"
+                                                                                role="status" aria-hidden="true"></span>
+                                                                            <span>Upload en cours...</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Fichier uploadé -->
+                                                                    <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]"
+                                                                        class="mt-2">
+                                                                        <div
+                                                                            class="alert alert-success d-flex justify-content-between align-items-center">
+                                                                            <span>✅ {{
+                                                                                uploadedFiles[attachmentType].name
+                                                                                }}</span>
+                                                                            <button type="button"
+                                                                                (click)="removeFile(attachmentType)"
+                                                                                class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Aucun fichier -->
+                                                                    <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]"
+                                                                        class="mt-1">
+                                                                        <small class="text-muted">Aucun fichier
+                                                                            sélectionné</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Message d'erreur -->
+                                                            <div *ngIf="error" class="alert alert-danger" role="alert">
+                                                                {{ error }}
+                                                            </div>
+
+                                                            <!-- Message de succès -->
+                                                            <div *ngIf="success" class="alert alert-success"
+                                                                role="alert">
+                                                                <h6>✅ Candidature soumise avec succès !</h6>
+                                                                <p>Vous allez être redirigé vers la page de paiement...
+                                                                </p>
+                                                            </div>
+
+                                                            <!-- Boutons de soumission -->
+                                                            <div class="d-flex justify-content-end gap-3 mt-4">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    (click)="closeApplicationModal()">
+                                                                    Annuler
+                                                                </button>
+                                                                <a href=""></a>
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    [disabled]="submitting">
+                                                                    <span *ngIf="submitting"
+                                                                        class="spinner-border spinner-border-sm me-2"
+                                                                        role="status" aria-hidden="true"></span>
+                                                                    {{ submitting ? 'Soumission en cours...' :
+                                                                    'Soumettre la candidature' }}
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

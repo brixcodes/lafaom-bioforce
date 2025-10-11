@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class Section2 implements OnInit, OnDestroy {
   recentNews: News[] = [];
-  loading = true;
+  loading = false;
   error: string | null = null;
   categories: Map<number, string> = new Map();
   private filterSubscription: Subscription | undefined;
@@ -45,7 +45,7 @@ export class Section2 implements OnInit, OnDestroy {
   }
 
   loadRecentNews() {
-    this.loading = true;
+    this.loading = false; // Pas de loading automatique
     this.error = null;
 
     // Charger toutes les actualités d'abord

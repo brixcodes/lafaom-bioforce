@@ -179,25 +179,35 @@ jQuery(document).ready(function ($) {
                 }
 
                 $.get(url, data, (result) => {
-                    let obj = JSON.parse(result);
-                    let content = (obj.items == "") ? `<p class="no-result">${htmlText}</p>` : obj.items;
-                    if (obj.items == "") {
-                        let label = '';
-                        switch (getCookie('wp-wpml_current_language')) {
-                            case 'en':
-                                label = 'Didnâ€™t find what you wanted ? Try a new search';
-                                break;
-                            case 'fr':
-                                label = 'Vous Ãªtes arrivÃ© Ã  la fin de la liste !';
-                                break;
+                    try {
+                        // Vérifier si la réponse est du JSON valide
+                        if (typeof result === 'string' && result.trim().startsWith('<!DOCTYPE')) {
+                            console.error('Erreur: La réponse est du HTML au lieu de JSON');
+                            return;
                         }
-                        $('<p class="no-result">' + label + '</p>').appendTo($(target));
-                        $('.load-more-formations').remove();
-                    } else {
-                        $(content).appendTo($(target));
-                    }
-                    if (window.innerWidth <= 640) {
-                        formationPostsCarrousel();
+                        let obj = JSON.parse(result);
+                        let content = (obj.items == "") ? `<p class="no-result">${htmlText}</p>` : obj.items;
+                        if (obj.items == "") {
+                            let label = '';
+                            switch (getCookie('wp-wpml_current_language')) {
+                                case 'en':
+                                    label = 'Didnâ€™t find what you wanted ? Try a new search';
+                                    break;
+                                case 'fr':
+                                    label = 'Vous Ãªtes arrivÃ© Ã  la fin de la liste !';
+                                    break;
+                            }
+                            $('<p class="no-result">' + label + '</p>').appendTo($(target));
+                            $('.load-more-formations').remove();
+                        } else {
+                            $(content).appendTo($(target));
+                        }
+                        if (window.innerWidth <= 640) {
+                            formationPostsCarrousel();
+                        }
+                    } catch (error) {
+                        console.error('Erreur lors du parsing JSON:', error);
+                        console.error('Réponse reçue:', result);
                     }
                 }).done(() => {
                     ajaxState = false;

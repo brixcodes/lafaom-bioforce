@@ -11,7 +11,7 @@
     <div *ngIf="error && !loading" class="alert alert-danger text-center" role="alert">
         <h4>❌ Erreur</h4>
         <p>{{ error }}</p>
-        <button class="btn btn-outline-danger" (click)="loadJobOffer()">Réessayer</button>
+        <button class="btn btn-outline-danger" (click)="loadJobOffer(jobOffer?.id || '')">Réessayer</button>
     </div>
 
     <!-- En-tête avec informations sur l'offre -->
@@ -42,66 +42,66 @@
         </div>
     </div>
 
-
     <!-- Formulaire de candidature -->
     <div *ngIf="jobOffer && !loading && !success" class="application-form-container">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                          <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="job-application-form">
-                        <h3 class="mb-4">Vos informations personnelles</h3>
+                <div class="col-md-10">
+                    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="job-application-form">
+                        <h2 class="has-border-l lead mb-5">Informations personnelles</h2>
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="civility" class="form-label">Civilité</label>
-                                <select id="civility" formControlName="civility" class="form-control">
+                                <select id="civility" formControlName="civility" class="form-control"
+                                        (change)="logChange('Civilité', $event)">
                                     <option value="">Sélectionner</option>
                                     <option value="M.">M.</option>
                                     <option value="Mme">Mme</option>
                                 </select>
                             </div>
-                                  <div class="col-md-6 mb-3">
-                                      <label for="first_name" class="form-label">Prénom <span class="text-danger">*</span></label>
-                                      <input type="text" id="first_name" formControlName="first_name" class="form-control" required
-                                             (change)="logChange('Prénom', $event)">
-                                      <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched" class="text-danger small">
-                                          Le prénom est obligatoire.
-                                      </div>
-                                  </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="date_of_birth" class="form-label">Date de naissance</label>
+                                <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control"
+                                       (change)="logChange('Date de naissance', $event)">
+                            </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label">Prénom <span class="text-danger">*</span></label>
+                                <input type="text" id="first_name" formControlName="first_name" class="form-control" required
+                                       (change)="logChange('Prénom', $event)">
+                                <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched" class="text-danger small">
+                                    Le prénom est obligatoire.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label for="last_name" class="form-label">Nom <span class="text-danger">*</span></label>
-                                      <input type="text" id="last_name" formControlName="last_name" class="form-control" required
+                                <input type="text" id="last_name" formControlName="last_name" class="form-control" required
                                        (change)="logChange('Nom', $event)">
                                 <div *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched" class="text-danger small">
                                     Le nom est obligatoire.
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                      <input type="email" id="email" formControlName="email" class="form-control" required
+                                <input type="email" id="email" formControlName="email" class="form-control" required
                                        (change)="logChange('Email', $event)">
                                 <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched" class="text-danger small">
                                     Veuillez entrer une adresse email valide.
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="phone_number" class="form-label">Numéro de téléphone <span class="text-danger">*</span></label>
-                                      <input type="text" id="phone_number" formControlName="phone_number" class="form-control" required
+                                <input type="text" id="phone_number" formControlName="phone_number" class="form-control" required
                                        (change)="logChange('Téléphone', $event)">
                                 <div *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched" class="text-danger small">
                                     Le numéro de téléphone est obligatoire.
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="date_of_birth" class="form-label">Date de naissance</label>
-                                      <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control"
-                                       (change)="logChange('Date de naissance', $event)">
                             </div>
                         </div>
 
@@ -120,57 +120,49 @@
                         <input type="hidden" formControlName="country_code">
 
                         <!-- Documents requis -->
-                        <div class="mb-4">
-                            <h4 class="mb-3">Documents requis</h4>
+                        <div class="file-upload-section">
+                            <h4>Documents requis</h4>
                             <p class="text-muted mb-3">Veuillez télécharger les documents suivants au format PDF :</p>
-                            <div *ngFor="let attachmentType of requiredAttachments" class="mb-3">
+                            <div *ngFor="let attachmentType of requiredAttachments" class="file-upload-item">
                                 <label class="form-label">{{ attachmentType }} <span class="text-danger">*</span></label>
                                 <input type="file" (change)="onFileSelected($event, attachmentType)" accept=".pdf,application/pdf" class="form-control">
+                                
                                 <!-- Indicateur de chargement -->
-                                <div *ngIf="uploadingFiles[attachmentType]" class="mt-2">
-                                    <div class="alert alert-info d-flex align-items-center">
-                                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                        <span>Upload en cours...</span>
-                                    </div>
+                                <div *ngIf="uploadingFiles[attachmentType]" class="upload-status uploading">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    <span>Upload en cours...</span>
                                 </div>
                                 
                                 <!-- Fichier uploadé -->
-                                <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-2">
-                                    <div class="alert alert-success d-flex justify-content-between align-items-center">
+                                <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="upload-status uploaded">
+                                    <div class="d-flex justify-content-between align-items-center">
                                         <span>✅ {{ uploadedFiles[attachmentType].name }}</span>
                                         <button type="button" (click)="removeFile(attachmentType)" class="btn btn-sm btn-outline-danger">Supprimer</button>
                                     </div>
                                 </div>
                                 
                                 <!-- Aucun fichier -->
-                                <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-1">
-                                    <small class="text-muted">Aucun fichier sélectionné</small>
-                                </div>
-                                
-                                <!-- Debug pour chaque fichier -->
-                                <div class="mt-1 small text-info">
-                                    <div>État: {{ getFileStatus(attachmentType) }}</div>
-                                    <div>Fichier uploadé: {{ uploadedFiles[attachmentType] ? 'Oui' : 'Non' }}</div>
-                                    <div>En cours d'upload: {{ uploadingFiles[attachmentType] ? 'Oui' : 'Non' }}</div>
+                                <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="upload-status pending">
+                                    <small>Aucun fichier sélectionné</small>
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-center">
                             <!-- Debug info -->
-                            <div class="mb-3 text-muted small">
+                            <div class="debug-info" *ngIf="true">
                                 <div>Formulaire valide: {{ applicationForm.valid }}</div>
                                 <div>Fichiers uploadés: {{ (uploadedFiles | json) }}</div>
                                 <div>Fichiers requis: {{ (requiredAttachments | json) }}</div>
                                 <div>Bouton actif: {{ isFormValid() }}</div>
                             </div>
                             
-                                  <button type="submit" class="btn btn-primary btn-lg" [disabled]="submitting">
+                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="submitting">
                                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                                 {{ submitting ? 'Soumission en cours...' : 'Soumettre la candidature' }}
                             </button>
                             
-                            <!-- Message d'aide (optionnel) -->
+                            <!-- Message d'aide -->
                             <div class="mt-2 text-info small">
                                 <div>💡 Vous pouvez soumettre le formulaire même si certains champs ne sont pas remplis</div>
                             </div>

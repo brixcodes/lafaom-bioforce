@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class Section1 implements OnInit, OnDestroy {
   categories: BlogCategory[] = [];
   selectedCategories: number[] = [];
-  loading = true;
+  loading = false;
   private refreshSubscription: any;
   private readonly REFRESH_INTERVAL = 30000; // 30 secondes
 
@@ -54,7 +54,7 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   loadCategories() {
-    this.loading = true;
+    this.loading = false; // Pas de loading automatique
     
     // Charger toutes les catégories disponibles
     // Pour l'instant, on utilise des catégories statiques basées sur les IDs qu'on a vus

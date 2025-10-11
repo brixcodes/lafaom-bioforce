@@ -44,10 +44,8 @@ export interface ArticleSection {
   post_id: number;
   title: string;
   content: string;
-  order: number;
-  section_type: 'text' | 'image' | 'video' | 'quote' | 'list';
-  media_url?: string;
-  media_alt?: string;
+  position: number;
+  cover_image?: string;
   created_at: string;
   updated_at: string;
 }

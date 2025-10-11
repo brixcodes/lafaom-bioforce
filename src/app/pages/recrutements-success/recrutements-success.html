@@ -1,0 +1,64 @@
+<div class="content">
+    <div class="page-header">
+        <div class="has-background container-full" style="background-image: url('/assets/Images/banner2.jpg')">
+            <img decoding="async" src="/assets/Images/banner2.jpg" alt="">
+        </div>
+
+        <div class="page-header-inner">
+            <div class="page-title">
+                <span class="d-block page-parent">Candidature</span>
+                <h1 style="text-transform: uppercase;">Candidature soumise</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="success-card">
+                        <div class="success-icon">
+                            <i class="icon-check-circle"></i>
+                        </div>
+                        
+                        <h2 class="success-title">✅ Candidature soumise avec succès !</h2>
+                        
+                        <div class="success-message">
+                            <p>Votre candidature a été enregistrée avec succès.</p>
+                            <p *ngIf="applicationNumber" class="application-number">
+                                <strong>Numéro de candidature :</strong> {{ applicationNumber }}
+                            </p>
+                        </div>
+
+                        <div class="payment-info">
+                            <div class="alert alert-warning">
+                                <h4>⚠️ Paiement requis</h4>
+                                <p>Pour que votre candidature soit étudiée, vous devez effectuer le paiement des frais de candidature.</p>
+                                <p><strong>Les frais sont obligatoires et non négociables.</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="next-steps">
+                            <h3>Prochaines étapes :</h3>
+                            <ol>
+                                <li>Effectuez le paiement des frais de candidature</li>
+                                <li>Vous recevrez un email de confirmation</li>
+                                <li>Votre candidature sera étudiée par notre équipe</li>
+                                <li>Vous serez informé du résultat par email</li>
+                            </ol>
+                        </div>
+
+                        <div class="action-buttons">
+                            <a routerLink="/recrutements" class="btn btn-primary">
+                                Retour aux offres d'emploi
+                            </a>
+                            <a routerLink="/acceuil" class="btn btn-outline-primary">
+                                Retour à l'accueil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

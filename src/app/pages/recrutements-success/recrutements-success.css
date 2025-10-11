@@ -1,0 +1,105 @@
+.success-container {
+  padding: 4rem 0;
+  background: #f8f9fa;
+  min-height: 60vh;
+}
+
+.success-card {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: #28a745;
+  margin-bottom: 1.5rem;
+}
+
+.success-title {
+  color: #28a745;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.success-message {
+  margin-bottom: 2rem;
+}
+
+.success-message p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.application-number {
+  background: #e9ecef;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #495057;
+}
+
+.payment-info {
+  margin: 2rem 0;
+}
+
+.payment-info .alert {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.next-steps {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.next-steps h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.next-steps ol {
+  padding-left: 1.5rem;
+}
+
+.next-steps li {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.action-buttons .btn {
+  min-width: 200px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .success-card {
+    padding: 2rem 1rem;
+  }
+  
+  .success-title {
+    font-size: 1.5rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}

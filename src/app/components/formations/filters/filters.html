@@ -5,167 +5,101 @@
         <i class="icon-arrow-up"></i>
     </button>
     <div id="filtersForm" class="collapse">
-        <form action="https://www.bioforce.org/wp-admin/admin-ajax.php" class="form-inline align-items-start">
+        <div class="form-inline align-items-start">
 
-            <div class="col-md-11">
+            <!-- Indicateur de chargement -->
+            <div *ngIf="loading" class="col-12 text-center">
+                <p>Chargement des options de filtres...</p>
+            </div>
+
+            <!-- Message d'erreur -->
+            <div *ngIf="error" class="col-12 text-center text-danger">
+                <p>{{ error }}</p>
+                <button (click)="loadFilterOptions()" class="btn btn-sm btn-outline-primary">Réessayer</button>
+            </div>
+
+            <!-- Filtres dynamiques -->
+            <div *ngIf="!loading && !error" class="col-md-11">
                 <div class="row">
+                    <!-- Recherche -->
+                    <div class="form-group col-md-12 mb-3">
+                        <label class="w-100">
+                            <span>Rechercher</span>
+                            <input type="text" 
+                                   class="form-control" 
+                                   placeholder="Rechercher une formation..."
+                                   (input)="onSearchChange($event)">
+                        </label>
+                    </div>
+
+                    <!-- Spécialités -->
                     <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary ">
-                            <span>Thématique</span>
-                            <select name="f-thematique[]" class="s-select" multiple>
+                        <label class="m-custom-select w-100 s-select-lg bg-secondary">
+                            <span>Spécialités</span>
+                            <select name="specialties" class="s-select" multiple (change)="onSpecialtyChange($event)">
                                 <option value="0" data-placeholder="true">Toutes</option>
-                                <option value="22">Gestion de projets</option>
-                                <option value="75">Ressources humaines &amp; management</option>
-                                <option value="20">Finances</option>
-                                <option value="16">Logistique</option>
-                                <option value="17">Sécurité</option>
-                                <option value="71">Eau, hygiène et assainissement</option>
-                                <option value="73">Protection de l'enfance</option>
-                                <option value="43">Enjeux et contextes humanitaires</option>
-                                <option value="24">Formation de formateurs</option>
-                                <option value="151">Thématique de mon choix</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
-                            <span>Mon objectif</span>
-                            <select name="f-objectif" class="s-select">
-                                <option value="0">Tous</option>
-                                <option value="469">Je veux devenir humanitaire</option>
-                                <option value="470">Je veux monter en compétence dans l'humanitaire
-                                </option>
-                                <option value="471">Je veux valoriser mon expérience humanitaire
+                                <option *ngFor="let specialty of filterOptions.specialties" [value]="specialty.id">
+                                    {{ specialty.name }}
                                 </option>
                             </select>
                         </label>
                     </div>
 
+                    <!-- Lieux -->
                     <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
+                        <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>Lieu</span>
-                            <select name="f-lieu[]" class="s-select" multiple>
+                            <select name="locations" class="s-select" multiple (change)="onLocationChange($event)">
                                 <option value="0" data-placeholder="true">Tous</option>
-                                <option value="530">Nouakchott</option>
-                                <option value="529">Abéché</option>
-                                <option value="3">Lyon</option>
-                                <option value="36">Dakar</option>
-                                <option value="32">A distance</option>
-                                <option value="491">Abidjan</option>
-                                <option value="79">Bamako</option>
-                                <option value="80">Bangui</option>
-                                <option value="504">Bruxelles</option>
-                                <option value="490">Conakry</option>
-                                <option value="523">Cotonou</option>
-                                <option value="521">Ferkéssédougou</option>
-                                <option value="502">Genève</option>
-                                <option value="37">Goma</option>
-                                <option value="38">N'Djamena</option>
-                                <option value="39">Niamey</option>
-                                <option value="40">Ouagadougou</option>
-                                <option value="42">Paris</option>
-                                <option value="149">Lieu de mon choix</option>
+                                <option *ngFor="let location of filterOptions.locations" [value]="location">
+                                    {{ location }}
+                                </option>
                             </select>
                         </label>
                     </div>
+
+                    <!-- Types de formation -->
                     <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
+                        <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>Type de formation</span>
-                            <select name="f-cycle" class="s-select">
-                                <option value="0">Tous</option>
-                                <option value="58">Formation métier certifiante</option>
-                                <option value="57">Formation initiale post-bac</option>
-                                <option value="60">Formation courte</option>
-                                <option value="497">Validation des Acquis de l'Expérience</option>
+                            <select name="types" class="s-select" multiple (change)="onTypeChange($event)">
+                                <option value="0" data-placeholder="true">Tous</option>
+                                <option *ngFor="let type of filterOptions.types" [value]="type">
+                                    {{ type }}
+                                </option>
                             </select>
                         </label>
                     </div>
 
-                </div>
-                <div class="row collapse" id="filterAdvenced">
-
+                    <!-- Durées -->
                     <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
-                            <span>Durée de formation</span>
-                            <select name="f-duree" class="s-select">
-                                <option value="0">Toutes</option>
-                                <option value="520">21 heures en 3 semaines</option>
-                                <option value="154">1 heure</option>
-                                <option value="74">35 heures en 1 mois</option>
-                                <option value="47">1 à 5 jours</option>
-                                <option value="48">D'une semaine à un mois</option>
-                                <option value="49">De 1 à 3 mois</option>
-                                <option value="50">De 3 à 12 mois</option>
-                                <option value="51">Plus de 12 mois</option>
-                                <option value="56">Durée de mon choix</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
-                            <span>Langues</span>
-                            <select name="f-langue[]" class="s-select" multiple>
+                        <label class="m-custom-select w-100 s-select-lg bg-secondary">
+                            <span>Durée</span>
+                            <select name="durations" class="s-select" multiple (change)="onDurationChange($event)">
                                 <option value="0" data-placeholder="true">Toutes</option>
-                                <option value="44">Français</option>
-                                <option value="45">Anglais</option>
-                                <option value="150">Langue de mon choix</option>
+                                <option *ngFor="let duration of filterOptions.durations" [value]="duration">
+                                    {{ duration }}
+                                </option>
                             </select>
                         </label>
                     </div>
 
-                    <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
-                            <span>Âge</span>
-                            <select name="f-age" class="s-select">
-                                <option value="0">Tous</option>
-                                <option value="61">Accessible dès 18 ans</option>
-                                <option value="62">Accessible dès 22 ans</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  ">
-                            <span>Mode d’apprentissage</span>
-                            <select name="f-mode" class="s-select">
-                                <option value="0">Toutes</option>
-                                <option value="65">A distance / en e-learning</option>
-                                <option value="63">Présentiel en continu</option>
-                                <option value="64">Présentiel à mon rythme</option>
-                                <option value="67">Mixte : présentiel et à distance</option>
-                                <option value="66">Alternance</option>
-                                <option value="68">Mode d'apprentissage de mon choix</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary  date-fr-individus">
-                            <span>Date de début de la formation</span>
-
-
-                            <input name="f-date" value="" data-value="" class="form-control" id="datepicker"
-                                placeholder="MM/YYYY" readonly="readonly">
-                            <i class="icon-arrow-down icondate"></i>
-                        </label>
-                    </div>
                 </div>
-                <div class="text-center text-md-left">
-                    <a data-toggle="collapse" href="#filterAdvenced" role="button" aria-expanded="false"
-                        aria-controls="filterAdvenced" class="more-filters collapsed" title="Critères avancés">Critères
-                        avancés</a>
+
+                <!-- Boutons d'action -->
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" (click)="resetFilters()">
+                            Réinitialiser les filtres
+                        </button>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <small class="text-muted">
+                            Filtres appliqués en temps réel
+                        </small>
+                    </div>
                 </div>
             </div>
-            <div class="col text-center text-md-left">
-                <div class="form-group">
-                    <button class="btn btn-info">Filtrer</button>
-                </div>
-            </div>
-            <input type="hidden" name="action" value="formations-filter">
-            <input type="hidden" name="page" value="1" />
-            <input type="hidden" name="type-formation" value="individus" />
-        </form>
+        </div>
     </div>
 </div>

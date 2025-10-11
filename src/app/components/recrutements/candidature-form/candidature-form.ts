@@ -60,16 +60,41 @@ export class CandidatureForm {
 
   private http = inject(HttpClient);
 
+  // Méthode de logging pour les templates
+  logChange(field: string, event: any) {
+    const value = (event.target as HTMLInputElement | HTMLSelectElement)?.value;
+    console.log(`🔄 [CANDIDATURE-FORM] ${field} changé:`, value);
+  }
+
   // Gestion des fichiers
   onFileSelected(event: any, docType: string) {
+    console.log('🔍 [CANDIDATURE-FORM] onFileSelected appelé:', {
+      docType,
+      event: event,
+      files: event.target.files,
+      timestamp: new Date().toISOString()
+    });
+    
     const file = event.target.files[0];
-    if (!file) return;
+    if (!file) {
+      console.log('❌ [CANDIDATURE-FORM] Aucun fichier sélectionné');
+      return;
+    }
+
+    console.log('📁 [CANDIDATURE-FORM] Fichier sélectionné:', {
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      lastModified: file.lastModified
+    });
 
     // Vérifier si le type de document existe déjà
     const existingIndex = this.attachments.findIndex(a => a.type === docType);
+    console.log('🔍 [CANDIDATURE-FORM] Index existant:', existingIndex);
     
     if (existingIndex >= 0) {
       // Remplacer le fichier existant
+      console.log('🔄 [CANDIDATURE-FORM] Remplacement du fichier existant');
       this.attachments[existingIndex] = {
         name: file.name,
         type: docType,
@@ -78,6 +103,7 @@ export class CandidatureForm {
       };
     } else {
       // Ajouter un nouveau fichier
+      console.log('➕ [CANDIDATURE-FORM] Ajout d\'un nouveau fichier');
       this.attachments.push({
         name: file.name,
         type: docType,
@@ -86,42 +112,64 @@ export class CandidatureForm {
       });
     }
 
+    console.log('📊 [CANDIDATURE-FORM] État des attachments après sélection:', this.attachments);
+
     // Upload immédiat
+    console.log('🚀 [CANDIDATURE-FORM] Démarrage de l\'upload pour:', docType);
     this.uploadFile(docType);
   }
 
   // Upload immédiat du fichier
   async uploadFile(docType: string) {
+    console.log('📤 [CANDIDATURE-FORM] uploadFile démarré pour:', docType);
+    
     const attachment = this.attachments.find(a => a.type === docType);
-    if (!attachment) return;
+    if (!attachment) {
+      console.log('❌ [CANDIDATURE-FORM] Attachment non trouvé pour:', docType);
+      return;
+    }
+
+    console.log('📋 [CANDIDATURE-FORM] Attachment trouvé:', {
+      name: attachment.name,
+      type: attachment.type,
+      fileSize: attachment.file.size
+    });
 
     attachment.status.uploading = true;
     this.updateUploadCount();
+    console.log('⏳ [CANDIDATURE-FORM] Statut uploading activé');
 
     try {
       const formData = new FormData();
       formData.append('name', docType);
       formData.append('file', attachment.file);
 
+      console.log('🌐 [CANDIDATURE-FORM] Envoi de la requête HTTP...');
       const response = await this.http.post<any>('https://lafaom.vertex-cam.com/api/v1/job-attachments', formData, {
         reportProgress: true,
         observe: 'events'
       }).toPromise();
 
+      console.log('📨 [CANDIDATURE-FORM] Réponse reçue:', response);
+
       if (response && response.type === HttpEventType.Response) {
+        console.log('✅ [CANDIDATURE-FORM] Upload réussi:', response.body);
         attachment.status.uploading = false;
         attachment.status.completed = true;
         attachment.status.url = response.body.data[0].file_path;
         attachment.status.error = null;
+        console.log('📁 [CANDIDATURE-FORM] URL du fichier:', response.body.data[0].file_path);
       }
 
     } catch (error: any) {
+      console.error('❌ [CANDIDATURE-FORM] Erreur d\'upload:', error);
       attachment.status.uploading = false;
       attachment.status.error = error.message || 'Erreur d\'upload';
       attachment.status.completed = false;
     }
 
     this.updateUploadCount();
+    console.log('📊 [CANDIDATURE-FORM] État final des attachments:', this.attachments);
   }
 
   // Mise à jour du compteur d'upload
@@ -150,11 +198,17 @@ export class CandidatureForm {
 
   // Soumission de la candidature
   async submitApplication() {
+    console.log('🚀 [CANDIDATURE-FORM] submitApplication démarré');
+    console.log('📋 [CANDIDATURE-FORM] État du formulaire:', this.form);
+    console.log('📎 [CANDIDATURE-FORM] Attachments:', this.attachments);
+    
     if (!this.isFormValid()) {
+      console.log('❌ [CANDIDATURE-FORM] Formulaire invalide');
       this.errors = ['Veuillez remplir tous les champs requis et uploader tous les documents'];
       return;
     }
 
+    console.log('✅ [CANDIDATURE-FORM] Formulaire valide, démarrage de la soumission');
     this.isSubmitting = true;
     this.errors = [];
 
@@ -166,6 +220,8 @@ export class CandidatureForm {
           name: a.type,
           type: a.type
         }));
+
+      console.log('📎 [CANDIDATURE-FORM] Attachments préparés:', attachments);
 
       // Données de candidature
       const applicationData = {
@@ -182,15 +238,22 @@ export class CandidatureForm {
         attachments: attachments
       };
 
+      console.log('📤 [CANDIDATURE-FORM] Données à envoyer:', applicationData);
+
       // Envoyer la candidature
+      console.log('🌐 [CANDIDATURE-FORM] Envoi de la requête HTTP...');
       const response = await this.http.post<any>('https://lafaom.vertex-cam.com/api/v1/job-applications', applicationData).toPromise();
       
+      console.log('📨 [CANDIDATURE-FORM] Réponse reçue:', response);
       this.applicationSubmitted.emit(response);
+      console.log('✅ [CANDIDATURE-FORM] Émission de l\'événement applicationSubmitted');
       
     } catch (error: any) {
+      console.error('❌ [CANDIDATURE-FORM] Erreur lors de la soumission:', error);
       this.errors = [error.message || 'Erreur lors de la soumission'];
     } finally {
       this.isSubmitting = false;
+      console.log('🏁 [CANDIDATURE-FORM] Soumission terminée');
     }
   }
 

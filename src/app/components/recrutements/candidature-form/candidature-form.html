@@ -29,7 +29,8 @@
         <div class="form-row">
           <div class="form-group">
             <label for="civility">Civilité *</label>
-            <select id="civility" [(ngModel)]="form.civility" name="civility" required>
+            <select id="civility" [(ngModel)]="form.civility" name="civility" required
+                    (change)="logChange('Civilité', $event)">
               <option value="">Sélectionner</option>
               <option *ngFor="let option of civilityOptions" [value]="option.value">
                 {{option.label}}
@@ -38,29 +39,34 @@
           </div>
           <div class="form-group">
             <label for="date_of_birth">Date de naissance</label>
-            <input type="date" id="date_of_birth" [(ngModel)]="form.date_of_birth" name="date_of_birth">
+            <input type="date" id="date_of_birth" [(ngModel)]="form.date_of_birth" name="date_of_birth"
+                   (change)="logChange('Date de naissance', $event)">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="first_name">Prénom *</label>
-            <input type="text" id="first_name" [(ngModel)]="form.first_name" name="first_name" required>
+            <input type="text" id="first_name" [(ngModel)]="form.first_name" name="first_name" required
+                   (change)="logChange('Prénom', $event)">
           </div>
           <div class="form-group">
             <label for="last_name">Nom *</label>
-            <input type="text" id="last_name" [(ngModel)]="form.last_name" name="last_name" required>
+            <input type="text" id="last_name" [(ngModel)]="form.last_name" name="last_name" required
+                   (change)="logChange('Nom', $event)">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="email">Email *</label>
-            <input type="email" id="email" [(ngModel)]="form.email" name="email" required>
+            <input type="email" id="email" [(ngModel)]="form.email" name="email" required
+                   (change)="logChange('Email', $event)">
           </div>
           <div class="form-group">
             <label for="phone_number">Téléphone *</label>
-            <input type="tel" id="phone_number" [(ngModel)]="form.phone_number" name="phone_number" required>
+            <input type="tel" id="phone_number" [(ngModel)]="form.phone_number" name="phone_number" required
+                   (change)="logChange('Téléphone', $event)">
           </div>
         </div>
       </div>

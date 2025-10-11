@@ -16,7 +16,7 @@ export class ActualiteDetails implements OnInit, OnDestroy {
   news: News | null = null;
   category: string = '';
   sections: ArticleSection[] = [];
-  loading = true;
+  loading = false;
   error: string | null = null;
   private routeSubscription: Subscription | undefined;
 
@@ -47,7 +47,7 @@ export class ActualiteDetails implements OnInit, OnDestroy {
   }
 
   loadNewsDetails(id: number) {
-    this.loading = true;
+    this.loading = false; // Pas de loading automatique
     this.error = null;
 
     this.newsService.getNewsById(id).subscribe({
@@ -151,13 +151,13 @@ export class ActualiteDetails implements OnInit, OnDestroy {
   }
 
   getSectionMediaUrl(section: ArticleSection): string {
-    if (!section.media_url) return '';
-    
-    if (section.media_url.startsWith('http')) {
-      return section.media_url;
+    if (!section.cover_image) return '';
+
+    if (section.cover_image.startsWith('http')) {
+      return section.cover_image;
     }
-    
-    return `https://lafaom.vertex-cam.com${section.media_url}`;
+
+    return `https://lafaom.vertex-cam.com${section.cover_image}`;
   }
 
   goBack() {

@@ -15,12 +15,12 @@ import { Subscription } from 'rxjs';
 })
 export class Section3 implements OnInit, OnDestroy {
   allNews: News[] = [];
-  loading = true;
+  loading = false;
   error: string | null = null;
   categories: Map<number, string> = new Map();
   private filterSubscription: Subscription | undefined;
   private selectedCategories: number[] = [];
-  
+
   // Pagination
   currentPage = 1;
   itemsPerPage = 16;
@@ -30,7 +30,7 @@ export class Section3 implements OnInit, OnDestroy {
   constructor(
     private newsService: NewsService,
     private filterService: FilterService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.subscribeToFilters();
@@ -52,7 +52,7 @@ export class Section3 implements OnInit, OnDestroy {
   }
 
   loadAllNews() {
-    this.loading = true;
+    this.loading = false; // Pas de loading automatique
     this.error = null;
 
     // Charger toutes les actualités d'abord
@@ -60,28 +60,28 @@ export class Section3 implements OnInit, OnDestroy {
       next: (response) => {
         // Filtrer seulement les actualités qui ont une date de publication
         let filteredNews = (response.data || []).filter((news: News) => news.published_at !== null);
-        
+
         // Appliquer les filtres de catégories côté client
         if (this.selectedCategories.length > 0) {
-          filteredNews = filteredNews.filter((news: News) => 
+          filteredNews = filteredNews.filter((news: News) =>
             this.selectedCategories.includes(news.category_id)
           );
           console.log(`Filtrage section-3 par catégories: ${this.selectedCategories.join(',')} - ${filteredNews.length} résultats`);
         }
-        
+
         // Appliquer la pagination côté client
         const startIndex = (this.currentPage - 1) * this.itemsPerPage;
         const endIndex = startIndex + this.itemsPerPage;
-        
+
         this.allNews = filteredNews.slice(startIndex, endIndex);
-        
+
         // Mettre à jour la pagination
         this.totalItems = filteredNews.length;
         this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-        
+
         // Charger les catégories
         this.loadCategories();
-        
+
         this.loading = false;
       },
       error: (error) => {
@@ -94,7 +94,7 @@ export class Section3 implements OnInit, OnDestroy {
 
   loadCategories() {
     const categoryIds = [...new Set(this.allNews.map(news => news.category_id))];
-    
+
     categoryIds.forEach(categoryId => {
       this.newsService.getCategoryById(categoryId).subscribe({
         next: (response) => {
@@ -118,7 +118,7 @@ export class Section3 implements OnInit, OnDestroy {
     const pages: number[] = [];
     const startPage = Math.max(1, this.currentPage - 2);
     const endPage = Math.min(this.totalPages, this.currentPage + 2);
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
@@ -140,12 +140,12 @@ export class Section3 implements OnInit, OnDestroy {
     if (news.cover_image && news.cover_image.startsWith('http')) {
       return news.cover_image;
     }
-    
+
     // Si l'image existe mais n'est pas une URL complète
     if (news.cover_image && !news.cover_image.startsWith('http')) {
       return `https://lafaom.vertex-cam.com${news.cover_image}`;
     }
-    
+
     // Image par défaut
     return '/assets/images/default-news.svg';
   }
@@ -156,7 +156,7 @@ export class Section3 implements OnInit, OnDestroy {
 
   getSummary(news: News): string {
     if (!news.summary) return '';
-    
+
     let cleanSummary = news.summary
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
@@ -164,7 +164,7 @@ export class Section3 implements OnInit, OnDestroy {
       .replace(/&quot;/g, '"')
       .replace(/&#39;/g, "'")
       .replace(/&nbsp;/g, ' ');
-    
+
     cleanSummary = cleanSummary
       .replace(/<p>/g, '')
       .replace(/<\/p>/g, '<br>')
@@ -172,7 +172,7 @@ export class Section3 implements OnInit, OnDestroy {
       .replace(/<\/strong>/g, '</b>')
       .replace(/<em>/g, '<i>')
       .replace(/<\/em>/g, '</i>');
-    
+
     return cleanSummary;
   }
 }

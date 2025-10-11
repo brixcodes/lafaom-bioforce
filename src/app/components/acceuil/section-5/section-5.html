@@ -4,60 +4,64 @@
             activités récentes
         </h4>
 
-        <!-- Indicateur de chargement -->
-        <div *ngIf="loading" class="loading-indicator">
-            <p>Chargement des actualités...</p>
-        </div>
+    <!-- Indicateur de chargement -->
+    <div *ngIf="loading" class="loading-indicator">
+        <p>Chargement des actualités...</p>
+    </div>
 
-        <!-- Message d'erreur -->
-        <div *ngIf="error" class="error-message">
-            <p>{{ error }}</p>
-            <button (click)="loadRecentNews()" class="btn orange-btn">Réessayer</button>
-        </div>
+    <!-- Message d'erreur -->
+    <div *ngIf="error" class="error-message">
+        <p>{{ error }}</p>
+        <button (click)="loadRecentNews()" class="btn orange-btn">Réessayer</button>
+    </div>
 
-        <!-- Actualités dynamiques -->
-        <div *ngIf="!loading && !error && recentNews.length > 0" class="customScrollbar">
-            <div class="row actualites flex-nowrap">
-                <div *ngFor="let news of recentNews" class="col-md-6 actu">
-                    <div class="img">
-                        <img [src]="getImageUrl(news)" [alt]="news.title" [attr.data-lazy-src]="getImageUrl(news)">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">{{ getCategory(news) }}</p>
-                        <a [routerLink]="['/actualite', news.id]" class="a-titre">
-                            <h5 class="titre">{{ news.title }}</h5>
-                        </a>
-                        <div class="intro" [innerHTML]="getSummary(news)"></div>
-                        <p class="date">{{ formatDate(news.published_at) }}</p>
-                    </div>
+    <!-- Actualités dynamiques -->
+    <div *ngIf="!loading && !error && recentNews.length > 0" class="customScrollbar">
+        <div class="row actualites flex-nowrap">
+            <div *ngFor="let news of recentNews" class="col-md-6 actu" (click)="goToNewsDetails(news)" style="cursor: pointer;">
+                <div class="img">
+                    <img [src]="getImageUrl(news)" 
+                         [alt]="news.title"
+                         [attr.data-lazy-src]="getImageUrl(news)">
+                </div>
+                <div class="info">
+                    <p class="categorie">{{ getCategory(news) }}</p>
+                    <a href="javascript:void(0)" class="a-titre" (click)="goToNewsDetails(news); $event.stopPropagation()">
+                        <h5 class="titre">{{ news.title }}</h5>
+                    </a>
+                    <div class="intro" [innerHTML]="getSummary(news)"></div>
+                    <p class="date">{{ formatDate(news.published_at) }}</p>
                 </div>
             </div>
-        </div>
-
-        <!-- Message si aucune actualité -->
-        <div *ngIf="!loading && !error && recentNews.length === 0" class="no-news">
-            <p>Aucune actualité disponible pour le moment.</p>
-        </div>
-        <!-- Carousel avec actualités dynamiques -->
-        <div *ngIf="!loading && !error && recentNews.length > 0" class="owl-carousel owl-theme owl-actu">
-            <div *ngFor="let news of recentNews" class="item actualites">
-                <div class="actu">
-                    <div class="img">
-                        <img [src]="getImageUrl(news)" [alt]="news.title" [attr.data-lazy-src]="getImageUrl(news)">
-                    </div>
-                    <div class="info">
-                        <p class="categorie">{{ getCategory(news) }}</p>
-                        <a [routerLink]="['/actualite', news.id]" class="a-titre">
-                            <h5 class="titre">{{ news.title }}</h5>
-                        </a>
-                        <div class="intro" [innerHTML]="getSummary(news)"></div>
-                        <p class="date">{{ formatDate(news.published_at) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flex-btn">
-            <a href="/actualites" class="btn orange-btn">toutes nos activités</a>
         </div>
     </div>
+
+    <!-- Message si aucune actualité -->
+    <div *ngIf="!loading && !error && recentNews.length === 0" class="no-news">
+        <p>Aucune actualité disponible pour le moment.</p>
+    </div>
+    <!-- Carousel avec actualités dynamiques -->
+    <div *ngIf="!loading && !error && recentNews.length > 0" class="owl-carousel owl-theme owl-actu">
+        <div *ngFor="let news of recentNews" class="item actualites" (click)="goToNewsDetails(news)" style="cursor: pointer;">
+            <div class="actu">
+                <div class="img">
+                    <img [src]="getImageUrl(news)" 
+                         [alt]="news.title"
+                         [attr.data-lazy-src]="getImageUrl(news)">
+                </div>
+                <div class="info">
+                    <p class="categorie">{{ getCategory(news) }}</p>
+                    <a href="javascript:void(0)" class="a-titre" (click)="goToNewsDetails(news); $event.stopPropagation()">
+                        <h5 class="titre">{{ news.title }}</h5>
+                    </a>
+                    <div class="intro" [innerHTML]="getSummary(news)"></div>
+                    <p class="date">{{ formatDate(news.published_at) }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-btn">
+        <a href="/actualites" class="btn orange-btn">toutes nos activités</a>
+    </div>
+</div>
 </div>

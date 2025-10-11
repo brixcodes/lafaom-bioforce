@@ -39,9 +39,9 @@
                 <p [innerHTML]="section?.content"></p>
 
                 <!-- Image de la section si elle existe -->
-                <p *ngIf="section?.media_url">
-                    <img [src]="getSectionMediaUrl(section)" [alt]="section?.media_alt || section?.title"
-                        class="alignnone img-fluid" loading="lazy" decoding="async" />
+                <p *ngIf="section?.cover_image">
+                    <img [src]="getSectionMediaUrl(section)" [alt]="section?.title"
+                        class="img-fluid" loading="lazy" decoding="async" />
                 </p>
             </div>
         </div>

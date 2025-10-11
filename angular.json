@@ -22,14 +22,17 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
-                "src/assets/css/base.css",
-                "src/assets/css/lafaom-theme.css"
+                "src/assets/css/base.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
             "outputMode": "static",
             "ssr": false
           },

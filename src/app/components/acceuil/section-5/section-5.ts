@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { NewsService } from '../../../services/news.service';
 import { News, BlogCategory } from '../../../models/api.models';
 import { Observable, interval, Subscription } from 'rxjs';
@@ -8,20 +8,20 @@ import { Observable, interval, Subscription } from 'rxjs';
 @Component({
   selector: 'app-section-5',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './section-5.html',
   styleUrl: './section-5.css'
 })
 export class Section5 implements OnInit, OnDestroy {
   recentNews$: Observable<any> | undefined;
   recentNews: News[] = [];
-  loading = true;
+  loading = false;
   error: string | null = null;
   categories: Map<number, string> = new Map();
   private refreshSubscription: Subscription | undefined;
   private readonly REFRESH_INTERVAL = 30000; // 30 secondes
 
-  constructor(private newsService: NewsService) {}
+  constructor(private newsService: NewsService, private router: Router) {}
 
   ngOnInit() {
     this.loadRecentNews();
@@ -49,7 +49,7 @@ export class Section5 implements OnInit, OnDestroy {
 
   loadRecentNews(showLoading: boolean = true) {
     if (showLoading) {
-      this.loading = true;
+      this.loading = false; // Pas de loading automatique
     }
     this.error = null;
     
@@ -130,5 +130,14 @@ export class Section5 implements OnInit, OnDestroy {
       .replace(/<\/em>/g, '</i>');
     
     return cleanSummary;
+  }
+
+  /**
+   * Naviguer vers les détails d'une actualité
+   */
+  goToNewsDetails(news: News) {
+    if (news.id) {
+      this.router.navigate(['/actualites', news.id]);
+    }
   }
 }
