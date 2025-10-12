@@ -37,12 +37,21 @@ export class CustomTranslateLoaderService {
       error: (error) => console.error('Erreur lors du chargement des traductions anglaises:', error)
     });
 
+    // Charger les traductions allemandes
+    this.http.get('./assets/i18n/de.json').subscribe({
+      next: (data: any) => {
+        this.translations['de'] = data;
+        this.translate.setTranslation('de', data as TranslationObject);
+      },
+      error: (error) => console.error('Erreur lors du chargement des traductions allemandes:', error)
+    });
+
     // Définir la langue par défaut
     this.translate.setDefaultLang('fr');
     
     // Récupérer la langue sauvegardée ou utiliser le français par défaut
     const savedLang = localStorage.getItem('lafaom-language') || 'fr';
-    const supportedLangs = ['fr', 'en'];
+    const supportedLangs = ['fr', 'en', 'de'];
     
     // Vérifier que la langue est supportée
     const lang = supportedLangs.includes(savedLang) ? savedLang : 'fr';

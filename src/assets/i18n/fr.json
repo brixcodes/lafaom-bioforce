@@ -353,7 +353,8 @@
   },
   "language": {
     "french": "Français",
-    "english": "English"
+    "english": "English",
+    "german": "Deutsch"
   },
   "home": {
     "hero": {
@@ -422,7 +423,7 @@
     },
     "testimonials": {
       "testimonial1": "La formation des AVUJ présente des atouts susceptibles de donner toutes les compétences nécessaires pour accompagner efficacement les personnes confrontées aux difficultés liées aux décisions de justice.",
-      "testimonial2": "Le Programme Mao et l'Institut Formation Lafaom-Mao forment des professionnels compétents qui font la différence dans l'accompagnement judiciaire. Un réseau interafricain original.",
+      "testimonial2": "Le Programme Mao et l'Institut Formation Lafaom-Mao forment des professionnels compétents qui font la différence dans l'accompagnement judiciaire.",
       "testimonial3": "Grâce à mon expérience dans les services d'action sociale Justice-Prison, je peux dire que dans le principe, accompagner avec professionnalisme les personnes affectées par les décisions de justice est une mission qui a du sens."
     },
     "carousel": {

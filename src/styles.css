@@ -1,6 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-
-/* Import essential CSS files only */
-@import url('../public/asset/css/style.min.css');
-@import url('../public/asset/css/custom.min.css');
-@import url('../public/asset/css/lafaom-theme.css');

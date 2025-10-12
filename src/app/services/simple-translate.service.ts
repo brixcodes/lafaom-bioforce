@@ -32,26 +32,47 @@ export class SimpleTranslateService {
       error: (error) => console.error('Erreur lors du chargement des traductions anglaises:', error)
     });
 
+    // Charger les traductions allemandes
+    this.http.get('./assets/i18n/de.json').subscribe({
+      next: (data: any) => {
+        this.translations['de'] = data;
+        console.log('Traductions allemandes chargées:', data);
+      },
+      error: (error) => console.error('Erreur lors du chargement des traductions allemandes:', error)
+    });
+
     // Récupérer la langue sauvegardée
     const savedLang = localStorage.getItem(this.STORAGE_KEY) || 'fr';
     this.setLanguage(savedLang);
   }
 
   public setLanguage(lang: string): void {
-    if (['fr', 'en'].includes(lang)) {
+    if (['fr', 'en', 'de'].includes(lang)) {
       console.log('🔄 Changement de langue vers:', lang);
+      
+      // Vérifier si les traductions sont chargées
+      if (!this.translations[lang]) {
+        console.warn(`⚠️ Traductions non encore chargées pour ${lang}, attente...`);
+        // Attendre un peu et réessayer
+        setTimeout(() => {
+          this.setLanguage(lang);
+        }, 500);
+        return;
+      }
+      
       this.currentLang.set(lang);
       localStorage.setItem(this.STORAGE_KEY, lang);
-
+      
       // Mettre à jour l'attribut lang du document
       if (typeof document !== 'undefined') {
         document.documentElement.lang = lang;
         console.log('🌐 Attribut lang du document mis à jour:', document.documentElement.lang);
       }
-
+      
       // Forcer la détection des changements
       setTimeout(() => {
         console.log('✅ Langue changée avec succès:', this.getCurrentLanguage());
+        console.log('📊 Traductions disponibles:', Object.keys(this.translations));
       }, 100);
     }
   }
@@ -63,7 +84,7 @@ export class SimpleTranslateService {
   public translate(key: string): string {
     const lang = this.getCurrentLanguage();
     const translation = this.translations[lang];
-
+    
     if (!translation) {
       console.warn(`Traductions non chargées pour la langue: ${lang}`);
       return key;
@@ -72,7 +93,7 @@ export class SimpleTranslateService {
     // Navigation dans l'objet de traduction
     const keys = key.split('.');
     let result: any = translation;
-
+    
     for (const k of keys) {
       if (result && typeof result === 'object' && k in result) {
         result = result[k];
@@ -81,19 +102,28 @@ export class SimpleTranslateService {
         return key;
       }
     }
-
+    
     return typeof result === 'string' ? result : key;
   }
 
   public getSupportedLanguages(): string[] {
-    return ['fr', 'en'];
+    return ['fr', 'en', 'de'];
   }
 
   public getLanguageName(lang: string): string {
     const names: { [key: string]: string } = {
       'fr': 'Français',
-      'en': 'English'
+      'en': 'English',
+      'de': 'Deutsch'
     };
     return names[lang] || lang;
+  }
+
+  public isTranslationLoaded(lang: string): boolean {
+    return !!this.translations[lang];
+  }
+
+  public getLoadedLanguages(): string[] {
+    return Object.keys(this.translations);
   }
 }
