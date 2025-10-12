@@ -1,0 +1,23 @@
+<!-- Version simple active -->
+<div class="lang-switch">
+  <div class="lang-switcher">
+    <ul>
+      <li>
+        <span 
+          class="selectLang" 
+          [class.active]="currentLanguage() === 'fr'"
+          (click)="setLanguage('fr')">
+          🇫🇷 {{ 'language.french' | translate }}
+        </span>
+      </li>
+      <li>
+        <a 
+          href="javascript:void(0)"
+          [class.active]="currentLanguage() === 'en'"
+          (click)="setLanguage('en')">
+          🇬🇧 {{ 'language.english' | translate }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

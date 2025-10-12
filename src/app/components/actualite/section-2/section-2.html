@@ -1,0 +1,45 @@
+<!-- section 2 -->
+<div class="gab-actualites container-1440">
+    <div class="container-1290">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-lg-8 col-xl-8">
+                <h2 class="title-h2-type-2">{{ 'news.latestPublications' | translate }}</h2>
+            </div>
+        </div>
+        <div class="content">
+            <!-- Indicateur de chargement -->
+            <div *ngIf="loading" class="loading-indicator">
+                <p>{{ 'news.loading' | translate }}</p>
+            </div>
+
+            <!-- Message d'erreur -->
+            <div *ngIf="error" class="error-message">
+                <p>{{ error }}</p>
+            </div>
+
+            <!-- Actualités dynamiques -->
+            <div *ngIf="!loading && !error && recentNews.length > 0" class="row actualites owl-carousel">
+                <div *ngFor="let news of recentNews" class="col-md-6 col-lg-6 col-xl-6 actu">
+                    <div class="img">
+                        <img [src]="getImageUrl(news)" [alt]="news.title" [attr.data-lazy-src]="getImageUrl(news)">
+                    </div>
+
+                    <div class="info">
+                        <p class="categorie">{{ getCategory(news) }}</p>
+                        <a [routerLink]="['/actualite', news.id]" class="a-titre">
+                            <h5 class="titre">{{ news.title }}</h5>
+                        </a>
+                        <div class="intro" [innerHTML]="getSummary(news)"></div>
+                        <p class="date" *ngIf="news.published_at">{{ formatDate(news.published_at) }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message si aucune actualité -->
+            <div *ngIf="!loading && !error && recentNews.length === 0" class="no-news">
+                <p>{{ 'news.noNews' | translate }}</p>
+                <p><small>{{ 'news.noNewsSubtext' | translate }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>

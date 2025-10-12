@@ -1,0 +1,85 @@
+<div class="container-1290 container-1440 listing-magasins">
+    <!-- Indicateur de chargement -->
+    <div *ngIf="loading" class="loading-indicator">
+        <p>{{ 'news.loading' | translate }}</p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="error" class="error-message">
+        <p>{{ error }}</p>
+    </div>
+
+    <!-- Actualités dynamiques -->
+    <div *ngIf="!loading && !error && allNews.length > 0" class="news-list container">
+        <div class="row">
+            <div *ngFor="let news of allNews" class="col-md-3 col-lg-3 col-xl-3 mb-4">
+                <a [routerLink]="['/actualite', news.id]" class="a-titre">
+                    <div class="card h-100 shadow-lg border-0">
+                        <a class="stretched-link" aria-label="{{ news.title }}"></a>
+
+                        <div class="img">
+                            <img [src]="getImageUrl(news)" [alt]="news.title" class="card-img-top"
+                                [attr.data-lazy-src]="getImageUrl(news)" />
+                        </div>
+
+                        <div class="card-body p-5">
+                            <p class="categorie text-muted mb-1">{{ getCategory(news) }}</p>
+                            <h5 class="card-title">{{ news.title }}</h5>
+                            <p class="date text-primary">{{ formatDate(news.published_at) }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Message si aucune actualité -->
+    <div *ngIf="!loading && !error && allNews.length === 0" class="no-news">
+        <p>{{ 'news.noNews' | translate }}</p>
+        <p><small>{{ 'news.noNewsSubtext2' | translate }}</small></p>
+    </div>
+</div>
+
+<!-- Pagination -->
+<div *ngIf="!loading && !error && totalPages > 1" class="container-1290 pagination-bottom">
+    <nav aria-label="Page navigation">
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item title">
+                <span class="page-link">{{ 'news.page' | translate }}</span>
+            </li>
+
+            <!-- Page précédente -->
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)" [class.disabled]="currentPage === 1">
+                    {{ 'news.previous' | translate }}
+                </a>
+            </li>
+
+            <!-- Numéros de pages -->
+            <li *ngFor="let page of getPageNumbers()" class="page-item" [class.active]="page === currentPage">
+                <a class="page-link" (click)="onPageChange(page)">
+                    {{ page }}
+                </a>
+            </li>
+
+            <!-- Page suivante -->
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="onPageChange(currentPage + 1)"
+                    [class.disabled]="currentPage === totalPages">
+                    {{ 'news.next' | translate }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

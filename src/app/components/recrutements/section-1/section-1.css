@@ -1,0 +1,266 @@
+/* Styles pour le formulaire de candidature */
+
+.file-upload-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.custom-file-upload {
+  display: block;
+  padding: 2rem;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9f9f9;
+}
+
+.custom-file-upload:hover {
+  border-color: #007bff;
+  background: #f0f8ff;
+}
+
+.custom-file-upload.uploaded {
+  border-color: #28a745;
+  background: #f0fff4;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+.file-name {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #28a745;
+}
+
+.file-actions {
+  margin-top: 1rem;
+}
+
+.payment-info {
+  margin: 2rem 0;
+}
+
+.payment-info .alert {
+  margin-bottom: 1.5rem;
+}
+
+.payment-info h4 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.step-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.step-footer .btn {
+  min-width: 150px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Styles pour les étapes */
+.step-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.step-steps li {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.step-steps li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: #ddd;
+  z-index: 1;
+}
+
+.step-steps .dots {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.step-steps .dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: 0 2px;
+}
+
+.step-steps .libelle {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Styles pour les champs de formulaire */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-radio-gr {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-radio input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-checkbox input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Messages d'erreur */
+.text-danger {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .step-footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .step-footer .btn {
+    width: 100%;
+  }
+  
+  .form-radio-gr {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .row {
+    flex-direction: column;
+  }
+  
+  .col-lg-6 {
+    width: 100%;
+  }
+  
+  .mt-resp {
+    margin-top: 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-tab-panel {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Styles pour les alertes */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeaa7;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

@@ -1,0 +1,85 @@
+<header id="header" class="container-fluid position-absolute">
+    <!-- Menu burger -->
+    <span class="icon-burger">
+        <button class="hamburger hamburger--spring js-hamburger" type="button" aria-label="Menu"
+            aria-controls="navigation">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+    </span>
+
+    <!-- Top bar: langue, liens top, login -->
+    <div class="header-top d-flex align-items-center justify-content-end">
+        <div class="lang-switch">
+            <app-language-switcher></app-language-switcher>
+        </div>
+        <ul class="list-inline nav-top">
+            <li class="list-inline-item"><a href="/" title="Lafaom-mao">{{ 'navigation.home' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/actualites" title="Actualités">{{ 'navigation.news' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/formations" title="Formations">{{ 'navigation.training' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/recrutements" title="Recrutement">{{ 'navigation.recruitment' | translate }}</a></li>
+            <!-- <li class="list-inline-item"><a href="/contact" title="Contact">{{ 'navigation.contact' | translate }}</a></li> -->
+        </ul>
+        <a href="https://admin.lafaom-mao.org/" title="Login" class="btn btn-top btn-outline-primary">{{ 'header.spaceCandidate' | translate }}</a>
+    </div>
+
+    <!-- Bas de header : logo + menu principal -->
+    <div class="header-bottom d-flex align-items-end justify-content-between">
+        <div class="logo">
+
+            <a href="#" title="homepage">
+                <img src="lafaom-mao.png" alt="bioforce" style="width: 210px;">
+                <span class="sr-only">LAFAOM-MAO</span>
+            </a>
+        </div>
+
+        <!-- Navigation principale -->
+        <div>
+            <ul class="list-unstyled navbar">
+                <!-- Menu Services -->
+                <li class="active">
+                    <div class="sub-menu">
+
+                        <!-- Liens version mobile -->
+                        <div class="display_mobile">
+                            <ul class="list-inline nav-top">
+                                <li class="list-inline-item">
+                                    <a href="" title="Lafaom-mao">
+                                        {{ 'navigation.about' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/actualites" title="Actualités">
+                                        {{ 'navigation.news' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/formations" title="Formations">
+                                        {{ 'navigation.training' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/recrutements" title="Recrutement">
+                                        {{ 'navigation.recruitment' | translate }}
+                                    </a>
+                                </li>
+                                <!-- <li class="list-inline-item">
+                                    <a href="/contact" title="Contact">
+                                        {{ 'navigation.contact' | translate }}
+                                    </a>
+                                </li> -->
+                                <li class="list-inline-item">
+                                    <a href="https://admin.lafaom-mao.org/"
+                                        title="Espace Candidat">
+                                        {{ 'header.spaceCandidate' | translate }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
