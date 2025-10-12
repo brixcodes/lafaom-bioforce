@@ -12281,7 +12281,7 @@ strong {
 }
 
 .has-border-b.border-red:before {
-    background-color: #ff2c01
+    background-color: #8B2635
 }
 
 .has-border-b.border-light:before {
@@ -14784,7 +14784,7 @@ strong {
     left: 0;
     bottom: -5px;
     width: 100%;
-    background-color: #ff2c01
+    background-color: #8B2635
 }
 
 @media (max-width:767px) {
@@ -15500,7 +15500,7 @@ strong {
 }
 
 .btn-primary:after {
-    background: #dd2a06
+    background: #8B2635
 }
 
 .btn-outline-primary:before {
@@ -18054,7 +18054,7 @@ nav .pagination .page-link.active {
 }
 
 .list-fiche-mission a:hover {
-    background-color: #dd2a06
+    background-color: #8B2635
 }
 
 .list-fiche-mission a:hover:before {
@@ -18062,7 +18062,7 @@ nav .pagination .page-link.active {
 }
 
 .list-fiche-mission a:hover:after {
-    background-color: #dd2a06;
+    background-color: #8B2635;
     transition-delay: 0.175s
 }
 
@@ -20192,7 +20192,7 @@ nav .pagination .page-link.active {
 }
 
 .white-btn:hover {
-    background-color: #ff2c01;
+    background-color: #8B2635;
     color: #fff
 }
 
@@ -20201,7 +20201,7 @@ nav .pagination .page-link.active {
 }
 
 .white-btn:hover:after {
-    background-color: #ff2c01
+    background-color: #8B2635
 }
 
 .orange-btn {
@@ -20212,7 +20212,7 @@ nav .pagination .page-link.active {
 }
 
 .orange-btn:hover {
-    background-color: #dd2a06;
+    background-color: #8B2635;
     color: #fff
 }
 
@@ -20221,7 +20221,7 @@ nav .pagination .page-link.active {
 }
 
 .orange-btn:hover:after {
-    background-color: #dd2a06
+    background-color: #8B2635
 }
 
 .orange-btn::first-letter {
@@ -20951,12 +20951,12 @@ header.position-absolute .navbar>li:not(:last-child)>a:after {
 
 #formulaire-contact .form .frm_submit button:after,
 .formulaire-contact .form .frm_submit button:after {
-    background: #dd2a06
+    background: #8B2635
 }
 
 #formulaire-contact .form .frm_submit button:hover,
 .formulaire-contact .form .frm_submit button:hover {
-    background-color: #dd2a06 !important
+    background-color: #8B2635 !important
 }
 
 #formulaire-contact .form .frm_submit button:hover:before,
@@ -20968,7 +20968,7 @@ header.position-absolute .navbar>li:not(:last-child)>a:after {
 
 #formulaire-contact .form .frm_submit button:hover:after,
 .formulaire-contact .form .frm_submit button:hover:after {
-    background-color: #dd2a06 !important;
+    background-color: #8B2635 !important;
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
     -webkit-transition-delay: 0.175s;
@@ -21436,8 +21436,8 @@ html {
 }
 
 .hp-intro .plyr__control--overlaid {
-    background-color: #ff2c01 !important;
-    border: solid 1px #ff2c01
+    background-color: #8B2635 !important;
+    border: solid 1px #8B2635
 }
 
 .hp-intro .plyr__control--overlaid:hover {
@@ -21445,7 +21445,7 @@ html {
 }
 
 .hp-intro .plyr__control--overlaid:hover:after {
-    color: #ff2c01
+    color: #8B2635
 }
 
 .gab-aboutus .row {
@@ -22202,12 +22202,12 @@ html {
 }
 
 .gab-formations .col-frm-right .gray-bg .content .btn-more:after {
-    background-color: #ff2c01
+    background-color: #8B2635
 }
 
 @media only screen and (min-device-width:1025px) {
     .gab-formations .col-frm-right .gray-bg .content .btn-more:hover {
-        background-color: #ff2c01
+        background-color: #8B2635
     }
 }
 
@@ -22737,12 +22737,12 @@ html {
 }
 
 .gab-mission .mission-wrp .mission-info .btn:after {
-    background-color: #ff2c01
+    background-color: #8B2635
 }
 
 .gab-mission .mission-wrp .mission-info .btn:hover {
-    background-color: #ff2c01;
-    border-color: #ff2c01
+    background-color: #8B2635;
+    border-color: #8B2635
 }
 
 .gab-mission .mission-wrp .mission-info .accroche {
@@ -23690,7 +23690,7 @@ html {
 }
 
 .gab-actualites .actu .info .a-titre:hover .titre {
-    color: #ff2c01
+    color: #8B2635
 }
 
 .gab-actualites .actu .info .titre {
@@ -28326,7 +28326,7 @@ video {
 }
 
 .page-template-page-edito .btn:hover {
-    background-color: #dd2a06;
+    background-color: #8B2635;
     color: #fff
 }
 
@@ -28335,7 +28335,7 @@ video {
 }
 
 .page-template-page-edito .btn:hover:after {
-    background-color: #dd2a06
+    background-color: #8B2635
 }
 
 .page-template-page-edito #header {
@@ -29372,7 +29372,7 @@ body.page-magasin .listing-magasins .content-item h3 {
     }
 
     #header .navbar>li>a {
-        border-bottom: 3px solid #ff2c01;
+        border-bottom: 3px solid #8B2635;
         display: inline-block;
         padding-bottom: 0
     }
@@ -31285,7 +31285,7 @@ button:focus {
 
 .page-inscription .formulaire-inscription label.error,
 .page-inscription .formulaire-inscription .error-date {
-    color: #ff2c01;
+    color: #8B2635;
     font-family: "aeonikregular", Arial, sans-serif;
     font-size: 11px;
     font-weight: 400;
