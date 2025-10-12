@@ -2681,15 +2681,15 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #ec3400;
-    border-color: #df3100
+    background-color: #6B1D2A;
+    border-color: #6B1D2A
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
     color: #fff;
-    background-color: #ec3400;
-    border-color: #df3100;
+    background-color: #6B1D2A;
+    border-color: #6B1D2A;
     box-shadow: 0 0 0 .2rem rgba(255, 99, 54, .5)
 }
 
@@ -2704,7 +2704,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #df3100;
+    background-color: #6B1D2A;
     border-color: #d22e00
 }
 
@@ -2886,15 +2886,15 @@ fieldset:disabled a.btn {
 
 .btn-danger:hover {
     color: #fff;
-    background-color: #ec3400;
-    border-color: #df3100
+    background-color: #6B1D2A;
+    border-color: #6B1D2A
 }
 
 .btn-danger:focus,
 .btn-danger.focus {
     color: #fff;
-    background-color: #ec3400;
-    border-color: #df3100;
+    background-color: #6B1D2A;
+    border-color: #6B1D2A;
     box-shadow: 0 0 0 .2rem rgba(255, 99, 54, .5)
 }
 
@@ -2909,7 +2909,7 @@ fieldset:disabled a.btn {
 .btn-danger:not(:disabled):not(.disabled).active,
 .show>.btn-danger.dropdown-toggle {
     color: #fff;
-    background-color: #df3100;
+    background-color: #6B1D2A;
     border-color: #d22e00
 }
 
@@ -5328,7 +5328,7 @@ a.badge:focus {
 a.badge-primary:hover,
 a.badge-primary:focus {
     color: #fff;
-    background-color: #df3100
+    background-color: #6B1D2A
 }
 
 a.badge-primary:focus,
@@ -5413,7 +5413,7 @@ a.badge-warning.focus {
 a.badge-danger:hover,
 a.badge-danger:focus {
     color: #fff;
-    background-color: #df3100
+    background-color: #6B1D2A
 }
 
 a.badge-danger:focus,
@@ -6903,7 +6903,7 @@ a.bg-primary:hover,
 a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-    background-color: #df3100 !important
+    background-color: #6B1D2A !important
 }
 
 .bg-secondary {
@@ -6958,7 +6958,7 @@ a.bg-danger:hover,
 a.bg-danger:focus,
 button.bg-danger:hover,
 button.bg-danger:focus {
-    background-color: #df3100 !important
+    background-color: #6B1D2A !important
 }
 
 .bg-light {
@@ -27381,13 +27381,13 @@ video {
 
 #formulaire-contact .form .frm_cancel1_icon:before,
 .formulaire-contact .form .frm_cancel1_icon:before {
-    color: #ec3400
+    color: #6B1D2A
 }
 
 #formulaire-contact .form .frm_small_text,
 .formulaire-contact .form .frm_small_text {
     line-height: normal;
-    color: #ec3400
+    color: #6B1D2A
 }
 
 @media screen and (max-width:767px) {
@@ -27408,7 +27408,7 @@ video {
 .formulaire-contact .form .dz-details {
     position: relative;
     line-height: normal;
-    color: #ec3400;
+    color: #6B1D2A;
     float: none;
     padding-top: 16px;
     left: 10px;
