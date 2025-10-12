@@ -2,22 +2,14 @@
     <div class="row">
         <div class="col-lg-5 col-md-12 aboutus">
             <div class="content">
-                <img src="javascript:void(0)" alt="">
-                <h4 style="font-size: 50px;">Formation d'excellence pour la justice sociale</h4>
+                <h4 style="font-size: 50px;">{{ 'home.hero.title' | translate }}</h4>
                 <div class="wysiwyg">
                     <p style="text-transform: lowercase;">
-                        L’Institut Lafaom-Mao de Ziguinchor, membre du réseau inter-africain Lafaom-Mao,
-                        forme des Auxiliaires de Vie en Univers Judiciaire (AVUJ) pour accompagner les personnes
-                        affectées
-                        par les décisions de justice. Notre mission est de rendre la justice plus humaine et efficace en
-                        réduisant
-                        les impacts dévastateurs sur les femmes, les enfants et les personnes âgées, victimes de
-                        vulnérabilités sociales
-                        et sanitaires.
+                        {{ 'home.hero.description' | translate }} {{ 'home.hero.mission' | translate }}
                     </p>
                     <p>
                         <strong>
-                            NOUS SOMMES L'INSTITUT DE FORMATION LAFAOM-MAO. 
+                            {{ 'home.hero.institute' | translate }}
                         </strong>
                     </p>
                 </div>
@@ -28,13 +20,14 @@
         <div class="col-lg-7 col-md-12 media">
             <img src="/l1.jpg" alt="">
 
-            <a href="#" class="btn white-btn">Qui sommes-nous ?</a>
-            <a data-fancybox="video" data-src="assets/Videos/video.mp4" href="javascript:;" class="btnPlay"><i
+            <a href="bioforce/index.html" class="btn white-btn">{{ 'home.hero.discoverBioforce' | translate }}</a>
+            <a data-fancybox="video" data-src="#video" href="javascript:;" class="btnPlay"><i
                     class="icon-play"></i></a>
             <div id="video" style="display: none;">
                 <div class="media">
                     <div id="video2" class="lightbox">
-                        <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="#"></div>
+                        <div class="player" data-plyr-provider="youtube"
+                            data-plyr-embed-id="https://youtu.be/35z54iqCWYo"></div>
                     </div>
                 </div>
             </div>

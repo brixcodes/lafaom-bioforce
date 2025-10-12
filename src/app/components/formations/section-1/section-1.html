@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between align-items-center align-items-center">
         <div>
             <h2 class="h3 has-border-l" style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
-                <span>Formation à la une</span>
+                <span>{{ 'training.title' | translate }}</span>
             </h2>
         </div>
         <div class="d-none d-md-block">
@@ -11,13 +11,13 @@
 
     <!-- Indicateur de chargement -->
     <div *ngIf="loading" class="loading-indicator">
-        <p>Chargement des formations...</p>
+        <p>{{ 'common.loading' | translate }}</p>
     </div>
 
     <!-- Message d'erreur -->
     <div *ngIf="error" class="error-message">
         <p>{{ error }}</p>
-        <button (click)="loadFeaturedTrainings()" class="btn orange-btn">Réessayer</button>
+        <button (click)="loadFeaturedTrainings()" class="btn orange-btn">{{ 'common.retry' | translate }}</button>
     </div>
 
     <!-- Formations dynamiques -->
@@ -39,7 +39,7 @@
                         <div class="mx-2">
                             <ul class="list-inline post-formation-duration">
                                 <li class="list-inline-item">
-                                    <span>Formation</span>
+                                    <span>{{ 'training.duration' | translate }}</span>
                                     <span class="duration">{{ formatDuration(training.duration) }}{{
                                         training.duration_unit ? ' ' + training.duration_unit : '' }}</span>
                                 </li>
@@ -48,8 +48,7 @@
                         <div class="mx-2">
                             <span class="post-formation-session-available mx-2"
                                 [class.no-sessions]="!hasAvailableSessions(training)">
-                                {{ getAvailableSessionsCount(training) }} session(s)
-                                disponible(s)
+                                {{ getAvailableSessionsCount(training) }} {{ 'training.availableSessions' | translate }}
                             </span>
                         </div>
                         <!-- Boutons conditionnels selon la disponibilité -->
@@ -66,15 +65,15 @@
 
 
                         <button (click)="openModal(training)" class="btn btn-outline-primary btn-more"
-                            title="Voir les détails">
+                            [title]="'training.viewDetails' | translate">
                             <i class="icon-cross"></i>
-                            <span class="sr-only">Voir les détails</span>
+                            <span class="sr-only">{{ 'training.viewDetails' | translate }}</span>
                         </button>
 
                         <span *ngIf="!hasAvailableSessions(training)"
-                            class="btn btn-outline-secondary btn-more disabled" title="Aucune session disponible">
+                            class="btn btn-outline-secondary btn-more disabled" [title]="'training.noSessions' | translate">
                             <i class="icon-cross"></i>
-                            <span class="sr-only">Aucune session disponible</span>
+                            <span class="sr-only">{{ 'training.noSessions' | translate }}</span>
                         </span>
                     </div>
                 </div>
@@ -110,17 +109,17 @@
                                     </span>
                                     <div class="d-md-none post-formation-show-details">
                                         <span>
-                                            Voir la fiche en détails </span>
-                                        <button type="button" aria-label="details formation" data-uw-rm-empty-ctrl="">
+                                            {{ 'training.modal.viewDetails' | translate }} </span>
+                                        <button type="button" [aria-label]="'training.modal.viewDetails' | translate" data-uw-rm-empty-ctrl="">
                                             <span class="sr-only">
-                                                details formation </span>
+                                                {{ 'training.modal.viewDetails' | translate }} </span>
                                         </button>
                                     </div>
                                 </div>
                                 <h2 class="post-formation-title" role="presentation" aria-hidden="true"
                                     data-uw-rm-heading="hide">
                                     <span>
-                                        Formation : {{ selectedTraining?.title }} </span>
+                                        {{ 'training.modal.training' | translate }} : {{ selectedTraining?.title }} </span>
                                     <strong>
                                         {{ selectedTraining?.title }} </strong>
                                 </h2>
@@ -135,9 +134,9 @@
                                 </ul>
                                 <div class="post-formation-links">
                                     <a href="" target="_bank" class="btn btn-outline-primary"
-                                        title="télécharger les infos pratiques" data-uw-pdf-br="1" data-uw-pdf-doc="">
+                                        [title]="'training.modal.register' | translate" data-uw-pdf-br="1" data-uw-pdf-doc="">
                                         <span>
-                                            Je m'inscris
+                                            {{ 'training.modal.register' | translate }}
                                         </span>
                                     </a>
                                 </div>

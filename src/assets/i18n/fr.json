@@ -1,0 +1,325 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "reset": "Réinitialiser",
+    "retry": "Réessayer"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "training": "Formations",
+    "news": "Actualités",
+    "recruitment": "Recrutement",
+    "contact": "Contact"
+  },
+  "header": {
+    "title": "LAFAOM",
+    "subtitle": "Formation et Développement",
+    "menu": "Menu",
+    "language": "Langue",
+    "spaceCandidate": "Espace Candidat"
+  },
+  "footer": {
+    "description": "Fondation Ateba Ombala Marc - promouvoir justice pénale, dignité humaine, réinsertion sociale.",
+    "quickLinks": "Liens rapides",
+    "contact": "Contact",
+    "followUs": "Suivez-nous",
+    "allRightsReserved": "Tous droits réservés",
+    "trainingCenters": "Centres de formation"
+  },
+  "home": {
+    "hero": {
+      "title": "Bienvenue chez LAFAOM",
+      "subtitle": "Formation et Développement Professionnel",
+      "description": "Découvrez nos programmes de formation de qualité et développez vos compétences professionnelles.",
+      "cta": "Découvrir nos formations"
+    },
+    "features": {
+      "title": "Pourquoi choisir LAFAOM ?",
+      "quality": {
+        "title": "Formation de qualité",
+        "description": "Nos formations sont conçues par des experts et adaptées aux besoins du marché."
+      },
+      "expertise": {
+        "title": "Expertise reconnue",
+        "description": "Plus de 10 ans d'expérience dans la formation professionnelle."
+      },
+      "support": {
+        "title": "Accompagnement personnalisé",
+        "description": "Un suivi individuel pour chaque apprenant."
+      }
+    }
+  },
+  "training": {
+    "title": "Nos Formations",
+    "subtitle": "Découvrez nos programmes de formation",
+    "viewDetails": "Voir les détails",
+    "apply": "Postuler",
+    "duration": "Durée",
+    "price": "Prix",
+    "location": "Lieu",
+    "availableSessions": "Sessions disponibles",
+    "noSessions": "Aucune session disponible",
+    "modal": {
+      "title": "Détails de la formation",
+      "description": "Description",
+      "objectives": "Objectifs",
+      "prerequisites": "Prérequis",
+      "program": "Programme",
+      "selectSession": "Sélectionner une session",
+      "sessionDate": "Date de la session",
+      "sessionPrice": "Prix de la session",
+      "applyNow": "Postuler maintenant",
+      "viewDetails": "Voir la fiche en détails",
+      "training": "Formation",
+      "register": "Je m'inscris"
+    },
+    "application": {
+      "title": "Candidature",
+      "personalInfo": "Informations personnelles",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "civility": "Civilité",
+      "country": "Pays",
+      "city": "Ville",
+      "address": "Adresse",
+      "dateOfBirth": "Date de naissance",
+      "attachments": "Pièces jointes",
+      "cv": "CV",
+      "motivationLetter": "Lettre de motivation",
+      "identityCopy": "Copie de la pièce d'identité",
+      "uploadFile": "Télécharger un fichier",
+      "fileUploaded": "Fichier téléchargé",
+      "fileUploading": "Téléchargement en cours...",
+      "removeFile": "Supprimer le fichier",
+      "submitApplication": "Soumettre la candidature",
+      "submitting": "Soumission en cours...",
+      "success": "Candidature soumise avec succès !",
+      "error": "Erreur lors de la soumission",
+      "required": "Ce champ est obligatoire",
+      "invalidEmail": "Email invalide",
+      "selectSession": "Veuillez sélectionner une session"
+    }
+  },
+  "news": {
+    "title": "Actualités",
+    "subtitle": "Restez informé de nos dernières nouvelles",
+    "readMore": "Lire la suite",
+    "publishedOn": "Publié le",
+    "author": "Auteur"
+  },
+  "recruitment": {
+    "title": "Recrutement",
+    "subtitle": "Rejoignez notre équipe",
+    "viewJob": "Voir l'offre",
+    "apply": "Postuler",
+    "deadline": "Date limite",
+    "location": "Lieu",
+    "type": "Type de contrat"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vous aider",
+    "name": "Nom",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "success": "Message envoyé avec succès !",
+    "error": "Erreur lors de l'envoi du message"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English"
+  },
+  "home": {
+    "hero": {
+      "title": "Formation d'excellence pour la justice sociale",
+      "subtitle": "Institut Lafaom-Mao",
+      "description": "L'Institut Lafaom-Mao de Ziguinchor, membre du réseau inter-africain Lafaom-Mao, forme des Auxiliaires de Vie en Univers Judiciaire (AVUJ) pour accompagner les personnes affectées par les décisions de justice.",
+      "mission": "Notre mission est de rendre la justice plus humaine et efficace en réduisant les impacts dévastateurs sur les femmes, les enfants et les personnes âgées, victimes de vulnérabilités sociales et sanitaires.",
+      "institute": "NOUS SOMMES L'INSTITUT DE FORMATION LAFAOM-MAO.",
+      "discoverBioforce": "Découvrir Bioforce"
+    },
+    "stats": {
+      "title": "Chiffres clés",
+      "learners": "apprenants admis en 2026",
+      "specialties": "spécialités de formation",
+      "places": "places par spécialité",
+      "months": "mois de formation",
+      "positions": "postes à recruter",
+      "countries": "pays d'intervention"
+    },
+    "specialties": {
+      "title": "Nos Spécialités d'Auxiliaire de Vie en Univers Judiciaire",
+      "technician": {
+        "title": "Le métier d'auxiliaire de vie en univers judiciaire spécialité Technicien d'assistance",
+        "description1": "Agir dans l'univers judiciaire ne peut se résumer aux interventions sur la personne affectée directement ou indirectement par une décision de justice : il faut aussi quelqu'un qui s'assure que les équipes ont les moyens financiers pour mener à bien leurs interventions.",
+        "description2": "C'est là qu'intervient le spécialiste Technicien d'assistance : véritable chef d'orchestre en coulisses, il s'assure que les fonds sont disponibles, que les budgets sont bien utilisés.",
+        "missions": "Ses principales missions sont :",
+        "network": "La construction du réseau-parrain",
+        "viability": "La viabilisation du réseau-parrain",
+        "accountability": "La redevabilité"
+      },
+      "judicial": {
+        "title": "Le métier d'Auxiliaire de vie en univers judiciaire spécialité Appui aux services judiciaires",
+        "description1": "Le pénitencier est un service public, à ce titre il s'inscrit dans une politique publique globale qui inclut des interactions avec d'autres services.",
+        "description2": "C'est là qu'intervient le spécialiste d'Appui aux services judiciaires, véritable chef d'orchestre de la « citoyenneté » de la personne affectée directement ou indirectement par une décision de justice.",
+        "missions": "Ses principales missions sont :",
+        "network": "La construction du réseau des services judiciaires",
+        "access": "L'accès au réseau des services Judiciaires",
+        "bypass": "Le contournement"
+      },
+      "support": {
+        "title": "Le métier d'Auxiliaire de vie en univers judiciaire spécialité Accueil, écoute et accompagnement",
+        "description1": "Le pénitencier est un milieu de vie, l'être qui s'y retrouve conserve intact sa socialité.",
+        "description2": "C'est là qu'intervient le spécialiste Accueil, écoute et accompagnement, véritable chef d'orchestre de la socialité de la personne détenue.",
+        "missions": "Ses principales missions sont :",
+        "restructuring": "La restructuration de la Socialité",
+        "fluidity": "La fluidité de la socialité",
+        "restoration": "Le rétablissement et la substitution"
+      }
+    },
+    "coordinator": {
+      "title": "Le mot du coordonnateur du programme MAO",
+      "description1": "Les organisations Lafaom-Mao dont l'Institut Lafaom-Mao de Ziguinchor au Sénégal, appartiennent au réseau inter-africain Lafaom-Mao mis en place par le Programme MAO de l'Association LAFAOM.",
+      "description2": "Un étude conduite de 2020 à 2023 dans le système judiciaire en Afrique, a établi que, comme l'hypertension artérielle pour l'organisme humain, les décisions de justice sont des tueurs silencieux.",
+      "women": "Pour les femmes",
+      "children": "Pour les enfants",
+      "elderly": "Pour les personnes âgées",
+      "human": "Pour l'être humain",
+      "conclusion": "En valeur absolue, le nombre de victimes des décisions de justice en Afrique est supérieur à celui des catastrophes naturelles ou des guerres."
+    },
+    "activities": {
+      "title": "activités récentes",
+      "loading": "Chargement des actualités...",
+      "retry": "Réessayer",
+      "noNews": "Aucune actualité disponible pour le moment.",
+      "allActivities": "toutes nos activités"
+    },
+    "testimonials": {
+      "testimonial1": "La formation des AVUJ présente des atouts susceptibles de donner toutes les compétences nécessaires pour accompagner efficacement les personnes confrontées aux difficultés liées aux décisions de justice.",
+      "testimonial2": "Le Programme Mao et l'Institut Formation Lafaom-Mao forment des professionnels compétents qui font la différence dans l'accompagnement judiciaire.",
+      "testimonial3": "Grâce à mon expérience dans les services d'action sociale Justice-Prison, je peux dire que dans le principe, accompagner avec professionnalisme les personnes affectées par les décisions de justice est une mission qui a du sens."
+    },
+    "carousel": {
+      "slide1": {
+        "title": "Rejoignez l'Institut Lafaom-Mao à Ziguinchor",
+        "description": "Formez-vous pour devenir un professionnel du domaine Prison-Justice et intégrez un réseau africain engagé pour la justice et l'humanitaire.",
+        "button": "Découvrez nos formations"
+      },
+      "slide2": {
+        "title": "Programme Mao : Un réseau pour la justice",
+        "description": "Contribuez à l'amélioration de la justice pénale et à l'accompagnement des personnes affectées par les décisions de justice à travers l'Afrique.",
+        "button": "En savoir plus sur le programme"
+      },
+      "slide3": {
+        "title": "Devenez Auxiliaire de Vie en Milieu Judiciaire",
+        "description": "Formations de 12 mois en trois spécialités : Technicien d'Assistance, Appui aux Services Pénitentiaires, et Accueil, Écoute, Accompagnement.",
+        "button": "Inscrivez-vous pour 2026"
+      },
+      "skip": "Passer"
+    },
+    "coordinator": {
+      "title": "Le mot du coordonnateur du programme MAO",
+      "intro": "Les organisations Lafaom-Mao dont l'Institut Lafaom-Mao de Ziguinchor au Sénégal, appartiennent au réseau inter-africain Lafaom-Mao mis en place par le Programme MAO de l'Association LAFAOM. C'est un programme qui a pour objectif de prendre en charge les personnes affectées directement ou indirectement par une décision de justice.",
+      "study": "Un étude conduite de 2020 à 2023 dans le système judiciaire en Afrique, a établi que, comme l'hypertension artérielle pour l'organisme humain, les décisions de justice sont des tueurs silencieux. Elles ont pour conséquences :",
+      "women": {
+        "title": "Pour les femmes",
+        "item1": "Double assignation domestico-carcérale : Concilier rôles domestiques et contraintes de l'incarcération.",
+        "item2": "Solidarité conjugale sous contrainte pénale : Soutien au conjoint incarcéré malgré pressions légales.",
+        "item3": "Perversions sexuelles pénitentiaires : Abus sexuels ciblant les femmes détenues.",
+        "item4": "Abus sexuel sous autorité judiciaire : Exploitation par figures d'autorité dans le système judiciaire."
+      },
+      "children": {
+        "title": "Pour les enfants",
+        "item1": "Déperdition scolaire liée à :",
+        "item2": "Incarcération d'un parent/tuteur : Perturbation de l'encadrement familial.",
+        "item3": "Séparation des parents : Instabilité émotionnelle et sociale."
+      },
+      "elderly": {
+        "title": "Pour les personnes âgées",
+        "item1": "Privation du soutien filial : Perte d'aide des enfants incarcérés.",
+        "item2": "Vulnérabilité parentale : Fragilité accrue par l'absence de descendants.",
+        "item3": "Sévrage socio-affectif : Isolement émotionnel dû à l'incarcération des proches."
+      },
+      "human": {
+        "title": "Pour l'être humain",
+        "item1": "Vulnérabilité sanitaire : Risques de santé accrus en détention.",
+        "item2": "Vulnérabilité sociale : Exclusion et stigmatisation liées à l'incarcération."
+      },
+      "conclusion1": "En valeur absolue, le nombre de victimes des décisions de justice en Afrique est supérieur à celui des catastrophes naturelles ou des guerres. Le système judiciaire est inapproprié au modèle social.",
+      "conclusion2": "Ces deux dernières années, il a été question de convaincre les bailleurs de fonds, en s'appuyant sur l'approche « nexus », qu'il s'agit là d'une situation qui relève du secteur humanitaire. C'est une crise à classer parmi les urgences humanitaires permanentes. Le plus grand succès est d'avoir pu les amener à accepter que l'intervention dans ce secteur avait besoin d'un savoir-faire et d'un savoir-être spécifiques. Celui des professionnels du travail social que nous avons appelés : des Auxiliaires de vie en Univers Judiciaire (AVUJ).",
+      "institute": "Avec les Inspecteurs d'Académie du Ministère de l'Éducation Nationale du Sénégal, nous avons pu mettre en place, à Ziguinchor, l'Institut de formation LAFAOM-MAO spécialisé dans la formation en 12 mois des Auxiliaires de Vie en Univers Judiciaire. Une formation qui s'appuie sur le système pédagogique Mao.",
+      "quote": "« Être Auxiliaire de vie en univers judiciaire, c'est mettre en œuvre les plans d'intervention individualisée des différentes pupilles en vue de réduire les effets dévastateurs de la décision de justice. Il est question de rendre la justice plus humaine et, par conséquent, plus efficace. »",
+      "final": "A l'Institut de formation Lafaom-Mao, nous savons que pour venir en aide à une personne en situation de vulnérabilité, il est important que l'Auxiliaire de vie en univers judiciaire ait un bagage académique respectable. Toutefois, les principes pédagogiques mis en œuvre nous permettent d'adapter tous les niveaux académiques à l'opérationnalité recherchée. C'est un défi que nous nous sommes donnés."
+    },
+    "specialties": {
+      "title": "Nos Spécialités d'Auxiliaire de Vie en Univers Judiciaire",
+      "technicalAssistant": {
+        "title": "Le métier d'auxiliaire de vie en univers judiciaire spécialité Technicien d'assistance",
+        "description1": "Agir dans l'univers judiciaire ne peut se résumer aux interventions sur la personne affectée directement ou indirectement par une décision de justice : il faut aussi quelqu'un qui s'assure que les équipes ont les moyens financiers pour mener à bien leurs interventions. Un rôle clé, au cœur de l'action, même si ça ne se voit pas toujours !",
+        "description2": "C'est là qu'intervient le spécialiste Technicien d'assistance : véritable chef d'orchestre en coulisses, il s'assure que les fonds sont disponibles, que les budgets sont bien utilisés. Bien plus qu'un gestionnaire, le Technicien d'assistance est une personne de terrain qui connaît les équipes, les défis et les enjeux des interventions. Sans lui, rien ne fonctionnerait aussi bien !",
+        "missionsTitle": "Ses principales missions sont :",
+        "mission1": "La construction du réseau-parrain - Il ou elle veille à ce que chaque pupille dispose d'un réseau de solidarité, qui mettra en commun pour la mise en œuvre du plan d'intervention individualisée.",
+        "mission2": "La viabilisation du réseau-parrain - Il ou elle veille à ce que le dispositif informatique qui active le réseau de solidarité individuelle Mao-X soit disponible, accessible et fiable.",
+        "mission3": "La redevabilité - Il ou elle veille à ce que la communication entre le réseau de solidarité et les équipes d'intervention se fasse par une émission et diffusion permanentes des documents de gestion financière et de l'archivage de ceux-ci."
+      },
+      "judicialSupport": {
+        "title": "Le métier d'Auxiliaire de vie en univers judiciaire spécialité Appui aux services judiciaires",
+        "description1": "Le pénitencier est un service public, à ce titre il s'inscrit dans une politique publique globale qui inclut des interactions avec d'autres services. Il faut aussi quelqu'un qui maintient cet équilibre pour que la personne détenue s'intègre dans le fonctionnement normal de la société. Ce qui lui assure un état d'esprit propice à la correction et surtout à la réinsertion. Un rôle clé, au cœur de l'action, même si ça ne se voit pas toujours !",
+        "description2": "C'est là qu'intervient le spécialiste d'Appui aux services judiciaires, véritable chef d'orchestre de la « citoyenneté » de la personne affectée directement ou indirectement par une décision de justice. Bien plus qu'un négociateur, le spécialiste d'Appui aux services judiciaires est une personne de terrain qui connaît le fonctionnement des institutions.",
+        "missionsTitle": "Ses principales missions sont :",
+        "mission1": "La construction du réseau des services judiciaires - Il ou elle veille à ce que chaque pupille jouisse de ses droits à travers un réseau de services judiciaires pour la mise en œuvre du plan d'intervention individualisée.",
+        "mission2": "L'accès au réseau des services Judiciaires - Il ou elle veille à ce que le réseau jouisse d'une accessibilité et vérifie les disponibilités.",
+        "mission3": "Le contournement - Il ou elle veille à ce que les dispositifs de contournement prévus par le Programme Mao fonctionne et joue parfaitement son rôle temporaire de substitution.",
+        "trainingTitle": "Avec L'Institut Lafaom-Mao, devenir auxiliaire de vie en univers carcéral spécialité Appui aux services judiciaires",
+        "trainingDescription": "Dans ses locaux basés à Ziguinchor au Sénégal, l'Institut Lafaom-Mao offre un parcours de formation de 12 mois, pour former au métier Auxiliaire de vie en univers judiciaire spécialité Appui aux services judicaires. Quelque soit l'âge, le niveau scolaire et l'expérience professionnelle, les savoirs qui sont dispensés sont individualisés et permettent d'acquérir la compétence nécessaire.",
+        "pathTitle": "Le parcours de la formation de la spécialité d'Appui aux services judiciaires",
+        "phase1": "Phase d'intégration (2 mois) - J'ai choisi pendant la phase d'intégration de deux mois au Centre de formation un chef d'œuvre en rapport avec l'une des missions d'Appui aux services judiciaires.",
+        "phase2": "Chef d'œuvre - À l'issue de la période d'intégration de deux mois dans un établissement pénitentiaire vous faites le choix d'un chef d'œuvre.",
+        "phase3": "Projet collectif - À l'issue de la période d'intégration de deux mois dans un établissement pénitentiaire vous faites le choix d'un projet collectif.",
+        "phase4": "Plan d'intervention individualisée (4 mois) - À l'issue de votre période d'intégration vous êtes intégrés dans une équipe pour le projet collectif vous intervenez dans le volet de votre chef d'œuvre en collaboration avec les autres confrères qui ont choisi des chefs d'œuvre dans les autres missions Appui aux services judiciaires le tout dans un plan d'intervention individualisée entier pendant 4 mois.",
+        "phase5": "Mission humanitaire (3 mois) - À l'issue de la conduite du Chef d'œuvre et du projet collectif on intègre pendant trois mois un projet associatif en faveur des détenus en pratique d'intégration dans une association partenaire.",
+        "note1": "Le premier mois de la formation est celui de l'élaboration des outils et des démarches administratives pour l'obtention à la faveur de l'apprenant de toutes les accréditations nécessaires à la formation.",
+        "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
+      },
+      "welcomeSupport": {
+        "title": "Le métier d'Auxiliaire de vie en univers judiciaire spécialité Accueil, écoute et accompagnement",
+        "description1": "Le pénitencier est un milieu de vie, l'être qui s'y retrouve conserve intact sa socialité. Il conserve l'ensemble des liens sociaux qu'il faut renouer et maintenir au niveau le plus proche de celui où ils étaient avant la détention. Il faut quelqu'un qui assure cet état d'esprit propice à la correction et surtout à la réinsertion. Un rôle clé, au cœur de l'action, même si ça ne se voit pas toujours !",
+        "description2": "C'est là qu'intervient le spécialiste Accueil, écoute et accompagnement, véritable chef d'orchestre de la socialité de la personne détenue. Bien plus qu'un simple psycho-sociologue, le spécialiste Accueil, écoute et accompagnement est une personne de terrain qui connaît les interactions sociales.",
+        "missionsTitle": "Ses principales missions sont :",
+        "mission1": "La restructuration de la Socialité - Il ou elle veille à ce que chaque pupille dispose de l'ensemble de liens sociaux prévus par la mise en œuvre du plan d'intervention individualisée.",
+        "mission2": "La fluidité de la socialité - Il ou elle veille à ce que l'ensemble des liens sociaux fonctionnent au moins avec la fluidité d'avant la détention.",
+        "mission3": "Le rétablissement et la substitution - Il ou elle veille à ce que les liens sociaux rompus par la prison ou par les crises qui affectent les couples puissent être rétablis ou substitués pendant la période de détention ou de la crise.",
+        "trainingTitle": "Avec L'Institut Lafaom-Mao, devenir auxiliaire de vie en univers judiciaire : Accueil, écoute et accompagnement",
+        "trainingDescription": "Dans ses locaux basés à Ziguinchor au Sénégal, l'Institut Lafaom-Mao offre un parcours de formation de 12 mois, pour former au métier Auxiliaire de vie en univers judiciaire spécialité Accueil, écoute et accompagnement. Quelque soit l'âge, le niveau scolaire et l'expérience professionnelle, les savoirs qui sont dispensés sont individualisés et permettent d'acquérir la compétence nécessaire.",
+        "pathTitle": "Le parcours de la formation de la spécialité Accueil, écoute et accompagnement",
+        "phase1": "Phase d'intégration (2 mois) - J'ai choisi pendant la phase d'intégration de deux mois au Centre de formation un chef d'œuvre en rapport avec l'une des missions d'Accueil, écoute et accompagnement.",
+        "phase2": "Chef d'œuvre - À l'issue de la période d'intégration de deux mois dans un établissement pénitentiaire vous faites le choix d'un chef d'œuvre.",
+        "phase3": "Projet collectif - À l'issue de votre période d'intégration de deux mois dans un établissement pénitentiaire vous faites le choix d'un projet collectif.",
+        "phase4": "Plan d'intervention individualisée (4 mois) - À l'issue de votre période d'intégration vous êtes intégrés dans une équipe pour le projet collectif vous intervenez dans le volet de votre chef d'œuvre en collaboration avec les autres confrères qui ont choisi des chefs d'œuvre dans les autres missions de l'Accueil, écoute et accompagnement ; le tout dans un plan d'intervention individualisée entier pendant 4 mois.",
+        "phase5": "Mission humanitaire (3 mois) - À l'issue de la conduite du Chef d'œuvre et du projet collectif on intègre pendant trois mois un projet associatif en faveur des détenus en pratique d'intégration dans une association partenaire.",
+        "note1": "Le premier mois de la formation est celui de l'élaboration des outils et des démarches administratives pour l'obtention à la faveur de l'apprenant de toutes les accréditations nécessaires à la formation.",
+        "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
+      }
+    }
+  }
+}

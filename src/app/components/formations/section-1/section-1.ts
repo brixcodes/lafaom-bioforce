@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { TrainingService } from '../../../services/training.service';
 import { TrainingFilterService, TrainingFilters } from '../../../services/training-filter.service';
 import { StudentApplicationService } from '../../../services/student-application.service';
@@ -13,7 +14,7 @@ import { map, catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-formations-section-1',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './section-1.html',
   styleUrl: './section-1.css'
 })
@@ -642,12 +643,12 @@ export class Section1 implements OnInit, OnDestroy {
         if (response.data && response.data.payment && response.data.payment.payment_link) {
           console.log('🔗 [FORMATIONS] Payment URL trouvé directement, redirection...');
           window.location.href = response.data.payment.payment_link;
-        } else if (response.data && response.data.id) {
-          console.log('🚀 [FORMATIONS] Pas de payment_link direct, soumission de la candidature...');
-          this.submitApplication(response.data.id);
         } else {
-          console.error('❌ [FORMATIONS] ID de candidature manquant:', response);
-          this.error = 'Erreur: ID de candidature manquant';
+          // Si pas de payment_link direct, afficher le message de succès puis recharger la page (comme recrutements)
+          console.log('⚠️ [FORMATIONS] Pas de payment_link direct, rechargement de la page...');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }
       },
       error: (error: any) => {
@@ -677,7 +678,7 @@ export class Section1 implements OnInit, OnDestroy {
         console.log('✅ [FORMATIONS] Tous les fichiers uploadés');
 
         // Soumettre la candidature (lance le paiement)
-        this.submitApplication(applicationId);
+        this.onSubmitApplication();
       },
       error: (error: any) => {
         console.error('❌ [FORMATIONS] Erreur upload fichiers:', error);
@@ -687,37 +688,6 @@ export class Section1 implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Soumettre la candidature (lance le paiement)
-   */
-  submitApplication(applicationId: number) {
-    console.log('🚀 [FORMATIONS] Soumission de la candidature ID:', applicationId);
-    
-    this.studentApplicationService.submitApplication(applicationId).subscribe({
-      next: (response: any) => {
-        console.log('✅ [FORMATIONS] Candidature soumise, paiement initié:', response);
-        console.log('🔍 [FORMATIONS] Structure response.data:', response.data);
-        console.log('🔗 [FORMATIONS] Payment URL reçu:', response.data?.payment_link);
-        
-        this.submitting = false;
-        this.success = 'Candidature soumise avec succès ! Redirection vers le paiement...';
-
-        // Rediriger vers le paiement
-        if (response.data && response.data.payment_link) {
-          console.log("🔗 [FORMATIONS] Redirection vers:", response.data.payment_link);
-          window.location.href = response.data.payment_link;
-        } else {
-          console.error('❌ [FORMATIONS] Payment URL manquant dans la réponse:', response);
-          this.error = 'Lien de paiement non disponible';
-        }
-      },
-      error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur soumission candidature:', error);
-        this.submitting = false;
-        this.error = `Erreur lors de la soumission: ${error.error?.message || error.message}`;
-      }
-    });
-  }
 
   /**
    * Formater la date

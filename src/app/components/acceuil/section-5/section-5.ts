@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { NewsService } from '../../../services/news.service';
 import { News, BlogCategory } from '../../../models/api.models';
 import { Observable, interval, Subscription } from 'rxjs';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-section-5',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './section-5.html',
   styleUrl: './section-5.css'
 })

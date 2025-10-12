@@ -12,21 +12,16 @@
     <!-- Top bar: langue, liens top, login -->
     <div class="header-top d-flex align-items-center justify-content-end">
         <div class="lang-switch">
-            <div class="lang-switcher">
-                <ul>
-                    <li><span class="selectLang">En</span></li>
-                    <li><a href="/fr/">Fr</a></li>
-                </ul>
-            </div>
+            <app-language-switcher></app-language-switcher>
         </div>
         <ul class="list-inline nav-top">
-            <li class="list-inline-item"><a href="/" title="Lafaom-mao">Lafaom-mao</a></li>
-            <li class="list-inline-item"><a href="/actualites" title="Actualités">Actualités</a></li>
-            <li class="list-inline-item"><a href="/formations" title="Formations">Formations</a></li>
-            <li class="list-inline-item"><a href="/recrutements" title="Recrutement">Recrutement</a></li>
-            <li class="list-inline-item"><a href="/contact" title="Contact">Contact</a></li>
+            <li class="list-inline-item"><a href="/" title="Lafaom-mao">{{ 'navigation.home' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/actualites" title="Actualités">{{ 'navigation.news' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/formations" title="Formations">{{ 'navigation.training' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/recrutements" title="Recrutement">{{ 'navigation.recruitment' | translate }}</a></li>
+            <li class="list-inline-item"><a href="/contact" title="Contact">{{ 'navigation.contact' | translate }}</a></li>
         </ul>
-        <a href="/login/" title="Login" class="btn btn-top btn-outline-primary">Espace Candidat</a>
+        <a href="/login/" title="Login" class="btn btn-top btn-outline-primary">{{ 'header.spaceCandidate' | translate }}</a>
     </div>
 
     <!-- Bas de header : logo + menu principal -->
@@ -51,33 +46,33 @@
                             <ul class="list-inline nav-top">
                                 <li class="list-inline-item">
                                     <a href="" title="Lafaom-mao">
-                                        Institut
+                                        {{ 'navigation.about' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="/actualites" title="Actualités">
-                                        Actualités
+                                        {{ 'navigation.news' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="/formations" title="Formations">
-                                        Formations
+                                        {{ 'navigation.training' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="/recrutements" title="Recrutement">
-                                        Recrutement
+                                        {{ 'navigation.recruitment' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="/contact" title="Contact">
-                                        Contact
+                                        {{ 'navigation.contact' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="https://bioforce.my.site.com/candidatures/s/login/?language=fr"
                                         title="Espace Candidat">
-                                        Espace Candidat
+                                        {{ 'header.spaceCandidate' | translate }}
                                     </a>
                                 </li>
                             </ul>

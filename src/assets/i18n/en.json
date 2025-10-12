@@ -1,0 +1,325 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "reset": "Reset",
+    "retry": "Retry"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "training": "Training",
+    "news": "News",
+    "recruitment": "Recruitment",
+    "contact": "Contact"
+  },
+  "header": {
+    "title": "LAFAOM",
+    "subtitle": "Training and Development",
+    "menu": "Menu",
+    "language": "Language",
+    "spaceCandidate": "Candidate Space"
+  },
+  "footer": {
+    "description": "Ateba Ombala Marc Foundation - promoting criminal justice, human dignity, social reintegration.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved",
+    "trainingCenters": "Training Centers"
+  },
+  "home": {
+    "hero": {
+      "title": "Welcome to LAFAOM",
+      "subtitle": "Professional Training and Development",
+      "description": "Discover our quality training programs and develop your professional skills.",
+      "cta": "Discover our training"
+    },
+    "features": {
+      "title": "Why choose LAFAOM?",
+      "quality": {
+        "title": "Quality training",
+        "description": "Our training programs are designed by experts and adapted to market needs."
+      },
+      "expertise": {
+        "title": "Recognized expertise",
+        "description": "More than 10 years of experience in professional training."
+      },
+      "support": {
+        "title": "Personalized support",
+        "description": "Individual follow-up for each learner."
+      }
+    }
+  },
+  "training": {
+    "title": "Our Training",
+    "subtitle": "Discover our training programs",
+    "viewDetails": "View details",
+    "apply": "Apply",
+    "duration": "Duration",
+    "price": "Price",
+    "location": "Location",
+    "availableSessions": "Available sessions",
+    "noSessions": "No sessions available",
+    "modal": {
+      "title": "Training details",
+      "description": "Description",
+      "objectives": "Objectives",
+      "prerequisites": "Prerequisites",
+      "program": "Program",
+      "selectSession": "Select a session",
+      "sessionDate": "Session date",
+      "sessionPrice": "Session price",
+      "applyNow": "Apply now",
+      "viewDetails": "View details",
+      "training": "Training",
+      "register": "Register"
+    },
+    "application": {
+      "title": "Application",
+      "personalInfo": "Personal information",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "civility": "Civility",
+      "country": "Country",
+      "city": "City",
+      "address": "Address",
+      "dateOfBirth": "Date of birth",
+      "attachments": "Attachments",
+      "cv": "CV",
+      "motivationLetter": "Motivation letter",
+      "identityCopy": "Identity document copy",
+      "uploadFile": "Upload a file",
+      "fileUploaded": "File uploaded",
+      "fileUploading": "Uploading...",
+      "removeFile": "Remove file",
+      "submitApplication": "Submit application",
+      "submitting": "Submitting...",
+      "success": "Application submitted successfully!",
+      "error": "Error during submission",
+      "required": "This field is required",
+      "invalidEmail": "Invalid email",
+      "selectSession": "Please select a session"
+    }
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Stay informed of our latest news",
+    "readMore": "Read more",
+    "publishedOn": "Published on",
+    "author": "Author"
+  },
+  "recruitment": {
+    "title": "Recruitment",
+    "subtitle": "Join our team",
+    "viewJob": "View job",
+    "apply": "Apply",
+    "deadline": "Deadline",
+    "location": "Location",
+    "type": "Contract type"
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "We are here to help you",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Error sending message"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English"
+  },
+  "home": {
+    "hero": {
+      "title": "Excellence training for social justice",
+      "subtitle": "Lafaom-Mao Institute",
+      "description": "The Lafaom-Mao Institute of Ziguinchor, member of the inter-African Lafaom-Mao network, trains Judicial Life Assistants (JLA) to support people affected by judicial decisions.",
+      "mission": "Our mission is to make justice more human and effective by reducing the devastating impacts on women, children and the elderly, victims of social and health vulnerabilities.",
+      "institute": "WE ARE THE LAFAOM-MAO TRAINING INSTITUTE.",
+      "discoverBioforce": "Discover Bioforce"
+    },
+    "stats": {
+      "title": "Key figures",
+      "learners": "learners admitted in 2026",
+      "specialties": "training specialties",
+      "places": "places per specialty",
+      "months": "months of training",
+      "positions": "positions to recruit",
+      "countries": "countries of intervention"
+    },
+    "specialties": {
+      "title": "Our Judicial Life Assistant Specialties",
+      "technician": {
+        "title": "The profession of judicial life assistant specializing in Technical assistance",
+        "description1": "Acting in the judicial world cannot be reduced to interventions on the person directly or indirectly affected by a judicial decision: someone is also needed to ensure that teams have the financial means to carry out their interventions.",
+        "description2": "This is where the Technical assistance specialist intervenes: a true conductor behind the scenes, he ensures that funds are available, that budgets are well used.",
+        "missions": "His main missions are:",
+        "network": "Building the sponsor network",
+        "viability": "Making the sponsor network viable",
+        "accountability": "Accountability"
+      },
+      "judicial": {
+        "title": "The profession of Judicial Life Assistant specializing in Support for judicial services",
+        "description1": "The penitentiary is a public service, as such it is part of a global public policy that includes interactions with other services.",
+        "description2": "This is where the specialist in Support for judicial services intervenes, a true conductor of the 'citizenship' of the person directly or indirectly affected by a judicial decision.",
+        "missions": "His main missions are:",
+        "network": "Building the judicial services network",
+        "access": "Access to the judicial services network",
+        "bypass": "Bypassing"
+      },
+      "support": {
+        "title": "The profession of Judicial Life Assistant specializing in Welcome, listening and support",
+        "description1": "The penitentiary is a living environment, the being who finds himself there keeps his sociality intact.",
+        "description2": "This is where the specialist in Welcome, listening and support intervenes, a true conductor of the sociality of the detained person.",
+        "missions": "His main missions are:",
+        "restructuring": "Restructuring of Sociality",
+        "fluidity": "The fluidity of sociality",
+        "restoration": "Restoration and substitution"
+      }
+    },
+    "coordinator": {
+      "title": "Message from the MAO program coordinator",
+      "description1": "The Lafaom-Mao organizations including the Lafaom-Mao Institute of Ziguinchor in Senegal, belong to the inter-African Lafaom-Mao network set up by the MAO Program of the LAFAOM Association.",
+      "description2": "A study conducted from 2020 to 2023 in the judicial system in Africa, established that, like arterial hypertension for the human body, judicial decisions are silent killers.",
+      "women": "For women",
+      "children": "For children",
+      "elderly": "For the elderly",
+      "human": "For the human being",
+      "conclusion": "In absolute value, the number of victims of judicial decisions in Africa is greater than that of natural disasters or wars."
+    },
+    "activities": {
+      "title": "recent activities",
+      "loading": "Loading news...",
+      "retry": "Retry",
+      "noNews": "No news available at the moment.",
+      "allActivities": "all our activities"
+    },
+    "testimonials": {
+      "testimonial1": "JLA training has assets that can provide all the necessary skills to effectively support people facing difficulties related to judicial decisions.",
+      "testimonial2": "The Mao Program and the Lafaom-Mao Training Institute train competent professionals who make a difference in judicial support.",
+      "testimonial3": "Thanks to my experience in Justice-Prison social action services, I can say that in principle, professionally supporting people affected by judicial decisions is a meaningful mission."
+    },
+    "carousel": {
+      "slide1": {
+        "title": "Join the Lafaom-Mao Institute in Ziguinchor",
+        "description": "Train to become a Prison-Justice professional and join an African network committed to justice and humanitarian work.",
+        "button": "Discover our training"
+      },
+      "slide2": {
+        "title": "Mao Program: A network for justice",
+        "description": "Contribute to improving criminal justice and supporting people affected by judicial decisions across Africa.",
+        "button": "Learn more about the program"
+      },
+      "slide3": {
+        "title": "Become a Judicial Life Assistant",
+        "description": "12-month training in three specialties: Technical Assistance, Support for Penitentiary Services, and Welcome, Listening, Support.",
+        "button": "Register for 2026"
+      },
+      "skip": "Skip"
+    },
+    "coordinator": {
+      "title": "Message from the MAO Program Coordinator",
+      "intro": "Lafaom-Mao organizations, including the Lafaom-Mao Institute of Ziguinchor in Senegal, belong to the inter-African Lafaom-Mao network established by the MAO Program of the LAFAOM Association. This is a program aimed at supporting people directly or indirectly affected by judicial decisions.",
+      "study": "A study conducted from 2020 to 2023 in the judicial system in Africa established that, like arterial hypertension for the human body, judicial decisions are silent killers. They have consequences:",
+      "women": {
+        "title": "For women",
+        "item1": "Double domestic-carceral assignment: Reconciling domestic roles and incarceration constraints.",
+        "item2": "Conjugal solidarity under criminal constraint: Support for incarcerated spouse despite legal pressures.",
+        "item3": "Penitentiary sexual perversions: Sexual abuse targeting female detainees.",
+        "item4": "Sexual abuse under judicial authority: Exploitation by authority figures in the judicial system."
+      },
+      "children": {
+        "title": "For children",
+        "item1": "School dropout related to:",
+        "item2": "Incarceration of a parent/guardian: Disruption of family supervision.",
+        "item3": "Parental separation: Emotional and social instability."
+      },
+      "elderly": {
+        "title": "For the elderly",
+        "item1": "Deprivation of filial support: Loss of help from incarcerated children.",
+        "item2": "Parental vulnerability: Increased fragility due to absence of descendants.",
+        "item3": "Socio-affective weaning: Emotional isolation due to incarceration of loved ones."
+      },
+      "human": {
+        "title": "For human beings",
+        "item1": "Health vulnerability: Increased health risks in detention.",
+        "item2": "Social vulnerability: Exclusion and stigmatization related to incarceration."
+      },
+      "conclusion1": "In absolute terms, the number of victims of judicial decisions in Africa is higher than that of natural disasters or wars. The judicial system is inappropriate to the social model.",
+      "conclusion2": "Over the past two years, it has been about convincing funders, based on the 'nexus' approach, that this is a situation that falls under the humanitarian sector. This is a crisis to be classified among permanent humanitarian emergencies. The greatest success has been to get them to accept that intervention in this sector required specific know-how and know-how. That of social work professionals we have called: Judicial Life Assistants (JLA).",
+      "institute": "With the Academy Inspectors of the Ministry of National Education of Senegal, we were able to establish, in Ziguinchor, the LAFAOM-MAO Training Institute specialized in the 12-month training of Judicial Life Assistants. A training based on the Mao pedagogical system.",
+      "quote": "Being a Judicial Life Assistant means implementing individualized intervention plans for different wards to reduce the devastating effects of judicial decisions. It is about making justice more human and, therefore, more effective.",
+      "final": "At the Lafaom-Mao Training Institute, we know that to help a person in a vulnerable situation, it is important that the Judicial Life Assistant has a respectable academic background. However, the pedagogical principles implemented allow us to adapt all academic levels to the desired operability. This is a challenge we have set ourselves."
+    },
+    "specialties": {
+      "title": "Our Judicial Life Assistant Specialties",
+      "technicalAssistant": {
+        "title": "Judicial Life Assistant specialty: Technical Assistant",
+        "description1": "Acting in the judicial environment cannot be reduced to interventions on the person directly or indirectly affected by a judicial decision: someone must also ensure that teams have the financial means to carry out their interventions. A key role, at the heart of action, even if it's not always visible!",
+        "description2": "This is where the Technical Assistant specialist comes in: a true conductor behind the scenes, ensuring that funds are available and budgets are well used. More than just a manager, the Technical Assistant is a field person who knows the teams, challenges and stakes of interventions. Without him, nothing would work as well!",
+        "missionsTitle": "His main missions are:",
+        "mission1": "Building the sponsor network - He or she ensures that each ward has a solidarity network that will pool resources for the implementation of the individualized intervention plan.",
+        "mission2": "Making the sponsor network viable - He or she ensures that the IT system that activates the individual Mao-X solidarity network is available, accessible and reliable.",
+        "mission3": "Accountability - He or she ensures that communication between the solidarity network and intervention teams takes place through permanent issuance and dissemination of financial management documents and their archiving."
+      },
+      "judicialSupport": {
+        "title": "Judicial Life Assistant specialty: Judicial Services Support",
+        "description1": "The penitentiary is a public service, as such it is part of a global public policy that includes interactions with other services. Someone must also maintain this balance so that the detained person integrates into the normal functioning of society. This ensures a state of mind conducive to correction and especially reintegration. A key role, at the heart of action, even if it's not always visible!",
+        "description2": "This is where the Judicial Services Support specialist comes in, a true conductor of the 'citizenship' of the person directly or indirectly affected by a judicial decision. More than just a negotiator, the Judicial Services Support specialist is a field person who knows how institutions work.",
+        "missionsTitle": "His main missions are:",
+        "mission1": "Building the judicial services network - He or she ensures that each ward enjoys their rights through a network of judicial services for the implementation of the individualized intervention plan.",
+        "mission2": "Access to the judicial services network - He or she ensures that the network enjoys accessibility and verifies availability.",
+        "mission3": "Bypassing - He or she ensures that the bypass mechanisms provided by the Mao Program work and perfectly play its temporary substitution role.",
+        "trainingTitle": "With the Lafaom-Mao Institute, become a judicial life assistant specialty: Judicial Services Support",
+        "trainingDescription": "In its premises based in Ziguinchor, Senegal, the Lafaom-Mao Institute offers a 12-month training program to train for the Judicial Life Assistant profession specialty Judicial Services Support. Regardless of age, educational level and professional experience, the knowledge dispensed is individualized and allows acquiring the necessary competence.",
+        "pathTitle": "The training path for the Judicial Services Support specialty",
+        "phase1": "Integration phase (2 months) - I chose during the two-month integration phase at the Training Center a masterpiece related to one of the Judicial Services Support missions.",
+        "phase2": "Masterpiece - At the end of the two-month integration period in a penitentiary establishment you choose a masterpiece.",
+        "phase3": "Collective project - At the end of the two-month integration period in a penitentiary establishment you choose a collective project.",
+        "phase4": "Individualized intervention plan (4 months) - At the end of your integration period you are integrated into a team for the collective project you intervene in the aspect of your masterpiece in collaboration with other colleagues who have chosen masterpieces in other Judicial Services Support missions; all within a complete individualized intervention plan for 4 months.",
+        "phase5": "Humanitarian mission (3 months) - At the end of conducting the Masterpiece and the collective project, we integrate for three months an associative project in favor of detainees in integration practice in a partner association.",
+        "note1": "The first month of training is that of developing tools and administrative procedures to obtain all necessary accreditations for training in favor of the learner.",
+        "note2": "During the knowledge determination stage, the pedagogical team will carefully study your background (level and field of training, nature, duration and level of responsibility of your professional experiences...), and to propose theoretical content adapted to the required skills."
+      },
+      "welcomeSupport": {
+        "title": "Judicial Life Assistant specialty: Welcome, listening and support",
+        "description1": "The penitentiary is a living environment, the being who finds himself there keeps his sociality intact. He retains all the social ties that must be renewed and maintained at the level closest to where they were before detention. Someone must ensure this state of mind conducive to correction and especially reintegration. A key role, at the heart of action, even if it's not always visible!",
+        "description2": "This is where the Welcome, listening and support specialist comes in, a true conductor of the detainee's sociality. More than just a psycho-sociologist, the Welcome, listening and support specialist is a field person who knows social interactions.",
+        "missionsTitle": "His main missions are:",
+        "mission1": "Restructuring Sociality - He or she ensures that each ward has all the social ties provided by the implementation of the individualized intervention plan.",
+        "mission2": "Sociality fluidity - He or she ensures that all social ties function at least with the fluidity before detention.",
+        "mission3": "Restoration and substitution - He or she ensures that social ties broken by prison or by crises affecting couples can be restored or substituted during the detention period or crisis.",
+        "trainingTitle": "With the Lafaom-Mao Institute, become a judicial life assistant: Welcome, listening and support",
+        "trainingDescription": "In its premises based in Ziguinchor, Senegal, the Lafaom-Mao Institute offers a 12-month training program to train for the Judicial Life Assistant profession specialty Welcome, listening and support. Regardless of age, educational level and professional experience, the knowledge dispensed is individualized and allows acquiring the necessary competence.",
+        "pathTitle": "The training path for the Welcome, listening and support specialty",
+        "phase1": "Integration phase (2 months) - I chose during the two-month integration phase at the Training Center a masterpiece related to one of the Welcome, listening and support missions.",
+        "phase2": "Masterpiece - At the end of the two-month integration period in a penitentiary establishment you choose a masterpiece.",
+        "phase3": "Collective project - At the end of your two-month integration period in a penitentiary establishment you choose a collective project.",
+        "phase4": "Individualized intervention plan (4 months) - At the end of your integration period you are integrated into a team for the collective project you intervene in the aspect of your masterpiece in collaboration with other colleagues who have chosen masterpieces in other Welcome, listening and support missions; all within a complete individualized intervention plan for 4 months.",
+        "phase5": "Humanitarian mission (3 months) - At the end of conducting the Masterpiece and the collective project, we integrate for three months an associative project in favor of detainees in integration practice in a partner association.",
+        "note1": "The first month of training is that of developing tools and administrative procedures to obtain all necessary accreditations for training in favor of the learner.",
+        "note2": "During the knowledge determination stage, the pedagogical team will carefully study your background (level and field of training, nature, duration and level of responsibility of your professional experiences...), and to propose theoretical content adapted to the required skills."
+      }
+    }
+  }
+}

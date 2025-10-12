@@ -1,18 +1,18 @@
 <div data-wpr-lazyrender="1" class="gab-actualites container-1440">
     <div class="content">
         <h4 class="titre-prin">
-            activités récentes
+            {{ 'home.activities.title' | translate }}
         </h4>
 
     <!-- Indicateur de chargement -->
     <div *ngIf="loading" class="loading-indicator">
-        <p>Chargement des actualités...</p>
+        <p>{{ 'home.activities.loading' | translate }}</p>
     </div>
 
     <!-- Message d'erreur -->
     <div *ngIf="error" class="error-message">
         <p>{{ error }}</p>
-        <button (click)="loadRecentNews()" class="btn orange-btn">Réessayer</button>
+        <button (click)="loadRecentNews()" class="btn orange-btn">{{ 'home.activities.retry' | translate }}</button>
     </div>
 
     <!-- Actualités dynamiques -->
@@ -38,7 +38,7 @@
 
     <!-- Message si aucune actualité -->
     <div *ngIf="!loading && !error && recentNews.length === 0" class="no-news">
-        <p>Aucune actualité disponible pour le moment.</p>
+        <p>{{ 'home.activities.noNews' | translate }}</p>
     </div>
     <!-- Carousel avec actualités dynamiques -->
     <div *ngIf="!loading && !error && recentNews.length > 0" class="owl-carousel owl-theme owl-actu">
@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="flex-btn">
-        <a href="/actualites" class="btn orange-btn">toutes nos activités</a>
+        <a href="/actualites" class="btn orange-btn">{{ 'home.activities.allActivities' | translate }}</a>
     </div>
 </div>
 </div>

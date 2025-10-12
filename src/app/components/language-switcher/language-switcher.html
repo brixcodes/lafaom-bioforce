@@ -1,0 +1,42 @@
+<div class="language-switcher">
+  <button 
+    class="language-button"
+    (click)="toggleDropdown()"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="true"
+    aria-label="Changer de langue">
+    <span class="language-flag">
+      @if (currentLanguage() === 'fr') {
+        🇫🇷
+      } @else {
+        🇬🇧
+      }
+    </span>
+    <span class="language-name">{{ getCurrentLanguageName() }}</span>
+    <span class="dropdown-arrow" [class.open]="isOpen()">▼</span>
+  </button>
+
+  @if (isOpen()) {
+    <div class="language-dropdown">
+      @for (lang of getSupportedLanguages(); track lang) {
+        <button 
+          class="language-option"
+          [class.active]="currentLanguage() === lang"
+          (click)="setLanguage(lang)"
+          [attr.aria-label]="'Changer vers ' + getLanguageName(lang)">
+          <span class="language-flag">
+            @if (lang === 'fr') {
+              🇫🇷
+            } @else {
+              🇬🇧
+            }
+          </span>
+          <span class="language-name">{{ getLanguageName(lang) }}</span>
+          @if (currentLanguage() === lang) {
+            <span class="checkmark">✓</span>
+          }
+        </button>
+      }
+    </div>
+  }
+</div>

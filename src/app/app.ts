@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './components/header/header';
 import { Footers } from './components/footers/footers';
+import { SimpleTranslateService } from './services/simple-translate.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,12 @@ import { Footers } from './components/footers/footers';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('lafaom_website');
+
+  constructor(private simpleTranslateService: SimpleTranslateService) {}
+
+  ngOnInit(): void {
+    // L'initialisation se fait automatiquement dans le constructeur du service
+  }
 }
