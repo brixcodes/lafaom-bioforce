@@ -26,7 +26,7 @@
                 </div>
                 <div class="info">
                     <p class="categorie">{{ getCategory(news) }}</p>
-                    <a href="javascript:void(0)" class="a-titre" (click)="goToNewsDetails(news); $event.stopPropagation()">
+                    <a [routerLink]="['/actualite', news.id]" class="a-titre">
                         <h5 class="titre">{{ news.title }}</h5>
                     </a>
                     <div class="intro" [innerHTML]="getSummary(news)"></div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="info">
                     <p class="categorie">{{ getCategory(news) }}</p>
-                    <a href="javascript:void(0)" class="a-titre" (click)="goToNewsDetails(news); $event.stopPropagation()">
+                    <a [routerLink]="['/actualite', news.id]" class="a-titre">
                         <h5 class="titre">{{ news.title }}</h5>
                     </a>
                     <div class="intro" [innerHTML]="getSummary(news)"></div>
