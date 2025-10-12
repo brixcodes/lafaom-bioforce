@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { NewsService } from '../../../services/news.service';
 import { FilterService } from '../../../services/filter.service';
 import { News, BlogCategory, SearchFilters } from '../../../models/api.models';
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-section-2',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './section-2.html',
   styleUrl: './section-2.css'
 })
@@ -133,7 +134,7 @@ export class Section2 implements OnInit, OnDestroy {
   }
 
   getImageUrl(news: News): string {
-    return news.cover_image || '/l1.jpg';
+    return news.cover_image || '/https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_065311_l1_s3.jpg';
   }
 
   getCategory(news: News): string {

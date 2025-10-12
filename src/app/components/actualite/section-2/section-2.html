@@ -3,13 +3,13 @@
     <div class="container-1290">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8 col-xl-8">
-                <h2 class="title-h2-type-2">Nos dernières publications</h2>
+                <h2 class="title-h2-type-2">{{ 'news.latestPublications' | translate }}</h2>
             </div>
         </div>
         <div class="content">
             <!-- Indicateur de chargement -->
             <div *ngIf="loading" class="loading-indicator">
-                <p>Chargement des actualités...</p>
+                <p>{{ 'news.loading' | translate }}</p>
             </div>
 
             <!-- Message d'erreur -->
@@ -37,8 +37,8 @@
 
             <!-- Message si aucune actualité -->
             <div *ngIf="!loading && !error && recentNews.length === 0" class="no-news">
-                <p>Aucune actualité disponible pour les filtres sélectionnés.</p>
-                <p><small>Essayez de modifier vos critères de recherche.</small></p>
+                <p>{{ 'news.noNews' | translate }}</p>
+                <p><small>{{ 'news.noNewsSubtext' | translate }}</small></p>
             </div>
         </div>
     </div>

@@ -1,11 +1,12 @@
 import { Component, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-language-switcher',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './language-switcher.html',
   styleUrl: './language-switcher.css'
 })
@@ -29,8 +30,13 @@ export class LanguageSwitcher {
   }
 
   public setLanguage(lang: string): void {
+    console.log('🎯 LanguageSwitcher: Changement de langue demandé vers:', lang);
+    console.log('🎯 LanguageSwitcher: Langue actuelle avant:', this.currentLanguage());
+    
     this.languageService.setLanguage(lang);
     this.closeDropdown();
+    
+    console.log('🎯 LanguageSwitcher: Langue après changement:', this.currentLanguage());
   }
 
   public getSupportedLanguages(): string[] {

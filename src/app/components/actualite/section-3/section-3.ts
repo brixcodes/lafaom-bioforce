@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { NewsService } from '../../../services/news.service';
 import { FilterService } from '../../../services/filter.service';
 import { News, BlogCategory, PaginationParams, SearchFilters } from '../../../models/api.models';
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-section-3',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './section-3.html',
   styleUrl: './section-3.css'
 })

@@ -1,24 +1,22 @@
 <div class="container">
     <div class="page-header">
 
-        <div class="has-background container-full" style="background-image: url('/assets/Images/banner2.jpg')">
-            <img decoding="async" src="/assets/Images/banner2.jpg" alt="">
+        <div class="has-background container-full" style="background-image: url('https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_070403_recrutement_s3.jpg')">
+            <img decoding="async" src="https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_070403_recrutement_s3.jpg" alt="">
         </div>
 
         <div class="page-header-inner">
             <div class="page-title">
-                <span class="d-block page-parent"> </span>
-                <h1 style="text-transform: uppercase;">Recrutement</h1>
+                <span class="d-block page-parent">{{ 'recruitment.parent' | translate }}</span>
+                <h1 style="text-transform: uppercase;">{{ 'recruitment.title' | translate }}</h1>
             </div>
             <div class="page-sub-title">
                 <div>
-                    <span class="has-border-l-t d-block">Rejoignez une équipe engagée.</span>
+                    <span class="has-border-l-t d-block">{{ 'recruitment.subtitle' | translate }}</span>
                 </div>
                 <div>
                     <p>
-                        Postulez en ligne à nos offres d’emploi, que ce soit au siège,
-                        dans nos centres de formation régionaux ou sur nos missions,
-                        et découvrez sur cette page toutes les façons de vous engager avec nous.
+                        {{ 'recruitment.description' | translate }}
                     </p>
                 </div>
             </div>
@@ -29,7 +27,7 @@
         <div class="d-flex justify-content-between align-items-center align-items-center">
             <div>
                 <h2 class="h3 has-border-l" style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
-                    <span>Différents postes d'emploi disponibles</span>
+                    <span>{{ 'recruitment.availablePositions' | translate }}</span>
                 </h2>
             </div>
             <div class="d-none d-md-block">
@@ -39,9 +37,9 @@
         <!-- Indicateur de chargement - seulement pendant le chargement des données -->
         <div *ngIf="loading && featuredJobs.length === 0" class="text-center py-4">
             <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Chargement...</span>
+                <span class="sr-only">{{ 'common.loading' | translate }}</span>
             </div>
-            <p class="mt-2">Chargement des offres d'emploi...</p>
+            <p class="mt-2">{{ 'recruitment.loading' | translate }}</p>
         </div>
 
         <!-- Message d'erreur -->
@@ -49,7 +47,7 @@
             <i class="icon-warning"></i>
             {{ error }}
             <button class="btn btn-sm btn-outline-danger ml-2" (click)="loadFeaturedJobs()">
-                Réessayer
+                {{ 'recruitment.retry' | translate }}
             </button>
         </div>
 
@@ -70,23 +68,25 @@
                                     <span>{{ job.location }}</span>
                                 </span>
                                 <br>
-                                <span>Frais candidature : {{ job.submission_fee }} €</span>
+                                <span>{{ 'recruitment.applicationFee' | translate }} : {{ job.submission_fee }} €</span>
 
-                                <span class="ml-3">Salaire brut : {{ job.salary }} €</span>
+                                <span class="ml-3">{{ 'recruitment.grossSalary' | translate }} : {{ job.salary }}
+                                    €</span>
 
                             </div>
                             <div>
                                 <ul class="list-inline post-formation-duration">
                                     <li class="list-inline-item">
                                         <span>{{ job.contract_type }}</span>
-                                        <span class="duration">{{ job.weekly_hours }}h/sem</span>
+                                        <span class="duration">{{ job.weekly_hours }}{{ 'recruitment.hoursPerWeek' |
+                                            translate }}</span>
                                     </li>
                                 </ul>
                             </div>
                             <button (click)="openModal(job)" class="btn btn-outline-primary btn-more"
-                                title="Voir les détails">
+                                [title]="'recruitment.viewDetails' | translate">
                                 <i class="icon-cross"></i>
-                                <span class="sr-only">Voir les détails</span>
+                                <span class="sr-only">{{ 'recruitment.viewDetails' | translate }}</span>
                             </button>
                         </div>
                     </div>
@@ -117,18 +117,20 @@
                                             </span>
                                             <div class="d-md-none post-formation-show-details">
                                                 <span>
-                                                    Voir la fiche en détails </span>
-                                                <button type="button" aria-label="details formation"
+                                                    {{ 'recruitment.modal.viewDetails' | translate }} </span>
+                                                <button type="button"
+                                                    [aria-label]="'recruitment.modal.viewDetails' | translate"
                                                     data-uw-rm-empty-ctrl="">
                                                     <span class="sr-only">
-                                                        details formation </span>
+                                                        {{ 'recruitment.modal.viewDetails' | translate }} </span>
                                                 </button>
                                             </div>
                                         </div>
                                         <h2 class="post-formation-title" role="presentation" aria-hidden="true"
                                             data-uw-rm-heading="hide">
                                             <span>
-                                                Rétérence :{{ selectedJob?.reference }} </span>
+                                                {{ 'recruitment.modal.reference' | translate }} :{{
+                                                selectedJob?.reference }} </span>
                                             <strong>
                                                 {{ selectedJob?.title }} </strong>
                                             <span
@@ -141,7 +143,8 @@
                                                 <span>
                                                     {{ selectedJob?.contract_type }} </span>
                                                 <span class="duration">
-                                                    {{ selectedJob?.weekly_hours }}h/sem </span>
+                                                    {{ selectedJob?.weekly_hours }}{{ 'recruitment.hoursPerWeek' |
+                                                    translate }} </span>
                                             </li>
                                         </ul>
                                         <div class="post-formation-links">
@@ -149,7 +152,7 @@
                                                 title="télécharger les infos pratiques" data-uw-pdf-br="1"
                                                 data-uw-pdf-doc="">
                                                 <span>
-                                                    Je m'inscris
+                                                    {{ 'recruitment.modal.register' | translate }}
                                                 </span>
                                             </a>
                                         </div>
@@ -162,11 +165,11 @@
                                         aria-label="Close">
                                         <i class="icon-cross"></i>
                                     </button>
-                                    <a href="#" class="go-back" title="Retour à la liste des formations"
+                                    <a href="#" class="go-back" [title]="'recruitment.modal.backToList' | translate"
                                         (click)="closeModal()">
                                         <i class="icon-arrow-left"></i>
                                         <span>
-                                            Retour à la liste des formations </span>
+                                            {{ 'recruitment.modal.backToList' | translate }} </span>
                                     </a>
                                     <div class="details-formation-wrapper" id="printJS-details">
 
@@ -174,33 +177,33 @@
                                         <div class="details-formation-intro">
                                             <h3 class="has-border-l lead" role="heading" aria-level="1"
                                                 data-uw-rm-heading="level">
-                                                Présentation du poste
+                                                {{ 'recruitment.modal.jobPresentation' | translate }}
                                             </h3>
                                             <br>
 
                                             <div *ngIf="selectedJob">
-                                                <p><strong>Localisation :</strong> {{ selectedJob.location }}</p>
-                                                <p><strong>Type de contrat :</strong> {{ selectedJob.contract_type }}
+                                                <p><strong>{{ 'recruitment.modal.location' | translate }} :</strong> {{ selectedJob.location }}</p>
+                                                <p><strong>{{ 'recruitment.modal.contractType' | translate }} :</strong> {{ selectedJob.contract_type }}
                                                 </p>
-                                                <p><strong>Heures par semaine :</strong> {{ selectedJob.weekly_hours }}h
+                                                <p><strong>{{ 'recruitment.modal.hoursPerWeek' | translate }} :</strong> {{ selectedJob.weekly_hours }}h
                                                 </p>
                                                 <p>
-                                                    <strong>Salaire :</strong>
+                                                    <strong>{{ 'recruitment.modal.salary' | translate }} :</strong>
                                                     {{ formatSalary(selectedJob.salary, selectedJob.currency) }}
                                                 </p>
                                                 <p>
-                                                    <strong>Frais de candidature :</strong>
+                                                    <strong>{{ 'recruitment.modal.applicationFee' | translate }} :</strong>
                                                     {{ selectedJob.submission_fee }} {{ selectedJob.currency }}
                                                 </p>
                                                 <p>
-                                                    <strong>Date limite de candidature :</strong>
+                                                    <strong>{{ 'recruitment.modal.applicationDeadline' | translate }} :</strong>
                                                     {{ formatDate(selectedJob.submission_deadline) }}
                                                 </p>
 
                                                 <br>
                                                 <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
                                                     data-uw-rm-heading="level">
-                                                    Mission principale :
+                                                    {{ 'recruitment.modal.mainMission' | translate }} :
                                                 </h3>
                                                 <!-- Missions -->
                                                 <div class="mt-3">
@@ -211,7 +214,7 @@
                                                 <br>
                                                 <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
                                                     data-uw-rm-heading="level">
-                                                    Responsabilités :
+                                                    {{ 'recruitment.modal.responsibilities' | translate }} :
                                                 </h3>
                                                 <!-- Missions -->
                                                 <div class="mt-3">
@@ -222,7 +225,7 @@
                                                 <br>
                                                 <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
                                                     data-uw-rm-heading="level">
-                                                    Compétences :
+                                                    {{ 'recruitment.modal.competencies' | translate }} :
                                                 </h3>
                                                 <!-- Missions -->
                                                 <div class="mt-3">
@@ -233,7 +236,7 @@
 
                                                 <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
                                                     data-uw-rm-heading="level">
-                                                    Profil recherché :
+                                                    {{ 'recruitment.modal.profile' | translate }} :
                                                 </h3>
                                                 <div class="mt-3">
                                                     <div [innerHTML]="selectedJob.profile"></div>
@@ -245,7 +248,7 @@
                                                     <br>
                                                     <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
                                                         data-uw-rm-heading="level">
-                                                        Avantages :
+                                                        {{ 'recruitment.modal.benefits' | translate }} :
                                                     </h3>
                                                     <div class="mt-3">
                                                         <div [innerHTML]="selectedJob.benefits"></div>
@@ -258,7 +261,7 @@
                                                     <br>
                                                     <h3 class="has-border-l lead mb-5" role="heading" aria-level="1"
                                                         data-uw-rm-heading="level">
-                                                        Conditions :
+                                                        {{ 'recruitment.modal.conditions' | translate }} :
                                                     </h3>
                                                     <div class="mt-3">
                                                         <div [innerHTML]="selectedJob.conditions"></div>
@@ -268,15 +271,15 @@
                                             </div>
                                         </div>
 
-                                      
+
 
                                         <!-- Bloc Candidature directe (sans session) -->
                                         <div class="details-formation-sessions result mt-4">
-                                            <h4 class="has-border-l lead">Candidature directe</h4>
+                                            <h4 class="has-border-l lead">{{ 'recruitment.modal.directApplication' | translate }}</h4>
 
                                             <div class="list-session">
                                                 <div class="list-session-choices">
-                                                    <p>Postulez directement à cette offre d'emploi</p>
+                                                    <p>{{ 'recruitment.modal.applyDirectly' | translate }}</p>
                                                 </div>
 
                                                 <div class="list-session-results">
@@ -286,20 +289,23 @@
 
                                                                 <!-- Infos du poste -->
                                                                 <div>
-                                                                    <span class="session-aviriable">Poste disponible</span>
+                                                                    <span class="session-aviriable">Poste
+                                                                        disponible</span>
                                                                     <strong class="session-date">
                                                                         Date limite :
-                                                                        {{ formatDate(selectedJob?.submission_deadline || '') }}
+                                                                        {{ formatDate(selectedJob?.submission_deadline
+                                                                        || '') }}
                                                                     </strong>
                                                                     <span class="session-aviriable-date">
                                                                         Frais de candidature :
-                                                                        {{ selectedJob?.submission_fee }} {{ selectedJob?.currency }}
+                                                                        {{ selectedJob?.submission_fee }} {{
+                                                                        selectedJob?.currency }}
                                                                     </span>
                                                                 </div>
 
                                                                 <!-- Salaire -->
                                                                 <div>
-                                                                    <span class="price-label">Salaire</span>
+                                                                    <span class="price-label">{{ 'recruitment.modal.salaryLabel' | translate }}</span>
                                                                     <span class="regular-price">
                                                                         {{ formatSalary(selectedJob?.salary || 0,
                                                                         selectedJob?.currency || '') }}
@@ -307,11 +313,12 @@
                                                                 </div>
 
                                                                 <!-- Bouton Postuler -->
-                                                                <div class="d-flex flex-column align-items-center justify-content-center">
+                                                                <div
+                                                                    class="d-flex flex-column align-items-center justify-content-center">
                                                                     <button (click)="openApplicationModal(selectedJob!)"
                                                                         class="btn btn-primary"
-                                                                        title="Postuler directement">
-                                                                        Postuler directement
+                                                                        [title]="'recruitment.modal.applyDirectly' | translate">
+                                                                        {{ 'recruitment.modal.applyDirectly' | translate }}
                                                                     </button>
                                                                 </div>
 
@@ -343,7 +350,7 @@
         <div class="d-flex justify-content-between align-items-center align-items-center">
             <div>
                 <h2 class="h3 has-border-l" style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
-                    <span>Recrutement de cabinets</span>
+                    <span>{{ 'recruitment.cabinetRecruitment' | translate }}</span>
                 </h2>
             </div>
             <div class="d-none d-md-block">
@@ -374,8 +381,8 @@
 
     <!-- Modal de candidature -->
     <div *ngIf="showApplicationModal" class="modal right fade modal-plug modal-formation show" id="modal-application"
-        tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" [style.display]="showApplicationModal ? 'block' : 'none'"
-        aria-modal="true" (click)="closeApplicationModal()">
+        tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel"
+        [style.display]="showApplicationModal ? 'block' : 'none'" aria-modal="true" (click)="closeApplicationModal()">
         <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
             <div class="modal-content">
                 <div class="modal-body">
@@ -386,8 +393,8 @@
                                     aria-label="Close">
                                     <i class="icon-cross"></i>
                                 </button>
-                                <a href="#" style="background-color: transparent;" class="go-back" title="Retour à la liste des offres"
-                                    (click)="closeApplicationModal()">
+                                <a href="#" style="background-color: transparent;" class="go-back"
+                                    title="Retour à la liste des offres" (click)="closeApplicationModal()">
                                 </a>
                                 <div class="details-formation-wrapper" id="printJS-application">
 
@@ -396,42 +403,56 @@
                                         <form [formGroup]="applicationForm" (ngSubmit)="onSubmitApplication()">
                                             <div class="list-session">
                                                 <div class="list-session-choices">
-                                                    <p>Remplissez vos informations personnelles</p>
+                                                    <p>{{ 'recruitment.application.personalInfo' | translate }}</p>
                                                 </div>
 
                                                 <div class="list-session-results">
                                                     <div class="list-session-infos">
                                                         <div class="list-session-infos-item">
                                                             <div class="d-flex flex-column">
-                                                                
+
                                                                 <!-- Informations personnelles -->
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6">
-                                                                        <label for="civility" class="form-label">Civilité</label>
-                                                                        <select id="civility" formControlName="civility" class="form-control">
+                                                                        <label for="civility"
+                                                                            class="form-label">Civilité</label>
+                                                                        <select id="civility" formControlName="civility"
+                                                                            class="form-control">
                                                                             <option value="">Sélectionner</option>
                                                                             <option value="M.">M.</option>
                                                                             <option value="Mme">Mme</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <label for="date_of_birth" class="form-label">Date de naissance</label>
-                                                                        <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control">
+                                                                        <label for="date_of_birth"
+                                                                            class="form-label">Date de naissance</label>
+                                                                        <input type="date" id="date_of_birth"
+                                                                            formControlName="date_of_birth"
+                                                                            class="form-control">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6">
-                                                                        <label for="first_name" class="form-label">Prénom <span class="text-danger">*</span></label>
-                                                                        <input type="text" id="first_name" formControlName="first_name" class="form-control" required>
-                                                                        <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched" class="text-danger small">
+                                                                        <label for="first_name"
+                                                                            class="form-label">Prénom <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" id="first_name"
+                                                                            formControlName="first_name"
+                                                                            class="form-control" required>
+                                                                        <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched"
+                                                                            class="text-danger small">
                                                                             Le prénom est obligatoire.
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <label for="last_name" class="form-label">Nom <span class="text-danger">*</span></label>
-                                                                        <input type="text" id="last_name" formControlName="last_name" class="form-control" required>
-                                                                        <div *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched" class="text-danger small">
+                                                                        <label for="last_name" class="form-label">Nom
+                                                                            <span class="text-danger">*</span></label>
+                                                                        <input type="text" id="last_name"
+                                                                            formControlName="last_name"
+                                                                            class="form-control" required>
+                                                                        <div *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched"
+                                                                            class="text-danger small">
                                                                             Le nom est obligatoire.
                                                                         </div>
                                                                     </div>
@@ -439,16 +460,25 @@
 
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6">
-                                                                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                                                        <input type="email" id="email" formControlName="email" class="form-control" required>
-                                                                        <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched" class="text-danger small">
+                                                                        <label for="email" class="form-label">Email
+                                                                            <span class="text-danger">*</span></label>
+                                                                        <input type="email" id="email"
+                                                                            formControlName="email" class="form-control"
+                                                                            required>
+                                                                        <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched"
+                                                                            class="text-danger small">
                                                                             Veuillez entrer une adresse email valide.
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <label for="phone_number" class="form-label">Numéro de téléphone <span class="text-danger">*</span></label>
-                                                                        <input type="text" id="phone_number" formControlName="phone_number" class="form-control" required>
-                                                                        <div *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched" class="text-danger small">
+                                                                        <label for="phone_number"
+                                                                            class="form-label">Numéro de téléphone <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <input type="text" id="phone_number"
+                                                                            formControlName="phone_number"
+                                                                            class="form-control" required>
+                                                                        <div *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched"
+                                                                            class="text-danger small">
                                                                             Le numéro de téléphone est obligatoire.
                                                                         </div>
                                                                     </div>
@@ -456,79 +486,119 @@
 
                                                                 <div class="row mb-3">
                                                                     <div class="col-md-6">
-                                                                        <label for="address" class="form-label">Adresse</label>
-                                                                        <input type="text" id="address" formControlName="address" class="form-control">
+                                                                        <label for="address"
+                                                                            class="form-label">Adresse</label>
+                                                                        <input type="text" id="address"
+                                                                            formControlName="address"
+                                                                            class="form-control">
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <label for="city" class="form-label">Ville</label>
-                                                                        <input type="text" id="city" formControlName="city" class="form-control">
+                                                                        <label for="city"
+                                                                            class="form-label">Ville</label>
+                                                                        <input type="text" id="city"
+                                                                            formControlName="city" class="form-control">
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- Champ pays masqué avec valeur par défaut SN -->
                                                                 <input type="hidden" formControlName="country_code">
-                                                                
+
                                                                 <!-- Affichage de la session sélectionnée -->
                                                                 <div *ngIf="selectedSession" class="mb-3">
                                                                     <div class="alert alert-info">
                                                                         <h6>Session sélectionnée :</h6>
-                                                                        <p class="mb-1"><strong>Période :</strong> {{ formatDate(selectedSession.start_date) }} - {{ formatDate(selectedSession.end_date) }}</p>
-                                                                        <p class="mb-1"><strong>Lieu :</strong> {{ selectedSession.location }}</p>
-                                                                        <p class="mb-0"><strong>Date limite d'inscription :</strong> {{ formatDate(selectedSession.registration_deadline) }}</p>
+                                                                        <p class="mb-1"><strong>Période :</strong> {{
+                                                                            formatDate(selectedSession.start_date) }} -
+                                                                            {{ formatDate(selectedSession.end_date) }}
+                                                                        </p>
+                                                                        <p class="mb-1"><strong>Lieu :</strong> {{
+                                                                            selectedSession.location }}</p>
+                                                                        <p class="mb-0"><strong>Date limite
+                                                                                d'inscription :</strong> {{
+                                                                            formatDate(selectedSession.registration_deadline)
+                                                                            }}</p>
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- Documents requis -->
                                                                 <div class="mb-4">
                                                                     <h6>Documents requis</h6>
-                                                                    <p class="text-muted mb-3">Veuillez télécharger les documents suivants au format PDF :</p>
-                                                                    <div *ngFor="let attachmentType of requiredAttachments" class="mb-3">
-                                                                        <label class="form-label">{{ attachmentType }} <span class="text-danger">*</span></label>
-                                                                        <input type="file" (change)="onFileSelected($event, attachmentType)" accept=".pdf,application/pdf" class="form-control">
-                                                                        
+                                                                    <p class="text-muted mb-3">Veuillez télécharger les
+                                                                        documents suivants au format PDF :</p>
+                                                                    <div *ngFor="let attachmentType of requiredAttachments"
+                                                                        class="mb-3">
+                                                                        <label class="form-label">{{ attachmentType }}
+                                                                            <span class="text-danger">*</span></label>
+                                                                        <input type="file"
+                                                                            (change)="onFileSelected($event, attachmentType)"
+                                                                            accept=".pdf,application/pdf"
+                                                                            class="form-control">
+
                                                                         <!-- Indicateur de chargement -->
-                                                                        <div *ngIf="uploadingFiles[attachmentType]" class="mt-2">
-                                                                            <div class="alert alert-info d-flex align-items-center">
-                                                                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                                        <div *ngIf="uploadingFiles[attachmentType]"
+                                                                            class="mt-2">
+                                                                            <div
+                                                                                class="alert alert-info d-flex align-items-center">
+                                                                                <span
+                                                                                    class="spinner-border spinner-border-sm me-2"
+                                                                                    role="status"
+                                                                                    aria-hidden="true"></span>
                                                                                 <span>Upload en cours...</span>
                                                                             </div>
                                                                         </div>
-                                                                        
+
                                                                         <!-- Fichier uploadé -->
-                                                                        <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-2">
-                                                                            <div class="alert alert-success d-flex justify-content-between align-items-center">
-                                                                                <span>✅ {{ uploadedFiles[attachmentType].name }}</span>
-                                                                                <button type="button" (click)="removeFile(attachmentType)" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                                                        <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]"
+                                                                            class="mt-2">
+                                                                            <div
+                                                                                class="alert alert-success d-flex justify-content-between align-items-center">
+                                                                                <span>✅ {{
+                                                                                    uploadedFiles[attachmentType].name
+                                                                                    }}</span>
+                                                                                <button type="button"
+                                                                                    (click)="removeFile(attachmentType)"
+                                                                                    class="btn btn-sm btn-outline-danger">Supprimer</button>
                                                                             </div>
                                                                         </div>
-                                                                        
+
                                                                         <!-- Aucun fichier -->
-                                                                        <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-1">
-                                                                            <small class="text-muted">Aucun fichier sélectionné</small>
+                                                                        <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]"
+                                                                            class="mt-1">
+                                                                            <small class="text-muted">Aucun fichier
+                                                                                sélectionné</small>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- Message d'erreur -->
-                                                                <div *ngIf="error" class="alert alert-danger" role="alert">
+                                                                <div *ngIf="error" class="alert alert-danger"
+                                                                    role="alert">
                                                                     {{ error }}
                                                                 </div>
 
                                                                 <!-- Message de succès -->
-                                                                <div *ngIf="success" class="alert alert-success" role="alert">
+                                                                <div *ngIf="success" class="alert alert-success"
+                                                                    role="alert">
                                                                     <h6>✅ Candidature soumise avec succès !</h6>
-                                                                    <p>Vous allez être redirigé vers la page de paiement...</p>
+                                                                    <p>Vous allez être redirigé vers la page de
+                                                                        paiement...</p>
                                                                 </div>
 
                                                                 <!-- Boutons de soumission -->
                                                                 <div class="d-flex justify-content-end gap-3 mt-4">
-                                                                    <button type="button" class="btn btn-lg btn-secondary" (click)="closeApplicationModal()">
+                                                                    <button type="button"
+                                                                        class="btn btn-lg btn-secondary"
+                                                                        (click)="closeApplicationModal()">
                                                                         Annuler
                                                                     </button>
                                                                     <a href=""></a>
-                                                                    <button type="submit" class="btn btn-primary" [disabled]="submitting">
-                                                                        <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                                                        {{ submitting ? 'Soumission en cours...' : 'Soumettre la candidature' }}
+                                                                    <button type="submit" class="btn btn-primary"
+                                                                        [disabled]="submitting">
+                                                                        <span *ngIf="submitting"
+                                                                            class="spinner-border spinner-border-sm me-2"
+                                                                            role="status" aria-hidden="true"></span>
+                                                                        {{ submitting ? 'Soumission en cours...' :
+                                                                        'Soumettre la candidature' }}
                                                                     </button>
                                                                 </div>
 
@@ -550,8 +620,8 @@
 
     <!-- Modal de sélection de session -->
     <div *ngIf="showSessionsModal" class="modal right fade modal-plug modal-formation show" id="modal-sessions"
-        tabindex="-1" role="dialog" aria-labelledby="sessionsModalLabel" [style.display]="showSessionsModal ? 'block' : 'none'"
-        aria-modal="true" (click)="closeSessionsModal()">
+        tabindex="-1" role="dialog" aria-labelledby="sessionsModalLabel"
+        [style.display]="showSessionsModal ? 'block' : 'none'" aria-modal="true" (click)="closeSessionsModal()">
         <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
             <div class="modal-content">
                 <div class="modal-body">
@@ -587,24 +657,28 @@
                                                             </h5>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <p><strong>Période :</strong> 
-                                                                        {{ formatDate(session.start_date) }} - {{ formatDate(session.end_date) }}
+                                                                    <p><strong>Période :</strong>
+                                                                        {{ formatDate(session.start_date) }} - {{
+                                                                        formatDate(session.end_date) }}
                                                                     </p>
-                                                                    <p><strong>Date limite d'inscription :</strong> 
+                                                                    <p><strong>Date limite d'inscription :</strong>
                                                                         {{ formatDate(session.registration_deadline) }}
                                                                     </p>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p><strong>Lieu :</strong> {{ session.location }}</p>
-                                                                    <p><strong>Postes disponibles :</strong> {{ session.available_positions }}</p>
-                                                                    <p><strong>Statut :</strong> 
-                                                                        <span class="badge badge-success">{{ session.status }}</span>
+                                                                    <p><strong>Lieu :</strong> {{ session.location }}
+                                                                    </p>
+                                                                    <p><strong>Postes disponibles :</strong> {{
+                                                                        session.available_positions }}</p>
+                                                                    <p><strong>Statut :</strong>
+                                                                        <span class="badge badge-success">{{
+                                                                            session.status }}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="ms-3">
-                                                            <button (click)="selectSession(session)" 
+                                                            <button (click)="selectSession(session)"
                                                                 class="btn btn-primary"
                                                                 title="Sélectionner cette session">
                                                                 Sélectionner
@@ -618,7 +692,8 @@
                                         <!-- Message si aucune session -->
                                         <div *ngIf="availableSessions.length === 0" class="alert alert-info">
                                             <h6>Aucune session disponible</h6>
-                                            <p>Il n'y a actuellement aucune session disponible pour cette offre d'emploi.</p>
+                                            <p>Il n'y a actuellement aucune session disponible pour cette offre
+                                                d'emploi.</p>
                                         </div>
                                     </div>
                                 </div>

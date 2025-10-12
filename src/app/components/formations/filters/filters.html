@@ -1,7 +1,7 @@
-<div class="filters" data-target=".formations-list-results" data-noresult="Aucun résultat trouvé !">
+<div class="filters" data-target=".formations-list-results" [attr.data-noresult]="'training.filters.noResults' | translate">
     <button type="button" class="btn d-block btn-block d-md-none rounded-0 collapsed" data-toggle="collapse"
         data-target="#filtersForm" aria-expanded="false" aria-controls="filtersForm">
-        <strong>Filtrer les résultats</strong>
+        <strong>{{ 'training.filters.title' | translate }}</strong>
         <i class="icon-arrow-up"></i>
     </button>
     <div id="filtersForm" class="collapse">
@@ -9,13 +9,13 @@
 
             <!-- Indicateur de chargement -->
             <div *ngIf="loading" class="col-12 text-center">
-                <p>Chargement des options de filtres...</p>
+                <p>{{ 'training.filters.loading' | translate }}</p>
             </div>
 
             <!-- Message d'erreur -->
             <div *ngIf="error" class="col-12 text-center text-danger">
                 <p>{{ error }}</p>
-                <button (click)="loadFilterOptions()" class="btn btn-sm btn-outline-primary">Réessayer</button>
+                <button (click)="loadFilterOptions()" class="btn btn-sm btn-outline-primary">{{ 'training.filters.retry' | translate }}</button>
             </div>
 
             <!-- Filtres dynamiques -->
@@ -24,10 +24,10 @@
                     <!-- Recherche -->
                     <div class="form-group col-md-12 mb-3">
                         <label class="w-100">
-                            <span>Rechercher</span>
+                            <span>{{ 'training.filters.search' | translate }}</span>
                             <input type="text" 
                                    class="form-control" 
-                                   placeholder="Rechercher une formation..."
+                                   [placeholder]="'training.filters.searchPlaceholder' | translate"
                                    (input)="onSearchChange($event)">
                         </label>
                     </div>
@@ -35,9 +35,9 @@
                     <!-- Spécialités -->
                     <div class="form-group col-md-3">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
-                            <span>Spécialités</span>
+                            <span>{{ 'training.filters.specialties' | translate }}</span>
                             <select name="specialties" class="s-select" multiple (change)="onSpecialtyChange($event)">
-                                <option value="0" data-placeholder="true">Toutes</option>
+                                <option value="0" data-placeholder="true">{{ 'training.filters.all' | translate }}</option>
                                 <option *ngFor="let specialty of filterOptions.specialties" [value]="specialty.id">
                                     {{ specialty.name }}
                                 </option>
@@ -48,9 +48,9 @@
                     <!-- Lieux -->
                     <div class="form-group col-md-3">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
-                            <span>Lieu</span>
+                            <span>{{ 'training.filters.location' | translate }}</span>
                             <select name="locations" class="s-select" multiple (change)="onLocationChange($event)">
-                                <option value="0" data-placeholder="true">Tous</option>
+                                <option value="0" data-placeholder="true">{{ 'training.filters.allLocations' | translate }}</option>
                                 <option *ngFor="let location of filterOptions.locations" [value]="location">
                                     {{ location }}
                                 </option>
@@ -61,9 +61,9 @@
                     <!-- Types de formation -->
                     <div class="form-group col-md-3">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
-                            <span>Type de formation</span>
+                            <span>{{ 'training.filters.type' | translate }}</span>
                             <select name="types" class="s-select" multiple (change)="onTypeChange($event)">
-                                <option value="0" data-placeholder="true">Tous</option>
+                                <option value="0" data-placeholder="true">{{ 'training.filters.allTypes' | translate }}</option>
                                 <option *ngFor="let type of filterOptions.types" [value]="type">
                                     {{ type }}
                                 </option>
@@ -74,9 +74,9 @@
                     <!-- Durées -->
                     <div class="form-group col-md-3">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
-                            <span>Durée</span>
+                            <span>{{ 'training.filters.duration' | translate }}</span>
                             <select name="durations" class="s-select" multiple (change)="onDurationChange($event)">
-                                <option value="0" data-placeholder="true">Toutes</option>
+                                <option value="0" data-placeholder="true">{{ 'training.filters.allDurations' | translate }}</option>
                                 <option *ngFor="let duration of filterOptions.durations" [value]="duration">
                                     {{ duration }}
                                 </option>
@@ -90,12 +90,12 @@
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <button type="button" class="btn btn-secondary" (click)="resetFilters()">
-                            Réinitialiser les filtres
+                            {{ 'training.filters.reset' | translate }}
                         </button>
                     </div>
                     <div class="col-md-6 text-right">
                         <small class="text-muted">
-                            Filtres appliqués en temps réel
+                            {{ 'training.filters.applied' | translate }}
                         </small>
                     </div>
                 </div>

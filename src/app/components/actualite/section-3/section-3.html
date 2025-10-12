@@ -1,7 +1,7 @@
 <div class="container-1290 container-1440 listing-magasins">
     <!-- Indicateur de chargement -->
     <div *ngIf="loading" class="loading-indicator">
-        <p>Chargement des actualités...</p>
+        <p>{{ 'news.loading' | translate }}</p>
     </div>
 
     <!-- Message d'erreur -->
@@ -39,8 +39,8 @@
 
     <!-- Message si aucune actualité -->
     <div *ngIf="!loading && !error && allNews.length === 0" class="no-news">
-        <p>Aucune actualité disponible pour les filtres sélectionnés.</p>
-        <p><small>Essayez de modifier vos critères de recherche ou de réinitialiser les filtres.</small></p>
+        <p>{{ 'news.noNews' | translate }}</p>
+        <p><small>{{ 'news.noNewsSubtext2' | translate }}</small></p>
     </div>
 </div>
 
@@ -49,13 +49,13 @@
     <nav aria-label="Page navigation">
         <ul class="pagination d-flex justify-content-center">
             <li class="page-item title">
-                <span class="page-link">page</span>
+                <span class="page-link">{{ 'news.page' | translate }}</span>
             </li>
 
             <!-- Page précédente -->
             <li class="page-item" [class.disabled]="currentPage === 1">
                 <a class="page-link" (click)="onPageChange(currentPage - 1)" [class.disabled]="currentPage === 1">
-                    Précédent
+                    {{ 'news.previous' | translate }}
                 </a>
             </li>
 
@@ -70,7 +70,7 @@
             <li class="page-item" [class.disabled]="currentPage === totalPages">
                 <a class="page-link" (click)="onPageChange(currentPage + 1)"
                     [class.disabled]="currentPage === totalPages">
-                    Suivant
+                    {{ 'news.next' | translate }}
                 </a>
             </li>
         </ul>

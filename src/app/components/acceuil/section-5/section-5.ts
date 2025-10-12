@@ -85,7 +85,7 @@ export class Section5 implements OnInit, OnDestroy {
   }
 
   getImageUrl(news: News): string {
-    return news.cover_image || '/l1.jpg';
+    return news.cover_image || '/https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_065311_l1_s3.jpg';
   }
 
   loadCategories() {

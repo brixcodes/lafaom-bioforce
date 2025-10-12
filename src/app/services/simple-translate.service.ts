@@ -39,13 +39,20 @@ export class SimpleTranslateService {
 
   public setLanguage(lang: string): void {
     if (['fr', 'en'].includes(lang)) {
+      console.log('🔄 Changement de langue vers:', lang);
       this.currentLang.set(lang);
       localStorage.setItem(this.STORAGE_KEY, lang);
       
       // Mettre à jour l'attribut lang du document
       if (typeof document !== 'undefined') {
         document.documentElement.lang = lang;
+        console.log('🌐 Attribut lang du document mis à jour:', document.documentElement.lang);
       }
+      
+      // Forcer la détection des changements
+      setTimeout(() => {
+        console.log('✅ Langue changée avec succès:', this.getCurrentLanguage());
+      }, 100);
     }
   }
 

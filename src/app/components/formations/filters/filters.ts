@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { TrainingService } from '../../../services/training.service';
 import { TrainingFilterService, TrainingFilters } from '../../../services/training-filter.service';
 import { FilterOptions, Specialty } from '../../../models/training.models';
@@ -9,8 +10,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filters',
-  standalone: true, 
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './filters.html',
   styleUrl: './filters.css'
 })
@@ -21,7 +22,7 @@ export class Filters implements OnInit, OnDestroy {
     types: [],
     durations: []
   };
-  
+
   selectedFilters: TrainingFilters = {
     specialties: [],
     locations: [],
@@ -29,7 +30,7 @@ export class Filters implements OnInit, OnDestroy {
     durations: [],
     searchTerm: ''
   };
-  
+
   loading = false;
   error: string | null = null;
   private subscription: Subscription = new Subscription();
@@ -38,7 +39,7 @@ export class Filters implements OnInit, OnDestroy {
   constructor(
     private trainingService: TrainingService,
     private filterService: TrainingFilterService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadFilterOptions();
@@ -50,7 +51,7 @@ export class Filters implements OnInit, OnDestroy {
     this.subscription.add(
       this.filterSubject.pipe(
         debounceTime(300), // Attendre 300ms après le dernier changement
-        distinctUntilChanged((prev, curr) => 
+        distinctUntilChanged((prev, curr) =>
           JSON.stringify(prev) === JSON.stringify(curr)
         )
       ).subscribe(filters => {
@@ -73,7 +74,7 @@ export class Filters implements OnInit, OnDestroy {
       this.trainingService.getFilterOptions().subscribe({
         next: (options: FilterOptions) => {
           this.filterOptions = { ...options };
-          
+
           // Charger les lieux dynamiquement
           this.loadLocations();
         },
@@ -143,7 +144,7 @@ export class Filters implements OnInit, OnDestroy {
     this.filterService.setSelectedTypes(filters.types);
     this.filterService.setSelectedDurations(filters.durations);
     this.filterService.setSearchTerm(filters.searchTerm);
-    
+
     console.log('Filtres de formations appliqués:', filters);
   }
 
@@ -156,13 +157,13 @@ export class Filters implements OnInit, OnDestroy {
       searchTerm: ''
     };
     this.filterService.resetFilters();
-    
+
     // Réinitialiser les sélections dans le DOM
     const selects = document.querySelectorAll('.s-select');
     selects.forEach((select: any) => {
       select.selectedIndex = 0;
     });
-    
+
     const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
     if (searchInput) {
       searchInput.value = '';

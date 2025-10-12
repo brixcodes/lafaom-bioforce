@@ -4,14 +4,14 @@
         <div class="spinner-border text-primary" role="status">
             <span class="sr-only">Chargement...</span>
         </div>
-        <p class="mt-2">Chargement de l'offre d'emploi...</p>
+        <p class="mt-2">{{ 'recruitment.loading' | translate }}</p>
     </div>
 
     <!-- Message d'erreur -->
     <div *ngIf="error && !loading" class="alert alert-danger text-center" role="alert">
         <h4>❌ Erreur</h4>
         <p>{{ error }}</p>
-        <button class="btn btn-outline-danger" (click)="loadJobOffer()">Réessayer</button>
+        <button class="btn btn-outline-danger" (click)="loadJobOffer()">{{ 'recruitment.retry' | translate }}</button>
     </div>
 
     <!-- En-tête avec informations sur l'offre -->
@@ -22,20 +22,20 @@
 
         <div class="page-header-inner">
             <div class="page-title">
-                <span class="d-block page-parent">Candidature</span>
+                <span class="d-block page-parent">{{ 'recruitment.application.title' | translate }}</span>
                 <h1 style="text-transform: uppercase;">{{ jobOffer.title }}</h1>
             </div>
             <div class="page-sub-title">
                 <div>
-                    <span class="has-border-l-t d-block">Postulez à cette offre d'emploi</span>
+                    <span class="has-border-l-t d-block">{{ 'recruitment.application.subtitle' | translate }}</span>
                 </div>
                 <div>
                     <p>
-                        <strong>Référence :</strong> {{ jobOffer.reference }}<br>
-                        <strong>Localisation :</strong> {{ jobOffer.location }}<br>
-                        <strong>Type de contrat :</strong> {{ jobOffer.contract_type }}<br>
-                        <strong>Frais de candidature :</strong> {{ formatSalary(jobOffer.submission_fee, jobOffer.currency) }}<br>
-                        <strong>Date limite :</strong> {{ formatDate(jobOffer.submission_deadline) }}
+                        <strong>{{ 'recruitment.application.reference' | translate }} :</strong> {{ jobOffer.reference }}<br>
+                        <strong>{{ 'recruitment.application.location' | translate }} :</strong> {{ jobOffer.location }}<br>
+                        <strong>{{ 'recruitment.application.contractType' | translate }} :</strong> {{ jobOffer.contract_type }}<br>
+                        <strong>{{ 'recruitment.application.applicationFee' | translate }} :</strong> {{ formatSalary(jobOffer.submission_fee, jobOffer.currency) }}<br>
+                        <strong>{{ 'recruitment.application.deadline' | translate }} :</strong> {{ formatDate(jobOffer.submission_deadline) }}
                     </p>
                 </div>
             </div>
@@ -49,57 +49,57 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                           <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="job-application-form">
-                        <h3 class="mb-4">Vos informations personnelles</h3>
+                        <h3 class="mb-4">{{ 'recruitment.application.personalInfo' | translate }}</h3>
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="civility" class="form-label">Civilité</label>
+                                <label for="civility" class="form-label">{{ 'recruitment.application.civility' | translate }}</label>
                                 <select id="civility" formControlName="civility" class="form-control">
-                                    <option value="">Sélectionner</option>
-                                    <option value="M.">M.</option>
-                                    <option value="Mme">Mme</option>
+                                    <option value="">{{ 'recruitment.application.selectCivility' | translate }}</option>
+                                    <option value="M.">{{ 'recruitment.application.mr' | translate }}</option>
+                                    <option value="Mme">{{ 'recruitment.application.mrs' | translate }}</option>
                                 </select>
                             </div>
                                   <div class="col-md-6 mb-3">
-                                      <label for="first_name" class="form-label">Prénom <span class="text-danger">*</span></label>
+                                      <label for="first_name" class="form-label">{{ 'recruitment.application.firstName' | translate }} <span class="text-danger">*</span></label>
                                       <input type="text" id="first_name" formControlName="first_name" class="form-control" required
                                              (change)="logChange('Prénom', $event)">
                                       <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched" class="text-danger small">
-                                          Le prénom est obligatoire.
+                                          {{ 'recruitment.application.firstNameRequired' | translate }}
                                       </div>
                                   </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="last_name" class="form-label">Nom <span class="text-danger">*</span></label>
+                                <label for="last_name" class="form-label">{{ 'recruitment.application.lastName' | translate }} <span class="text-danger">*</span></label>
                                       <input type="text" id="last_name" formControlName="last_name" class="form-control" required
                                        (change)="logChange('Nom', $event)">
                                 <div *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched" class="text-danger small">
-                                    Le nom est obligatoire.
+                                    {{ 'recruitment.application.lastNameRequired' | translate }}
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <label for="email" class="form-label">{{ 'recruitment.application.email' | translate }} <span class="text-danger">*</span></label>
                                       <input type="email" id="email" formControlName="email" class="form-control" required
                                        (change)="logChange('Email', $event)">
                                 <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched" class="text-danger small">
-                                    Veuillez entrer une adresse email valide.
+                                    {{ 'recruitment.application.emailRequired' | translate }}
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="phone_number" class="form-label">Numéro de téléphone <span class="text-danger">*</span></label>
+                                <label for="phone_number" class="form-label">{{ 'recruitment.application.phoneNumber' | translate }} <span class="text-danger">*</span></label>
                                       <input type="text" id="phone_number" formControlName="phone_number" class="form-control" required
                                        (change)="logChange('Téléphone', $event)">
                                 <div *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched" class="text-danger small">
-                                    Le numéro de téléphone est obligatoire.
+                                    {{ 'recruitment.application.phoneRequired' | translate }}
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="date_of_birth" class="form-label">Date de naissance</label>
+                                <label for="date_of_birth" class="form-label">{{ 'recruitment.application.dateOfBirth' | translate }}</label>
                                       <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control"
                                        (change)="logChange('Date de naissance', $event)">
                             </div>
@@ -107,11 +107,11 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="address" class="form-label">Adresse</label>
+                                <label for="address" class="form-label">{{ 'recruitment.application.address' | translate }}</label>
                                 <input type="text" id="address" formControlName="address" class="form-control">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="city" class="form-label">Ville</label>
+                                <label for="city" class="form-label">{{ 'recruitment.application.city' | translate }}</label>
                                 <input type="text" id="city" formControlName="city" class="form-control">
                             </div>
                         </div>
@@ -121,8 +121,8 @@
 
                         <!-- Documents requis -->
                         <div class="mb-4">
-                            <h4 class="mb-3">Documents requis</h4>
-                            <p class="text-muted mb-3">Veuillez télécharger les documents suivants au format PDF :</p>
+                            <h4 class="mb-3">{{ 'recruitment.application.requiredDocuments' | translate }}</h4>
+                            <p class="text-muted mb-3">{{ 'recruitment.application.uploadDocuments' | translate }}</p>
                             <div *ngFor="let attachmentType of requiredAttachments" class="mb-3">
                                 <label class="form-label">{{ attachmentType }} <span class="text-danger">*</span></label>
                                 <input type="file" (change)="onFileSelected($event, attachmentType)" accept=".pdf,application/pdf" class="form-control">
@@ -130,7 +130,7 @@
                                 <div *ngIf="uploadingFiles[attachmentType]" class="mt-2">
                                     <div class="alert alert-info d-flex align-items-center">
                                         <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                        <span>Upload en cours...</span>
+                                        <span>{{ 'recruitment.application.uploading' | translate }}</span>
                                     </div>
                                 </div>
                                 
@@ -138,13 +138,13 @@
                                 <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-2">
                                     <div class="alert alert-success d-flex justify-content-between align-items-center">
                                         <span>✅ {{ uploadedFiles[attachmentType].name }}</span>
-                                        <button type="button" (click)="removeFile(attachmentType)" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                        <button type="button" (click)="removeFile(attachmentType)" class="btn btn-sm btn-outline-danger">{{ 'recruitment.application.remove' | translate }}</button>
                                     </div>
                                 </div>
                                 
                                 <!-- Aucun fichier -->
                                 <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-1">
-                                    <small class="text-muted">Aucun fichier sélectionné</small>
+                                    <small class="text-muted">{{ 'recruitment.application.noFileSelected' | translate }}</small>
                                 </div>
                                 
                                 <!-- Debug pour chaque fichier -->
@@ -167,12 +167,12 @@
                             
                                   <button type="submit" class="btn btn-primary btn-lg" [disabled]="submitting">
                                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                {{ submitting ? 'Soumission en cours...' : 'Soumettre la candidature' }}
+                                {{ submitting ? ('recruitment.application.submitting' | translate) : ('recruitment.application.submit' | translate) }}
                             </button>
                             
                             <!-- Message d'aide (optionnel) -->
                             <div class="mt-2 text-info small">
-                                <div>💡 Vous pouvez soumettre le formulaire même si certains champs ne sont pas remplis</div>
+                                <div>{{ 'recruitment.application.helpMessage' | translate }}</div>
                             </div>
                         </div>
                     </form>
@@ -183,7 +183,7 @@
 
     <!-- Message de succès -->
     <div *ngIf="success" class="alert alert-success text-center" role="alert">
-        <h4>✅ Candidature soumise avec succès !</h4>
-        <p>Vous allez être redirigé vers la page de paiement...</p>
+        <h4>✅ {{ 'recruitment.application.success' | translate }}</h4>
+        <p>{{ 'recruitment.application.redirecting' | translate }}</p>
     </div>
 </div>
