@@ -19,6 +19,7 @@ import { Page6 } from './views/page6/page6';
 import { ActualitesPage1 } from './actualites/page1/page1';
 import { ActualitesPage2 } from './actualites/page2/page2';
 import { ActualitesPage3 } from './actualites/page3/page3';
+import { ActualitesPage4 } from './actualites/page4/page4';
 
 
 export const routes: Routes = [
@@ -51,5 +52,6 @@ export const routes: Routes = [
   { path: 'actualites1', component: ActualitesPage1 },
   { path: 'actualites2', component: ActualitesPage2 },
   { path: 'actualites3', component: ActualitesPage3 },
+  { path: 'actualites4', component: ActualitesPage4 },
   { path: '**', redirectTo: '' } // Redirection vers la page d'accueil pour les routes non trouvées
 ];
