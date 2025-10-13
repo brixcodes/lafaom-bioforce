@@ -31,7 +31,14 @@
     "training": "Training",
     "news": "News",
     "recruitment": "Recruitment",
-    "contact": "Contact"
+    "contact": "Contact",
+    "coordinatorMessage": "Coordinator's message",
+    "specialties": "Specialties",
+    "technician": "Technical Assistant",
+    "penitentiarySupport": "Penitentiary Services Support",
+    "welcomeSupport": "Welcome, listening and support",
+    "planning": "Training planning",
+    "certificate": "Institute admission process"
   },
   "header": {
     "title": "LAFAOM",
@@ -512,7 +519,7 @@
       "objective2": "Promote respect for human rights in the administration of justice;",
       "objective3": "Constitute a research pool and a Documentation Center for Law and Legal Sciences.",
       "specialtiesPresentation": "The different specialties of Judicial Life Assistants",
-      "coordinator": "Coordinator: Mbeng Enama Boniface Pascal",
+      "coordinator": "Mbeng Enama Boniface Pascal",
       "technician": {
         "title": "I - Technical Assistant",
         "trainerQuote": "Message from the specialty reference trainer:",

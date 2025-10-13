@@ -7,6 +7,12 @@ import { Contact } from './pages/contact/contact';
 import { Section1 } from './components/recrutements/section-1/section-1';
 import { RecrutementsSuccess } from './pages/recrutements-success/recrutements-success';
 import { FormJoboffert } from './pages/form-joboffert/form-joboffert';
+import { Page1 } from './views/page1/page1';
+import { Page2 } from './views/page2/page2';
+import { Page3 } from './views/page3/page3';
+import { Page4 } from './views/page4/page4';
+import { Page5 } from './views/page5/page5';
+import { Page6 } from './views/page6/page6';
 
 export const routes: Routes = [
   { path: '', component: Acceuil },
@@ -28,5 +34,11 @@ export const routes: Routes = [
     component: RecrutementsSuccess
   },
   { path: 'contact', component: Contact },
+  { path: 'page1', component: Page1 },
+  { path: 'page2', component: Page2 },
+  { path: 'page3', component: Page3 },
+  { path: 'page4', component: Page4 },
+  { path: 'page5', component: Page5 },
+  { path: 'page6', component: Page6 },
   { path: '**', redirectTo: '' } // Redirection vers la page d'accueil pour les routes non trouvées
 ];

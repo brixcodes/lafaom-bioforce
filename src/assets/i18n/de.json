@@ -32,7 +32,14 @@
     "training": "Ausbildung",
     "news": "Nachrichten",
     "recruitment": "Rekrutierung",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "coordinatorMessage": "Botschaft des Koordinators",
+    "specialties": "Spezialitäten",
+    "technician": "Technischer Assistent",
+    "penitentiarySupport": "Unterstützung der Gefängnisdienste",
+    "welcomeSupport": "Willkommen, Zuhören und Unterstützung",
+    "planning": "Ausbildungsplanung",
+    "certificate": "Institutszulassungsprozess"
   },
   "header": {
     "title": "LAFAOM",
@@ -504,7 +511,7 @@
       "objective2": "Die Achtung der Menschenrechte in der Justizverwaltung zu fördern;",
       "objective3": "Ein Forschungspool und ein Dokumentationszentrum für Recht und Rechtswissenschaften zu bilden.",
       "specialtiesPresentation": "Die verschiedenen Spezialitäten der Lebensassistenten im Justizbereich",
-      "coordinator": "Koordinator: Mbeng Enama Boniface Pascal",
+      "coordinator": "Mbeng Enama Boniface Pascal",
       "technician": {
         "title": "I - Technischer Assistent",
         "trainerQuote": "Das Wort des Spezialitäts-Referenztrainers:",
