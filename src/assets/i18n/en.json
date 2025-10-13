@@ -38,7 +38,11 @@
     "penitentiarySupport": "Penitentiary Services Support",
     "welcomeSupport": "Welcome, listening and support",
     "planning": "Training planning",
-    "certificate": "Institute admission process"
+    "certificate": "Institute admission process",
+    "administrationCouncil": "Board of Directors",
+    "keyDates": "Key dates",
+    "organigram": "Organigram",
+    "budgeting": "Budgeting"
   },
   "header": {
     "title": "LAFAOM",
@@ -479,8 +483,7 @@
         "item1": "Health vulnerability: Increased health risks in detention.",
         "item2": "Social vulnerability: Exclusion and stigmatization related to incarceration."
       },
-      "conclusion1": "In absolute terms, the number of victims of judicial decisions in Africa is higher than that of natural disasters or wars. The judicial system is inappropriate to the social model.",
-      "conclusion2": "Over the past two years, it has been about convincing funders, based on the 'nexus' approach, that this is a situation that falls under the humanitarian sector. This is a crisis to be classified among permanent humanitarian emergencies. The greatest success has been to get them to accept that intervention in this sector required specific know-how and know-how. That of social work professionals we have called: Judicial Life Assistants (JLA).",
+      "conclusion": "In absolute terms, the number of victims of judicial decisions in Africa is higher than that of natural disasters or wars. The judicial system is inappropriate to the social model. Over the past two years, it has been about convincing funders, based on the 'nexus' approach, that this is a situation that falls under the humanitarian sector. This is a crisis to be classified among permanent humanitarian emergencies. The greatest success has been to get them to accept that intervention in this sector required specific know-how and know-how. That of social work professionals we have called: Judicial Life Assistants (JLA).",
       "institute": "With the Academy Inspectors of the Ministry of National Education of Senegal, we were able to establish, in Ziguinchor, the LAFAOM-MAO Training Institute specialized in the 12-month training of Judicial Life Assistants. A training based on the Mao pedagogical system.",
       "quote": "Being a Judicial Life Assistant means implementing individualized intervention plans for different wards to reduce the devastating effects of judicial decisions. It is about making justice more human and, therefore, more effective.",
       "final": "At the Lafaom-Mao Training Institute, we know that to help a person in a vulnerable situation, it is important that the Judicial Life Assistant has a respectable academic background. However, the pedagogical principles implemented allow us to adapt all academic levels to the desired operability. This is a challenge we have set ourselves."

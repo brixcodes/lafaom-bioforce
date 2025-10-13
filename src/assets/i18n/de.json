@@ -39,7 +39,11 @@
     "penitentiarySupport": "Unterstützung der Gefängnisdienste",
     "welcomeSupport": "Willkommen, Zuhören und Unterstützung",
     "planning": "Ausbildungsplanung",
-    "certificate": "Institutszulassungsprozess"
+    "certificate": "Institutszulassungsprozess",
+    "administrationCouncil": "Verwaltungsrat",
+    "keyDates": "Wichtige Termine",
+    "organigram": "Organigramm",
+    "budgeting": "Budgetierung"
   },
   "header": {
     "title": "LAFAOM",
@@ -471,8 +475,7 @@
         "item1": "Gesundheitsverwundbarkeit: Erhöhte Gesundheitsrisiken in Haft.",
         "item2": "Soziale Verwundbarkeit: Ausschluss und Stigmatisierung im Zusammenhang mit Inhaftierung."
       },
-      "conclusion1": "In absoluten Zahlen ist die Anzahl der Opfer von Justizentscheidungen in Afrika höher als die von Naturkatastrophen oder Kriegen. Das Justizsystem ist ungeeignet für das soziale Modell.",
-      "conclusion2": "In den letzten beiden Jahren ging es darum, Geldgeber davon zu überzeugen, basierend auf dem 'Nexus'-Ansatz, dass dies eine Situation ist, die in den humanitären Sektor fällt. Dies ist eine Krise, die zu den permanenten humanitären Notfällen zu zählen ist. Der größte Erfolg war, sie dazu zu bringen zu akzeptieren, dass Interventionen in diesem Sektor spezifisches Know-how und spezifisches Verhalten erfordern. Das von Sozialarbeitsfachkräften, die wir genannt haben: Lebensassistenten im Justizbereich (LAJ).",
+      "conclusion": "In absoluten Zahlen ist die Anzahl der Opfer von Justizentscheidungen in Afrika höher als die von Naturkatastrophen oder Kriegen. Das Justizsystem ist ungeeignet für das soziale Modell. In den letzten beiden Jahren ging es darum, Geldgeber davon zu überzeugen, basierend auf dem 'Nexus'-Ansatz, dass dies eine Situation ist, die in den humanitären Sektor fällt. Dies ist eine Krise, die zu den permanenten humanitären Notfällen zu zählen ist. Der größte Erfolg war, sie dazu zu bringen zu akzeptieren, dass Interventionen in diesem Sektor spezifisches Know-how und spezifisches Verhalten erfordern. Das von Sozialarbeitsfachkräften, die wir genannt haben: Lebensassistenten im Justizbereich (LAJ).",
       "institute": "Mit den Akademieinspektoren des Ministeriums für nationale Bildung des Senegal konnten wir in Ziguinchor das LAFAOM-MAO Ausbildungsinstitut einrichten, das auf die 12-monatige Ausbildung von Lebensassistenten im Justizbereich spezialisiert ist. Eine Ausbildung, die auf dem Mao-Pädagogiksystem basiert.",
       "quote": "Lebensassistent im Justizbereich zu sein bedeutet, individualisierte Interventionspläne für verschiedene Mündel umzusetzen, um die verheerenden Auswirkungen von Justizentscheidungen zu reduzieren. Es geht darum, die Justiz menschlicher und damit effektiver zu machen.",
       "final": "Am Lafaom-Mao Ausbildungsinstitut wissen wir, dass es wichtig ist, dass der Lebensassistent im Justizbereich einen respektablen akademischen Hintergrund hat, um einer Person in einer verwundbaren Situation zu helfen. Die pädagogischen Prinzipien, die wir anwenden, ermöglichen es uns jedoch, alle akademischen Niveaus an die gewünschte Funktionalität anzupassen. Das ist eine Herausforderung, die wir uns gestellt haben."
