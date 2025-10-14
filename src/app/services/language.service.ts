@@ -5,7 +5,7 @@ import { SimpleTranslateService } from './simple-translate.service';
   providedIn: 'root'
 })
 export class LanguageService {
-  private readonly STORAGE_KEY = 'lafaom-language';
+  private readonly STORAGE_KEY = 'LAFAOM-language';
   private readonly DEFAULT_LANG = 'fr';
   private readonly SUPPORTED_LANGS = ['fr', 'en', 'de'];
 

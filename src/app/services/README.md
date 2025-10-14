@@ -143,7 +143,7 @@ this.jobOffersService.submitJobApplication(applicationData).subscribe(
 ## Configuration
 
 ### URL de base :
-L'URL de base est configurée dans `ApiService` : `https://lafaom.vertex-cam.com/api/v1`
+L'URL de base est configurée dans `ApiService` : `https://LAFAOM.vertex-cam.com/api/v1`
 
 ### Endpoints disponibles :
 - `news` - Actualités

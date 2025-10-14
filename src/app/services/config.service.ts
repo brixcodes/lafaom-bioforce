@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigService {
   // Configuration de l'API
-  readonly API_BASE_URL = 'https://lafaom.vertex-cam.com/api/v1';
+  readonly API_BASE_URL = 'https://LAFAOM.vertex-cam.com/api/v1';
   
   // Endpoints
   readonly ENDPOINTS = {

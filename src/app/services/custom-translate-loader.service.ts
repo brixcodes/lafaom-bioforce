@@ -50,7 +50,7 @@ export class CustomTranslateLoaderService {
     this.translate.setDefaultLang('fr');
     
     // Récupérer la langue sauvegardée ou utiliser le français par défaut
-    const savedLang = localStorage.getItem('lafaom-language') || 'fr';
+    const savedLang = localStorage.getItem('LAFAOM-language') || 'fr';
     const supportedLangs = ['fr', 'en', 'de'];
     
     // Vérifier que la langue est supportée
@@ -68,7 +68,7 @@ export class CustomTranslateLoaderService {
   public setLanguage(lang: string): void {
     if (this.translations[lang]) {
       this.translate.use(lang);
-      localStorage.setItem('lafaom-language', lang);
+      localStorage.setItem('LAFAOM-language', lang);
       
       // Mettre à jour l'attribut lang du document
       if (typeof document !== 'undefined') {

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly baseUrl = 'https://lafaom.vertex-cam.com/api/v1';
+  private readonly baseUrl = 'https://LAFAOM.vertex-cam.com/api/v1';
 
   constructor(private http: HttpClient) { }
 

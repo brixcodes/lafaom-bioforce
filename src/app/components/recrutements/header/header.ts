@@ -408,7 +408,7 @@ export class Header implements OnInit, OnDestroy {
    * Télécharge le document PDF d'appel d'offre
    */
   downloadDocument() {
-    const documentUrl = '/asset/appel_offre_cabinet_conseil_lafaom.pdf';
+    const documentUrl = '/asset/appel_offre_cabinet_conseil_LAFAOM.pdf';
     const fileName = 'Appel-d-offre-LAFAOM.pdf';
     
     try {

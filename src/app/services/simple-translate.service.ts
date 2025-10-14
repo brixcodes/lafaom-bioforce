@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class SimpleTranslateService {
   private translations: { [key: string]: any } = {};
   private currentLang = signal<string>('fr');
-  private readonly STORAGE_KEY = 'lafaom-language';
+  private readonly STORAGE_KEY = 'LAFAOM-language';
 
   constructor(private http: HttpClient) {
     this.loadTranslations();

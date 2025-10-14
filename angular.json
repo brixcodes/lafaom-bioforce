@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lafaom_website": {
+    "LAFAOM_website": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -36,7 +36,7 @@
               "public/asset/css/style.min.css",
               "public/asset/css/all.css",
               "public/asset/css/custom.min.css",
-              "public/asset/css/lafaom-theme.css"
+              "public/asset/css/LAFAOM-theme.css"
             ],
             "scripts": [
               "public/asset/js/jquery.min.js",
@@ -82,10 +82,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "lafaom_website:build:production"
+              "buildTarget": "LAFAOM_website:build:production"
             },
             "development": {
-              "buildTarget": "lafaom_website:build:development"
+              "buildTarget": "LAFAOM_website:build:development"
             }
           },
           "defaultConfiguration": "development"

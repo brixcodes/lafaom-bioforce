@@ -12,7 +12,7 @@ import { SimpleTranslateService } from './services/simple-translate.service';
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-  protected readonly title = signal('lafaom_website');
+  protected readonly title = signal('LAFAOM_website');
 
   constructor(private simpleTranslateService: SimpleTranslateService) {}
 
