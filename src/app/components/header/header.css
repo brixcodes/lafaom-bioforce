@@ -29,7 +29,7 @@
 }
 
 #header .navbar a:hover {
-  color: #ff00ee;
+  color: #D14B6B;
 }
 
 
@@ -41,7 +41,7 @@
 }
 
 #header .nav-top a:hover {
-  color: #ff00ee;
+  color: #D14B6B;
 }
 
 
@@ -63,7 +63,7 @@
 }
 
 .dropdown-toggle:hover {
-  color: #ff00ee;
+  color: #D14B6B;
 }
 
 
@@ -123,7 +123,7 @@
 }
 
 .dropdown-menu a:hover {
-  color: #ff00ee;
+  color: #D14B6B;
   background-color: transparent;
 }
 
@@ -189,8 +189,8 @@
 
 .dropdown-submenu-content a:hover {
   background-color: transparent;
-  color: #ff00ee;
-  border-left-color: #ff00ee;
+  color: #D14B6B;
+  border-left-color: #D14B6B;
   padding-left: 25px;
 }
 
@@ -211,7 +211,7 @@
 }
 
 .dropdown-toggle-mobile:hover {
-  color: #ff00ee;
+  color: #D14B6B;
 }
 
 .dropdown-menu-mobile {
@@ -275,7 +275,7 @@
 .dropdown-menu-mobile a:hover,
 .dropdown-submenu-content-mobile a:hover {
   background-color: transparent;
-  color: #ff00ee;
+  color: #D14B6B;
 }
 
 /* Responsive design */
