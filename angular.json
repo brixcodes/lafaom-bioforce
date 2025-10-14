@@ -35,8 +35,7 @@
               "src/styles.css",
               "public/asset/css/style.min.css",
               "public/asset/css/all.css",
-              "public/asset/css/custom.min.css",
-              "public/asset/css/LAFAOM-theme.css"
+              "public/asset/css/custom.min.css"
             ],
             "scripts": [
               "public/asset/js/jquery.min.js",
