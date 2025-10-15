@@ -22,12 +22,12 @@ export class Header implements OnInit, OnDestroy {
   error: string | null = null;
   showModal = false;
   selectedJob: JobOffer | null = null;
-  
+
   // Propriétés pour les sessions d'emploi
   availableSessions: JobSession[] = [];
   showSessionsModal = false;
   selectedSession: JobSession | null = null;
-  
+
   // Propriétés pour le modal de candidature
   showApplicationModal = false;
   applicationForm: FormGroup;
@@ -36,7 +36,7 @@ export class Header implements OnInit, OnDestroy {
   uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
   uploadingFiles: { [key: string]: boolean } = {};
   requiredAttachments: string[] = [];
-  
+
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -112,7 +112,7 @@ export class Header implements OnInit, OnDestroy {
     this.selectedJob = job;
     this.showModal = true;
     this.loadJobSessions(job.id);
-    
+
     // Empêcher le scroll du body quand le modal est ouvert
     if (typeof document !== 'undefined') {
       document.body.classList.add('modal-open');
@@ -152,7 +152,7 @@ export class Header implements OnInit, OnDestroy {
 
   openSessionsModal() {
     this.showSessionsModal = true;
-    
+
     // Empêcher le scroll du body quand le modal est ouvert
     if (typeof document !== 'undefined') {
       document.body.classList.add('modal-open');
@@ -162,13 +162,13 @@ export class Header implements OnInit, OnDestroy {
   closeSessionsModal() {
     this.showSessionsModal = false;
     this.selectedSession = null;
-    
+
     // Nettoyer l'état du modal
     if (typeof document !== 'undefined') {
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
-      
+
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
     }
@@ -178,7 +178,7 @@ export class Header implements OnInit, OnDestroy {
     this.selectedSession = session;
     this.closeSessionsModal();
     this.openApplicationModal(this.selectedJob!);
-    
+
     // Mettre à jour le formulaire avec l'ID de la session
     this.applicationForm.patchValue({
       job_session_id: session.id
@@ -188,7 +188,7 @@ export class Header implements OnInit, OnDestroy {
   closeModal() {
     this.showModal = false;
     this.selectedJob = null;
-    
+
     // Nettoyer complètement l'état du modal
     if (typeof document !== 'undefined') {
       // Supprimer toutes les classes et styles liés au modal
@@ -196,21 +196,21 @@ export class Header implements OnInit, OnDestroy {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
       document.body.style.padding = '';
-      
+
       // Supprimer tous les backdrops existants
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
-      
+
       // Supprimer tous les overlays de modal
       const modals = document.querySelectorAll('.modal');
       modals.forEach(modal => {
         modal.classList.remove('show');
         (modal as HTMLElement).style.display = 'none';
       });
-      
+
       // Forcer le reflow pour s'assurer que les changements sont appliqués
       document.body.offsetHeight;
-      
+
       // Recharger la page après fermeture du modal
       window.location.reload();
     }
@@ -221,35 +221,35 @@ export class Header implements OnInit, OnDestroy {
     // Fermer complètement le modal de présentation du poste
     this.showModal = false;
     this.selectedJob = null; // Réinitialiser le job sélectionné pour le modal de présentation
-    
+
     // Nettoyer l'état du modal de présentation
     if (typeof document !== 'undefined') {
       // Supprimer les backdrops du modal de présentation
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
-      
+
       // Supprimer les classes du body liées au modal de présentation
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
     }
-    
+
     // Ouvrir le modal de candidature
     this.selectedJob = job;
     this.showApplicationModal = true;
     this.success = false;
     this.error = null;
-    
+
     // Initialiser les pièces jointes requises
-    this.requiredAttachments = job.attachment && job.attachment.length > 0 
-      ? job.attachment 
+    this.requiredAttachments = job.attachment && job.attachment.length > 0
+      ? job.attachment
       : ['CV', 'Lettre de motivation', 'Copie de la pièce d\'identité'];
-    
+
     // Mettre à jour le formulaire avec l'ID de l'offre
     this.applicationForm.patchValue({
       job_offer_id: job.id
     });
-    
+
     // Empêcher le scroll du body quand le modal de candidature est ouvert
     if (typeof document !== 'undefined') {
       document.body.classList.add('modal-open');
@@ -264,22 +264,22 @@ export class Header implements OnInit, OnDestroy {
     this.uploadedFiles = {};
     this.uploadingFiles = {};
     this.applicationForm.reset();
-    
+
     // Nettoyer complètement l'état du modal
     if (typeof document !== 'undefined') {
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
-      
+
       const backdrops = document.querySelectorAll('.modal-backdrop');
       backdrops.forEach(backdrop => backdrop.remove());
-      
+
       const modals = document.querySelectorAll('.modal');
       modals.forEach(modal => {
         modal.classList.remove('show');
         (modal as HTMLElement).style.display = 'none';
       });
-      
+
       // Recharger la page entière après fermeture du modal de candidature
       window.location.reload();
     }
@@ -295,7 +295,7 @@ export class Header implements OnInit, OnDestroy {
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
     this.uploadingFiles[attachmentType] = true;
-    
+
     this.subscription.add(
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
@@ -359,10 +359,10 @@ export class Header implements OnInit, OnDestroy {
         url: fileData.url  // Ajouter l'URL du fichier uploadé
       });
     }
-    
+
     // Préparer les données en convertissant date_of_birth si nécessaire
     const formValue = { ...this.applicationForm.value };
-    
+
     // Convertir date_of_birth de string vers date si présent
     if (formValue.date_of_birth && formValue.date_of_birth.trim() !== '') {
       formValue.date_of_birth = new Date(formValue.date_of_birth).toISOString().split('T')[0];
@@ -370,7 +370,7 @@ export class Header implements OnInit, OnDestroy {
       // Supprimer le champ si vide pour éviter l'erreur de validation
       delete formValue.date_of_birth;
     }
-    
+
     const applicationData: JobApplicationCreateInput = {
       ...formValue,
       attachments: attachments
@@ -385,7 +385,7 @@ export class Header implements OnInit, OnDestroy {
         next: (response: any) => {
           this.success = true;
           this.submitting = false;
-          
+
           if (response.data && response.data.payment && response.data.payment.payment_link) {
             window.location.href = response.data.payment.payment_link;
           } else {
@@ -408,25 +408,25 @@ export class Header implements OnInit, OnDestroy {
    * Télécharge le document PDF d'appel d'offre
    */
   downloadDocument() {
-    const documentUrl = '/asset/appel_offre_cabinet_conseil_LAFAOM.pdf';
+    const documentUrl = '/asset/appel_offre_cabinet_conseil_lafaom.pdf';
     const fileName = 'Appel-d-offre-LAFAOM.pdf';
-    
+
     try {
       // Créer un élément <a> temporaire pour déclencher le téléchargement
       const link = document.createElement('a');
       link.href = documentUrl;
       link.download = fileName;
       link.target = '_blank';
-      
+
       // Ajouter le lien au DOM temporairement
       document.body.appendChild(link);
-      
+
       // Déclencher le téléchargement
       link.click();
-      
+
       // Nettoyer le DOM
       document.body.removeChild(link);
-      
+
       console.log('📄 Document téléchargé avec succès:', fileName);
     } catch (error) {
       console.error('❌ Erreur lors du téléchargement du document:', error);
