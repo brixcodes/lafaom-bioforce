@@ -371,7 +371,7 @@
     "hero": {
       "title": "Formation d'excellence pour l'amélioration du système judiciaire en Afrique",
       "subtitle": "Institut LAFAOM-MAO",
-      "description": "L'Institut LAFAOM-MAO de Ziguinchor, membre du réseau inter-africain LAFAOM-MAO, forme des auxiliaires de Vie en Univers Judiciaire (AVUJ) pour accompagner les personnes affectées par les décisions de justice.",
+        "description": "L'Institut LAFAOM-MAO de Ziguinchor, forme des auxiliaires de Vie en Univers Judiciaire (AVUJ) pour accompagner les personnes affectées par les décisions de justice.",
       "mission": "Notre mission est de rendre la justice plus humaine et efficace en réduisant les impacts dévastateurs sur les femmes, les enfants et les personnes âgées, victimes de vulnérabilités sociales et sanitaires.",
       "institute": "NOUS SOMMES L'INSTITUT DE FORMATION LAFAOM-MAO.",
       "discoverBioforce": "Découvrir l'institut LAFAOM-MAO"
@@ -461,7 +461,7 @@
       "study": "Une étude conduite de 2020 à 2023 dans le système judiciaire en Afrique, a établi que, comme l'hypertension artérielle pour l'organisme humain, les décisions de justice sont des tueurs silencieux. Elles ont pour conséquences :",
       "women": {
         "title": "Pour les femmes",
-        "item1": "Double assignation domestico-judiciairee : Concilier rôles domestiques et contraintes de l'incarcération;",
+        "item1": "Double assignation domestico-judiciaire : Concilier rôles domestiques et contraintes de l'incarcération;",
         "item2": "Solidarité conjugale sous contrainte pénale : Soutien au conjoint incarcéré malgré pressions légales;",
         "item3": "Perversions sexuelles pénitentiaires : Abus sexuels ciblant les femmes détenues;",
         "item4": "Abus sexuel sous autorité judiciaire : Exploitation par figures d'autorité dans le système judiciaire."
