@@ -137,13 +137,21 @@
                                     </li>
                                 </ul>
                                 <div class="post-formation-links">
-                                    <a href="" target="_bank" class="btn btn-outline-primary"
-                                        [title]="'training.modal.register' | translate" data-uw-pdf-br="1"
-                                        data-uw-pdf-doc="">
+                                    <a href="#" class="btn btn-outline-primary"
+                                        [title]="'training.modal.register' | translate" (click)="openApplicationModal(selectedTraining!)">
                                         <span>
                                             {{ 'training.modal.register' | translate }}
                                         </span>
                                     </a>
+
+                                    <!-- <button type="button" class="btn btn-outline-primary"
+                                        [title]="'training.modal.register' | translate" 
+                                        (click)="openApplicationModal(selectedTraining!)"
+                                        data-uw-pdf-br="1" data-uw-pdf-doc="">
+                                        <span>
+                                            {{ 'training.modal.register' | translate }}
+                                        </span>
+                                    </button> -->
                                 </div>
                             </div>
                         </article>
@@ -523,11 +531,12 @@
 
                                                             <!-- Boutons de soumission -->
                                                             <div class="d-flex justify-content-end gap-3 mt-4">
-                                                                <button type="button" class="btn btn-secondary"
+                                                                <button type="button" class="btn btn-danger mx-2" 
+                                                                style="background-color: #f40b0b; border-color: #a12323;"
                                                                     (click)="closeApplicationModal()">
                                                                     {{ 'training.application.cancel' | translate }}
                                                                 </button>
-                                                                <a href=""></a>
+                                                                
                                                                 <button type="submit" class="btn btn-primary"
                                                                     [disabled]="submitting">
                                                                     <span *ngIf="submitting"
