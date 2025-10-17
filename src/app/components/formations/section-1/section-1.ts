@@ -7,8 +7,9 @@ import { TrainingService } from '../../../services/training.service';
 import { TrainingFilterService, TrainingFilters } from '../../../services/training-filter.service';
 import { StudentApplicationService } from '../../../services/student-application.service';
 import { Training, TrainingSession } from '../../../models/training.models';
-import { StudentApplicationCreateInput, StudentAttachmentInput } from '../../../models/student-application.models';
-import { Observable, interval, Subscription, forkJoin, of } from 'rxjs';
+import { StudentApplicationCreateInput } from '../../../models/student-application.models';
+import { Observable, interval, Subscription, of } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Component({
@@ -36,9 +37,7 @@ export class Section1 implements OnInit, OnDestroy {
   applicationForm: FormGroup;
   submitting = false;
   success: string | boolean = false;
-  uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
-  uploadingFiles: { [key: string]: boolean } = {};
-  requiredAttachments: string[] = ['CV', 'Lettre de motivation', 'Copie de la pièce d\'identité'];
+  // Suppression des propriétés liées aux fichiers pour simplifier le processus
 
   private refreshSubscription: Subscription | undefined;
   private filterSubscription: Subscription | undefined;
@@ -442,8 +441,6 @@ export class Section1 implements OnInit, OnDestroy {
     this.showApplicationModal = true;
     this.success = false;
     this.error = null;
-    this.uploadedFiles = {};
-    this.uploadingFiles = {};
 
     // Charger les sessions disponibles
     this.loadTrainingSessions(training.id);
@@ -470,8 +467,6 @@ export class Section1 implements OnInit, OnDestroy {
     this.selectedTraining = null;
     this.success = false;
     this.error = null;
-    this.uploadedFiles = {};
-    this.uploadingFiles = {};
     this.availableSessions = [];
     this.applicationForm.reset();
 
@@ -503,8 +498,6 @@ export class Section1 implements OnInit, OnDestroy {
     this.selectedTraining = null;
     this.success = false;
     this.error = null;
-    this.uploadedFiles = {};
-    this.uploadingFiles = {};
     this.availableSessions = [];
     this.applicationForm.reset();
 
@@ -525,90 +518,24 @@ export class Section1 implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Gérer la sélection de fichier
-   */
-  onFileSelected(event: any, attachmentType: string) {
-    const file = event.target.files[0];
-    if (file) {
-      this.uploadFile(file, attachmentType);
-    }
-  }
-
-  /**
-   * Uploader un fichier
-   */
-  uploadFile(file: File, attachmentType: string) {
-    const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
-    this.uploadingFiles[attachmentType] = true;
-
-    // Stocker le fichier localement pour l'instant
-    // L'upload réel se fera lors de la soumission de la candidature
-    setTimeout(() => {
-      this.uploadingFiles[attachmentType] = false;
-      this.uploadedFiles[attachmentType] = {
-        file: file,
-        url: URL.createObjectURL(file),
-        name: fileName
-      };
-      console.log('📎 [FORMATIONS] Fichier préparé:', this.uploadedFiles[attachmentType]);
-    }, 500);
-  }
-
-  /**
-   * Supprimer un fichier uploadé
-   */
-  removeFile(attachmentType: string) {
-    delete this.uploadedFiles[attachmentType];
-  }
-
-  /**
-   * Obtenir le statut d'un fichier
-   */
-  getFileStatus(attachmentType: string): string {
-    if (this.uploadedFiles[attachmentType]) {
-      return 'uploaded';
-    }
-    if (this.uploadingFiles[attachmentType]) {
-      return 'uploading';
-    }
-    return 'pending';
-  }
 
   /**
    * Vérifier si le formulaire est valide
    */
   isFormValid(): boolean {
-    if (!this.applicationForm.valid) {
-      return false;
-    }
-
-    for (const attachmentType of this.requiredAttachments) {
-      if (!this.uploadedFiles[attachmentType]) {
-        return false;
-      }
-    }
-    return true;
+    return this.applicationForm.valid;
   }
 
   /**
-   * Soumettre la candidature selon le processus API correct
+   * Soumettre la candidature (processus en 2 étapes selon l'API)
    */
   onSubmitApplication() {
     console.log('🚀 [FORMATIONS] Début de la soumission de candidature');
     this.submitting = true;
     this.error = null;
 
-    // Préparer les données de base (sans les fichiers)
+    // Préparer les données de base
     const formValue = { ...this.applicationForm.value };
-    
-    // Convertir date_of_birth de string vers date si présent
-    if (formValue.date_of_birth && formValue.date_of_birth.trim() !== '') {
-      formValue.date_of_birth = new Date(formValue.date_of_birth).toISOString().split('T')[0];
-    } else {
-      // Supprimer le champ si vide pour éviter l'erreur de validation
-      delete formValue.date_of_birth;
-    }
     
     const applicationData: StudentApplicationCreateInput = {
       email: formValue.email,
@@ -616,30 +543,57 @@ export class Section1 implements OnInit, OnDestroy {
       first_name: formValue.first_name,
       last_name: formValue.last_name,
       phone_number: formValue.phone_number,
-      country_code: formValue.country_code
-      // Note: Pas d'attachments ici, ils seront uploadés séparément
+      civility: formValue.civility,
+      country_code: 'SN', // Toujours SN par défaut
+      city: formValue.city,
+      address: formValue.address,
+      date_of_birth: formValue.date_of_birth,
+      attachments: [] // Tableau vide comme demandé
     };
 
     console.log('📤 [FORMATIONS] Données de candidature à envoyer:', applicationData);
-    console.log('📎 [FORMATIONS] Fichiers à uploader:', Object.keys(this.uploadedFiles));
 
     // Étape 1: Créer la candidature
     this.studentApplicationService.createApplication(applicationData).subscribe({
       next: (response: any) => {
         console.log('✅ [FORMATIONS] Candidature créée avec succès:', response);
-        const applicationId = response.data?.id;
         
-        if (!applicationId) {
-          console.error('❌ [FORMATIONS] ID de candidature manquant');
-          this.error = 'Erreur: ID de candidature manquant';
+        const applicationId = response.data?.id;
+        if (applicationId) {
+          console.log('🔄 [FORMATIONS] Soumission de la candidature ID:', applicationId);
+          
+          // Étape 2: Soumettre la candidature (génère le paiement)
+          this.studentApplicationService.submitApplication(applicationId).subscribe({
+            next: (submitResponse: any) => {
+              console.log('✅ [FORMATIONS] Candidature soumise avec succès:', submitResponse);
+              console.log('🔍 [FORMATIONS] Payment info:', submitResponse.data);
+              console.log('🔍 [FORMATIONS] Payment link:', submitResponse.data?.payment_link);
+              
+              this.success = true;
+              this.submitting = false;
+              
+              // Redirection vers le paiement
+              if (submitResponse.data && submitResponse.data.payment_link) {
+                console.log('🔗 [FORMATIONS] Redirection vers le paiement...');
+                window.location.href = submitResponse.data.payment_link;
+              } else {
+                console.log('⚠️ [FORMATIONS] Pas de lien de paiement, rechargement...');
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+              }
+            },
+            error: (submitError: any) => {
+              console.error('❌ [FORMATIONS] Erreur lors de la soumission:', submitError);
+              this.error = `Erreur lors de la soumission: ${submitError.error?.message || submitError.message || 'Erreur inconnue'}`;
+              this.submitting = false;
+            }
+          });
+        } else {
+          console.error('❌ [FORMATIONS] ID de candidature manquant dans la réponse');
+          this.error = 'ID de candidature manquant dans la réponse';
           this.submitting = false;
-          return;
         }
-
-        console.log('🔍 [FORMATIONS] Application ID:', applicationId);
-
-        // Étape 2: Uploader tous les fichiers
-        this.uploadAllFiles(applicationId);
       },
       error: (error: any) => {
         console.error('❌ [FORMATIONS] Erreur lors de la création de la candidature:', error);
@@ -649,77 +603,6 @@ export class Section1 implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Uploader tous les fichiers pour une candidature
-   */
-  uploadAllFiles(applicationId: number) {
-    console.log('📤 [FORMATIONS] Début de l\'upload des fichiers pour l\'application:', applicationId);
-    
-    const uploadObservables = Object.keys(this.uploadedFiles).map(attachmentType => {
-      const fileData = this.uploadedFiles[attachmentType];
-      console.log(`📤 [FORMATIONS] Upload du fichier ${attachmentType}:`, fileData.name);
-      return this.studentApplicationService.uploadAttachment(
-        applicationId,
-        fileData.name,
-        fileData.file
-      );
-    });
-
-    if (uploadObservables.length === 0) {
-      console.log('⚠️ [FORMATIONS] Aucun fichier à uploader, soumission directe');
-      this.submitApplication(applicationId);
-      return;
-    }
-
-    // Utiliser forkJoin pour attendre tous les uploads
-    forkJoin(uploadObservables).subscribe({
-      next: (responses: any[]) => {
-        console.log('✅ [FORMATIONS] Tous les fichiers uploadés avec succès:', responses);
-        
-        // Étape 3: Soumettre la candidature (initie le paiement)
-        this.submitApplication(applicationId);
-      },
-      error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur lors de l\'upload des fichiers:', error);
-        this.error = `Erreur lors de l'upload des fichiers: ${error.error?.message || error.message || 'Erreur inconnue'}`;
-        this.submitting = false;
-      }
-    });
-  }
-
-  /**
-   * Soumettre la candidature (étape finale)
-   */
-  private submitApplication(applicationId: number) {
-    console.log('🚀 [FORMATIONS] Soumission finale de la candidature:', applicationId);
-    
-    this.studentApplicationService.submitApplication(applicationId).subscribe({
-      next: (paymentResponse: any) => {
-        console.log('✅ [FORMATIONS] Candidature soumise avec succès:', paymentResponse);
-        console.log('💳 [FORMATIONS] Payment info:', paymentResponse.data);
-        
-        this.success = true;
-        this.submitting = false;
-        
-        // Rediriger vers le paiement si disponible
-        if (paymentResponse.data && paymentResponse.data.payment_link) {
-          console.log('🔗 [FORMATIONS] Redirection vers le paiement:', paymentResponse.data.payment_link);
-          window.location.href = paymentResponse.data.payment_link;
-        } else {
-          console.log('ℹ️ [FORMATIONS] Aucune redirection disponible, affichage du message de succès');
-          // Afficher un message de succès et recharger la page après 2 secondes
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        }
-      },
-      error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur lors de la soumission finale:', error);
-        this.error = `Erreur lors de la soumission finale: ${error.error?.message || error.message || 'Erreur inconnue'}`;
-        this.submitting = false;
-      }
-    });
-  }
 
 
   /**
@@ -740,4 +623,5 @@ export class Section1 implements OnInit, OnDestroy {
   formatPrice(price: number, currency: string): string {
     return new Intl.NumberFormat('fr-FR').format(price) + ' ' + currency;
   }
+
 }

@@ -138,7 +138,8 @@
                                 </ul>
                                 <div class="post-formation-links">
                                     <a href="#" class="btn btn-outline-primary"
-                                        [title]="'training.modal.register' | translate" (click)="openApplicationModal(selectedTraining!)">
+                                        [title]="'training.modal.register' | translate"
+                                        (click)="openApplicationModal(selectedTraining!)">
                                         <span>
                                             {{ 'training.modal.register' | translate }}
                                         </span>
@@ -345,11 +346,11 @@
                                             <div class="list-session-results">
                                                 <div class="list-session-infos">
                                                     <div class="list-session-infos-item">
-                                                        <div class="d-flex flex-column">
+                                                        <div class="">
 
                                                             <!-- Informations personnelles -->
                                                             <div class="row mb-3">
-                                                                <div class="col-md-6">
+                                                                <div class="col-12 col-md-6">
                                                                     <label for="civility" class="form-label">{{
                                                                         'training.application.civility' | translate
                                                                         }}</label>
@@ -435,13 +436,16 @@
 
                                                             <div class="row mb-3">
                                                                 <div class="col-md-6">
-                                                                    <label for="address"
-                                                                        class="form-label">{{ 'training.application.address' | translate }}</label>
+                                                                    <label for="address" class="form-label">{{
+                                                                        'training.application.address' | translate
+                                                                        }}</label>
                                                                     <input type="text" id="address"
                                                                         formControlName="address" class="form-control">
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="city" class="form-label">{{ 'training.application.city' | translate }}</label>
+                                                                    <label for="city" class="form-label">{{
+                                                                        'training.application.city' | translate
+                                                                        }}</label>
                                                                     <input type="text" id="city" formControlName="city"
                                                                         class="form-control">
                                                                 </div>
@@ -450,71 +454,13 @@
                                                             <!-- Champ pays masqué avec valeur par défaut SN -->
                                                             <input type="hidden" formControlName="country_code">
 
-                                                            <!-- Affichage de la session sélectionnée -->
-                                                            <div *ngIf="selectedSession" class="mb-3">
+                                                            <!-- Note sur les documents -->
+                                                            <!-- <div class="mb-4">
                                                                 <div class="alert alert-info">
-                                                                    <h6>{{ 'training.application.selectedSession' | translate }} :</h6>
-                                                                    <p class="mb-1"><strong>{{ 'training.application.period' | translate }} :</strong> {{
-                                                                        formatDate(selectedSession.start_date || '') }}
-                                                                        - {{ formatDate(selectedSession.end_date || '')
-                                                                        }}</p>
-                                                                    <p class="mb-1"><strong>{{ 'training.application.registrationDeadline'
-                                                                            | translate }} :</strong> {{
-                                                                        formatDate(selectedSession.registration_deadline)
-                                                                        }}</p>
-                                                                    <p class="mb-0"><strong>{{ 'training.application.registrationFee'
-                                                                            | translate }} :</strong> {{
-                                                                        formatPrice(selectedSession.registration_fee ||
-                                                                        0, selectedSession.currency) }}</p>
+                                                                    <i class="fas fa-info-circle me-2"></i>
+                                                                    <strong>Note :</strong> Les documents requis pourront être téléchargés après la soumission de votre candidature et le paiement des frais d'inscription.
                                                                 </div>
-                                                            </div>
-
-                                                            <!-- Documents requis -->
-                                                            <div class="mb-4">
-                                                                <h6>{{ 'training.application.requiredDocuments' | translate }}</h6>
-                                                                <p class="text-muted mb-3">{{ 'training.application.uploadDocuments' | translate }}</p>
-                                                                <div *ngFor="let attachmentType of requiredAttachments"
-                                                                    class="mb-3">
-                                                                    <label class="form-label">{{ attachmentType }} <span
-                                                                            class="text-danger">*</span></label>
-                                                                    <input type="file"
-                                                                        (change)="onFileSelected($event, attachmentType)"
-                                                                        accept=".pdf,application/pdf"
-                                                                        class="form-control">
-
-                                                                    <!-- Indicateur de chargement -->
-                                                                    <div *ngIf="uploadingFiles[attachmentType]"
-                                                                        class="mt-2">
-                                                                        <div
-                                                                            class="alert alert-info d-flex align-items-center">
-                                                                            <span
-                                                                                class="spinner-border spinner-border-sm me-2"
-                                                                                role="status" aria-hidden="true"></span>
-                                                                            <span>{{ 'training.application.uploading' | translate }}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- Fichier uploadé -->
-                                                                    <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]"
-                                                                        class="mt-2">
-                                                                        <div
-                                                                            class="alert alert-success d-flex justify-content-between align-items-center">
-                                                                            <span>✅ {{
-                                                                                uploadedFiles[attachmentType].name
-                                                                                }}</span>
-                                                                            <button type="button"
-                                                                                (click)="removeFile(attachmentType)"
-                                                                                class="btn btn-sm btn-outline-danger">{{ 'training.application.remove' | translate }}</button>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- Aucun fichier -->
-                                                                    <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]"
-                                                                        class="mt-1">
-                                                                        <small class="text-muted">{{ 'training.application.noFileSelected' | translate }}</small>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            </div> -->
 
                                                             <!-- Message d'erreur -->
                                                             <div *ngIf="error" class="alert alert-danger" role="alert">
@@ -524,28 +470,45 @@
                                                             <!-- Message de succès -->
                                                             <div *ngIf="success" class="alert alert-success"
                                                                 role="alert">
-                                                                <h6>✅ {{ 'training.application.success' | translate }}</h6>
+                                                                <h6>✅ {{ 'training.application.success' | translate }}
+                                                                </h6>
                                                                 <p>{{ 'training.application.redirecting' | translate }}
                                                                 </p>
                                                             </div>
 
-                                                            <!-- Boutons de soumission -->
                                                             <div class="d-flex justify-content-end gap-3 mt-4">
-                                                                <button type="button" class="btn btn-danger mx-2" 
-                                                                style="background-color: #f40b0b; border-color: #a12323;"
+                                                                <button type="button" class="btn btn-secondary mx-1"
+                                                                    (click)="closeApplicationModal()">
+                                                                    Annuler
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary mx-1"
+                                                                    [disabled]="!isFormValid() || submitting">
+                                                                    <span *ngIf="submitting"
+                                                                        class="spinner-border spinner-border-sm me-2"
+                                                                        role="status" aria-hidden="true"></span>
+                                                                    {{ submitting ? 'Soumission en cours...' :
+                                                                    'Soumettre la candidature' }}
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Boutons de soumission -->
+                                                            <!-- <div class="d-flex justify-content-end gap-3 mt-4">
+                                                                <button type="button" class="btn btn-danger mx-2"
+                                                                    style="background-color: #f40b0b; border-color: #a12323;"
                                                                     (click)="closeApplicationModal()">
                                                                     {{ 'training.application.cancel' | translate }}
                                                                 </button>
-                                                                
+
                                                                 <button type="submit" class="btn btn-primary"
                                                                     [disabled]="submitting">
                                                                     <span *ngIf="submitting"
                                                                         class="spinner-border spinner-border-sm me-2"
                                                                         role="status" aria-hidden="true"></span>
-                                                                    {{ submitting ? ('training.application.submitting' | translate) :
+                                                                    {{ submitting ? ('training.application.submitting' |
+                                                                    translate) :
                                                                     ('training.application.submit' | translate) }}
                                                                 </button>
-                                                            </div>
+                                                            </div> -->
 
                                                         </div>
                                                     </div>

@@ -4,8 +4,12 @@ export interface StudentApplicationCreateInput {
   first_name?: string;
   last_name?: string;
   phone_number?: string;
+  civility?: string;
   country_code?: string;
-  // Note: Les attachments sont uploadés séparément via l'API /my-student-applications/{id}/attachments
+  city?: string;
+  address?: string;
+  date_of_birth?: string;
+  attachments?: string[]; // Noms des fichiers (optionnel selon l'API)
 }
 
 export interface StudentApplicationOut {
