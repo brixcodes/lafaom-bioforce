@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +7,10 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
   // Configuration de l'API - URLs de fallback
   private readonly API_URLS = [
-    'http://194.238.25.170:7052/api/v1'
+    environment.apiUrl, // URL principale selon l'environnement
+    environment.backendUrl // Backend direct (fallback)
   ];
-  
+
   readonly API_BASE_URL = this.API_URLS[0]; // URL principale
   
   // Endpoints

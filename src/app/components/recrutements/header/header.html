@@ -429,89 +429,89 @@
                         <div class="col-12 col-md-12 form-group">
                           <label for="civility" class="form-label ml-2">Civilité</label>
                           <select id="civility" formControlName="civility" class="form-control col-12 col-md-12">
-                            <option value="">Sélectionner</option>
-                            <option value="M.">M.</option>
-                            <option value="Mme">Mme</option>
-                          </select>
-                        </div>
+                                    <option value="">Sélectionner</option>
+                                    <option value="M.">M.</option>
+                                    <option value="Mme">Mme</option>
+                                  </select>
+                                </div>
                         <div class="col-12 col-md-6 form-group">
                           <label for="first_name" class="form-label">Prénom <span class="text-danger">*</span></label>
                           <input type="text" id="first_name" formControlName="first_name" class="form-control" required>
-                          <div
-                            *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched"
+                                  <div
+                                    *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched"
                             class="text-danger small ml-3 mt-2">
-                            Le prénom est obligatoire.
-                          </div>
+                                    Le prénom est obligatoire.
+                                  </div>
 
-                        </div>
+                                </div>
                         <div class="col-12 col-md-6 form-group">
                           <label for="last_name" class="form-label">Nom <span class="text-danger">*</span></label>
                           <input type="text" id="last_name" formControlName="last_name" class="form-control" required>
-                          <div
-                            *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched"
+                                  <div
+                                    *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched"
                             class="text-danger small ml-3 mt-2">
-                            Le nom est obligatoire.
-                          </div>
-                        </div>
+                                    Le nom est obligatoire.
+                                  </div>
+                                </div>
                         <div class="col-12 col-md-6 form-group">
                           <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                          <input type="email" id="email" formControlName="email" class="form-control" required>
+                                  <input type="email" id="email" formControlName="email" class="form-control" required>
                           <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched"
                             class="text-danger small ml-3 mt-2">
-                            Veuillez entrer une adresse email valide.
-                          </div>
-                        </div>
+                                    Veuillez entrer une adresse email valide.
+                                  </div>
+                                </div>
                         <div class="col-12 col-md-6 form-group">
-                          <label for="phone_number" class="form-label">Numéro de téléphone <span
-                              class="text-danger">*</span></label>
+                                  <label for="phone_number" class="form-label">Numéro de téléphone <span
+                                      class="text-danger">*</span></label>
                           <input type="text" id="phone_number" formControlName="phone_number" class="form-control"
                             required>
-                          <div
-                            *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched"
+                                  <div
+                                    *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched"
                             class="text-danger small ml-3 mt-2">
-                            Le numéro de téléphone est obligatoire.
-                          </div>
-                        </div>
+                                    Le numéro de téléphone est obligatoire.
+                                  </div>
+                                </div>
                         <div class="col-12 col-md-6 form-group">
-                          <label for="address" class="form-label">Adresse</label>
+                                  <label for="address" class="form-label">Adresse</label>
                           <input type="text" id="address" formControlName="address" class="form-control" required>
-                        </div>
+                                </div>
                         <input type="hidden" formControlName="country_code">
                         <div class="col-12 col-md-6 form-group">
-                          <label for="city" class="form-label">Ville</label>
+                                  <label for="city" class="form-label">Ville</label>
                           <input type="text" id="city" formControlName="city" class="form-control" required>
-                        </div>
+                                </div>
                         <div class="col-12 col-md-12  form-group">
                           <label for="date_of_birth" class="form-label">Date de naissance</label>
                           <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control"
                             required>
-                        </div>
+                              </div>
 
 
                         <div class="col-12 col-md-12 mt-2 form-group">
-                          <h6>Documents requis</h6>
+                                <h6>Documents requis</h6>
                           <p class="text-muted mb-3">Veuillez télécharger les documents suivants au format PDF :</p>
                           <div *ngFor="let attachmentType of getRequiredAttachments(selectedJob)">
                             <span class="form-group">
                               <label class="form-label mt-2">{{ attachmentType }} <span
                                   class="text-danger">*</span></label>
-                              <input type="file" (change)="onFileSelected($event, attachmentType)"
+                                  <input type="file" (change)="onFileSelected($event, attachmentType)"
                                 accept=".pdf,application/pdf" class="form-control" 
                                 [attr.data-attachment]="attachmentType"
                                 [id]="'file-' + attachmentType">
                             </span>
 
-                            <div *ngIf="uploadingFiles[attachmentType]" class="mt-2">
-                              <div class="alert alert-info d-flex align-items-center">
-                                <span class="spinner-border spinner-border-sm me-2" role="status"
-                                  aria-hidden="true"></span>
-                                <span>Upload en cours...</span>
-                              </div>
-                            </div>
+                                  <div *ngIf="uploadingFiles[attachmentType]" class="mt-2">
+                                    <div class="alert alert-info d-flex align-items-center">
+                                      <span class="spinner-border spinner-border-sm me-2" role="status"
+                                        aria-hidden="true"></span>
+                                      <span>Upload en cours...</span>
+                                    </div>
+                                  </div>
 
                             <!-- Fichier uploadé avec succès -->
                             <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType] && uploadedFiles[attachmentType].url" class="mt-2">
-                              <div class="alert alert-success d-flex justify-content-between align-items-center">
+                                    <div class="alert alert-success d-flex justify-content-between align-items-center">
                                 <span>✅ {{ uploadedFiles[attachmentType].name }}</span>
                                 <div class="btn-group" role="group">
                                   <button type="button" (click)="removeFile(attachmentType)"
@@ -527,40 +527,40 @@
                                 <div class="btn-group" role="group">
                                   <button type="button" (click)="retryUpload(attachmentType)"
                                     class="btn btn-sm btn-outline-warning">Réessayer</button>
-                                  <button type="button" (click)="removeFile(attachmentType)"
-                                    class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                      <button type="button" (click)="removeFile(attachmentType)"
+                                        class="btn btn-sm btn-outline-danger">Supprimer</button>
                                 </div>
-                              </div>
-                            </div>
+                                    </div>
+                                  </div>
 
-                            <!-- Aucun fichier -->
+                                  <!-- Aucun fichier -->
                             <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-1">
                               <small class="text-muted">Aucun fichier sélectionné</small>
-                            </div>
-                          </div>
-                        </div>
+                                  </div>
+                                </div>
+                              </div>
 
 
-                        <!-- Message d'erreur -->
-                        <div *ngIf="error" class="alert alert-danger" role="alert">
-                          {{ error }}
-                        </div>
+                              <!-- Message d'erreur -->
+                              <div *ngIf="error" class="alert alert-danger" role="alert">
+                                {{ error }}
+                              </div>
 
-                        <!-- Message de succès -->
-                        <div *ngIf="success" class="alert alert-success" role="alert">
-                          <h6>✅ Candidature soumise avec succès !</h6>
+                              <!-- Message de succès -->
+                              <div *ngIf="success" class="alert alert-success" role="alert">
+                                <h6>✅ Candidature soumise avec succès !</h6>
                           <p>Vous allez être redirigé vers la page de paiement...</p>
-                        </div>
+                              </div>
 
-                        <div class="d-flex justify-content-end gap-3 mt-4">
+                              <div class="d-flex justify-content-end gap-3 mt-4">
                           <button type="button" class="btn btn-secondary mx-1" (click)="closeApplicationModal()">
-                            Annuler
-                          </button>
+                                  Annuler
+                                </button>
                           <button type="submit" class="btn btn-primary mx-1" [disabled]="!isFormValid() || submitting">
                             <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                             {{ submitting ? 'Soumission en cours...' : 'Soumettre la candidature' }}
-                          </button>
-                        </div>
+                                </button>
+                              </div>
 
                       </div>
                     </div>

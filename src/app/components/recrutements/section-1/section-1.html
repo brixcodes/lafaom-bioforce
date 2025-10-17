@@ -63,22 +63,22 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-10 col-xl-8">
-                    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="job-application-form">
+                          <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="job-application-form">
                         <!-- Informations personnelles -->
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h3 class="mb-0">{{ 'recruitment.application.personalInfo' | translate }}</h3>
                             </div>
                             <div class="card-body">
-                                <div class="row">
+                        <div class="row">
                                     <div class="col-12 col-sm-6 col-md-4 mb-3">
-                                        <label for="civility" class="form-label">{{ 'recruitment.application.civility' | translate }}</label>
+                                <label for="civility" class="form-label">{{ 'recruitment.application.civility' | translate }}</label>
                                         <select id="civility" formControlName="civility" class="form-select">
-                                            <option value="">{{ 'recruitment.application.selectCivility' | translate }}</option>
-                                            <option value="M.">{{ 'recruitment.application.mr' | translate }}</option>
-                                            <option value="Mme">{{ 'recruitment.application.mrs' | translate }}</option>
-                                        </select>
-                                    </div>
+                                    <option value="">{{ 'recruitment.application.selectCivility' | translate }}</option>
+                                    <option value="M.">{{ 'recruitment.application.mr' | translate }}</option>
+                                    <option value="Mme">{{ 'recruitment.application.mrs' | translate }}</option>
+                                </select>
+                            </div>
                                     <div class="col-12 col-sm-6 col-md-4 mb-3">
                                         <label for="first_name" class="form-label">
                                             {{ 'recruitment.application.firstName' | translate }} 
@@ -88,9 +88,9 @@
                                                class="form-control" required>
                                         <div *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched" 
                                              class="invalid-feedback d-block">
-                                            {{ 'recruitment.application.firstNameRequired' | translate }}
-                                        </div>
-                                    </div>
+                                          {{ 'recruitment.application.firstNameRequired' | translate }}
+                                      </div>
+                                  </div>
                                     <div class="col-12 col-sm-6 col-md-4 mb-3">
                                         <label for="last_name" class="form-label">
                                             {{ 'recruitment.application.lastName' | translate }} 
@@ -103,9 +103,9 @@
                                             {{ 'recruitment.application.lastNameRequired' | translate }}
                                         </div>
                                     </div>
-                                </div>
+                        </div>
 
-                                <div class="row">
+                        <div class="row">
                                     <div class="col-12 col-sm-6 col-md-4 mb-3">
                                         <label for="email" class="form-label">
                                             {{ 'recruitment.application.email' | translate }} 
@@ -115,9 +115,9 @@
                                                class="form-control" required>
                                         <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched" 
                                              class="invalid-feedback d-block">
-                                            {{ 'recruitment.application.emailRequired' | translate }}
-                                        </div>
-                                    </div>
+                                    {{ 'recruitment.application.emailRequired' | translate }}
+                                </div>
+                            </div>
                                     <div class="col-12 col-sm-6 col-md-4 mb-3">
                                         <label for="phone_number" class="form-label">
                                             {{ 'recruitment.application.phoneNumber' | translate }} 
@@ -127,19 +127,19 @@
                                                class="form-control" required>
                                         <div *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched" 
                                              class="invalid-feedback d-block">
-                                            {{ 'recruitment.application.phoneRequired' | translate }}
-                                        </div>
-                                    </div>
+                                    {{ 'recruitment.application.phoneRequired' | translate }}
+                                </div>
+                            </div>
                                     <div class="col-12 col-sm-6 col-md-4 mb-3">
                                         <label for="date_of_birth" class="form-label">
                                             {{ 'recruitment.application.dateOfBirth' | translate }}
                                         </label>
                                         <input type="date" id="date_of_birth" formControlName="date_of_birth" 
                                                class="form-control">
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
 
-                                <div class="row">
+                        <div class="row">
                                     <div class="col-12 col-sm-6 mb-3">
                                         <label for="address" class="form-label">
                                             {{ 'recruitment.application.address' | translate }}
@@ -154,7 +154,7 @@
                                         <input type="text" id="city" formControlName="city" 
                                                class="form-control">
                                     </div>
-                                </div>
+                            </div>
                             </div>
                         </div>
 
@@ -195,23 +195,23 @@
                                                     <small class="text-muted">{{ 'recruitment.application.orClick' | translate }}</small>
                                                 </div>
                                                 
-                                                <!-- Indicateur de chargement -->
+                                <!-- Indicateur de chargement -->
                                                 <div *ngIf="uploadingFiles[attachmentType]" class="file-upload-progress">
                                                     <div class="spinner-border text-primary mb-2" role="status">
                                                         <span class="visually-hidden">Loading...</span>
-                                                    </div>
+                                    </div>
                                                     <p class="mb-0">{{ 'recruitment.application.uploading' | translate }}</p>
-                                                </div>
-                                                
-                                                <!-- Fichier uploadé -->
+                                </div>
+                                
+                                <!-- Fichier uploadé -->
                                                 <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" 
                                                      class="file-upload-success">
                                                     <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
                                                     <p class="mb-1 fw-bold">{{ uploadedFiles[attachmentType].name }}</p>
                                                     <small class="text-success">{{ 'recruitment.application.uploaded' | translate }}</small>
-                                                </div>
-                                            </div>
-                                            
+                                    </div>
+                                </div>
+                                
                                             <!-- Actions pour le fichier -->
                                             <div class="file-actions mt-2" 
                                                  *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]">
@@ -223,7 +223,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

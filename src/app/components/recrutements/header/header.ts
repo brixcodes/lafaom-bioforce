@@ -80,7 +80,7 @@ export class Header implements OnInit, OnDestroy {
           console.log('📋 [HEADER] Réponse complète:', response);
           
           if (response.data && Array.isArray(response.data)) {
-            this.featuredJobs = response.data;
+          this.featuredJobs = response.data;
             console.log('📋 [HEADER] Offres d\'emploi chargées:', this.featuredJobs);
             console.log('📋 [HEADER] Nombre d\'offres:', this.featuredJobs.length);
             
