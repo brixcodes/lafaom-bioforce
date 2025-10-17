@@ -145,7 +145,7 @@ export class CandidatureForm {
       formData.append('file', attachment.file);
 
       console.log('🌐 [CANDIDATURE-FORM] Envoi de la requête HTTP...');
-      const response = await this.http.post<any>('https://LAFAOM.vertex-cam.com/api/v1/job-attachments', formData, {
+      const response = await this.http.post<any>('http://194.238.25.170:7052/api/v1/job-attachments', formData, {
         reportProgress: true,
         observe: 'events'
       }).toPromise();
@@ -242,7 +242,7 @@ export class CandidatureForm {
 
       // Envoyer la candidature
       console.log('🌐 [CANDIDATURE-FORM] Envoi de la requête HTTP...');
-      const response = await this.http.post<any>('https://LAFAOM.vertex-cam.com/api/v1/job-applications', applicationData).toPromise();
+      const response = await this.http.post<any>('http://194.238.25.170:7052/api/v1/job-applications', applicationData).toPromise();
       
       console.log('📨 [CANDIDATURE-FORM] Réponse reçue:', response);
       this.applicationSubmitted.emit(response);
