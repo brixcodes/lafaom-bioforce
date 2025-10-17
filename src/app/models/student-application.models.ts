@@ -5,7 +5,7 @@ export interface StudentApplicationCreateInput {
   last_name?: string;
   phone_number?: string;
   country_code?: string;
-  attachments?: string[];
+  // Note: Les attachments sont uploadés séparément via l'API /my-student-applications/{id}/attachments
 }
 
 export interface StudentApplicationOut {

@@ -592,19 +592,14 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   /**
-   * Soumettre la candidature (logique identique à header.ts)
+   * Soumettre la candidature selon le processus API correct
    */
   onSubmitApplication() {
+    console.log('🚀 [FORMATIONS] Début de la soumission de candidature');
     this.submitting = true;
     this.error = null;
 
-     // Préparer les attachments comme des strings (noms de fichiers) selon l'API
-     const attachments: string[] = [];
-     for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
-       attachments.push(fileData.name);
-     }
-    
-    // Préparer les données en convertissant date_of_birth si nécessaire
+    // Préparer les données de base (sans les fichiers)
     const formValue = { ...this.applicationForm.value };
     
     // Convertir date_of_birth de string vers date si présent
@@ -615,45 +610,40 @@ export class Section1 implements OnInit, OnDestroy {
       delete formValue.date_of_birth;
     }
     
-     const applicationData: StudentApplicationCreateInput = {
-       email: formValue.email,
-       target_session_id: this.selectedSession?.id || '',
-       first_name: formValue.first_name,
-       last_name: formValue.last_name,
-       phone_number: formValue.phone_number,
-       country_code: formValue.country_code,
-       attachments: attachments
-     };
+    const applicationData: StudentApplicationCreateInput = {
+      email: formValue.email,
+      target_session_id: this.selectedSession?.id || '',
+      first_name: formValue.first_name,
+      last_name: formValue.last_name,
+      phone_number: formValue.phone_number,
+      country_code: formValue.country_code
+      // Note: Pas d'attachments ici, ils seront uploadés séparément
+    };
 
-    // Debug: Afficher les données envoyées
     console.log('📤 [FORMATIONS] Données de candidature à envoyer:', applicationData);
-    console.log('📎 [FORMATIONS] Attachments:', attachments);
+    console.log('📎 [FORMATIONS] Fichiers à uploader:', Object.keys(this.uploadedFiles));
 
+    // Étape 1: Créer la candidature
     this.studentApplicationService.createApplication(applicationData).subscribe({
       next: (response: any) => {
         console.log('✅ [FORMATIONS] Candidature créée avec succès:', response);
-        console.log('🔍 [FORMATIONS] Application ID:', response.data?.id);
-        console.log('🔍 [FORMATIONS] Payment info direct:', response.data?.payment);
-        console.log('🔍 [FORMATIONS] Payment link direct:', response.data?.payment?.payment_link);
+        const applicationId = response.data?.id;
         
-        this.success = true;
-        this.submitting = false;
-        
-        // Vérifier si le payment_link est directement disponible (comme recrutements)
-        if (response.data && response.data.payment && response.data.payment.payment_link) {
-          console.log('🔗 [FORMATIONS] Payment URL trouvé directement, redirection...');
-          window.location.href = response.data.payment.payment_link;
-        } else {
-          // Si pas de payment_link direct, afficher le message de succès puis recharger la page (comme recrutements)
-          console.log('⚠️ [FORMATIONS] Pas de payment_link direct, rechargement de la page...');
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+        if (!applicationId) {
+          console.error('❌ [FORMATIONS] ID de candidature manquant');
+          this.error = 'Erreur: ID de candidature manquant';
+          this.submitting = false;
+          return;
         }
+
+        console.log('🔍 [FORMATIONS] Application ID:', applicationId);
+
+        // Étape 2: Uploader tous les fichiers
+        this.uploadAllFiles(applicationId);
       },
       error: (error: any) => {
-        console.error('Erreur lors de la soumission de la candidature:', error);
-        this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+        console.error('❌ [FORMATIONS] Erreur lors de la création de la candidature:', error);
+        this.error = `Erreur lors de la création de la candidature: ${error.error?.message || error.message || 'Erreur inconnue'}`;
         this.submitting = false;
       }
     });
@@ -663,8 +653,11 @@ export class Section1 implements OnInit, OnDestroy {
    * Uploader tous les fichiers pour une candidature
    */
   uploadAllFiles(applicationId: number) {
+    console.log('📤 [FORMATIONS] Début de l\'upload des fichiers pour l\'application:', applicationId);
+    
     const uploadObservables = Object.keys(this.uploadedFiles).map(attachmentType => {
       const fileData = this.uploadedFiles[attachmentType];
+      console.log(`📤 [FORMATIONS] Upload du fichier ${attachmentType}:`, fileData.name);
       return this.studentApplicationService.uploadAttachment(
         applicationId,
         fileData.name,
@@ -672,18 +665,58 @@ export class Section1 implements OnInit, OnDestroy {
       );
     });
 
+    if (uploadObservables.length === 0) {
+      console.log('⚠️ [FORMATIONS] Aucun fichier à uploader, soumission directe');
+      this.submitApplication(applicationId);
+      return;
+    }
+
     // Utiliser forkJoin pour attendre tous les uploads
     forkJoin(uploadObservables).subscribe({
-      next: () => {
-        console.log('✅ [FORMATIONS] Tous les fichiers uploadés');
-
-        // Soumettre la candidature (lance le paiement)
-        this.onSubmitApplication();
+      next: (responses: any[]) => {
+        console.log('✅ [FORMATIONS] Tous les fichiers uploadés avec succès:', responses);
+        
+        // Étape 3: Soumettre la candidature (initie le paiement)
+        this.submitApplication(applicationId);
       },
       error: (error: any) => {
-        console.error('❌ [FORMATIONS] Erreur upload fichiers:', error);
+        console.error('❌ [FORMATIONS] Erreur lors de l\'upload des fichiers:', error);
+        this.error = `Erreur lors de l'upload des fichiers: ${error.error?.message || error.message || 'Erreur inconnue'}`;
         this.submitting = false;
-        this.error = `Erreur lors de l'upload des fichiers: ${error.message}`;
+      }
+    });
+  }
+
+  /**
+   * Soumettre la candidature (étape finale)
+   */
+  private submitApplication(applicationId: number) {
+    console.log('🚀 [FORMATIONS] Soumission finale de la candidature:', applicationId);
+    
+    this.studentApplicationService.submitApplication(applicationId).subscribe({
+      next: (paymentResponse: any) => {
+        console.log('✅ [FORMATIONS] Candidature soumise avec succès:', paymentResponse);
+        console.log('💳 [FORMATIONS] Payment info:', paymentResponse.data);
+        
+        this.success = true;
+        this.submitting = false;
+        
+        // Rediriger vers le paiement si disponible
+        if (paymentResponse.data && paymentResponse.data.payment_link) {
+          console.log('🔗 [FORMATIONS] Redirection vers le paiement:', paymentResponse.data.payment_link);
+          window.location.href = paymentResponse.data.payment_link;
+        } else {
+          console.log('ℹ️ [FORMATIONS] Aucune redirection disponible, affichage du message de succès');
+          // Afficher un message de succès et recharger la page après 2 secondes
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      },
+      error: (error: any) => {
+        console.error('❌ [FORMATIONS] Erreur lors de la soumission finale:', error);
+        this.error = `Erreur lors de la soumission finale: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+        this.submitting = false;
       }
     });
   }
