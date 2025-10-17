@@ -86,6 +86,13 @@ export class ConfigService {
   constructor() { }
 
   /**
+   * Obtenir l'URL de base de l'API
+   */
+  getApiBaseUrl(): string {
+    return this.API_BASE_URL;
+  }
+
+  /**
    * Obtenir l'URL complète pour un endpoint
    */
   getFullUrl(endpoint: string): string {
