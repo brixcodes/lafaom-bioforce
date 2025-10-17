@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://194.238.25.170:7052/api/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -9,19 +15,13 @@
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
+          "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization, X-Requested-With"
+          "value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "http://194.238.25.170:7052/api/$1"
     }
   ]
 }

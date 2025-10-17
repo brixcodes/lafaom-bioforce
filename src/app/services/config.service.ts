@@ -83,12 +83,20 @@ export class ConfigService {
     AUTRE: 'autre'
   };
 
-  constructor() { }
+  constructor() { 
+    console.log('🔧 [CONFIG] Configuration initialisée:', {
+      apiUrl: environment.apiUrl,
+      backendUrl: environment.backendUrl,
+      production: environment.production,
+      finalUrl: this.API_BASE_URL
+    });
+  }
 
   /**
    * Obtenir l'URL de base de l'API
    */
   getApiBaseUrl(): string {
+    console.log('🔧 [CONFIG] getApiBaseUrl appelé:', this.API_BASE_URL);
     return this.API_BASE_URL;
   }
 
