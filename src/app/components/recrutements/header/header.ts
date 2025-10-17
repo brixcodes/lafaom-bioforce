@@ -283,27 +283,53 @@ export class Header implements OnInit, OnDestroy {
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
     
+    console.log(`📤 [HEADER] Début de l'upload du fichier ${attachmentType}:`, {
+      fileName: fileName,
+      fileSize: file.size,
+      fileType: file.type
+    });
+    
     // Marquer comme en cours d'upload
     this.uploadingFiles[attachmentType] = true;
 
     this.subscription.add(
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
+          console.log(`📤 [HEADER] Réponse d'upload pour ${attachmentType}:`, response);
+          
           this.uploadingFiles[attachmentType] = false;
           
           if (response.data && response.data.length > 0) {
-            this.uploadedFiles[attachmentType] = {
+            const uploadedFileData = {
               file: file,
               url: response.data[0].url,
               name: response.data[0].name
             };
-            console.log(`Fichier ${attachmentType} uploadé avec succès:`, response.data[0]);
+            
+            this.uploadedFiles[attachmentType] = uploadedFileData;
+            
+            console.log(`✅ [HEADER] Fichier ${attachmentType} uploadé avec succès:`, uploadedFileData);
+            console.log(`✅ [HEADER] URL stockée: ${uploadedFileData.url}`);
+            
+            // Vérifier que l'URL est valide
+            if (!uploadedFileData.url) {
+              console.error(`❌ [HEADER] URL vide pour le fichier ${attachmentType}`);
+              this.error = `Erreur: URL vide pour le fichier ${attachmentType}`;
+            }
           } else {
-            console.error('Réponse d\'upload invalide:', response);
+            console.error('❌ [HEADER] Réponse d\'upload invalide:', response);
+            this.error = `Réponse d'upload invalide pour ${attachmentType}`;
           }
         },
         error: (error: any) => {
-          console.error(`Erreur lors de l'upload du fichier ${attachmentType}:`, error);
+          console.error(`❌ [HEADER] Erreur lors de l'upload du fichier ${attachmentType}:`, error);
+          console.error(`❌ [HEADER] Détails de l'erreur d'upload:`, {
+            status: error.status,
+            statusText: error.statusText,
+            message: error.message,
+            error: error.error
+          });
+          
           this.uploadingFiles[attachmentType] = false;
           this.error = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message}`;
         }
@@ -323,20 +349,45 @@ export class Header implements OnInit, OnDestroy {
    * Vérifie si le formulaire est valide
    */
   isFormValid(): boolean {
+    console.log('🔍 [HEADER] Vérification de la validité du formulaire...');
+    
     // Vérifier que tous les champs requis sont remplis
-    if (!this.applicationForm.valid) {
+    const formValid = this.applicationForm.valid;
+    console.log('📝 [HEADER] Formulaire valide:', formValid);
+    console.log('📝 [HEADER] Erreurs du formulaire:', this.getFormErrors());
+    
+    if (!formValid) {
       return false;
     }
 
     // Vérifier que tous les fichiers requis sont uploadés
     const requiredAttachments = this.getRequiredAttachments(this.selectedJob);
+    console.log('📎 [HEADER] Pièces jointes requises:', requiredAttachments);
+    console.log('📎 [HEADER] Fichiers uploadés:', Object.keys(this.uploadedFiles));
+    
     for (const attachmentType of requiredAttachments) {
       if (!this.uploadedFiles[attachmentType]) {
+        console.log(`❌ [HEADER] Fichier manquant: ${attachmentType}`);
         return false;
       }
     }
 
+    console.log('✅ [HEADER] Formulaire valide et tous les fichiers uploadés');
     return true;
+  }
+
+  /**
+   * Récupère les erreurs du formulaire pour le débogage
+   */
+  private getFormErrors(): any {
+    const errors: any = {};
+    Object.keys(this.applicationForm.controls).forEach(key => {
+      const control = this.applicationForm.get(key);
+      if (control && control.errors) {
+        errors[key] = control.errors;
+      }
+    });
+    return errors;
   }
 
   /**
@@ -353,15 +404,30 @@ export class Header implements OnInit, OnDestroy {
     this.submitting = true;
     this.error = null;
 
+    // Debug: Afficher les fichiers uploadés
+    console.log('📎 [HEADER] Fichiers uploadés détaillés:', this.uploadedFiles);
+    
     // Préparer les attachments selon le format attendu par le backend
     const attachments: JobAttachmentInput[] = [];
     for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+      console.log(`📎 [HEADER] Traitement du fichier ${type}:`, fileData);
+      
+      // Vérifier que l'URL existe
+      if (!fileData.url) {
+        console.error(`❌ [HEADER] URL manquante pour le fichier ${type}`);
+        this.error = `URL manquante pour le fichier ${type}. Veuillez re-uploader ce fichier.`;
+        this.submitting = false;
+        return;
+      }
+
       attachments.push({
         name: fileData.name,
-        type: type,
+        type: type, // Utiliser le nom d'affichage comme type
         url: fileData.url
       });
     }
+
+    console.log('📎 [HEADER] Attachments préparés:', attachments);
 
     const applicationData: JobApplicationCreateInput = {
       ...this.applicationForm.value,
@@ -369,7 +435,9 @@ export class Header implements OnInit, OnDestroy {
       attachments: attachments
     };
 
-    console.log('📤 [HEADER] Données de candidature:', applicationData);
+    console.log('📤 [HEADER] Données de candidature complètes:', applicationData);
+    console.log('📤 [HEADER] Formulaire values:', this.applicationForm.value);
+    console.log('📤 [HEADER] Job offer ID:', this.selectedJob?.id);
 
     this.subscription.add(
       this.jobApplicationService.createApplication(applicationData).subscribe({
@@ -388,7 +456,23 @@ export class Header implements OnInit, OnDestroy {
         },
         error: (error: any) => {
           console.error('❌ [HEADER] Erreur lors de la soumission de la candidature:', error);
-          this.error = `Erreur lors de la soumission de la candidature: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+          console.error('❌ [HEADER] Détails de l\'erreur:', {
+            status: error.status,
+            statusText: error.statusText,
+            message: error.message,
+            error: error.error,
+            url: error.url
+          });
+          
+          // Afficher des messages d'erreur plus spécifiques
+          if (error.status === 422) {
+            this.error = `Erreur de validation: ${error.error?.detail || 'Données invalides'}`;
+          } else if (error.status === 0) {
+            this.error = 'Erreur de connexion. Vérifiez votre connexion internet.';
+          } else {
+            this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+          }
+          
           this.submitting = false;
         }
       })
@@ -423,6 +507,37 @@ export class Header implements OnInit, OnDestroy {
       console.error('❌ Erreur lors du téléchargement du document:', error);
       // Fallback: ouvrir le document dans un nouvel onglet
       window.open(documentUrl, '_blank');
+    }
+  }
+
+  /**
+   * Méthode de test pour déboguer le formulaire
+   */
+  testFormSubmission() {
+    console.log('🧪 [HEADER] Test de soumission du formulaire');
+    console.log('🧪 [HEADER] État du formulaire:', {
+      valid: this.applicationForm.valid,
+      value: this.applicationForm.value,
+      errors: this.getFormErrors()
+    });
+    console.log('🧪 [HEADER] Fichiers uploadés:', this.uploadedFiles);
+    console.log('🧪 [HEADER] Validation du formulaire:', this.isFormValid());
+    
+    // Simuler des données de test si nécessaire
+    if (Object.keys(this.uploadedFiles).length === 0) {
+      console.log('🧪 [HEADER] Aucun fichier uploadé - simulation de fichiers de test');
+      this.uploadedFiles = {
+        'CV': {
+          file: new File(['test'], 'test-cv.pdf', { type: 'application/pdf' }),
+          url: 'http://test-url.com/cv.pdf',
+          name: 'test-cv.pdf'
+        },
+        'Lettre de motivation': {
+          file: new File(['test'], 'test-letter.pdf', { type: 'application/pdf' }),
+          url: 'http://test-url.com/letter.pdf',
+          name: 'test-letter.pdf'
+        }
+      };
     }
   }
 }
