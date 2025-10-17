@@ -14,7 +14,8 @@ export class JobApplicationService {
     private http: HttpClient,
     private configService: ConfigService
   ) {
-    this.baseUrl = this.configService.API_BASE_URL;
+    this.baseUrl = this.configService.getApiBaseUrl();
+    console.log('🔧 [JOB-APPLICATION-SERVICE] Base URL initialisée:', this.baseUrl);
   }
 
   /**

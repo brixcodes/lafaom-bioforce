@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "http://194.238.25.170:7052/api/$1"
+      "destination": "https://lafaom.vertex-cam.com/api/$1"
     }
   ],
   "headers": [

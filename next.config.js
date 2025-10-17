@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://194.238.25.170:7052/api/:path*',
+        destination: 'https://lafaom.vertex-cam.com/api/:path*',
       },
     ];
   },
