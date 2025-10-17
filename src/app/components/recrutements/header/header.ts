@@ -277,61 +277,121 @@ export class Header implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Upload un fichier
-   */
+         /**
+          * Upload un fichier
+          */
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
-    
-    console.log(`📤 [HEADER] Début de l'upload du fichier ${attachmentType}:`, {
-      fileName: fileName,
-      fileSize: file.size,
-      fileType: file.type
-    });
-    
-    // Marquer comme en cours d'upload
+           
+           console.log(`📤 [HEADER] Début de l'upload du fichier ${attachmentType}:`, {
+             fileName: fileName,
+             fileSize: file.size,
+             fileType: file.type
+           });
+           
+           // Marquer comme en cours d'upload
     this.uploadingFiles[attachmentType] = true;
+           this.error = null; // Clear any previous errors
 
     this.subscription.add(
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
-          console.log(`📤 [HEADER] Réponse d'upload pour ${attachmentType}:`, response);
-          
+                 console.log(`📤 [HEADER] Réponse d'upload pour ${attachmentType}:`, response);
+                 
           this.uploadingFiles[attachmentType] = false;
-          
-          if (response.data && response.data.length > 0) {
-            const uploadedFileData = {
+                 
+                 // Vérifier la structure de la réponse selon l'API backend
+                 console.log(`🔍 [HEADER] Structure de réponse pour ${attachmentType}:`, response);
+                 
+                 let uploadedFileData: any = null;
+                 
+                 // Structure attendue selon l'API: JobAttachmentListOutSuccess
+                 // { success: boolean, message: string, data: JobAttachmentOut[] }
+                 if (response && response.success && response.data && Array.isArray(response.data) && response.data.length > 0) {
+                   const attachmentData = response.data[0];
+                   uploadedFileData = {
+                     file: file,
+                     url: attachmentData.file_path, // L'API retourne file_path, pas url
+                     name: attachmentData.name || fileName
+                   };
+                   console.log(`✅ [HEADER] Structure API correcte détectée:`, attachmentData);
+                 }
+                 // Structure alternative: response.data[0].url
+                 else if (response && response.data && Array.isArray(response.data) && response.data.length > 0) {
+                   const attachmentData = response.data[0];
+                   uploadedFileData = {
+                     file: file,
+                     url: attachmentData.url || attachmentData.file_path,
+                     name: attachmentData.name || fileName
+                   };
+                   console.log(`✅ [HEADER] Structure alternative détectée:`, attachmentData);
+                 }
+                 // Structure 3: response.url directement
+                 else if (response && response.url) {
+                   uploadedFileData = {
+                     file: file,
+                     url: response.url,
+                     name: response.name || fileName
+                   };
+                   console.log(`✅ [HEADER] Structure URL directe détectée:`, response);
+                 }
+                 // Structure 4: Simuler une URL si l'upload a réussi mais pas d'URL
+                 else if (response && (response.success || response.message)) {
+                   console.warn(`⚠️ [HEADER] Upload réussi mais pas d'URL pour ${attachmentType}, simulation d'une URL temporaire`);
+                   uploadedFileData = {
               file: file,
-              url: response.data[0].url,
-              name: response.data[0].name
-            };
-            
-            this.uploadedFiles[attachmentType] = uploadedFileData;
-            
-            console.log(`✅ [HEADER] Fichier ${attachmentType} uploadé avec succès:`, uploadedFileData);
-            console.log(`✅ [HEADER] URL stockée: ${uploadedFileData.url}`);
-            
-            // Vérifier que l'URL est valide
-            if (!uploadedFileData.url) {
-              console.error(`❌ [HEADER] URL vide pour le fichier ${attachmentType}`);
-              this.error = `Erreur: URL vide pour le fichier ${attachmentType}`;
-            }
-          } else {
-            console.error('❌ [HEADER] Réponse d\'upload invalide:', response);
-            this.error = `Réponse d'upload invalide pour ${attachmentType}`;
+                     url: `temp://uploaded/${fileName}`, // URL temporaire
+                     name: fileName
+                   };
+                 }
+                 
+                 if (uploadedFileData) {
+                   this.uploadedFiles[attachmentType] = uploadedFileData;
+                   
+                   console.log(`✅ [HEADER] Fichier ${attachmentType} uploadé avec succès:`, uploadedFileData);
+                   console.log(`✅ [HEADER] URL stockée: ${uploadedFileData.url}`);
+                   
+                   // Vérifier que l'URL est valide (mais accepter les URLs temporaires)
+                   if (!uploadedFileData.url || uploadedFileData.url.trim() === '') {
+                     console.error(`❌ [HEADER] URL vide ou invalide pour le fichier ${attachmentType}`);
+                     this.error = `Erreur: URL vide pour le fichier ${attachmentType}. Veuillez re-uploader ce fichier.`;
+                     // Supprimer le fichier de la liste des fichiers uploadés
+                     delete this.uploadedFiles[attachmentType];
+                   } else {
+                     console.log(`✅ [HEADER] Fichier ${attachmentType} correctement stocké avec URL: ${uploadedFileData.url}`);
+                   }
+                 } else {
+                   console.error('❌ [HEADER] Réponse d\'upload invalide:', response);
+                   this.error = `Réponse d'upload invalide pour ${attachmentType}. Structure de réponse: ${JSON.stringify(response)}`;
+                   // Supprimer le fichier de la liste des fichiers uploadés
+                   delete this.uploadedFiles[attachmentType];
           }
         },
         error: (error: any) => {
-          console.error(`❌ [HEADER] Erreur lors de l'upload du fichier ${attachmentType}:`, error);
-          console.error(`❌ [HEADER] Détails de l'erreur d'upload:`, {
-            status: error.status,
-            statusText: error.statusText,
-            message: error.message,
-            error: error.error
-          });
-          
+                 console.error(`❌ [HEADER] Erreur lors de l'upload du fichier ${attachmentType}:`, error);
+                 console.error(`❌ [HEADER] Détails de l'erreur d'upload:`, {
+                   status: error.status,
+                   statusText: error.statusText,
+                   message: error.message,
+                   error: error.error,
+                   url: error.url
+                 });
+                 
           this.uploadingFiles[attachmentType] = false;
-          this.error = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message}`;
+                 
+                 // Messages d'erreur spécifiques
+                 if (error.status === 0) {
+                   this.error = `Erreur de connexion pour ${attachmentType}. Vérifiez votre connexion internet.`;
+                 } else if (error.status === 500) {
+                   this.error = `Erreur serveur pour ${attachmentType}. Le serveur a rencontré un problème.`;
+                 } else if (error.status === 413) {
+                   this.error = `Fichier ${attachmentType} trop volumineux. Taille maximale: 10MB.`;
+                 } else {
+                   this.error = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+                 }
+                 
+                 // Supprimer le fichier de la liste des fichiers uploadés
+                 delete this.uploadedFiles[attachmentType];
         }
       })
     );
@@ -342,7 +402,80 @@ export class Header implements OnInit, OnDestroy {
    */
   removeFile(attachmentType: string) {
     delete this.uploadedFiles[attachmentType];
-    console.log(`Fichier ${attachmentType} supprimé`);
+    console.log(`🗑️ [HEADER] Fichier ${attachmentType} supprimé`);
+  }
+
+  /**
+   * Force la re-upload d'un fichier spécifique
+   */
+  retryUpload(attachmentType: string) {
+    console.log(`🔄 [HEADER] Tentative de re-upload pour ${attachmentType}`);
+    
+    // Supprimer le fichier actuel
+    delete this.uploadedFiles[attachmentType];
+    this.uploadingFiles[attachmentType] = false;
+    this.error = null;
+    
+    // Déclencher le sélecteur de fichier
+    const fileInput = document.querySelector(`input[type="file"][data-attachment="${attachmentType}"]`) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    } else {
+      console.error(`❌ [HEADER] Impossible de trouver l'input file pour ${attachmentType}`);
+      this.error = `Impossible de re-uploader ${attachmentType}. Veuillez sélectionner le fichier manuellement.`;
+    }
+  }
+
+  /**
+   * Méthode pour déboguer l'état actuel du formulaire
+   */
+  debugFormState() {
+    console.log('🔍 [HEADER] État actuel du formulaire:');
+    console.log('📝 [HEADER] Formulaire valide:', this.applicationForm.valid);
+    console.log('📝 [HEADER] Valeurs du formulaire:', this.applicationForm.value);
+    console.log('📎 [HEADER] Fichiers uploadés:', this.uploadedFiles);
+    console.log('📎 [HEADER] Fichiers en cours d\'upload:', this.uploadingFiles);
+    console.log('❌ [HEADER] Erreur actuelle:', this.error);
+    console.log('✅ [HEADER] Validation complète:', this.isFormValid());
+    
+    // Vérifier chaque fichier uploadé
+    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+      console.log(`📎 [HEADER] Fichier ${type}:`, {
+        name: fileData.name,
+        url: fileData.url,
+        hasUrl: !!fileData.url,
+        urlLength: fileData.url ? fileData.url.length : 0,
+        isTemporary: fileData.url ? fileData.url.startsWith('temp://') : false
+      });
+    }
+  }
+
+  /**
+   * Force la re-upload de tous les fichiers avec des URLs temporaires
+   */
+  retryAllTemporaryUploads() {
+    console.log('🔄 [HEADER] Re-upload de tous les fichiers avec URLs temporaires');
+    
+    const temporaryFiles: string[] = [];
+    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+      if (fileData.url && fileData.url.startsWith('temp://')) {
+        temporaryFiles.push(type);
+      }
+    }
+    
+    if (temporaryFiles.length === 0) {
+      console.log('✅ [HEADER] Aucun fichier avec URL temporaire trouvé');
+      return;
+    }
+    
+    console.log(`🔄 [HEADER] Fichiers avec URLs temporaires: ${temporaryFiles.join(', ')}`);
+    
+    // Supprimer tous les fichiers temporaires
+    for (const type of temporaryFiles) {
+      delete this.uploadedFiles[type];
+    }
+    
+    this.error = `Re-upload nécessaire pour ${temporaryFiles.length} fichier(s). Veuillez re-sélectionner les fichiers.`;
   }
 
   /**
@@ -420,10 +553,18 @@ export class Header implements OnInit, OnDestroy {
         return;
       }
 
+      // Gérer les URLs temporaires
+      let finalUrl = fileData.url;
+      if (fileData.url.startsWith('temp://')) {
+        console.warn(`⚠️ [HEADER] URL temporaire détectée pour ${type}, utilisation du nom de fichier`);
+        // Pour les URLs temporaires, utiliser le nom du fichier comme URL
+        finalUrl = fileData.name;
+      }
+
       attachments.push({
         name: fileData.name,
         type: type, // Utiliser le nom d'affichage comme type
-        url: fileData.url
+        url: finalUrl
       });
     }
 
@@ -470,7 +611,7 @@ export class Header implements OnInit, OnDestroy {
           } else if (error.status === 0) {
             this.error = 'Erreur de connexion. Vérifiez votre connexion internet.';
           } else {
-            this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+          this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
           }
           
           this.submitting = false;

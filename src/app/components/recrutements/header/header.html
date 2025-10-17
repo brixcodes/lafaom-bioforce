@@ -496,7 +496,9 @@
                               <label class="form-label mt-2">{{ attachmentType }} <span
                                   class="text-danger">*</span></label>
                               <input type="file" (change)="onFileSelected($event, attachmentType)"
-                                accept=".pdf,application/pdf" class="form-control">
+                                accept=".pdf,application/pdf" class="form-control" 
+                                [attr.data-attachment]="attachmentType"
+                                [id]="'file-' + attachmentType">
                             </span>
 
                             <div *ngIf="uploadingFiles[attachmentType]" class="mt-2">
@@ -507,12 +509,27 @@
                               </div>
                             </div>
 
-                            <!-- Fichier uploadé -->
-                            <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-2">
+                            <!-- Fichier uploadé avec succès -->
+                            <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType] && uploadedFiles[attachmentType].url" class="mt-2">
                               <div class="alert alert-success d-flex justify-content-between align-items-center">
                                 <span>✅ {{ uploadedFiles[attachmentType].name }}</span>
-                                <button type="button" (click)="removeFile(attachmentType)"
-                                  class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                <div class="btn-group" role="group">
+                                  <button type="button" (click)="removeFile(attachmentType)"
+                                    class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Fichier uploadé mais sans URL (erreur) -->
+                            <div *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType] && !uploadedFiles[attachmentType].url" class="mt-2">
+                              <div class="alert alert-warning d-flex justify-content-between align-items-center">
+                                <span>⚠️ {{ uploadedFiles[attachmentType].name }} (URL manquante)</span>
+                                <div class="btn-group" role="group">
+                                  <button type="button" (click)="retryUpload(attachmentType)"
+                                    class="btn btn-sm btn-outline-warning">Réessayer</button>
+                                  <button type="button" (click)="removeFile(attachmentType)"
+                                    class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </div>
                               </div>
                             </div>
 
