@@ -257,6 +257,26 @@ export class Header implements OnInit, OnDestroy {
   }
 
   /**
+   * Convertit les noms d'affichage en codes techniques pour l'API
+   */
+  private getAttachmentTechnicalCode(displayName: string): string {
+    const technicalCodes: { [key: string]: string } = {
+      'CV': 'CV',
+      'CV détaillé': 'RESUME',
+      'Lettre de motivation': 'COVER_LETTER',
+      'Copie de la pièce d\'identité': 'IDENTITY_CARD',
+      'Diplômes et certifications': 'DIPLOMA',
+      'Diplômes': 'DEGREE',
+      'Relevés de notes': 'TRANSCRIPT',
+      'Relevés de notes (Master)': 'TRANSCRIPT',
+      'Attestations de formation': 'CERTIFICATE',
+      'Lettres de recommandation': 'RECOMMENDATION_LETTER'
+    };
+
+    return technicalCodes[displayName] || displayName;
+  }
+
+  /**
    * Gère la sélection de fichiers
    */
   onFileSelected(event: any, attachmentType: string) {
@@ -542,13 +562,13 @@ export class Header implements OnInit, OnDestroy {
     
     // Préparer les attachments selon le format attendu par le backend
     const attachments: JobAttachmentInput[] = [];
-    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
-      console.log(`📎 [HEADER] Traitement du fichier ${type}:`, fileData);
+    for (const [displayType, fileData] of Object.entries(this.uploadedFiles)) {
+      console.log(`📎 [HEADER] Traitement du fichier ${displayType}:`, fileData);
       
       // Vérifier que l'URL existe
       if (!fileData.url) {
-        console.error(`❌ [HEADER] URL manquante pour le fichier ${type}`);
-        this.error = `URL manquante pour le fichier ${type}. Veuillez re-uploader ce fichier.`;
+        console.error(`❌ [HEADER] URL manquante pour le fichier ${displayType}`);
+        this.error = `URL manquante pour le fichier ${displayType}. Veuillez re-uploader ce fichier.`;
         this.submitting = false;
         return;
       }
@@ -556,14 +576,18 @@ export class Header implements OnInit, OnDestroy {
       // Gérer les URLs temporaires
       let finalUrl = fileData.url;
       if (fileData.url.startsWith('temp://')) {
-        console.warn(`⚠️ [HEADER] URL temporaire détectée pour ${type}, utilisation du nom de fichier`);
+        console.warn(`⚠️ [HEADER] URL temporaire détectée pour ${displayType}, utilisation du nom de fichier`);
         // Pour les URLs temporaires, utiliser le nom du fichier comme URL
         finalUrl = fileData.name;
       }
 
+      // Convertir le nom d'affichage en code technique
+      const technicalType = this.getAttachmentTechnicalCode(displayType);
+      console.log(`🔄 [HEADER] Conversion ${displayType} -> ${technicalType}`);
+
       attachments.push({
         name: fileData.name,
-        type: type, // Utiliser le nom d'affichage comme type
+        type: technicalType, // Utiliser le code technique pour l'API
         url: finalUrl
       });
     }
