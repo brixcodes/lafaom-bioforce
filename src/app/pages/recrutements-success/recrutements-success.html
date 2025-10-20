@@ -20,9 +20,9 @@
                         <div class="success-icon">
                             <i class="icon-check-circle"></i>
                         </div>
-                        
+
                         <h2 class="success-title">✅ Candidature soumise avec succès !</h2>
-                        
+
                         <div class="success-message">
                             <p>Votre candidature a été enregistrée avec succès.</p>
                             <p *ngIf="applicationNumber" class="application-number">
@@ -31,11 +31,19 @@
                         </div>
 
                         <div class="payment-info pa-4">
-                            <div class="alert alert-warning">
+                            <div *ngIf="paymentLink; else transferNotice" class="alert alert-warning">
                                 <h4>⚠️ Paiement requis</h4>
-                                <p>Pour que votre candidature soit étudiée, vous devez effectuer le paiement des frais de candidature.</p>
+                                <p>Pour que votre candidature soit étudiée, vous devez effectuer le paiement des frais
+                                    de candidature.</p>
                                 <p><strong>Les frais sont obligatoires et non négociables.</strong></p>
                             </div>
+                            <ng-template #transferNotice>
+                                <div class="alert alert-info">
+                                    <h4>📥 Candidature en étude</h4>
+                                    <p>Vous avez choisi le virement bancaire. Votre candidature est en cours d'examen.</p>
+                                    <p>Vous serez notifié après la vérification de l'ensemble des pièces requises et de la crédibilité du reçu de paiement.</p>
+                                </div>
+                            </ng-template>
                         </div>
 
                         <div class="next-steps">
@@ -49,12 +57,10 @@
                         </div>
 
                         <div class="action-buttons">
-                            <a routerLink="/recrutements" class="btn btn-secondary">
+                            <a routerLink="/recruitment" class="btn btn-secondary">
                                 Retour aux offres d'emploi
                             </a>
-                            <a *ngIf="paymentLink" class="btn btn-primary" [href]="paymentLink" target="_blank" rel="noopener">
-                                Continuer vers le paiement
-                            </a>
+                            <a *ngIf="paymentLink" class="btn btn-primary" [href]="paymentLink" target="_blank" rel="noopener">Continuer vers le paiement</a>
                         </div>
                     </div>
                 </div>

@@ -10,12 +10,13 @@ export interface JobApplicationCreateInput {
   phone_number: string;
   first_name: string;
   last_name: string;
-  civility?: string;
-  country_code?: string;
-  city?: string;
-  address?: string;
-  date_of_birth?: string;
+  civility: string;
+  country_code: string;
+  city: string;
+  address: string;
+  date_of_birth: string;
   attachments?: JobAttachmentInput[];
+  payment_method: 'ONLINE' | 'TRANSFER';
 }
 
 export interface JobApplicationResponse {

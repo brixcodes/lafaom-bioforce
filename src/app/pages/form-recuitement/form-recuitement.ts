@@ -20,6 +20,7 @@ export class FormRecuitement {
   requiredAttachments: string[] = [];
   isSubmitting = false;
   submitError: string | null = null;
+  paymentMethod: 'ONLINE' | 'TRANSFER' = 'ONLINE';
 
   constructor(
     private fb: FormBuilder,
@@ -34,8 +35,29 @@ export class FormRecuitement {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
+      civility: ['', [Validators.required]],
+      country_code: ['SN', [Validators.required]],
+      city: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      date_of_birth: ['', [Validators.required, this.minAgeValidator(16)]],
       consent: [false, [Validators.requiredTrue]]
     });
+  }
+
+  private minAgeValidator(minYears: number): ValidatorFn {
+    return (control) => {
+      const value = control?.value;
+      if (!value) return null;
+      const birth = new Date(value);
+      if (isNaN(birth.getTime())) return { minAge: { requiredAge: minYears } };
+      const today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      const m = today.getMonth() - birth.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+        age--;
+      }
+      return age >= minYears ? null : { minAge: { requiredAge: minYears } };
+    };
   }
 
   ngOnInit(): void {
@@ -62,7 +84,7 @@ export class FormRecuitement {
   }
 
   private ensureAttachmentControls(): void {
-    for (const type of this.requiredAttachments) {
+    for (const type of this.getAllRequiredAttachmentTypes()) {
       const controlName = this.getAttachmentControlName(type);
       if (!this.form.get(controlName)) {
         this.form.addControl(controlName, new FormControl<File | null>(null, [Validators.required]));
@@ -71,6 +93,31 @@ export class FormRecuitement {
         this.form.get(controlName)!.updateValueAndValidity();
       }
     }
+  }
+
+  onPaymentMethodChange(method: 'ONLINE' | 'TRANSFER') {
+    this.paymentMethod = method;
+    // Ensure dynamic controls based on payment method
+    const allTypes = this.getAllRequiredAttachmentTypes();
+    for (const type of allTypes) {
+      const controlName = this.getAttachmentControlName(type);
+      if (!this.form.get(controlName)) {
+        this.form.addControl(controlName, new FormControl<File | null>(null, [Validators.required]));
+      }
+    }
+    // If switching back to ONLINE, keep control but make it optional? Requirement says only when transfer it's required
+    const receiptName = this.getAttachmentControlName('BANK_TRANSFER_RECEIPT');
+    if (this.paymentMethod === 'TRANSFER') {
+      this.form.get(receiptName)?.setValidators([Validators.required]);
+    } else {
+      this.form.get(receiptName)?.clearValidators();
+      this.form.get(receiptName)?.updateValueAndValidity();
+    }
+  }
+
+  private getAllRequiredAttachmentTypes(): string[] {
+    const extras = this.paymentMethod === 'TRANSFER' ? ['BANK_TRANSFER_RECEIPT'] : [];
+    return [...this.requiredAttachments, ...extras];
   }
 
   getAttachmentControlName(type: string): string {
@@ -85,6 +132,8 @@ export class FormRecuitement {
         return 'Lettre de motivation';
       case 'DIPLOMA':
         return 'Diplôme';
+      case 'BANK_TRANSFER_RECEIPT':
+        return 'Reçu de virement';
       default:
         return type;
     }
@@ -119,7 +168,7 @@ export class FormRecuitement {
 
     const uploadCalls = [] as Array<ReturnType<JobApplicationService['uploadAttachment']>>;
     // Vérifier que tous les fichiers requis sont présents
-    for (const type of this.requiredAttachments) {
+    for (const type of this.getAllRequiredAttachmentTypes()) {
       const controlName = this.getAttachmentControlName(type);
       const file: File | null = this.form.get(controlName)?.value || null;
       if (!file) {
@@ -128,7 +177,7 @@ export class FormRecuitement {
         return;
       }
     }
-    for (const type of this.requiredAttachments) {
+    for (const type of this.getAllRequiredAttachmentTypes()) {
       const controlName = this.getAttachmentControlName(type);
       const file: File | null = this.form.get(controlName)?.value || null;
       if (file) {
@@ -166,6 +215,12 @@ export class FormRecuitement {
         phone_number: this.form.value.phone,
         first_name: this.form.value.firstName,
         last_name: this.form.value.lastName,
+        payment_method: this.paymentMethod,
+        civility: this.form.value.civility || undefined,
+        country_code: this.form.value.country_code || 'SN',
+        city: this.form.value.city || undefined,
+        address: this.form.value.address || undefined,
+        date_of_birth: this.form.value.date_of_birth || undefined,
         attachments: attachments.length ? attachments : undefined
       };
       this.jobApplicationService.createApplication(payload).subscribe({

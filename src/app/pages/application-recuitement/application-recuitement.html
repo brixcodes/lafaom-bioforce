@@ -7,9 +7,9 @@
                     alt="">
             </div>
             <div class="page-header-inner">
-                <div class="page-title">
+                <div class="page-title" *ngIf="jobOffer && !error">
                     <h1 style="text-transform: uppercase;">
-                        Détails de l'offre d'emploi
+                        Offre : {{jobOffer.title}}
                     </h1>
                 </div>
                 <div class="page-sub-title">
