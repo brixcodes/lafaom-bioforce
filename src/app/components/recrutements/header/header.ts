@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { JobService } from '../../../services/job.service';
@@ -42,7 +42,8 @@ export class Header implements OnInit, OnDestroy {
   constructor(
     private jobService: JobService,
     private jobApplicationService: JobApplicationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.applicationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -128,6 +129,11 @@ export class Header implements OnInit, OnDestroy {
     this.selectedJob = job;
     this.showModal = true;
     console.log('📋 [HEADER] Modal ouvert pour:', job.title);
+  }
+
+  viewJobDetails(job: JobOffer) {
+    console.log('📋 [HEADER] Redirection vers les détails de l\'offre:', job.title, 'ID:', job.id);
+    this.router.navigate(['/application-recuitement', job.id]);
   }
 
   closeModal() {

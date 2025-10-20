@@ -11,12 +11,14 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class RecrutementsSuccess implements OnInit {
   applicationNumber: string | null = null;
+  paymentLink: string | null = null;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.applicationNumber = params['applicationNumber'] || null;
+      this.paymentLink = params['paymentLink'] || null;
     });
   }
 }

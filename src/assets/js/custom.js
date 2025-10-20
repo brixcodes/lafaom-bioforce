@@ -57,6 +57,8 @@
 //             }
 //         })
 //     };
+
+
 //     const paginationHandler = () => {
 //         $(document).on('click', '.load-more-formations', function (event) {
 //             event.preventDefault();
@@ -169,7 +171,10 @@ jQuery(document).ready(function ($) {
             let htmlText = $(this).parents('.filters').data('noresult');
             if (!ajaxState) {
                 ajaxState = true;
-                $('body').append(loader);
+                // Ne pas ajouter le loader sur la page application-recuitement
+                if (!window.location.pathname.includes('application-recuitement')) {
+                    $('body').append(loader);
+                }
                 pageId = pageId == "undefined" ? 1 : pageId;
                 $(this).find('input[name="page"]').val(pageId);
                 let url = $(this).attr('action');

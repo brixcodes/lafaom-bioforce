@@ -30,7 +30,7 @@
                             </p>
                         </div>
 
-                        <div class="payment-info">
+                        <div class="payment-info pa-4">
                             <div class="alert alert-warning">
                                 <h4>⚠️ Paiement requis</h4>
                                 <p>Pour que votre candidature soit étudiée, vous devez effectuer le paiement des frais de candidature.</p>
@@ -39,21 +39,21 @@
                         </div>
 
                         <div class="next-steps">
-                            <h3>Prochaines étapes :</h3>
-                            <ol>
+                            <h3 class="title-h3">Prochaines étapes :</h3>
+                            <ul>
                                 <li>Effectuez le paiement des frais de candidature</li>
                                 <li>Vous recevrez un email de confirmation</li>
                                 <li>Votre candidature sera étudiée par notre équipe</li>
                                 <li>Vous serez informé du résultat par email</li>
-                            </ol>
+                            </ul>
                         </div>
 
                         <div class="action-buttons">
-                            <a routerLink="/recrutements" class="btn btn-primary">
+                            <a routerLink="/recrutements" class="btn btn-secondary">
                                 Retour aux offres d'emploi
                             </a>
-                            <a routerLink="/acceuil" class="btn btn-outline-primary">
-                                Retour à l'accueil
+                            <a *ngIf="paymentLink" class="btn btn-primary" [href]="paymentLink" target="_blank" rel="noopener">
+                                Continuer vers le paiement
                             </a>
                         </div>
                     </div>

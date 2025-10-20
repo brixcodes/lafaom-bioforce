@@ -12742,7 +12742,7 @@ strong {
     overflow: hidden
 }
 
-.wait-loading {
+/* .wait-loading {
     background-color: rgba(255, 255, 255, .5);
     position: fixed;
     width: 100%;
@@ -12750,9 +12750,9 @@ strong {
     top: 0;
     left: 0;
     z-index: 999
-}
+} */
 
-.wait-loading:before {
+/* .wait-loading:before {
     content: "";
     background-image: url(../img/loader.gif);
     width: 50px;
@@ -12763,7 +12763,7 @@ strong {
     transform: translate(-50%, -50%);
     background-repeat: no-repeat;
     background-size: 50px
-}
+} */
 
 .link-wrapper {
     position: absolute;

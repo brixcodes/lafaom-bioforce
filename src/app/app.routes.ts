@@ -22,6 +22,8 @@ import { BoardMeeting } from './pages/news/board-meeting/board-meeting';
 
 import { ProcessRecruitment } from './pages/process-recruitment/process-recruitment';
 import { ProcessTraining } from './pages/process-training/process-training';
+import { ApplicationRecuitement } from './pages/application-recuitement/application-recuitement';
+import { FormRecuitement } from './pages/form-recuitement/form-recuitement';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -39,12 +41,17 @@ export const routes: Routes = [
     component: Section1
   },
   { 
+    path: 'form-recuitement/:id', 
+    component: FormRecuitement
+  },
+  { 
     path: 'recruitment/success', 
     component: RecrutementsSuccess
   },
   { path: 'contact', component: Contact },
   { path: 'process-recruitment', component: ProcessRecruitment },
   { path: 'process-training', component: ProcessTraining },
+  { path: 'application-recuitement/:id', component: ApplicationRecuitement },
   // Pages spécialisées
   { path: 'coordinator-message', component: CoordinatorMessage },
   { path: 'assistance-technician', component: AssistanceTechnician },
