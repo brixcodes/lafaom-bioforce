@@ -42,7 +42,10 @@
     "administrationCouncil": "Conseil d'administration",
     "keyDates": "Dates clés",
     "organigram": "Organigramme",
-    "budgeting": "Budgétisation"
+    "budgeting": "Budgétisation",
+    "trainingRecruitmentProcess": "Processus de recrutement aux formations",
+    "jobRecruitmentProcess": "Processus de recrutement à un poste",
+    "jobOffers": "Offres d'emploi"
   },
   "header": {
     "title": "LAFAOM",
@@ -251,15 +254,6 @@
   },
   "recruitment": {
     "title": "Recrutement",
-    "subtitle": "Rejoignez notre équipe",
-    "viewJob": "Voir l'offre",
-    "apply": "Postuler",
-    "deadline": "Date limite",
-    "location": "Lieu",
-    "type": "Type de contrat"
-  },
-  "recruitment": {
-    "title": "Recrutement",
     "parent": "recrutement",
     "subtitle": "Rejoignez une équipe engagée.",
     "description": "Postulez en ligne à nos offres d'emploi, que ce soit au siège, dans nos centres de formation régionaux ou sur nos missions, et découvrez sur cette page toutes les façons de vous engager avec nous.",
@@ -348,6 +342,47 @@
       "noSessions": "Aucune session disponible",
       "noSessionsMessage": "Il n'y a actuellement aucune session disponible pour cette offre d'emploi.",
       "backToJob": "Retour à l'offre d'emploi"
+    },
+    "trainingProcess": {
+      "title": "Processus de recrutement aux formations",
+      "subtitle": "Découvrez comment rejoindre nos programmes de formation",
+      "benefits": {
+        "title": "Avantages de nos formations"
+      },
+      "requirements": {
+        "title": "Prérequis"
+      },
+      "documents": {
+        "title": "Documents requis"
+      },
+      "cta": {
+        "title": "Prêt à commencer votre formation ?",
+        "description": "Rejoignez notre communauté d'apprenants et développez vos compétences professionnelles",
+        "viewFormations": "Voir nos formations",
+        "startApplication": "Commencer ma candidature"
+      }
+    },
+    "jobProcess": {
+      "title": "Processus de recrutement à un poste",
+      "subtitle": "Découvrez comment rejoindre notre équipe professionnelle",
+      "benefits": {
+        "title": "Avantages de travailler avec nous"
+      },
+      "requirements": {
+        "title": "Prérequis"
+      },
+      "documents": {
+        "title": "Documents requis"
+      },
+      "tips": {
+        "title": "Conseils pour l'entretien"
+      },
+      "cta": {
+        "title": "Prêt à rejoindre notre équipe ?",
+        "description": "Découvrez nos offres d'emploi et postulez dès aujourd'hui",
+        "viewJobs": "Voir nos offres",
+        "contactUs": "Nous contacter"
+      }
     }
   },
   "contact": {
@@ -371,7 +406,7 @@
     "hero": {
       "title": "Formation d'excellence pour l'amélioration du système judiciaire en Afrique",
       "subtitle": "Institut LAFAOM-MAO",
-        "description": "L'Institut LAFAOM-MAO de Ziguinchor, forme des auxiliaires de Vie en Univers Judiciaire (AVUJ) pour accompagner les personnes affectées par les décisions de justice.",
+      "description": "L'Institut LAFAOM-MAO de Ziguinchor, forme des auxiliaires de Vie en Univers Judiciaire (AVUJ) pour accompagner les personnes affectées par les décisions de justice.",
       "mission": "Notre mission est de rendre la justice plus humaine et efficace en réduisant les impacts dévastateurs sur les femmes, les enfants et les personnes âgées, victimes de vulnérabilités sociales et sanitaires.",
       "institute": "NOUS SOMMES L'INSTITUT DE FORMATION LAFAOM-MAO.",
       "discoverBioforce": "Découvrir l'institut LAFAOM-MAO"

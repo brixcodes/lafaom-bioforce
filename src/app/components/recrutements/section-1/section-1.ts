@@ -389,7 +389,7 @@ export class Section1 implements OnInit, OnDestroy {
                   window.location.href = response.data.payment.payment_link;
                 } else if (response.data && response.data.job_application) {
                   console.log('Redirection vers la page de succès');
-                  this.router.navigate(['/recrutements/success'], {
+                  this.router.navigate(['/recruitment/success'], {
                     queryParams: { applicationNumber: response.data.job_application.application_number }
                   });
                 } else {

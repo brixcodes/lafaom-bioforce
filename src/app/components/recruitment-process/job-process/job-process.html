@@ -1,0 +1,123 @@
+<div class="job-process-container">
+  <div class="container-1440">
+    <!-- Header Section -->
+    <div class="process-header text-center">
+      <h2 class="process-title">{{ 'recruitment.jobProcess.title' | translate }}</h2>
+      <p class="process-subtitle">{{ 'recruitment.jobProcess.subtitle' | translate }}</p>
+    </div>
+
+    <!-- Process Steps -->
+    <div class="process-steps">
+      <div class="row">
+        <div class="col-12">
+          <div class="steps-timeline">
+            <div class="step-item" *ngFor="let step of steps; let i = index">
+              <div class="step-content">
+                <div class="step-number">
+                  <span class="number">{{ step.number }}</span>
+                  <i [class]="step.icon"></i>
+                </div>
+                <div class="step-info">
+                  <h4 class="step-title">{{ step.title }}</h4>
+                  <p class="step-description">{{ step.description }}</p>
+                  <div class="step-details" *ngIf="step.details">
+                    <ul class="details-list">
+                      <li *ngFor="let detail of step.details">{{ detail }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="step-connector" *ngIf="i < steps.length - 1">
+                <div class="connector-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits-section">
+      <div class="row">
+        <div class="col-12">
+          <h3 class="section-title text-center">{{ 'recruitment.jobProcess.benefits.title' | translate }}</h3>
+          <div class="benefits-grid">
+            <div class="benefit-item" *ngFor="let benefit of benefits">
+              <div class="benefit-icon">
+                <i [class]="benefit.icon"></i>
+              </div>
+              <div class="benefit-content">
+                <h5 class="benefit-title">{{ benefit.title }}</h5>
+                <p class="benefit-description">{{ benefit.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Requirements and Documents Section -->
+    <div class="requirements-section">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="requirements-card">
+            <h4 class="card-title">
+              <i class="fas fa-clipboard-list"></i>
+              {{ 'recruitment.jobProcess.requirements.title' | translate }}
+            </h4>
+            <ul class="requirements-list">
+              <li *ngFor="let requirement of requirements">
+                <i class="fas fa-check-circle"></i>
+                {{ requirement }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="documents-card">
+            <h4 class="card-title">
+              <i class="fas fa-file-alt"></i>
+              {{ 'recruitment.jobProcess.documents.title' | translate }}
+            </h4>
+            <ul class="documents-list">
+              <li *ngFor="let document of documents">
+                <i class="fas fa-file-pdf"></i>
+                {{ document }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="tips-card">
+            <h4 class="card-title">
+              <i class="fas fa-lightbulb"></i>
+              {{ 'recruitment.jobProcess.tips.title' | translate }}
+            </h4>
+            <ul class="tips-list">
+              <li *ngFor="let tip of interviewTips">
+                <i class="fas fa-star"></i>
+                {{ tip }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section text-center">
+      <h3 class="cta-title">{{ 'recruitment.jobProcess.cta.title' | translate }}</h3>
+      <p class="cta-description">{{ 'recruitment.jobProcess.cta.description' | translate }}</p>
+      <div class="cta-buttons">
+        <a href="/recruitment" class="btn btn-primary btn-lg">
+          <i class="fas fa-briefcase"></i>
+          {{ 'recruitment.jobProcess.cta.viewJobs' | translate }}
+        </a>
+        <a href="/contact" class="btn btn-outline-primary btn-lg">
+          <i class="fas fa-envelope"></i>
+          {{ 'recruitment.jobProcess.cta.contactUs' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

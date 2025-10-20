@@ -161,6 +161,6 @@ export class ActualiteDetails implements OnInit, OnDestroy {
   }
 
   goBack() {
-    this.router.navigate(['/actualites']);
+    this.router.navigate(['/news']);
   }
 }
