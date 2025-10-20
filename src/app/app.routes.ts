@@ -24,6 +24,8 @@ import { ProcessRecruitment } from './pages/process-recruitment/process-recruitm
 import { ProcessTraining } from './pages/process-training/process-training';
 import { ApplicationRecuitement } from './pages/application-recuitement/application-recuitement';
 import { FormRecuitement } from './pages/form-recuitement/form-recuitement';
+import { ApplicationTraining } from './pages/application-training/application-training';
+import { FormTraining } from './pages/form-training/form-training';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -40,6 +42,8 @@ export const routes: Routes = [
     path: 'recruitment/candidature/:id', 
     component: Section1
   },
+  { path: 'application-training/:id', component: ApplicationTraining },
+  { path: 'form-training/:id', component: FormTraining },
   { 
     path: 'form-recuitement/:id', 
     component: FormRecuitement

@@ -51,18 +51,6 @@
                                 {{ getAvailableSessionsCount(training) }} {{ 'training.availableSessions' | translate }}
                             </span>
                         </div>
-                        <!-- Boutons conditionnels selon la disponibilité -->
-                        <!-- <div *ngIf="hasAvailableSessions(training)" class="d-flex gap-2">
-                            <button (click)="openModal(training)" class="btn btn-outline-info btn-sm" title="Voir les détails">
-                                <i class="icon-eye"></i>
-                                <span class="sr-only">Voir les détails</span>
-                            </button>
-                            <button (click)="openApplicationModal(training)" class="btn btn-primary btn-sm" title="Postuler">
-                                <i class="icon-check"></i>
-                                <span class="sr-only">Postuler</span>
-                            </button>
-                        </div> -->
-
 
                         <button (click)="openModal(training)" class="btn btn-outline-primary btn-more"
                             [title]="'training.viewDetails' | translate">
@@ -281,12 +269,6 @@
                                                                 session.currency) }}
                                                             </span>
                                                             <br>
-                                                            <!-- <span class="price-label">{{ 'training.modal.trainingFee' |
-                                                                translate }}</span> -->
-                                                            <!-- <span class="regular-price">
-                                                                {{ formatPrice(session.training_fee || 0,
-                                                                session.currency) }}
-                                                            </span> -->
                                                         </div>
 
                                                         <!-- Bouton Sélectionner -->
@@ -490,26 +472,6 @@
                                                                     'Soumettre la candidature' }}
                                                                 </button>
                                                             </div>
-
-                                                            <!-- Boutons de soumission -->
-                                                            <!-- <div class="d-flex justify-content-end gap-3 mt-4">
-                                                                <button type="button" class="btn btn-danger mx-2"
-                                                                    style="background-color: #f40b0b; border-color: #a12323;"
-                                                                    (click)="closeApplicationModal()">
-                                                                    {{ 'training.application.cancel' | translate }}
-                                                                </button>
-
-                                                                <button type="submit" class="btn btn-primary"
-                                                                    [disabled]="submitting">
-                                                                    <span *ngIf="submitting"
-                                                                        class="spinner-border spinner-border-sm me-2"
-                                                                        role="status" aria-hidden="true"></span>
-                                                                    {{ submitting ? ('training.application.submitting' |
-                                                                    translate) :
-                                                                    ('training.application.submit' | translate) }}
-                                                                </button>
-                                                            </div> -->
-
                                                         </div>
                                                     </div>
                                                 </div>

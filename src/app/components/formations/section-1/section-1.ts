@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { TrainingService } from '../../../services/training.service';
@@ -47,7 +48,8 @@ export class Section1 implements OnInit, OnDestroy {
     private trainingService: TrainingService,
     private filterService: TrainingFilterService,
     private studentApplicationService: StudentApplicationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.applicationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -362,13 +364,9 @@ export class Section1 implements OnInit, OnDestroy {
    * Ouvrir le modal de détails de formation
    */
   openModal(training: Training) {
-    this.selectedTraining = training;
-    this.showModal = true;
-    this.loadTrainingSessions(training.id);
-
-    // Empêcher le scroll du body quand le modal est ouvert
-    if (typeof document !== 'undefined') {
-      document.body.classList.add('modal-open');
+    if (training?.id) {
+      this.router.navigate(['/application-training', training.id]);
+      return;
     }
   }
 
@@ -412,13 +410,10 @@ export class Section1 implements OnInit, OnDestroy {
    * Ouvrir le modal de candidature
    */
   selectSession(session: TrainingSession) {
-    this.selectedSession = session;
-    this.openApplicationModal(this.selectedTraining!);
-
-    // Mettre à jour le formulaire avec l'ID de la session
-    this.applicationForm.patchValue({
-      target_session_id: session.id
-    });
+    // Naviguer vers la page application-training avec l'ID de la formation
+    const trainingId = this.selectedTraining?.id || session.training_id;
+    if (!trainingId) return;
+    window.location.href = `/application-training/${trainingId}`;
   }
 
   openApplicationModal(training: Training) {

@@ -60,7 +60,7 @@ export class TrainingService {
   /**
    * Récupérer une formation par son ID
    */
-  getTrainingById(id: number): Observable<{data: Training}> {
+  getTrainingById(id: number | string): Observable<{data: Training}> {
     return this.http.get<{data: Training}>(`${this.baseUrl}/trainings/${id}`)
       .pipe(
         catchError((error: any) => {
@@ -162,6 +162,20 @@ export class TrainingService {
           });
         })
       );
+  }
+
+  /**
+   * Backward-compatible alias used by pages
+   */
+  getSessionsByTrainingId(trainingId: string): Observable<TrainingSessionsResponse> {
+    return this.getTrainingSessions(trainingId, { page_size: 100 });
+  }
+
+  /**
+   * Create student application (public endpoint)
+   */
+  createStudentApplication(payload: { email: string; target_session_id: string }): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/student-applications`, payload);
   }
 
   /**

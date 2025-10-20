@@ -1,1 +1,27 @@
-<p>form-training works!</p>
+<div class="container-1440">
+    <h2 class="title-h2">Candidature à la formation</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" formControlName="email">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Session cible <span class="text-danger">*</span></label>
+                <select class="form-control" formControlName="target_session_id">
+                    <option value="" disabled>Choisir...</option>
+                    <option *ngFor="let s of sessions" [value]="s.id">{{ s.start_date }} - {{ s.end_date }} ({{ s.status }})</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-check my-3">
+            <input class="form-check-input" type="checkbox" id="consent" formControlName="consent">
+            <label class="form-check-label" for="consent">
+                J'accepte le traitement de mes données personnelles pour cette candidature.
+            </label>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">Soumettre</button>
+        </div>
+    </form>
+</div>
