@@ -1,4 +1,4 @@
-Styles pour la page de détails d'offre d'emploi
+/* Styles pour la page de détails d'offre d'emploi */
 
 .job-details-card {
   background: white;
@@ -260,29 +260,29 @@ Styles pour la page de détails d'offre d'emploi
   .job-header {
     padding: 20px;
   }
-  
+
   .job-title {
     font-size: 2rem;
   }
-  
+
   .job-content {
     padding: 20px;
   }
-  
+
   .application-card {
     position: static;
     margin-top: 30px;
   }
-  
+
   .job-meta {
     align-items: flex-start;
     margin-top: 15px;
   }
-  
+
   .job-info .row {
     margin: 0;
   }
-  
+
   .job-info .col-md-6 {
     padding: 0;
     margin-bottom: 15px;
@@ -293,11 +293,11 @@ Styles pour la page de détails d'offre d'emploi
   .job-title {
     font-size: 1.5rem;
   }
-  
+
   .job-section h3 {
     font-size: 1.3rem;
   }
-  
+
   .application-card {
     padding: 20px;
   }

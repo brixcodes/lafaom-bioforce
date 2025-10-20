@@ -1,5 +1,5 @@
 /* Header */
-.content .page-header {
+/* .content .page-header {
   position: relative;
 }
 .content .page-header .has-background {
@@ -21,43 +21,125 @@
 .content .page-sub-title p {
   margin: 8px 0 0 0;
   color: #6b7280;
+} */
+
+/* Application Card */
+.application-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  position: sticky;
+  top: 20px;
 }
 
-/* Carte candidature à droite */
-.application-card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+.application-card h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.job-summary {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.job-summary h4 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.summary-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item strong {
+  color: #495057;
+  font-weight: 600;
+}
+
+.application-actions {
+  margin-bottom: 25px;
+}
+
+.btn-primary {
+  /* background: linear-gradient(135deg, #007bff, #0056b3); */
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  /* background: linear-gradient(135deg, #0056b3, #004085); */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-info {
+  background: #f8f9fa;
+  border-radius: 10px;
   padding: 20px;
 }
-.job-summary h4 {
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-.job-summary .summary-item {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 6px;
-  color: #111827;
-}
-.application-actions {
-  margin-top: 16px;
-}
-.contact-info {
-  margin-top: 18px;
-}
-.contact-info ul {
-  padding-left: 18px;
-  margin: 8px 0 0 0;
-}
-.contact-info li {
-  margin-bottom: 4px;
+
+.contact-info h4 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
+.contact-info p {
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  padding: 8px 0;
+  color: #495057;
+  display: flex;
+  align-items: center;
+}
+
+.contact-list i {
+  /* color: #007bff; */
+  width: 20px;
+}
+
+
 /* Utilitaires */
-.container-1440 { max-width: 1440px; margin: 0 auto; }
+/* .container-1440 { max-width: 1440px; margin: 0 auto; }
 .w-100 { width: 100%; }
 .mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 1.5rem; } */
 
 
