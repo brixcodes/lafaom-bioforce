@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -83,7 +85,7 @@ export class ConfigService {
     AUTRE: 'autre'
   };
 
-  constructor() { 
+  constructor(private http: HttpClient) { 
     console.log('🔧 [CONFIG] Configuration initialisée:', {
       apiUrl: environment.apiUrl,
       backendUrl: environment.backendUrl,
@@ -127,5 +129,19 @@ export class ConfigService {
    */
   isValidFileSize(fileSize: number): boolean {
     return fileSize <= this.LIMITS.MAX_FILE_SIZE;
+  }
+
+  /**
+   * Récupérer les méthodes de paiement disponibles
+   */
+  getPaymentMethods(subscriptionType?: string): Observable<any> {
+    const endpoint = subscriptionType 
+      ? `payments/payment-methods/${subscriptionType}`
+      : 'payments/payment-methods';
+    
+    const url = `${this.API_BASE_URL}/${endpoint}`;
+    console.log('🔧 [CONFIG] Récupération des méthodes de paiement:', url);
+    
+    return this.http.get(url);
   }
 }

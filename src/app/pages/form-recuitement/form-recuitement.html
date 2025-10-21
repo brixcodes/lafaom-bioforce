@@ -26,13 +26,12 @@
         </div>
     </div>
 
-    <div class="container-1440">
-        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-            <div class="row container">
-                <div class="col-lg-11 mx-auto">
-                    <div class="application-card container-1440">
-                        <h2 class="title-h2">Informations personnelles</h2>
-                        <br>
+    <div class="row">
+        <div class="col-lg-8 container">
+            <div class="container-1440">
+                <div class="section-textriche">
+                    <h2 class="title-h2">Informations personnelles</h2>
+                    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
                         <br>
                         <div class="row">
                             <div class="col-12 col-md-6 mb-3">
@@ -110,34 +109,70 @@
                             </div>
                         </div>
                         <br>
-                        <h2 class="title-h2">Pièces jointes</h2>
-                        <br>
-                        <br>
+                        <h2 class="title-h2">Sélectionner votre méthode de paiement</h2>
+
                         <span class="d-block card p-3 shadow" style="border-radius: 1rem;">
                             <div class="mb-3">
-                                <h3 class="me-3 ml-2" style="text-transform: none;">Méthode de paiement:</h3>
-                                <br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" style="width: 25px; height: 25px;" type="radio"
+                                    <input class="form-check-input mr-3"
+                                        style="width: 25px; height: 25px; margin-top: 40px;" type="radio"
                                         name="paymentMethod" id="pmOnline" [checked]="paymentMethod==='ONLINE'"
                                         (change)="onPaymentMethodChange('ONLINE')">
-                                    <h4 class="form-check-label" style="text-transform: none;" for="pmOnline">Paiement
-                                        en ligne</h4>
+                                    <p class="form-check-label" style="text-transform: none; cursor: pointer;"
+                                        for="pmOnline">
+                                        <strong>Payer directement en ligne</strong>
+                                    </p>
                                 </div>
-                                <div class="form-check form-check-inline mx-5">
-                                    <input class="form-check-input" type="radio" style="width: 25px; height: 25px;"
-                                        name="paymentMethod" id="pmTransfer" [checked]="paymentMethod==='TRANSFER'"
+                                <div class="form-check form-check-inline ml-5">
+                                    <input class="form-check-input mr-3" type="radio"
+                                        style="width: 25px; height: 25px; margin-top: 40px;" name="paymentMethod"
+                                        id="pmTransfer" [checked]="paymentMethod==='TRANSFER'"
                                         (change)="onPaymentMethodChange('TRANSFER')">
-                                    <h4 class="form-check-label" style="text-transform: none;" for="pmTransfer">Virement
-                                        bancaire</h4>
+                                    <p class="form-check-label" style="text-transform: none; cursor: pointer;"
+                                        for="pmOnline">
+                                        <strong>Payer par virement bancaire</strong>
+                                    </p>
                                 </div>
                             </div>
                         </span>
+
+                        <div class="container" *ngIf="paymentMethod === 'TRANSFER'">
+                            <div class="featured" data-action="">
+                                <div class="d-flex justify-content-between align-items-center align-items-center">
+                                    <div>
+                                        <h2 class="h3 has-border-l mt-3"
+                                            style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
+                                            <span class="text-dark">Informations du compte bancaire : </span>
+                                        </h2>
+
+                                        <ul style="line-height: 0%;" class="text-dark">
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Banque :</strong>
+                                                CBAO Groupe Attijariwafa Bank</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Agence :</strong>
+                                                Cap Skirting</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Code banque
+                                                    :</strong> SN08</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Code guichet
+                                                    :</strong> SN012</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Numéro de compte
+                                                    :</strong> 03205 036214856601-87</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Bénéficiaire
+                                                    :</strong> Association LAFAOM</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <h2 class="title-h2 mt-5">Pièces à joindre</h2>
+
+
                         <div class="row mt-4">
                             <div class="col-md-12 mb-3"
                                 *ngFor="let type of (paymentMethod==='TRANSFER' ? requiredAttachments.concat(['BANK_TRANSFER_RECEIPT']) : requiredAttachments)">
                                 <label class="ml-2">
-                                    {{ translateAttachment(type) }} (PDF)
+                                    {{ translateAttachment(type) }} ce document ne dois pas dépasser 10MB et doit être en format PDF
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="file" class="form-control" accept="application/pdf"
@@ -148,6 +183,7 @@
                             </div>
                             <br>
                         </div>
+
                         <br>
                         <div class="form-check my-3">
                             <input class="form-check-input" type="checkbox" id="consent" formControlName="consent">
@@ -166,10 +202,14 @@
                         </div>
                         <br>
                         <br>
-                    </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
 </div>
