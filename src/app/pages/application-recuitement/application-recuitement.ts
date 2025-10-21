@@ -21,7 +21,12 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
     private router: Router,
     private jobOffersService: JobOffersService
   ) {}
-
+  hasContent(html: string): boolean {
+    if (!html) return false;
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    return (tempDiv.textContent || '').trim() !== '';
+  }
   ngOnInit(): void {
     this.loadJobOffer();
   }
@@ -32,9 +37,9 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
 
   loadJobOffer(): void {
     const jobId = this.route.snapshot.paramMap.get('id');
-    
+
     console.log('🔍 [APPLICATION-RECRUITEMENT] ID de l\'offre:', jobId);
-    
+
     if (!jobId) {
       this.error = 'ID de l\'offre d\'emploi manquant';
       return;
@@ -56,7 +61,7 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
           console.log('✅ [APPLICATION-RECRUITEMENT] Réponse reçue:', response);
           console.log('✅ [APPLICATION-RECRUITEMENT] Type de réponse:', typeof response);
           console.log('✅ [APPLICATION-RECRUITEMENT] Structure de la réponse:', JSON.stringify(response, null, 2));
-          
+
           if (response && typeof response === 'object') {
             if (response.data) {
               this.jobOffer = response.data;
@@ -80,9 +85,9 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
           console.error('❌ [APPLICATION-RECRUITEMENT] Status Text:', error.statusText);
           console.error('❌ [APPLICATION-RECRUITEMENT] Message:', error.message);
           console.error('❌ [APPLICATION-RECRUITEMENT] Error:', error.error);
-          
+
           let errorMessage = 'Erreur lors du chargement de l\'offre d\'emploi';
-          
+
           if (error.status === 404) {
             errorMessage = 'Offre d\'emploi non trouvée';
           } else if (error.status === 0) {
@@ -92,7 +97,7 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
           } else {
             errorMessage = `Erreur ${error.status}: ${error.error?.message || error.message || 'Erreur inconnue'}`;
           }
-          
+
           this.error = errorMessage;
         }
       })
@@ -101,7 +106,7 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
 
   private loadTestData(): void {
     console.log('🧪 [APPLICATION-RECRUITEMENT] Chargement des données de test...');
-    
+
     // Simuler un délai de chargement
     setTimeout(() => {
       this.jobOffer = {
@@ -130,14 +135,14 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
         created_at: '2024-01-01',
         updated_at: '2024-01-01'
       };
-      
+
       console.log('✅ [APPLICATION-RECRUITEMENT] Données de test chargées:', this.jobOffer);
     }, 1000);
   }
 
   formatDate(dateString: string): string {
     if (!dateString) return '';
-    
+
     try {
       const date = new Date(dateString);
       return date.toLocaleDateString('fr-FR', {
@@ -158,7 +163,7 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
 
   isApplicationDeadlinePassed(): boolean {
     if (!this.jobOffer?.submission_deadline) return false;
-    
+
     try {
       const deadline = new Date(this.jobOffer.submission_deadline);
       const now = new Date();
@@ -171,7 +176,7 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
 
   applyToJob(): void {
     if (!this.jobOffer) return;
-    
+
     // Rediriger vers la page de candidature avec l'ID de l'offre
     this.router.navigate(['/form-recuitement', this.jobOffer.id], {
       state: {

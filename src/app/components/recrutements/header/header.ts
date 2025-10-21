@@ -656,29 +656,36 @@ export class Header implements OnInit, OnDestroy {
   downloadDocument() {
     const documentUrl = '/asset/appel_offre_cabinet_conseil_lafaom.pdf';
     const fileName = 'Appel-d-offre-LAFAOM.pdf';
-
+    
     try {
       // Créer un élément <a> temporaire pour déclencher le téléchargement
       const link = document.createElement('a');
       link.href = documentUrl;
       link.download = fileName;
       link.target = '_blank';
-
+      
       // Ajouter le lien au DOM temporairement
       document.body.appendChild(link);
-
+      
       // Déclencher le téléchargement
       link.click();
-
+      
       // Nettoyer le DOM
       document.body.removeChild(link);
-
+      
       console.log('📄 Document téléchargé avec succès:', fileName);
     } catch (error) {
       console.error('❌ Erreur lors du téléchargement du document:', error);
       // Fallback: ouvrir le document dans un nouvel onglet
       window.open(documentUrl, '_blank');
     }
+  }
+
+  /**
+   * Redirige vers le formulaire de candidature cabinet
+   */
+  applyForCabinet() {
+    this.router.navigate(['/form-cabinet']);
   }
 
   /**

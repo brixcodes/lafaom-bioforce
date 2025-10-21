@@ -348,23 +348,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-<br>
-<br>
-<br>
-
-<div class="featured" data-action="">
-  <div class="d-flex justify-content-between align-items-center align-items-center">
-    <div>
-      <h2 class="h3 has-border-l" style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
-        <span>{{ 'recruitment.cabinetRecruitment' | translate }}</span>
-      </h2>
-    </div>
-    <div class="d-none d-md-block">
-    </div>
+ 
+  
   </div>
 
 
@@ -380,9 +365,14 @@
             <strong>Type de contrat :</strong> Services de sélection et recrutement pour postes administratifs,
             pédagogiques et apprentis, démarrage en janvier 2025
           </p>
-          <button (click)="downloadDocument()" class="btn btn-primary btn-download" type="button">
-            Télécharger<i class="icon-download"></i>
-          </button>
+          <div class="d-flex gap-3 align-items-center">
+            <button (click)="downloadDocument()" class="btn btn-outline-primary btn-download mr-2" type="button">
+              Télécharger<i class="icon-download"></i>
+            </button>
+            <button (click)="applyForCabinet()" class="btn btn-primary ml-2" type="button">
+              Postuler
+            </button>
+          </div>
         </div>
       </li>
     </ul>
