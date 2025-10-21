@@ -1,4 +1,4 @@
-Styles pour la page de détails d'offre d'emploi
+/* Styles pour la page de détails d'offre d'emploi */
 
 .job-details-card {
   background: white;
@@ -108,7 +108,6 @@ Styles pour la page de détails d'offre d'emploi
   padding: 0;
   margin: 0;
 }
-
 .attachment-list li {
   padding: 10px 0;
   border-bottom: 1px solid #e9ecef;
@@ -129,7 +128,6 @@ Styles pour la page de détails d'offre d'emploi
   position: sticky;
   top: 20px;
 }
-
 .application-card h3 {
   color: #2c3e50;
   font-size: 1.5rem;
