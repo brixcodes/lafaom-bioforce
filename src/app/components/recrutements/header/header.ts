@@ -79,12 +79,12 @@ export class Header implements OnInit, OnDestroy {
         next: (response: any) => {
           this.loading = false;
           console.log('📋 [HEADER] Réponse complète:', response);
-          
+
           if (response.data && Array.isArray(response.data)) {
           this.featuredJobs = response.data;
             console.log('📋 [HEADER] Offres d\'emploi chargées:', this.featuredJobs);
             console.log('📋 [HEADER] Nombre d\'offres:', this.featuredJobs.length);
-            
+
             // Si aucune offre featured, charger toutes les offres disponibles
             if (this.featuredJobs.length === 0) {
               console.log('📋 [HEADER] Aucune offre featured, chargement de toutes les offres...');
@@ -106,12 +106,12 @@ export class Header implements OnInit, OnDestroy {
 
   loadAllJobs() {
     console.log('📋 [HEADER] Chargement de toutes les offres d\'emploi...');
-    
+
     this.subscription.add(
       this.jobService.getJobOffers({ per_page: 10 }).subscribe({
         next: (response: any) => {
           console.log('📋 [HEADER] Toutes les offres chargées:', response);
-          
+
           if (response.data && Array.isArray(response.data)) {
             this.featuredJobs = response.data;
             console.log('📋 [HEADER] Toutes les offres d\'emploi chargées:', this.featuredJobs);
@@ -195,7 +195,7 @@ export class Header implements OnInit, OnDestroy {
 
   formatDate(dateString: string): string {
     if (!dateString) return '';
-    
+
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
       year: 'numeric',
@@ -308,13 +308,13 @@ export class Header implements OnInit, OnDestroy {
           */
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
-           
+
            console.log(`📤 [HEADER] Début de l'upload du fichier ${attachmentType}:`, {
              fileName: fileName,
              fileSize: file.size,
              fileType: file.type
            });
-           
+
            // Marquer comme en cours d'upload
     this.uploadingFiles[attachmentType] = true;
            this.error = null; // Clear any previous errors
@@ -323,14 +323,14 @@ export class Header implements OnInit, OnDestroy {
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
                  console.log(`📤 [HEADER] Réponse d'upload pour ${attachmentType}:`, response);
-                 
+
           this.uploadingFiles[attachmentType] = false;
-                 
+
                  // Vérifier la structure de la réponse selon l'API backend
                  console.log(`🔍 [HEADER] Structure de réponse pour ${attachmentType}:`, response);
-                 
+
                  let uploadedFileData: any = null;
-                 
+
                  // Structure attendue selon l'API: JobAttachmentListOutSuccess
                  // { success: boolean, message: string, data: JobAttachmentOut[] }
                  if (response && response.success && response.data && Array.isArray(response.data) && response.data.length > 0) {
@@ -370,13 +370,13 @@ export class Header implements OnInit, OnDestroy {
                      name: fileName
                    };
                  }
-                 
+
                  if (uploadedFileData) {
                    this.uploadedFiles[attachmentType] = uploadedFileData;
-                   
+
                    console.log(`✅ [HEADER] Fichier ${attachmentType} uploadé avec succès:`, uploadedFileData);
                    console.log(`✅ [HEADER] URL stockée: ${uploadedFileData.url}`);
-                   
+
                    // Vérifier que l'URL est valide (mais accepter les URLs temporaires)
                    if (!uploadedFileData.url || uploadedFileData.url.trim() === '') {
                      console.error(`❌ [HEADER] URL vide ou invalide pour le fichier ${attachmentType}`);
@@ -402,9 +402,9 @@ export class Header implements OnInit, OnDestroy {
                    error: error.error,
                    url: error.url
                  });
-                 
+
           this.uploadingFiles[attachmentType] = false;
-                 
+
                  // Messages d'erreur spécifiques
                  if (error.status === 0) {
                    this.error = `Erreur de connexion pour ${attachmentType}. Vérifiez votre connexion internet.`;
@@ -415,7 +415,7 @@ export class Header implements OnInit, OnDestroy {
                  } else {
                    this.error = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message || 'Erreur inconnue'}`;
                  }
-                 
+
                  // Supprimer le fichier de la liste des fichiers uploadés
                  delete this.uploadedFiles[attachmentType];
         }
@@ -436,12 +436,12 @@ export class Header implements OnInit, OnDestroy {
    */
   retryUpload(attachmentType: string) {
     console.log(`🔄 [HEADER] Tentative de re-upload pour ${attachmentType}`);
-    
+
     // Supprimer le fichier actuel
     delete this.uploadedFiles[attachmentType];
     this.uploadingFiles[attachmentType] = false;
     this.error = null;
-    
+
     // Déclencher le sélecteur de fichier
     const fileInput = document.querySelector(`input[type="file"][data-attachment="${attachmentType}"]`) as HTMLInputElement;
     if (fileInput) {
@@ -463,7 +463,7 @@ export class Header implements OnInit, OnDestroy {
     console.log('📎 [HEADER] Fichiers en cours d\'upload:', this.uploadingFiles);
     console.log('❌ [HEADER] Erreur actuelle:', this.error);
     console.log('✅ [HEADER] Validation complète:', this.isFormValid());
-    
+
     // Vérifier chaque fichier uploadé
     for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
       console.log(`📎 [HEADER] Fichier ${type}:`, {
@@ -481,26 +481,26 @@ export class Header implements OnInit, OnDestroy {
    */
   retryAllTemporaryUploads() {
     console.log('🔄 [HEADER] Re-upload de tous les fichiers avec URLs temporaires');
-    
+
     const temporaryFiles: string[] = [];
     for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
       if (fileData.url && fileData.url.startsWith('temp://')) {
         temporaryFiles.push(type);
       }
     }
-    
+
     if (temporaryFiles.length === 0) {
       console.log('✅ [HEADER] Aucun fichier avec URL temporaire trouvé');
       return;
     }
-    
+
     console.log(`🔄 [HEADER] Fichiers avec URLs temporaires: ${temporaryFiles.join(', ')}`);
-    
+
     // Supprimer tous les fichiers temporaires
     for (const type of temporaryFiles) {
       delete this.uploadedFiles[type];
     }
-    
+
     this.error = `Re-upload nécessaire pour ${temporaryFiles.length} fichier(s). Veuillez re-sélectionner les fichiers.`;
   }
 
@@ -509,12 +509,12 @@ export class Header implements OnInit, OnDestroy {
    */
   isFormValid(): boolean {
     console.log('🔍 [HEADER] Vérification de la validité du formulaire...');
-    
+
     // Vérifier que tous les champs requis sont remplis
     const formValid = this.applicationForm.valid;
     console.log('📝 [HEADER] Formulaire valide:', formValid);
     console.log('📝 [HEADER] Erreurs du formulaire:', this.getFormErrors());
-    
+
     if (!formValid) {
       return false;
     }
@@ -523,7 +523,7 @@ export class Header implements OnInit, OnDestroy {
     const requiredAttachments = this.getRequiredAttachments(this.selectedJob);
     console.log('📎 [HEADER] Pièces jointes requises:', requiredAttachments);
     console.log('📎 [HEADER] Fichiers uploadés:', Object.keys(this.uploadedFiles));
-    
+
     for (const attachmentType of requiredAttachments) {
       if (!this.uploadedFiles[attachmentType]) {
         console.log(`❌ [HEADER] Fichier manquant: ${attachmentType}`);
@@ -554,7 +554,7 @@ export class Header implements OnInit, OnDestroy {
    */
   onSubmitApplication() {
     console.log('🚀 [HEADER] onSubmitApplication démarré');
-    
+
     if (!this.isFormValid()) {
       this.error = 'Veuillez remplir tous les champs requis et uploader tous les documents';
       return;
@@ -565,12 +565,12 @@ export class Header implements OnInit, OnDestroy {
 
     // Debug: Afficher les fichiers uploadés
     console.log('📎 [HEADER] Fichiers uploadés détaillés:', this.uploadedFiles);
-    
+
     // Préparer les attachments selon le format attendu par le backend
     const attachments: JobAttachmentInput[] = [];
     for (const [displayType, fileData] of Object.entries(this.uploadedFiles)) {
       console.log(`📎 [HEADER] Traitement du fichier ${displayType}:`, fileData);
-      
+
       // Vérifier que l'URL existe
       if (!fileData.url) {
         console.error(`❌ [HEADER] URL manquante pour le fichier ${displayType}`);
@@ -634,7 +634,7 @@ export class Header implements OnInit, OnDestroy {
             error: error.error,
             url: error.url
           });
-          
+
           // Afficher des messages d'erreur plus spécifiques
           if (error.status === 422) {
             this.error = `Erreur de validation: ${error.error?.detail || 'Données invalides'}`;
@@ -643,7 +643,7 @@ export class Header implements OnInit, OnDestroy {
           } else {
           this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
           }
-          
+
           this.submitting = false;
         }
       })
@@ -654,25 +654,25 @@ export class Header implements OnInit, OnDestroy {
    * Télécharge le document PDF d'appel d'offre
    */
   downloadDocument() {
-    const documentUrl = '/asset/appel_offre_cabinet_conseil_lafaom.pdf';
+    const documentUrl = '/asset/appel.pdf';
     const fileName = 'Appel-d-offre-LAFAOM.pdf';
-    
+
     try {
       // Créer un élément <a> temporaire pour déclencher le téléchargement
       const link = document.createElement('a');
       link.href = documentUrl;
       link.download = fileName;
       link.target = '_blank';
-      
+
       // Ajouter le lien au DOM temporairement
       document.body.appendChild(link);
-      
+
       // Déclencher le téléchargement
       link.click();
-      
+
       // Nettoyer le DOM
       document.body.removeChild(link);
-      
+
       console.log('📄 Document téléchargé avec succès:', fileName);
     } catch (error) {
       console.error('❌ Erreur lors du téléchargement du document:', error);
@@ -700,7 +700,7 @@ export class Header implements OnInit, OnDestroy {
     });
     console.log('🧪 [HEADER] Fichiers uploadés:', this.uploadedFiles);
     console.log('🧪 [HEADER] Validation du formulaire:', this.isFormValid());
-    
+
     // Simuler des données de test si nécessaire
     if (Object.keys(this.uploadedFiles).length === 0) {
       console.log('🧪 [HEADER] Aucun fichier uploadé - simulation de fichiers de test');
