@@ -106,6 +106,104 @@
                             <input type="hidden" class="form-control" formControlName="country_code" placeholder="SN">
                         </div>
 
+                        <!-- Section de paiement -->
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <h3 class="title-h2">Méthode de paiement</h3>
+                                <span class="d-block card p-3 shadow" style="border-radius: 1rem;">
+                                    <div class="mb-3">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input mr-3"
+                                                style="width: 25px; height: 25px; margin-top: 40px;" type="radio"
+                                                name="paymentMethod" id="pmOnline" [checked]="paymentMethod==='ONLINE'"
+                                                (change)="onPaymentMethodChange('ONLINE')">
+                                            <p class="form-check-label" style="text-transform: none; cursor: pointer;"
+                                                for="pmOnline">
+                                                <strong>Payer directement en ligne</strong>
+                                            </p>
+                                        </div>
+                                        <div class="form-check form-check-inline ml-5">
+                                            <input class="form-check-input mr-3" type="radio"
+                                                style="width: 25px; height: 25px; margin-top: 40px;" name="paymentMethod"
+                                                id="pmTransfer" [checked]="paymentMethod==='TRANSFER'"
+                                                (change)="onPaymentMethodChange('TRANSFER')">
+                                            <p class="form-check-label" style="text-transform: none; cursor: pointer;"
+                                                for="pmTransfer">
+                                                <strong>Payer par virement bancaire</strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </span>
+
+                                <div class="container" *ngIf="paymentMethod === 'TRANSFER'">
+                                    <div class="featured" data-action="">
+                                        <div class="d-flex justify-content-between align-items-center align-items-center">
+                                            <div>
+                                                <h2 class="h3 has-border-l mt-3"
+                                                    style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
+                                                    <span class="text-dark">Informations du compte bancaire : </span>
+                                                </h2>
+
+                                                <ul style="line-height: 0%;" class="text-dark">
+                                                    <li class="mb-2 text-dark"><strong class="text-dark mr-2">Banque :</strong>
+                                                        CBAO Groupe Attijariwafa Bank</li>
+                                                    <li class="mb-2 text-dark"><strong class="text-dark mr-2">Agence :</strong>
+                                                        Cap Skirring</li>
+                                                    <li class="mb-2 text-dark"><strong class="text-dark mr-2">Code banque
+                                                            :</strong> SN08</li>
+                                                    <li class="mb-2 text-dark"><strong class="text-dark mr-2">Code guichet
+                                                            :</strong> SN012</li>
+                                                    <li class="mb-2 text-dark"><strong class="text-dark mr-2">Numéro de compte
+                                                            :</strong> 03205 036214856601-87</li>
+                                                    <li class="mb-2 text-dark"><strong class="text-dark mr-2">Bénéficiaire
+                                                            :</strong> Association LAFAOM</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section des pièces jointes - seulement pour virement bancaire -->
+                        <div class="row mt-4" *ngIf="paymentMethod === 'TRANSFER'">
+                            <div class="col-12 mb-3">
+                                <h3 class="title-h2">Document requis</h3>
+                                <p class="text-muted mb-3">Veuillez télécharger le reçu de virement bancaire au format PDF :</p>
+                                <div class="mb-3">
+                                    <label class="ml-2">
+                                        Reçu de virement bancaire - ce document ne doit pas dépasser 10MB et doit être en format PDF
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="file" class="form-control" accept="application/pdf"
+                                        (change)="onFileChange($event, 'BANK_TRANSFER_RECEIPT')">
+                                    
+                                    <!-- Indicateur de chargement -->
+                                    <div *ngIf="uploadingFiles['BANK_TRANSFER_RECEIPT']" class="mt-2">
+                                        <div class="alert alert-info d-flex align-items-center">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status"
+                                                aria-hidden="true"></span>
+                                            <span>Upload en cours...</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fichier uploadé -->
+                                    <div *ngIf="uploadedFiles['BANK_TRANSFER_RECEIPT'] && !uploadingFiles['BANK_TRANSFER_RECEIPT']" class="mt-2">
+                                        <div class="alert alert-success d-flex justify-content-between align-items-center">
+                                            <span>✅ {{ uploadedFiles['BANK_TRANSFER_RECEIPT'].name }}</span>
+                                            <button type="button" (click)="removeFile('BANK_TRANSFER_RECEIPT')"
+                                                class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Aucun fichier -->
+                                    <div *ngIf="!uploadedFiles['BANK_TRANSFER_RECEIPT'] && !uploadingFiles['BANK_TRANSFER_RECEIPT']" class="mt-1">
+                                        <small class="text-muted">Aucun fichier sélectionné</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
 
                         <br>

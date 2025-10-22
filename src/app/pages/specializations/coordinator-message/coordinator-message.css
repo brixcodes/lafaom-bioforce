@@ -1,0 +1,9 @@
+.no-bullet {
+    list-style-type: none !important;
+}
+
+.custom-bullet {
+    list-style-type: circle; /* ou square, disc, etc. */
+    /* Ou utiliser une image personnalisée */
+    /* list-style-image: url('votre-puce.png'); */
+}

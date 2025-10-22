@@ -25,7 +25,8 @@
             </div>
         </div>
     </div>
-
+<div class="row">
+        <div class="col-lg-8 container">
     <div class="container-1440">
         <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
             <div class="row container">
@@ -96,7 +97,7 @@
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label class="ml-2">Qualifications <span class="text-danger">*</span></label>
-                                <textarea class="form-control" formControlName="qualifications" rows="4" 
+                                <textarea class="form-control" formControlName="qualifications" rows="4"
                                     placeholder="Décrivez les qualifications de votre cabinet..."></textarea>
                                 <div class="text-danger mt-4 ml-3"
                                     *ngIf="form.get('qualifications')?.touched && form.get('qualifications')?.invalid">
@@ -108,7 +109,7 @@
                         <div class="row mt-4">
                             <div class="col-12 mb-3">
                                 <label class="ml-2">Proposition technique <span class="text-danger">*</span></label>
-                                <textarea class="form-control" formControlName="technical_proposal" rows="6" 
+                                <textarea class="form-control" formControlName="technical_proposal" rows="6"
                                     placeholder="Décrivez votre approche technique pour la gestion RH et la révélation des profils..."></textarea>
                                 <div class="text-danger mt-4 ml-3"
                                     *ngIf="form.get('technical_proposal')?.touched && form.get('technical_proposal')?.invalid">
@@ -120,7 +121,7 @@
                         <div class="row mt-4">
                             <div class="col-12 mb-3">
                                 <label class="ml-2">Proposition financière <span class="text-danger">*</span></label>
-                                <textarea class="form-control" formControlName="financial_proposal" rows="4" 
+                                <textarea class="form-control" formControlName="financial_proposal" rows="4"
                                     placeholder="Décrivez votre proposition financière..."></textarea>
                                 <div class="text-danger mt-4 ml-3"
                                     *ngIf="form.get('financial_proposal')?.touched && form.get('financial_proposal')?.invalid">La proposition financière est obligatoire</div>
@@ -129,7 +130,7 @@
                         <div class="row mt-4">
                             <div class="col-12 mb-3">
                                 <label class="ml-2">Références <span class="text-danger">*</span></label>
-                                <textarea class="form-control" formControlName="references" rows="4" 
+                                <textarea class="form-control" formControlName="references" rows="4"
                                     placeholder="Listez vos références et clients précédents..."></textarea>
                                 <div class="text-danger mt-4 ml-3"
                                     *ngIf="form.get('references')?.touched && form.get('references')?.invalid">Les références sont obligatoires</div>
@@ -164,4 +165,6 @@
             </div>
         </form>
     </div>
+        </div>
+</div>
 </div>

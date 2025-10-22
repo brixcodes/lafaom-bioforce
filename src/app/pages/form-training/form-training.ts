@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TrainingService } from '../../services/training.service';
+import { JobApplicationService } from '../../services/job-application.service';
 
 @Component({
   selector: 'app-form-training',
@@ -17,13 +18,18 @@ export class FormTraining implements OnInit {
   selectedSession: any | null = null;
   isSubmitting = false;
   submitError: string | null = null;
+  paymentMethod: 'ONLINE' | 'TRANSFER' = 'ONLINE';
+  requiredAttachments: string[] = [];
+  uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
+  uploadingFiles: { [key: string]: boolean } = {};
   
 
   constructor(
     private fb: FormBuilder, 
     private route: ActivatedRoute, 
     private router: Router, 
-    private trainingService: TrainingService
+    private trainingService: TrainingService,
+    private jobApplicationService: JobApplicationService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,6 +47,9 @@ export class FormTraining implements OnInit {
 
   ngOnInit(): void {
     this.trainingId = this.route.snapshot.paramMap.get('id');
+    
+    // Pour les formations, pas de pièces jointes par défaut
+    this.requiredAttachments = [];
     
     if (this.trainingId) {
       this.trainingService.getSessionsByTrainingId(this.trainingId).subscribe({
@@ -74,14 +83,80 @@ export class FormTraining implements OnInit {
     });
   }
 
+  onPaymentMethodChange(method: 'ONLINE' | 'TRANSFER'): void {
+    this.paymentMethod = method;
+    console.log('💳 [FORM-TRAINING] Méthode de paiement changée:', method);
+  }
+
+  onFileChange(event: any, attachmentType: string): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.uploadFile(file, attachmentType);
+    }
+  }
+
+  uploadFile(file: File, attachmentType: string): void {
+    const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
+    this.uploadingFiles[attachmentType] = true;
+    
+    this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
+      next: (response: any) => {
+        this.uploadingFiles[attachmentType] = false;
+        console.log('📎 [FORM-TRAINING] Réponse upload:', response);
+        if (response.data && response.data.length > 0) {
+          this.uploadedFiles[attachmentType] = {
+            file: file,
+            url: response.data[0].url || response.data[0].file_path,
+            name: response.data[0].name
+          };
+          console.log('📎 [FORM-TRAINING] Fichier stocké:', this.uploadedFiles[attachmentType]);
+        }
+      },
+      error: (error: any) => {
+        console.error(`Erreur lors de l'upload du fichier ${attachmentType}:`, error);
+        this.uploadingFiles[attachmentType] = false;
+        this.submitError = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message}`;
+      }
+    });
+  }
+
+  getAttachmentControlName(type: string): string {
+    return `attachment_${type.toLowerCase().replace(/\s+/g, '_')}`;
+  }
+
+  translateAttachment(type: string): string {
+    const translations: { [key: string]: string } = {
+      'CV': 'CV',
+      'Lettre de motivation': 'Lettre de motivation',
+      'Copie de la pièce d\'identité': 'Copie de la pièce d\'identité',
+      'BANK_TRANSFER_RECEIPT': 'Reçu de virement bancaire'
+    };
+    return translations[type] || type;
+  }
+
+  removeFile(attachmentType: string): void {
+    delete this.uploadedFiles[attachmentType];
+  }
+
   submit(): void {
     if (this.form.invalid || !this.trainingId) { 
       this.form.markAllAsTouched(); 
       return; 
     }
     
+    // Pour les formations : aucun document si paiement en ligne, seulement reçu si virement
+    if (this.paymentMethod === 'TRANSFER') {
+      if (!this.uploadedFiles['BANK_TRANSFER_RECEIPT']) {
+        this.submitError = 'Veuillez télécharger le reçu de virement bancaire.';
+        return;
+      }
+    }
+    
     this.isSubmitting = true;
     this.submitError = null;
+    
+    // Préparer les pièces jointes - l'API attend un tableau d'URLs
+    const attachments = Object.entries(this.uploadedFiles).map(([type, fileData]) => fileData.url);
     
     const payload = {
       email: this.form.value.email,
@@ -89,13 +164,11 @@ export class FormTraining implements OnInit {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
       phone_number: this.form.value.phone_number,
-      civility: this.form.value.civility,
       country_code: 'SN', // Sénégal par défaut
-      city: this.form.value.city,
-      address: this.form.value.address,
-      date_of_birth: this.form.value.date_of_birth,
-      attachments: [] as string[]
+      attachments: attachments
     };
+    
+    console.log('📤 [FORM-TRAINING] Soumission avec pièces jointes:', payload);
     
     this.trainingService.createStudentApplication(payload).subscribe({
       next: (response: any) => {
