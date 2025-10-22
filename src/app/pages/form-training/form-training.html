@@ -1,27 +1,129 @@
-<div class="container-1440">
-    <h2 class="title-h2">Candidature à la formation</h2>
-    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label>Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" formControlName="email">
+<div class="content">
+    <div class="container-1440">
+        <div class="page-header">
+            <div class="has-background container-full"
+                style="background-image: url('https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg')">
+                <img src="https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg"
+                    alt="">
             </div>
-            <div class="col-md-6 mb-3">
-                <label>Session cible <span class="text-danger">*</span></label>
-                <select class="form-control" formControlName="target_session_id">
-                    <option value="" disabled>Choisir...</option>
-                    <option *ngFor="let s of sessions" [value]="s.id">{{ s.start_date }} - {{ s.end_date }} ({{ s.status }})</option>
-                </select>
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h1 style="text-transform: uppercase;">
+                        Candidater à notre formation.
+                    </h1>
+                </div>
+                <div class="page-sub-title">
+                    <div>
+                        <span class="has-border-l-t d-block"></span>
+                    </div>
+                    <div>
+                        <p>
+                            Consultez tous les détails de cette formation et postulez directement.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-check my-3">
-            <input class="form-check-input" type="checkbox" id="consent" formControlName="consent">
-            <label class="form-check-label" for="consent">
-                J'accepte le traitement de mes données personnelles pour cette candidature.
-            </label>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 container">
+            <div class="container-1440">
+                <div class="section-textriche">
+                    <h2 class="title-h2">Informations personnelles</h2>
+                    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Civilité</label>
+                                <select class="form-control" formControlName="civility">
+                                    <option value="">-- Sélectionner --</option>
+                                    <option value="M.">M.</option>
+                                    <option value="Mme">Mme</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Date de naissance</label>
+                                <input type="date" class="form-control" formControlName="date_of_birth">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Prénom <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="first_name">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('first_name')?.touched && form.get('first_name')?.invalid">Champ
+                                    Prénom est obligatoire</div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Nom <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="last_name">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('last_name')?.touched && form.get('last_name')?.invalid">Champ
+                                    Nom est obligatoire</div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" formControlName="email">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('email')?.touched && form.get('email')?.invalid">Email invalide
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Téléphone <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" formControlName="phone_number">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('phone_number')?.touched && form.get('phone_number')?.invalid">Champ obligatoire
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Adresse</label>
+                                <input type="text" class="form-control" formControlName="address">
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Ville</label>
+                                <input type="text" class="form-control" formControlName="city">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <label class="ml-2">Session de formation <span class="text-danger">*</span></label>
+                                <select class="form-control" formControlName="target_session_id" (change)="onSessionChange($event)">
+                                    <option value="">-- Sélectionner une session --</option>
+                                    <option *ngFor="let session of sessions" [value]="session.id">
+                                        {{ session.training?.title }} - {{ formatSessionDate(session.start_date) }}
+                                    </option>
+                                </select>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('target_session_id')?.touched && form.get('target_session_id')?.invalid">
+                                    Veuillez sélectionner une session
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" formControlName="country_code" placeholder="SN">
+                        </div>
+
+
+
+                        <br>
+                        <div class="alert alert-danger" *ngIf="submitError">{{ submitError }}</div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary" type="submit" [disabled]="isSubmitting">{{ isSubmitting ?
+                                'Envoi...' : 'Soumettre la candidature à la formation' }}</button>
+                        </div>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-primary" type="submit">Soumettre</button>
-        </div>
-    </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
 </div>

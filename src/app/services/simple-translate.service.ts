@@ -14,36 +14,34 @@ export class SimpleTranslateService {
   }
 
   private loadTranslations(): void {
-    // Charger les traductions françaises
-    this.http.get('./assets/i18n/fr.json').subscribe({
-      next: (data: any) => {
-        this.translations['fr'] = data;
-        console.log('Traductions françaises chargées:', data);
-      },
-      error: (error) => console.error('Erreur lors du chargement des traductions françaises:', error)
+    const languages = ['fr', 'en', 'de'];
+    let loadedCount = 0;
+    
+    languages.forEach(lang => {
+      this.http.get(`./assets/i18n/${lang}.json`).subscribe({
+        next: (data: any) => {
+          this.translations[lang] = data;
+          loadedCount++;
+          console.log(`✅ Traductions ${lang} chargées`);
+          
+          // Si toutes les traductions sont chargées, définir la langue
+          if (loadedCount === languages.length) {
+            const savedLang = localStorage.getItem(this.STORAGE_KEY) || 'fr';
+            this.setLanguage(savedLang);
+          }
+        },
+        error: (error) => {
+          console.error(`❌ Erreur lors du chargement des traductions ${lang}:`, error);
+          loadedCount++;
+          
+          // Même si une traduction échoue, continuer
+          if (loadedCount === languages.length) {
+            const savedLang = localStorage.getItem(this.STORAGE_KEY) || 'fr';
+            this.setLanguage(savedLang);
+          }
+        }
+      });
     });
-
-    // Charger les traductions anglaises
-    this.http.get('./assets/i18n/en.json').subscribe({
-      next: (data: any) => {
-        this.translations['en'] = data;
-        console.log('Traductions anglaises chargées:', data);
-      },
-      error: (error) => console.error('Erreur lors du chargement des traductions anglaises:', error)
-    });
-
-    // Charger les traductions allemandes
-    this.http.get('./assets/i18n/de.json').subscribe({
-      next: (data: any) => {
-        this.translations['de'] = data;
-        console.log('Traductions allemandes chargées:', data);
-      },
-      error: (error) => console.error('Erreur lors du chargement des traductions allemandes:', error)
-    });
-
-    // Récupérer la langue sauvegardée
-    const savedLang = localStorage.getItem(this.STORAGE_KEY) || 'fr';
-    this.setLanguage(savedLang);
   }
 
   public setLanguage(lang: string): void {
@@ -53,10 +51,14 @@ export class SimpleTranslateService {
       // Vérifier si les traductions sont chargées
       if (!this.translations[lang]) {
         console.warn(`⚠️ Traductions non encore chargées pour ${lang}, attente...`);
-        // Attendre un peu et réessayer
+        // Attendre un peu et réessayer une seule fois
         setTimeout(() => {
-          this.setLanguage(lang);
-        }, 500);
+          if (this.translations[lang]) {
+            this.setLanguage(lang);
+          } else {
+            console.error(`❌ Impossible de charger les traductions pour ${lang}`);
+          }
+        }, 1000);
         return;
       }
       
@@ -69,11 +71,8 @@ export class SimpleTranslateService {
         console.log('🌐 Attribut lang du document mis à jour:', document.documentElement.lang);
       }
       
-      // Forcer la détection des changements
-      setTimeout(() => {
-        console.log('✅ Langue changée avec succès:', this.getCurrentLanguage());
-        console.log('📊 Traductions disponibles:', Object.keys(this.translations));
-      }, 100);
+      console.log('✅ Langue changée avec succès:', this.getCurrentLanguage());
+      console.log('📊 Traductions disponibles:', Object.keys(this.translations));
     }
   }
 

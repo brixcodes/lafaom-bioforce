@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TrainingService } from '../../services/training.service';
-import { PaymentService } from '../../services/payment.service';
 
 @Component({
   selector: 'app-form-training',
@@ -19,33 +18,29 @@ export class FormTraining implements OnInit {
   isSubmitting = false;
   submitError: string | null = null;
   
-  // Nouvelles propriétés pour les paiements
-  paymentMethods: any[] = [];
-  selectedPaymentMethod: string = 'WALLET';
-  isLoadingPaymentMethods = false;
 
   constructor(
     private fb: FormBuilder, 
     private route: ActivatedRoute, 
     private router: Router, 
-    private trainingService: TrainingService,
-    private paymentService: PaymentService
+    private trainingService: TrainingService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
+      phone_number: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      phone_number: ['', [Validators.required]],
-      country_code: ['SN', [Validators.required]], // Sénégal par défaut
-      target_session_id: ['', [Validators.required]],
-      payment_method: ['WALLET', [Validators.required]], // Nouveau champ pour la méthode de paiement
-      consent: [false, [Validators.requiredTrue]]
+      civility: [''],
+      country_code: ['SN'],  // Sénégal par défaut
+      city: [''],
+      address: [''],
+      date_of_birth: [''],
+      target_session_id: ['', [Validators.required]]
     });
   }
 
   ngOnInit(): void {
     this.trainingId = this.route.snapshot.paramMap.get('id');
-    this.loadPaymentMethods();
     
     if (this.trainingId) {
       this.trainingService.getSessionsByTrainingId(this.trainingId).subscribe({
@@ -62,30 +57,6 @@ export class FormTraining implements OnInit {
     }
   }
 
-  loadPaymentMethods(): void {
-    this.isLoadingPaymentMethods = true;
-    this.paymentService.getPaymentMethods('FORMATION').subscribe({
-      next: (res: any) => {
-        this.paymentMethods = res?.data || [];
-        this.isLoadingPaymentMethods = false;
-        console.log('💳 [FORM-TRAINING] Méthodes de paiement chargées:', this.paymentMethods);
-      },
-      error: (err: any) => {
-        this.isLoadingPaymentMethods = false;
-        console.error('💳 [FORM-TRAINING] Erreur lors du chargement des méthodes:', err);
-        // Méthodes par défaut en cas d'erreur
-        this.paymentMethods = [
-          { value: 'WALLET', label: 'Portefeuille électronique' },
-          { value: 'CREDIT_CARD', label: 'Carte bancaire' }
-        ];
-      }
-    });
-  }
-
-  onPaymentMethodChange(method: string): void {
-    this.selectedPaymentMethod = method;
-    this.form.patchValue({ payment_method: method });
-  }
 
   onSessionChange(event: any): void {
     const sessionId = event.target.value;
@@ -118,9 +89,11 @@ export class FormTraining implements OnInit {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
       phone_number: this.form.value.phone_number,
-      country_code: this.form.value.country_code || 'SN', // Sénégal par défaut
-      payment_method: this.form.value.payment_method, // Nouveau champ pour la méthode de paiement
-      subscription_type: 'FORMATION', // Type de souscription
+      civility: this.form.value.civility,
+      country_code: 'SN', // Sénégal par défaut
+      city: this.form.value.city,
+      address: this.form.value.address,
+      date_of_birth: this.form.value.date_of_birth,
       attachments: [] as string[]
     };
     
@@ -131,7 +104,6 @@ export class FormTraining implements OnInit {
         this.router.navigate(['/recruitment/success'], { 
           queryParams: { 
             applicationNumber: response?.data?.application_number || '',
-            paymentMethod: this.form.value.payment_method,
             subscriptionType: 'FORMATION'
           } 
         });
