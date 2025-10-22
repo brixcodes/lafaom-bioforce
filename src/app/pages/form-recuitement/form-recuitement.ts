@@ -36,7 +36,7 @@ export class FormRecuitement {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
       civility: ['', [Validators.required]],
-      country_code: ['SN', [Validators.required]],
+      country_code: ['SN', [Validators.required]], // Sénégal par défaut
       city: ['', [Validators.required]],
       address: ['', [Validators.required]],
       date_of_birth: ['', [Validators.required, this.minAgeValidator(16)]],
@@ -217,7 +217,7 @@ export class FormRecuitement {
         last_name: this.form.value.lastName,
         payment_method: this.paymentMethod,
         civility: this.form.value.civility || undefined,
-        country_code: this.form.value.country_code || 'SN',
+        country_code: this.form.value.country_code || 'SN', // Sénégal par défaut
         city: this.form.value.city || undefined,
         address: this.form.value.address || undefined,
         date_of_birth: this.form.value.date_of_birth || undefined,

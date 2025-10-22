@@ -51,7 +51,7 @@ export class Header implements OnInit, OnDestroy {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       civility: [''],
-      country_code: ['SN'],
+      country_code: ['SN'], // Sénégal par défaut
       city: [''],
       address: [''],
       date_of_birth: [''],
@@ -156,7 +156,7 @@ export class Header implements OnInit, OnDestroy {
 
   resetApplicationForm() {
     this.applicationForm.reset({
-      country_code: 'SN'
+      country_code: 'SN' // Sénégal par défaut
     });
     this.uploadedFiles = {};
     this.uploadingFiles = {};

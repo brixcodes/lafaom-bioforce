@@ -57,7 +57,7 @@ export class Section1 implements OnInit, OnDestroy {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       civility: [''],
-      country_code: ['SN'],  // Sénégal bloqué
+      country_code: ['SN'],  // Sénégal par défaut
       city: [''],
       address: [''],
       date_of_birth: [''],
@@ -443,9 +443,9 @@ export class Section1 implements OnInit, OnDestroy {
     // Réinitialiser le formulaire
     this.applicationForm.reset();
     this.applicationForm.patchValue({
-      country_code: 'SN'
+      country_code: 'SN' // Sénégal par défaut
     });
-    // S'assurer que country_code reste bloqué
+    // S'assurer que country_code reste bloqué (Sénégal)
     this.applicationForm.get('country_code')?.disable();
 
     // Empêcher le scroll du body quand le modal de candidature est ouvert
@@ -539,7 +539,7 @@ export class Section1 implements OnInit, OnDestroy {
       last_name: formValue.last_name,
       phone_number: formValue.phone_number,
       civility: formValue.civility,
-      country_code: 'SN', // Toujours SN par défaut
+      country_code: 'SN', // Cameroun - cohérent avec le compte CinetPay
       city: formValue.city,
       address: formValue.address,
       date_of_birth: formValue.date_of_birth,

@@ -118,7 +118,7 @@ export class FormTraining implements OnInit {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
       phone_number: this.form.value.phone_number,
-      country_code: this.form.value.country_code,
+      country_code: this.form.value.country_code || 'SN', // Sénégal par défaut
       payment_method: this.form.value.payment_method, // Nouveau champ pour la méthode de paiement
       subscription_type: 'FORMATION', // Type de souscription
       attachments: [] as string[]

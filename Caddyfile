@@ -1,0 +1,43 @@
+# Configuration Caddy pour LAFAOM API
+# Remplacez 'api.lafaom-mao.org' par votre sous-domaine
+api.lafaom-mao.org {
+    # Reverse proxy vers l'application FastAPI
+    reverse_proxy localhost:7051 {
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Proto {scheme}
+    }
+    
+    # Configuration CORS pour l'API
+    header {
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        Access-Control-Allow-Credentials "true"
+    }
+    
+    # Gestion des requêtes OPTIONS pour CORS
+    @options {
+        method OPTIONS
+    }
+    respond @options 200
+    
+    # Logs
+    log {
+        output file /var/log/caddy/api.log
+        format json
+    }
+    
+    # Sécurité
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        X-XSS-Protection "1; mode=block"
+    }
+}
+
+# Configuration alternative si vous voulez utiliser un port spécifique
+# api.lafaom-mao.org:7052 {
+#     reverse_proxy localhost:7051
+# }
