@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { TrainingService } from '../../services/training.service';
 import { JobApplicationService } from '../../services/job-application.service';
+import { StudentApplicationCreateInput, StudentApplicationResponse } from '../../models/training.models';
 
 @Component({
   selector: 'app-form-training',
@@ -41,7 +42,8 @@ export class FormTraining implements OnInit {
       city: [''],
       address: [''],
       date_of_birth: [''],
-      target_session_id: ['', [Validators.required]]
+      target_session_id: ['', [Validators.required]],
+      payment_method: ['ONLINE', [Validators.required]]
     });
   }
 
@@ -85,6 +87,7 @@ export class FormTraining implements OnInit {
 
   onPaymentMethodChange(method: 'ONLINE' | 'TRANSFER'): void {
     this.paymentMethod = method;
+    this.form.patchValue({ payment_method: method });
     console.log('💳 [FORM-TRAINING] Méthode de paiement changée:', method);
   }
 
@@ -158,32 +161,49 @@ export class FormTraining implements OnInit {
     // Préparer les pièces jointes - l'API attend un tableau d'URLs
     const attachments = Object.entries(this.uploadedFiles).map(([type, fileData]) => fileData.url);
     
-    const payload = {
-      email: this.form.value.email,
-      target_session_id: this.form.value.target_session_id,
-      first_name: this.form.value.first_name,
-      last_name: this.form.value.last_name,
-      phone_number: this.form.value.phone_number,
-      country_code: 'SN', // Sénégal par défaut
-      attachments: attachments
-    };
+     const payload: StudentApplicationCreateInput = {
+       email: this.form.value.email,
+       target_session_id: this.form.value.target_session_id,
+       first_name: this.form.value.first_name,
+       last_name: this.form.value.last_name,
+       phone_number: this.form.value.phone_number,
+       civility: this.form.value.civility,
+       country_code: 'SN', // Sénégal par défaut
+       city: this.form.value.city,
+       address: this.form.value.address,
+       date_of_birth: this.form.value.date_of_birth,
+       payment_method: this.form.value.payment_method || this.paymentMethod,
+       attachments: attachments
+     };
     
     console.log('📤 [FORM-TRAINING] Soumission avec pièces jointes:', payload);
     
     this.trainingService.createStudentApplication(payload).subscribe({
-      next: (response: any) => {
+      next: (response: StudentApplicationResponse) => {
         this.isSubmitting = false;
-        // Redirection vers la page de succès avec les informations de paiement
-        this.router.navigate(['/recruitment/success'], { 
-          queryParams: { 
-            applicationNumber: response?.data?.application_number || '',
-            subscriptionType: 'FORMATION'
-          } 
-        });
+        console.log('✅ [FORM-TRAINING] Candidature créée avec succès:', response);
+        
+        // Vérifier si c'est un paiement en ligne
+        if (response.data.payment && response.data.payment.payment_link) {
+          // Redirection vers le lien de paiement
+          window.location.href = response.data.payment.payment_link;
+        } else {
+          // Redirection vers la page de succès avec les informations de paiement
+          this.router.navigate(['/recruitment/success'], { 
+            queryParams: { 
+              applicationNumber: response.data.student_application.application_number,
+              subscriptionType: 'FORMATION',
+              paymentMethod: response.data.student_application.payment_method,
+              amount: response.data.payment?.amount,
+              currency: response.data.payment?.currency
+            } 
+          });
+        }
       },
       error: (err: any) => {
         this.isSubmitting = false;
         this.submitError = err?.error?.message || 'Erreur lors de la soumission.';
+        console.error('❌ [FORM-TRAINING] Erreur lors de la soumission:', err);
       }
     });
   }

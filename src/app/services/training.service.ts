@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of, catchError, forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { Training, TrainingResponse, TrainingPaginationParams, TrainingSession, TrainingSessionsResponse, TrainingSessionFilters, OrganizationCenter, OrganizationCenterResponse, Specialty, FilterOptions } from '../models/training.models';
+import { Training, TrainingResponse, TrainingPaginationParams, TrainingSession, TrainingSessionsResponse, TrainingSessionFilters, OrganizationCenter, OrganizationCenterResponse, Specialty, FilterOptions, StudentApplicationCreateInput, StudentApplicationResponse } from '../models/training.models';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -174,8 +174,8 @@ export class TrainingService {
   /**
    * Create student application (public endpoint)
    */
-  createStudentApplication(payload: { email: string; target_session_id: string }): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/student-applications`, payload);
+  createStudentApplication(payload: StudentApplicationCreateInput): Observable<StudentApplicationResponse> {
+    return this.http.post<StudentApplicationResponse>(`${this.baseUrl}/student-applications`, payload);
   }
 
   /**
