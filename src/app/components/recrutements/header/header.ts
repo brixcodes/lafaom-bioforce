@@ -22,12 +22,12 @@ export class Header implements OnInit, OnDestroy {
   error: string | null = null;
   showModal = false;
   selectedJob: JobOffer | null = null;
-  
+
   // Propriétés pour les sessions d'emploi
   availableSessions: JobSession[] = [];
   showSessionsModal = false;
   selectedSession: JobSession | null = null;
-  
+
   // Propriétés pour le modal de candidature
   showApplicationModal = false;
   applicationForm: FormGroup;
@@ -36,7 +36,7 @@ export class Header implements OnInit, OnDestroy {
   uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
   uploadingFiles: { [key: string]: boolean } = {};
   requiredAttachments: string[] = [];
-  
+
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -318,7 +318,7 @@ export class Header implements OnInit, OnDestroy {
            // Marquer comme en cours d'upload
     this.uploadingFiles[attachmentType] = true;
            this.error = null; // Clear any previous errors
-    
+
     this.subscription.add(
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
@@ -599,7 +599,7 @@ export class Header implements OnInit, OnDestroy {
     }
 
     console.log('📎 [HEADER] Attachments préparés:', attachments);
-    
+
     const applicationData: JobApplicationCreateInput = {
       ...this.applicationForm.value,
       job_offer_id: this.selectedJob?.id,
@@ -616,7 +616,7 @@ export class Header implements OnInit, OnDestroy {
           console.log('✅ [HEADER] Réponse de la candidature:', response);
           this.success = true;
           this.submitting = false;
-          
+
           // Rediriger vers la page de paiement si disponible
           if (response.data && response.data.payment && response.data.payment.payment_link) {
             console.log('💳 [HEADER] Redirection vers le paiement:', response.data.payment.payment_link);
@@ -654,7 +654,7 @@ export class Header implements OnInit, OnDestroy {
    * Télécharge le document PDF d'appel d'offre
    */
   downloadDocument() {
-    const documentUrl = '/asset/appel_offre.pdf';
+    const documentUrl = '/asset/Avis_recrutement.pdf';
     const fileName = 'Appel-d-offre-LAFAOM.pdf';
 
     try {
