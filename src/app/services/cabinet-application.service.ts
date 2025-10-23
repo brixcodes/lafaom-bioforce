@@ -7,7 +7,7 @@ import { CabinetApplicationCreateInput, CabinetApplicationResponse } from '../mo
   providedIn: 'root'
 })
 export class CabinetApplicationService {
-  private apiUrl = 'https://lafaom.vertex-cam.com/api/v1';
+  private apiUrl = 'https://api.lafaom-mao.org/api/v1';
 
   constructor(private http: HttpClient) { }
 

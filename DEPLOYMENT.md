@@ -7,7 +7,7 @@
 ```
 Mixed Content: The page at 'https://lafaom-bioforce.vercel.app/recrutements' 
 was loaded over HTTPS, but requested an insecure resource 
-'https://lafaom.vertex-cam.com/api/v1/job-offers'. This request has been blocked.
+'https://api.lafaom-mao.org/api/v1/job-offers'. This request has been blocked.
 ```
 
 ## ✅ Solution Implémentée
@@ -18,7 +18,7 @@ was loaded over HTTPS, but requested an insecure resource
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://lafaom.vertex-cam.com/api/$1"
+      "destination": "https://api.lafaom-mao.org/api/$1"
     }
   ],
   "headers": [
@@ -40,7 +40,7 @@ was loaded over HTTPS, but requested an insecure resource
 export const environment = {
   production: true,
   apiUrl: '/api/v1', // Utilise le proxy Vercel
-  backendUrl: 'https://lafaom.vertex-cam.com/api/v1' // Fallback
+  backendUrl: 'https://api.lafaom-mao.org/api/v1' // Fallback
 };
 ```
 
@@ -90,7 +90,7 @@ Dans la console du navigateur, vous devriez voir :
 ```
 🔧 [CONFIG] Configuration initialisée: {
   apiUrl: "/api/v1",
-  backendUrl: "https://lafaom.vertex-cam.com/api/v1",
+  backendUrl: "https://api.lafaom-mao.org/api/v1",
   production: true,
   finalUrl: "/api/v1"
 }
@@ -104,7 +104,7 @@ Dans la console du navigateur, vous devriez voir :
 3. Vérifiez les logs Vercel dans le dashboard
 
 ### Si l'API ne répond pas :
-1. Testez directement : `https://lafaom.vertex-cam.com/api/v1/job-offers`
+1. Testez directement : `https://api.lafaom-mao.org/api/v1/job-offers`
 2. Vérifiez que le backend est accessible
 3. Vérifiez la configuration CORS du backend
 

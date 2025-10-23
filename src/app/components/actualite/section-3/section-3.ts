@@ -144,7 +144,7 @@ export class Section3 implements OnInit, OnDestroy {
 
     // Si l'image existe mais n'est pas une URL complète
     if (news.cover_image && !news.cover_image.startsWith('http')) {
-      return `https://lafaom.vertex-cam.com${news.cover_image}`;
+      return `https://api.lafaom-mao.org${news.cover_image}`;
     }
 
     // Image par défaut

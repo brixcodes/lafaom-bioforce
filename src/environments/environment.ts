@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://lafaom.vertex-cam.com/api/v1', // Backend direct en développement
-  backendUrl: 'https://lafaom.vertex-cam.com/api/v1'
+  apiUrl: 'https://api.lafaom-mao.org/api/v1', // Backend direct en développement
+  backendUrl: 'https://api.lafaom-mao.org/api/v1'
 };
