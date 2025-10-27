@@ -654,7 +654,7 @@ export class Header implements OnInit, OnDestroy {
    * Télécharge le document PDF d'appel d'offre
    */
   downloadDocument() {
-    const documentUrl = '/asset/Avis_recrutement.pdf';
+    const documentUrl = '/asset/Offre.pdf';
     const fileName = 'Appel-d-offre-LAFAOM.pdf';
 
     try {
