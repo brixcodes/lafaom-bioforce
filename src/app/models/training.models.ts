@@ -139,6 +139,12 @@ export interface FilterOptions {
   durations: string[];
 }
 
+export interface AttachmentInput {
+  type: string;
+  url: string;
+}
+
+
 // Interface pour les candidatures aux formations
 export interface StudentApplicationCreateInput {
   email: string;
@@ -152,7 +158,7 @@ export interface StudentApplicationCreateInput {
   address?: string;
   date_of_birth?: string;
   payment_method?: 'ONLINE' | 'TRANSFER';
-  attachments?: string[];
+  attachments?: AttachmentInput[];
 }
 
 export interface StudentApplicationResponse {

@@ -23,12 +23,12 @@ export class FormTraining implements OnInit {
   requiredAttachments: string[] = [];
   uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
   uploadingFiles: { [key: string]: boolean } = {};
-  
+
 
   constructor(
-    private fb: FormBuilder, 
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
     private trainingService: TrainingService,
     private jobApplicationService: JobApplicationService
   ) {
@@ -49,10 +49,10 @@ export class FormTraining implements OnInit {
 
   ngOnInit(): void {
     this.trainingId = this.route.snapshot.paramMap.get('id');
-    
+
     // Pour les formations, pas de pièces jointes par défaut
     this.requiredAttachments = [];
-    
+
     if (this.trainingId) {
       this.trainingService.getSessionsByTrainingId(this.trainingId).subscribe({
         next: (res: any) => {
@@ -101,7 +101,7 @@ export class FormTraining implements OnInit {
   uploadFile(file: File, attachmentType: string): void {
     const fileName = `${attachmentType}`;
     this.uploadingFiles[attachmentType] = true;
-    
+
     this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
       next: (response: any) => {
         this.uploadingFiles[attachmentType] = false;
@@ -142,11 +142,11 @@ export class FormTraining implements OnInit {
   }
 
   submit(): void {
-    if (this.form.invalid || !this.trainingId) { 
-      this.form.markAllAsTouched(); 
-      return; 
+    if (this.form.invalid || !this.trainingId) {
+      this.form.markAllAsTouched();
+      return;
     }
-    
+
     // Pour les formations : aucun document si paiement en ligne, seulement reçu si virement
     if (this.paymentMethod === 'TRANSFER') {
       if (!this.uploadedFiles['BANK_TRANSFER_RECEIPT']) {
@@ -154,50 +154,61 @@ export class FormTraining implements OnInit {
         return;
       }
     }
-    
+
     this.isSubmitting = true;
     this.submitError = null;
-    
-    // Préparer les pièces jointes - l'API attend un tableau d'URLs
-    const attachments = Object.entries(this.uploadedFiles).map(([type, fileData]) => fileData.url);
-    
-     const payload: StudentApplicationCreateInput = {
-       email: this.form.value.email,
-       target_session_id: this.form.value.target_session_id,
-       first_name: this.form.value.first_name,
-       last_name: this.form.value.last_name,
-       phone_number: this.form.value.phone_number,
-       civility: this.form.value.civility,
-       country_code: 'SN', // Sénégal par défaut
-       city: this.form.value.city,
-       address: this.form.value.address,
-       date_of_birth: this.form.value.date_of_birth,
-       payment_method: this.form.value.payment_method || this.paymentMethod,
-       attachments: attachments
-     };
-    
+
+    // Préparer les pièces jointes - l'API attend un tableau d'objets { type, url }
+const attachments = Object.keys(this.uploadedFiles).map((key) => {
+  const file = this.uploadedFiles[key];
+  return {
+    type: key,        // 'BANK_TRANSFER_RECEIPT'
+    url: file.url,    // L'URL du fichier
+    name: file.name   // Le nom du fichier
+  };
+});
+
+
+    const payload: StudentApplicationCreateInput = {
+      email: this.form.value.email,
+      target_session_id: this.form.value.target_session_id,
+      first_name: this.form.value.first_name,
+      last_name: this.form.value.last_name,
+      phone_number: this.form.value.phone_number,
+      civility: this.form.value.civility,
+      country_code: 'SN', // Sénégal par défaut
+      city: this.form.value.city,
+      address: this.form.value.address,
+      date_of_birth: this.form.value.date_of_birth,
+      payment_method: this.form.value.payment_method || this.paymentMethod,
+      attachments: attachments
+    };
+
     console.log('📤 [FORM-TRAINING] Soumission avec pièces jointes:', payload);
-    
+
+
+    console.log('📤 [FORM-TRAINING] Soumission avec pièces jointes:', payload);
+
     this.trainingService.createStudentApplication(payload).subscribe({
       next: (response: StudentApplicationResponse) => {
         this.isSubmitting = false;
         console.log('✅ [FORM-TRAINING] Candidature créée avec succès:', response);
-        
+
         // Vérifier si c'est un paiement en ligne
         if (response.data.payment && response.data.payment.payment_link) {
           // Redirection vers le lien de paiement
           window.location.href = response.data.payment.payment_link;
         } else {
           // Redirection vers la page de succès avec les informations de paiement
-          this.router.navigate(['/recruitment/success'], { 
-            queryParams: { 
-              applicationNumber: response.data.student_application.application_number,
-              subscriptionType: 'FORMATION',
-              paymentMethod: response.data.student_application.payment_method,
-              amount: response.data.payment?.amount,
-              currency: response.data.payment?.currency
-            } 
-          });
+        this.router.navigate(['/recruitment/success'], {
+      queryParams: {
+        applicationNumber: (response.data as any).application_number,
+        subscriptionType: 'FORMATION',
+        paymentMethod: (response.data as any).payment_method,
+        amount: (response.data as any).payment?.amount ?? (response.data as any).training_fee,
+        currency: (response.data as any).payment?.currency ?? (response.data as any).currency
+      }
+    });
         }
       },
       error: (err: any) => {
