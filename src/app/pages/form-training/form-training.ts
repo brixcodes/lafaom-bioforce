@@ -99,7 +99,7 @@ export class FormTraining implements OnInit {
   }
 
   uploadFile(file: File, attachmentType: string): void {
-    const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
+    const fileName = `${attachmentType}`;
     this.uploadingFiles[attachmentType] = true;
     
     this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
