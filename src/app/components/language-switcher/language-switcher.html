@@ -1,5 +1,5 @@
 <!-- Version simple active -->
-<div class="lang-switch">
+<!-- <div class="lang-switch">
   <div class="lang-switcher">
     <ul>
       <li>
@@ -20,4 +20,24 @@
       </li>
     </ul>
   </div>
+</div> -->
+
+<div class="lang-switcher">
+  <ul>
+    <li>
+      <span class="selectLang" [class.active]="currentLanguage() === 'fr'" (click)="setLanguage('fr')">
+        Fr
+      </span>
+    </li>
+    <li>
+      <span class="selectLang" [class.active]="currentLanguage() === 'en'" (click)="setLanguage('en')">
+        En
+      </span>
+    </li>
+    <li>
+      <span class="selectLang" [class.active]="currentLanguage() === 'de'" (click)="setLanguage('de')">
+        Ds
+      </span>
+    </li>
+  </ul>
 </div>

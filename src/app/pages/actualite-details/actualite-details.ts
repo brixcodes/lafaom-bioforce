@@ -111,7 +111,7 @@ export class ActualiteDetails implements OnInit, OnDestroy {
     }
     
     if (news.cover_image && !news.cover_image.startsWith('http')) {
-      return `https://lafaom.vertex-cam.com${news.cover_image}`;
+      return `https://api.lafaom-mao.org${news.cover_image}`;
     }
     
     return '/assets/images/default-news.jpg';
@@ -157,10 +157,10 @@ export class ActualiteDetails implements OnInit, OnDestroy {
       return section.cover_image;
     }
 
-    return `https://lafaom.vertex-cam.com${section.cover_image}`;
+    return `https://api.lafaom-mao.org${section.cover_image}`;
   }
 
   goBack() {
-    this.router.navigate(['/actualites']);
+    this.router.navigate(['/news']);
   }
 }

@@ -1,0 +1,215 @@
+<div class="content">
+    <div class="container-1440">
+        <div class="page-header">
+            <div class="has-background container-full"
+                style="background-image: url('https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg')">
+                <img src="https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg"
+                    alt="">
+            </div>
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h1 style="text-transform: uppercase;">
+                        Candidater à notre offre.
+                    </h1>
+                </div>
+                <div class="page-sub-title">
+                    <div>
+                        <span class="has-border-l-t d-block"></span>
+                    </div>
+                    <div>
+                        <p>
+                            Consultez tous les détails de cette offre d'emploi et postulez directement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 container">
+            <div class="container-1440">
+                <div class="section-textriche">
+                    <h2 class="title-h2">Informations personnelles</h2>
+                    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Prénom <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="firstName">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">Champ
+                                    Prénom est obligatoire</div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Nom <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="lastName">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid">Champ
+                                    Nom est obligatoire</div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" formControlName="email">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('email')?.touched && form.get('email')?.invalid">Email invalide
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Téléphone <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" formControlName="phone">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">Champ obligatoire
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Civilité <span class="text-danger">*</span></label>
+                                <select class="form-control" formControlName="civility">
+                                    <option value="">--</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mme">Mme</option>
+                                    <option value="Mlle">Mlle</option>
+                                </select>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('civility')?.touched && form.get('civility')?.invalid">Champ
+                                    obligatoire</div>
+                            </div>
+                            <input type="hidden" class="form-control" formControlName="country_code" placeholder="SN">
+
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Ville <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="city">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('city')?.touched && form.get('city')?.invalid">Champ obligatoire
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Adresse <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="address">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('address')?.touched && form.get('address')?.invalid">Champ
+                                    obligatoire</div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Date de naissance <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" formControlName="date_of_birth">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('date_of_birth')?.touched && form.get('date_of_birth')?.errors">
+                                    <span *ngIf="form.get('date_of_birth')?.errors?.['required']">Champ
+                                        obligatoire</span>
+                                    <span *ngIf="form.get('date_of_birth')?.errors?.['minAge']">Âge minimal: 16
+                                        ans</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <h2 class="title-h2">Sélectionner votre méthode de paiement</h2>
+
+                        <span class="d-block card p-3 shadow" style="border-radius: 1rem;">
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input mr-3"
+                                        style="width: 25px; height: 25px; margin-top: 40px;" type="radio"
+                                        name="paymentMethod" id="pmOnline" [checked]="paymentMethod==='ONLINE'"
+                                        (change)="onPaymentMethodChange('ONLINE')">
+                                    <p class="form-check-label" style="text-transform: none; cursor: pointer;"
+                                        for="pmOnline">
+                                        <strong>Payer directement en ligne</strong>
+                                    </p>
+                                </div>
+                                <div class="form-check form-check-inline ml-5">
+                                    <input class="form-check-input mr-3" type="radio"
+                                        style="width: 25px; height: 25px; margin-top: 40px;" name="paymentMethod"
+                                        id="pmTransfer" [checked]="paymentMethod==='TRANSFER'"
+                                        (change)="onPaymentMethodChange('TRANSFER')">
+                                    <p class="form-check-label" style="text-transform: none; cursor: pointer;"
+                                        for="pmOnline">
+                                        <strong>Payer par virement bancaire</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </span>
+
+                        <div class="container" *ngIf="paymentMethod === 'TRANSFER'">
+                            <div class="featured" data-action="">
+                                <div class="d-flex justify-content-between align-items-center align-items-center">
+                                    <div>
+                                        <h2 class="h3 has-border-l mt-3"
+                                            style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
+                                            <span class="text-dark">Informations du compte bancaire : </span>
+                                        </h2>
+
+                                        <ul style="line-height: 0%;" class="text-dark">
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Banque :</strong>
+                                                CBAO Groupe Attijariwafa Bank</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Agence :</strong>
+                                                Cap Skirring</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Code banque
+                                                    :</strong> SN08</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Code guichet
+                                                    :</strong> SN012</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Numéro de compte
+                                                    :</strong> 03205 036214856601-87</li>
+                                            <li class="mb-2 text-dark"><strong class="text-dark mr-2">Bénéficiaire
+                                                    :</strong> Association LAFAOM</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <h2 class="title-h2 mt-5">Pièces à joindre</h2>
+
+
+                        <div class="row mt-4">
+                            <div class="col-md-12 mb-3"
+                                *ngFor="let type of (paymentMethod==='TRANSFER' ? requiredAttachments.concat(['BANK_TRANSFER_RECEIPT']) : requiredAttachments)">
+                                <label class="ml-2">
+                                    {{ translateAttachment(type) }} ce document ne dois pas dépasser 10MB et doit être en format PDF
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="file" class="form-control" accept="application/pdf"
+                                    (change)="onFileChange($event, getAttachmentControlName(type))">
+                                <div class="text-danger"
+                                    *ngIf="form.get(getAttachmentControlName(type))?.touched && form.get(getAttachmentControlName(type))?.invalid">
+                                    {{ translateAttachment(type) }} requis</div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <br>
+                        <div class="form-check my-3">
+                            <input class="form-check-input" type="checkbox" id="consent" formControlName="consent">
+                            <label class="form-check-label ml-2" for="consent">
+                                J'accepte le traitement de mes données personnelles pour cette candidature.
+                            </label>
+                            <div class="text-danger"
+                                *ngIf="form.get('consent')?.touched && form.get('consent')?.invalid">Consentement requis
+                            </div>
+                        </div>
+                        <br>
+                        <div class="alert alert-danger" *ngIf="submitError">{{ submitError }}</div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary" type="submit" [disabled]="isSubmitting">{{ isSubmitting ?
+                                'Envoi...' : 'Soumettre la candidature' }}</button>
+                        </div>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>

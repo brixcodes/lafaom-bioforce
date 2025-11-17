@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-  // Configuration de l'API
-  readonly API_BASE_URL = 'https://lafaom.vertex-cam.com/api/v1';
+  // Configuration de l'API - URLs de fallback
+  private readonly API_URLS = [
+    environment.apiUrl, // URL principale selon l'environnement
+    environment.backendUrl // Backend direct (fallback)
+  ];
+
+  readonly API_BASE_URL = this.API_URLS[0]; // URL principale
   
   // Endpoints
   readonly ENDPOINTS = {
@@ -77,7 +85,22 @@ export class ConfigService {
     AUTRE: 'autre'
   };
 
-  constructor() { }
+  constructor(private http: HttpClient) { 
+    console.log('🔧 [CONFIG] Configuration initialisée:', {
+      apiUrl: environment.apiUrl,
+      backendUrl: environment.backendUrl,
+      production: environment.production,
+      finalUrl: this.API_BASE_URL
+    });
+  }
+
+  /**
+   * Obtenir l'URL de base de l'API
+   */
+  getApiBaseUrl(): string {
+    console.log('🔧 [CONFIG] getApiBaseUrl appelé:', this.API_BASE_URL);
+    return this.API_BASE_URL;
+  }
 
   /**
    * Obtenir l'URL complète pour un endpoint
@@ -106,5 +129,19 @@ export class ConfigService {
    */
   isValidFileSize(fileSize: number): boolean {
     return fileSize <= this.LIMITS.MAX_FILE_SIZE;
+  }
+
+  /**
+   * Récupérer les méthodes de paiement disponibles
+   */
+  getPaymentMethods(subscriptionType?: string): Observable<any> {
+    const endpoint = subscriptionType 
+      ? `payments/payment-methods/${subscriptionType}`
+      : 'payments/payment-methods';
+    
+    const url = `${this.API_BASE_URL}/${endpoint}`;
+    console.log('🔧 [CONFIG] Récupération des méthodes de paiement:', url);
+    
+    return this.http.get(url);
   }
 }

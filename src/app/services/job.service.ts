@@ -15,7 +15,8 @@ export class JobService {
     private http: HttpClient,
     private configService: ConfigService
   ) {
-    this.baseUrl = this.configService.API_BASE_URL;
+    this.baseUrl = this.configService.getApiBaseUrl();
+    console.log('🔧 [JOB-SERVICE] Base URL initialisée:', this.baseUrl);
   }
 
   /**
@@ -33,10 +34,18 @@ export class JobService {
     if (params.featured !== undefined) httpParams = httpParams.set('featured', params.featured.toString());
     if (params.status) httpParams = httpParams.set('status', params.status);
 
+    console.log('🌐 [JOB-SERVICE] Tentative de chargement des offres d\'emploi...');
+    console.log('🌐 [JOB-SERVICE] URL:', `${this.baseUrl}/job-offers`);
+    console.log('🌐 [JOB-SERVICE] Paramètres:', httpParams.toString());
+
     return this.http.get<JobOfferResponse>(`${this.baseUrl}/job-offers`, { params: httpParams })
       .pipe(
         catchError(error => {
-          console.error('Erreur lors du chargement des offres d\'emploi:', error);
+          console.error('❌ [JOB-SERVICE] Erreur lors du chargement des offres d\'emploi:', error);
+          console.error('❌ [JOB-SERVICE] URL tentée:', `${this.baseUrl}/job-offers`);
+          console.error('❌ [JOB-SERVICE] Status:', error.status);
+          console.error('❌ [JOB-SERVICE] Message:', error.message);
+          
           // Retourner une réponse vide en cas d'erreur
           return of({
             data: [],

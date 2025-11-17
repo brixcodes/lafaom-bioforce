@@ -1,0 +1,65 @@
+/* Styles pour les zones de drop de fichiers */
+.file-drop-zone {
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-drop-zone:hover {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+}
+
+.file-drop-zone.dragover {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+  transform: scale(1.02);
+}
+
+.file-drop-content {
+  pointer-events: none;
+}
+
+.file-drop-content i {
+  color: #6c757d;
+}
+
+.file-drop-zone:hover .file-drop-content i,
+.file-drop-zone.dragover .file-drop-content i {
+  color: #007bff;
+}
+
+/* Responsive design pour les zones de drop */
+@media (max-width: 768px) {
+  .file-drop-zone {
+    padding: 1.5rem;
+    min-height: 100px;
+  }
+  
+  .file-drop-content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .file-drop-zone {
+    padding: 1rem;
+    min-height: 80px;
+  }
+  
+  .file-drop-content i {
+    font-size: 1.5rem !important;
+  }
+  
+  .file-drop-content p {
+    font-size: 0.8rem;
+  }
+}

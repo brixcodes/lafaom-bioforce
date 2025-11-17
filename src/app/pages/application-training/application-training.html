@@ -1,0 +1,115 @@
+<div class="content">
+  <div class="container-1440">
+    <div class="page-header">
+      <div class="has-background container-full"
+        style="background-image: url('https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg')">
+        <img
+          src="https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg"
+          alt="">
+      </div>
+      <div class="page-header-inner">
+        <div class="page-title">
+          <h1 style="text-transform: uppercase;">
+            Détails de la formation
+          </h1>
+        </div>
+        <div class="page-sub-title">
+          <div>
+            <span class="has-border-l-t d-block"></span>
+          </div>
+          <div>
+            <p>
+              Consultez tous les détails de cette formation et postulez directement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="container-1440">
+    <div class="alert alert-danger text-center">
+      <h4>Erreur</h4>
+      <p>{{ error }}</p>
+    </div>
+  </div>
+
+  <!-- Training Details -->
+  <div *ngIf="training && !error" class="container-1440">
+    <div class="row">
+      <!-- Left Column - Training Details -->
+      <div class="col-lg-8 container">
+        <div class="container-1440">
+          <div class="section-textriche" *ngIf="training.presentation">
+            <h2 class="title-h2">Présentation</h2>
+            <br>
+            <p [innerHTML]="training.presentation"></p>
+          </div>
+          <div class="section-textriche" *ngIf="training.program">
+            <h2 class="title-h2">Programme</h2>
+            <br>
+            <div [innerHTML]="training.program"></div>
+          </div>
+          <div class="section-textriche" *ngIf="training.target_skills">
+            <h2 class="title-h2">Compétences visées</h2>
+            <br>
+            <div [innerHTML]="training.target_skills"></div>
+          </div>
+          <div class="section-textriche" *ngIf="training.target_audience">
+            <h2 class="title-h2">Public cible</h2>
+            <br>
+            <div [innerHTML]="training.target_audience"></div>
+          </div>
+
+        </div>
+        <br>
+        <br>
+      </div>
+
+      <!-- Right Column - Apply Card -->
+      <div class="col-lg-4">
+        <div class="application-card">
+          <h3>Postuler à cette formation</h3>
+
+          <!-- Training Summary -->
+          <div class="job-summary">
+            <h4>Résumé</h4>
+            <div class="summary-item" *ngIf="training.duration">
+              <strong>Durée:</strong> {{ training.duration }} {{ training.duration_unit || '' }}
+            </div>
+            <div class="summary-item" *ngIf="training.status">
+              <strong>Statut:</strong> {{ training.status }}
+            </div>
+            <div class="summary-item" *ngIf="sessions?.length">
+              <strong>Sessions disponibles:</strong> {{ sessions.length }}
+            </div>
+          </div>
+
+          <!-- Application Button -->
+          <div class="application-actions">
+            <button (click)="apply()" class="btn btn-primary btn-lg w-100">
+              Candidater
+            </button>
+          </div>
+
+
+          <div class="contact-info">
+        <h4>Besoin d'aide ?</h4>
+        <p>Si vous avez des questions sur cette formation, contactez-nous :</p>
+        <ul>
+            <li>contact@lafaom-mao.org</li>
+            <li>+4942151603476</li>
+            <li>Ziguinchor, Sénégal</li>
+           <li>
+  <a href="https://wa.me/237673596327?text=Bonjour%20%C3%A9quipe%20LAFAOM-MAO%20!%20Je%20souhaite%20en%20savoir%20plus%20sur%20vos%20formations%20et%20le%20processus%20d%E2%80%99inscription.%20Pouvez-vous%20m%E2%80%99aider%20%C3%A0%20m%E2%80%99orienter%20%3F" target="_blank">
+    Cliquez ici pour discuter avec notre équipe sur WhatsApp
+  </a>
+</li>
+
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

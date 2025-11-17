@@ -1,64 +1,88 @@
 <div class="content">
+    <!-- Page Header -->
     <div class="page-header">
-        <div class="has-background container-full" style="background-image: url('/assets/Images/banner2.jpg')">
-            <img decoding="async" src="/assets/Images/banner2.jpg" alt="">
+        <div class="has-background container-full" style="background-image: url('/banner2.jpg')">
+            <img decoding="async" src="/banner2.jpg" alt="">
         </div>
-
         <div class="page-header-inner">
             <div class="page-title">
                 <span class="d-block page-parent">Candidature</span>
-                <h1 style="text-transform: uppercase;">Candidature soumise</h1>
+                <h1>Candidature soumise</h1>
             </div>
         </div>
     </div>
 
-    <div class="success-container">
+    <!-- Success Content -->
+    <div class="gab-recrutement-cabinet">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="success-card">
-                        <div class="success-icon">
-                            <i class="icon-check-circle"></i>
-                        </div>
-                        
-                        <h2 class="success-title">✅ Candidature soumise avec succès !</h2>
-                        
-                        <div class="success-message">
-                            <p>Votre candidature a été enregistrée avec succès.</p>
-                            <p *ngIf="applicationNumber" class="application-number">
-                                <strong>Numéro de candidature :</strong> {{ applicationNumber }}
+                <div class="col-lg-12">
+                    <!-- Success Card -->
+                    <div data-wpr-lazyrender="1" class="container-1440">
+                        <div class="section-textriche">
+                            <h2 class="title-h2">Candidature soumise avec succès</h2>
+
+                            <p>Votre candidature a été enregistrée avec succès dans notre système.</p>
+                            <p *ngIf="applicationNumber">
+                                <strong>
+                                    Numéro de candidature : {{ applicationNumber }}
+                                </strong>
                             </p>
                         </div>
+                    </div>
 
-                        <div class="payment-info">
-                            <div class="alert alert-warning">
-                                <h4>⚠️ Paiement requis</h4>
-                                <p>Pour que votre candidature soit étudiée, vous devez effectuer le paiement des frais de candidature.</p>
-                                <p><strong>Les frais sont obligatoires et non négociables.</strong></p>
+                    <div class="section-textriche">
+                        <div class="section-textriche">
+                            <h2 class="title-h2">Prochaines étapes</h2>
+                            <p>
+                                Si vous êtes convoqué pour un entretien, préparez-vous en amont.
+                            </p>
+                            <ul>
+                                <li>
+                                    Effectuez le paiement des frais d'étude de dossier en cliquant sur le bouton
+                                    <strong>Continuer vers le paiement</strong>
+                                </li>
+                                <li>
+                                    Vous recevrez un email de confirmation
+                                </li>
+                                <li>
+                                    Votre candidature sera étudiée par notre équipe
+                                </li>
+                                <li>
+                                    Vous serez informé du résultat par email.
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <!-- Next Steps -->
+                        <div data-wpr-lazyrender="1" class="container-1440">
+                            <div class="section-textriche">
+
+                                <ul>
+
+                                </ul>
                             </div>
-                        </div>
 
-                        <div class="next-steps">
-                            <h3>Prochaines étapes :</h3>
-                            <ol>
-                                <li>Effectuez le paiement des frais de candidature</li>
-                                <li>Vous recevrez un email de confirmation</li>
-                                <li>Votre candidature sera étudiée par notre équipe</li>
-                                <li>Vous serez informé du résultat par email</li>
-                            </ol>
-                        </div>
+                            <!-- Action Buttons -->
+                            <div class="action-buttons text-center">
+                                <a routerLink="/recruitment" class="btn btn-secondary me-3">
+                                     Retour aux offres d'emploi
+                                </a>
 
-                        <div class="action-buttons">
-                            <a routerLink="/recrutements" class="btn btn-primary">
-                                Retour aux offres d'emploi
-                            </a>
-                            <a routerLink="/acceuil" class="btn btn-outline-primary">
-                                Retour à l'accueil
-                            </a>
+                                <a *ngIf="paymentLink" class="btn btn-primary mx-2" [href]="paymentLink" target="_blank"
+                                    rel="noopener">
+                                    Continuer vers le paiement
+                                </a>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

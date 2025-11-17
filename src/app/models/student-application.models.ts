@@ -4,8 +4,12 @@ export interface StudentApplicationCreateInput {
   first_name?: string;
   last_name?: string;
   phone_number?: string;
+  civility?: string;
   country_code?: string;
-  attachments?: string[];
+  city?: string;
+  address?: string;
+  date_of_birth?: string;
+  attachments?: string[]; // Noms des fichiers (optionnel selon l'API)
 }
 
 export interface StudentApplicationOut {

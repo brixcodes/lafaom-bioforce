@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of, catchError, forkJoin } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { Training, TrainingResponse, TrainingPaginationParams, TrainingSession, TrainingSessionsResponse, TrainingSessionFilters, OrganizationCenter, OrganizationCenterResponse, Specialty, FilterOptions } from '../models/training.models';
+import { Training, TrainingResponse, TrainingPaginationParams, TrainingSession, TrainingSessionsResponse, TrainingSessionFilters, OrganizationCenter, OrganizationCenterResponse, Specialty, FilterOptions, StudentApplicationCreateInput, StudentApplicationResponse } from '../models/training.models';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class TrainingService {
    */
   getTrainings(params?: TrainingPaginationParams): Observable<TrainingResponse> {
     let httpParams = new HttpParams();
-    
+
     if (params?.page) {
       httpParams = httpParams.set('page', params.page.toString());
     }
@@ -60,7 +60,7 @@ export class TrainingService {
   /**
    * Récupérer une formation par son ID
    */
-  getTrainingById(id: number): Observable<{data: Training}> {
+  getTrainingById(id: number | string): Observable<{data: Training}> {
     return this.http.get<{data: Training}>(`${this.baseUrl}/trainings/${id}`)
       .pipe(
         catchError((error: any) => {
@@ -98,7 +98,7 @@ export class TrainingService {
       .set('per_page', limit.toString())
       .set('page', '1')
       .set('featured', 'true');
-    
+
     return this.http.get<TrainingResponse>(`${this.baseUrl}/trainings`, { params })
       .pipe(
         catchError((error: any) => {
@@ -128,7 +128,7 @@ export class TrainingService {
    */
   getTrainingSessions(trainingId: string, filters?: TrainingSessionFilters): Observable<TrainingSessionsResponse> {
     let httpParams = new HttpParams();
-    
+
     if (filters?.page) {
       httpParams = httpParams.set('page', filters.page.toString());
     }
@@ -165,11 +165,25 @@ export class TrainingService {
   }
 
   /**
+   * Backward-compatible alias used by pages
+   */
+  getSessionsByTrainingId(trainingId: string): Observable<TrainingSessionsResponse> {
+    return this.getTrainingSessions(trainingId, { page_size: 100 });
+  }
+
+  /**
+   * Create student application (public endpoint)
+   */
+  createStudentApplication(payload: StudentApplicationCreateInput): Observable<StudentApplicationResponse> {
+    return this.http.post<StudentApplicationResponse>(`${this.baseUrl}/student-applications`, payload);
+  }
+
+  /**
    * Compter les sessions disponibles (non commencées) d'une formation
    */
   getAvailableSessionsCount(trainingId: string): Observable<number> {
     const today = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
-    
+
     return this.getTrainingSessions(trainingId, {
       page: 1,
       page_size: 100, // Récupérer toutes les sessions
@@ -245,9 +259,9 @@ export class TrainingService {
     return this.getSpecialties().pipe(
       map(specialties => {
         // Extraire les types et durées uniques des formations existantes
-        const types = [...new Set(['Formation métier certifiante', 'Formation initiale post-bac', 'Formation courte', 'VAE'])];
-        const durations = [...new Set(['1 heure', '1 à 5 jours', 'D\'une semaine à un mois', 'De 1 à 3 mois', 'De 3 à 12 mois', 'Plus de 12 mois'])];
-        
+        const types = [...new Set(['Formation métier ', 'Séminaire thématique '])];
+        const durations = [...new Set(['12 mois ','2 à  15 jours'])];
+
         return {
           specialties,
           locations: [], // Sera rempli dynamiquement
@@ -274,20 +288,20 @@ export class TrainingService {
     return this.getTrainings({ per_page: 100 }).pipe(
       switchMap((response: TrainingResponse) => {
         const trainingIds = response.data.map(training => training.id.toString());
-        
+
         if (trainingIds.length === 0) {
           return of(['Ziguinchor']); // Ville par défaut
         }
 
         // Récupérer les sessions pour toutes les formations
-        const sessionObservables = trainingIds.map(trainingId => 
+        const sessionObservables = trainingIds.map(trainingId =>
           this.getTrainingSessions(trainingId, { page_size: 100 })
         );
 
         return forkJoin(sessionObservables).pipe(
           switchMap((responses: TrainingSessionsResponse[]) => {
             const centerIds = new Set<number>();
-            
+
             // Collecter tous les centre_id des sessions
             responses.forEach(response => {
               response.data.forEach(session => {
@@ -302,7 +316,7 @@ export class TrainingService {
             }
 
             // Récupérer les centres pour obtenir les villes
-            const centerObservables = Array.from(centerIds).map(centerId => 
+            const centerObservables = Array.from(centerIds).map(centerId =>
               this.getOrganizationCenter(centerId).pipe(
                 map(centerResponse => centerResponse.data.city),
                 catchError(() => of('N/A'))

@@ -138,3 +138,62 @@ export interface FilterOptions {
   types: string[];
   durations: string[];
 }
+
+export interface AttachmentInput {
+  type: string;
+  url: string;
+}
+
+
+// Interface pour les candidatures aux formations
+export interface StudentApplicationCreateInput {
+  email: string;
+  target_session_id: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  civility?: string;
+  country_code?: string;
+  city?: string;
+  address?: string;
+  date_of_birth?: string;
+  payment_method?: 'ONLINE' | 'TRANSFER';
+  attachments?: AttachmentInput[];
+}
+
+export interface StudentApplicationResponse {
+  message: string;
+  data: {
+    student_application: {
+      id: number;
+      target_session_id: string;
+      application_number: string;
+      status: string;
+      refusal_reason: string | null;
+      submission_fee: number;
+      currency: string;
+      payment_id: string | null;
+      payment_method: 'ONLINE' | 'TRANSFER';
+      email: string;
+      phone_number: string;
+      first_name: string;
+      last_name: string;
+      civility: string | null;
+      country_code: string | null;
+      city: string | null;
+      address: string | null;
+      date_of_birth: string | null;
+      created_at: string;
+      updated_at: string;
+    };
+    payment: {
+      payment_provider: string;
+      amount: number;
+      currency: string;
+      transaction_id: string;
+      payment_link?: string;
+      notify_url?: string;
+      message?: string;
+    };
+  };
+}

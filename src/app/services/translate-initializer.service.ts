@@ -15,8 +15,8 @@ export class TranslateInitializerService {
     this.translate.setDefaultLang('fr');
     
     // Récupérer la langue sauvegardée ou utiliser le français par défaut
-    const savedLang = localStorage.getItem('lafaom-language') || 'fr';
-    const supportedLangs = ['fr', 'en'];
+    const savedLang = localStorage.getItem('LAFAOM-language') || 'fr';
+    const supportedLangs = ['fr', 'en', 'de'];
     
     // Vérifier que la langue est supportée
     const lang = supportedLangs.includes(savedLang) ? savedLang : 'fr';

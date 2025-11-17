@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './section-1.css'
 })
 export class Section1 implements OnInit, OnDestroy {
+  @ViewChildren('fileInputs') fileInputs!: QueryList<ElementRef<HTMLInputElement>>;
+  
   jobOffer: JobOffer | null = null;
   applicationForm: FormGroup;
   loading = false;
@@ -131,13 +133,38 @@ export class Section1 implements OnInit, OnDestroy {
               console.log('✅ [SECTION-1] Offre d\'emploi chargée avec succès:', jobOffer);
               this.jobOffer = jobOffer;
               console.log('📎 [SECTION-1] Pièces jointes de l\'offre:', jobOffer.attachment);
+              console.log('📎 [SECTION-1] Type de pièces jointes:', typeof jobOffer.attachment);
+              console.log('📎 [SECTION-1] Longueur des pièces jointes:', jobOffer.attachment?.length);
               
-              // Si pas de pièces jointes spécifiées, utiliser des documents par défaut
-              this.requiredAttachments = jobOffer.attachment && jobOffer.attachment.length > 0 
-                ? jobOffer.attachment 
-                : ['CV', 'Lettre de motivation', 'Copie de la pièce d\'identité'];
+              // Déterminer les pièces jointes requises
+              if (jobOffer.attachment && Array.isArray(jobOffer.attachment) && jobOffer.attachment.length > 0) {
+                // Convertir les codes techniques en noms lisibles
+                this.requiredAttachments = jobOffer.attachment.map((attachment: string) => this.getAttachmentDisplayName(attachment));
+                console.log('📋 [SECTION-1] Utilisation des pièces jointes de l\'API:', this.requiredAttachments);
+              } else {
+                // Pièces jointes par défaut selon le type de poste
+                if (jobOffer.title && jobOffer.title.toLowerCase().includes('directeur')) {
+                  this.requiredAttachments = [
+                    'CV détaillé',
+                    'Lettre de motivation',
+                    'Copie de la pièce d\'identité',
+                    'Diplômes et certifications',
+                    'Relevés de notes (Master)',
+                    'Attestations de formation',
+                    'Lettres de recommandation'
+                  ];
+                } else {
+                  this.requiredAttachments = [
+                    'CV',
+                    'Lettre de motivation',
+                    'Copie de la pièce d\'identité',
+                    'Diplômes et certifications'
+                  ];
+                }
+                console.log('📋 [SECTION-1] Utilisation des pièces jointes par défaut:', this.requiredAttachments);
+              }
               
-              console.log('📋 [SECTION-1] Pièces jointes requises:', this.requiredAttachments);
+              console.log('📋 [SECTION-1] Pièces jointes requises finales:', this.requiredAttachments);
               
               this.applicationForm.patchValue({
                 job_offer_id: jobOffer.id
@@ -170,10 +197,56 @@ export class Section1 implements OnInit, OnDestroy {
     
     if (file) {
       console.log(`Fichier sélectionné pour ${attachmentType}:`, file.name, file.size, file.type);
+      // Vérifier le type de fichier
+      if (file.type !== 'application/pdf') {
+        this.error = 'Seuls les fichiers PDF sont acceptés';
+        return;
+      }
+      // Vérifier la taille du fichier (max 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        this.error = 'Le fichier ne doit pas dépasser 10MB';
+        return;
+      }
       // Upload immédiat du fichier
       this.uploadFile(file, attachmentType);
     } else {
       console.log('Aucun fichier sélectionné');
+    }
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  onFileDrop(event: DragEvent, attachmentType: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      console.log(`Fichier déposé pour ${attachmentType}:`, file.name, file.size, file.type);
+      
+      // Vérifier le type de fichier
+      if (file.type !== 'application/pdf') {
+        this.error = 'Seuls les fichiers PDF sont acceptés';
+        return;
+      }
+      // Vérifier la taille du fichier (max 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        this.error = 'Le fichier ne doit pas dépasser 10MB';
+        return;
+      }
+      // Upload immédiat du fichier
+      this.uploadFile(file, attachmentType);
+    }
+  }
+
+  onFileZoneClick(attachmentType: string, index: number) {
+    const fileInputs = this.fileInputs.toArray();
+    if (fileInputs[index]) {
+      fileInputs[index].nativeElement.click();
     }
   }
 
@@ -316,7 +389,7 @@ export class Section1 implements OnInit, OnDestroy {
                   window.location.href = response.data.payment.payment_link;
                 } else if (response.data && response.data.job_application) {
                   console.log('Redirection vers la page de succès');
-                  this.router.navigate(['/recrutements/success'], {
+                  this.router.navigate(['/recruitment/success'], {
                     queryParams: { applicationNumber: response.data.job_application.application_number }
                   });
                 } else {
@@ -344,5 +417,26 @@ export class Section1 implements OnInit, OnDestroy {
 
   formatSalary(salary: number, currency: string): string {
     return new Intl.NumberFormat('fr-FR').format(salary) + ' ' + currency;
+  }
+
+  /**
+   * Convertit les codes techniques des pièces jointes en noms lisibles
+   */
+  private getAttachmentDisplayName(attachmentCode: string): string {
+    const attachmentNames: { [key: string]: string } = {
+      'CV': 'CV',
+      'COVER_LETTER': 'Lettre de motivation',
+      'DIPLOMA': 'Diplômes et certifications',
+      'IDENTITY_CARD': 'Copie de la pièce d\'identité',
+      'TRANSCRIPT': 'Relevés de notes',
+      'CERTIFICATE': 'Attestations de formation',
+      'RECOMMENDATION_LETTER': 'Lettres de recommandation',
+      'RESUME': 'CV détaillé',
+      'MOTIVATION_LETTER': 'Lettre de motivation',
+      'DEGREE': 'Diplômes',
+      'ID_COPY': 'Copie de la pièce d\'identité'
+    };
+
+    return attachmentNames[attachmentCode] || attachmentCode;
   }
 }

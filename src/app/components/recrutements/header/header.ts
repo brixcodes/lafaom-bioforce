@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { JobService } from '../../../services/job.service';
@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class Header implements OnInit, OnDestroy {
   featuredJobs: JobOffer[] = [];
-  loading = false; // Changé de true à false pour éviter le loading automatique
+  loading = false;
   error: string | null = null;
   showModal = false;
   selectedJob: JobOffer | null = null;
@@ -42,7 +42,8 @@ export class Header implements OnInit, OnDestroy {
   constructor(
     private jobService: JobService,
     private jobApplicationService: JobApplicationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.applicationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -50,7 +51,7 @@ export class Header implements OnInit, OnDestroy {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       civility: [''],
-      country_code: ['SN'], // Sénégal bloqué
+      country_code: ['SN'], // Sénégal par défaut
       city: [''],
       address: [''],
       date_of_birth: [''],
@@ -60,6 +61,7 @@ export class Header implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('🚀 [HEADER] Composant initialisé');
     this.loadFeaturedJobs();
   }
 
@@ -68,28 +70,132 @@ export class Header implements OnInit, OnDestroy {
   }
 
   loadFeaturedJobs() {
-    // Ne pas afficher le loading au chargement initial
+    console.log('📋 [HEADER] Début du chargement des offres d\'emploi...');
+    this.loading = true;
     this.error = null;
 
     this.subscription.add(
-      this.jobService.getFeaturedJobOffers(3).subscribe({
-        next: (response) => {
-          console.log('Réponse API reçue:', response);
+      this.jobService.getJobOffers({ featured: true, per_page: 10 }).subscribe({
+        next: (response: any) => {
+          this.loading = false;
+          console.log('📋 [HEADER] Réponse complète:', response);
+
+          if (response.data && Array.isArray(response.data)) {
           this.featuredJobs = response.data;
-          console.log('Données assignées:', this.featuredJobs);
-          this.loading = false;
-          console.log('Offres d\'emploi mises en avant chargées:', this.featuredJobs);
+            console.log('📋 [HEADER] Offres d\'emploi chargées:', this.featuredJobs);
+            console.log('📋 [HEADER] Nombre d\'offres:', this.featuredJobs.length);
+
+            // Si aucune offre featured, charger toutes les offres disponibles
+            if (this.featuredJobs.length === 0) {
+              console.log('📋 [HEADER] Aucune offre featured, chargement de toutes les offres...');
+              this.loadAllJobs();
+            }
+          } else {
+            console.warn('📋 [HEADER] Format de réponse inattendu:', response);
+            this.featuredJobs = [];
+          }
         },
-        error: (error) => {
-          console.error('Erreur lors du chargement des offres d\'emploi:', error);
-          this.error = 'Impossible de charger les offres d\'emploi';
+        error: (error: any) => {
+          console.error('❌ [HEADER] Erreur lors du chargement des offres:', error);
           this.loading = false;
+          this.error = `Erreur lors du chargement des offres d'emploi: ${error.error?.message || error.message}`;
         }
       })
     );
   }
 
+  loadAllJobs() {
+    console.log('📋 [HEADER] Chargement de toutes les offres d\'emploi...');
+
+    this.subscription.add(
+      this.jobService.getJobOffers({ per_page: 10 }).subscribe({
+        next: (response: any) => {
+          console.log('📋 [HEADER] Toutes les offres chargées:', response);
+
+          if (response.data && Array.isArray(response.data)) {
+            this.featuredJobs = response.data;
+            console.log('📋 [HEADER] Toutes les offres d\'emploi chargées:', this.featuredJobs);
+            console.log('📋 [HEADER] Nombre total d\'offres:', this.featuredJobs.length);
+          }
+        },
+        error: (error: any) => {
+          console.error('❌ [HEADER] Erreur lors du chargement de toutes les offres:', error);
+        }
+      })
+    );
+  }
+
+  openModal(job: JobOffer) {
+    this.selectedJob = job;
+    this.showModal = true;
+    console.log('📋 [HEADER] Modal ouvert pour:', job.title);
+  }
+
+  viewJobDetails(job: JobOffer) {
+    console.log('📋 [HEADER] Redirection vers les détails de l\'offre:', job.title, 'ID:', job.id);
+    this.router.navigate(['/application-recuitement', job.id]);
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.selectedJob = null;
+  }
+
+  openApplicationModal(job: JobOffer) {
+    this.selectedJob = job;
+    this.showApplicationModal = true;
+    this.resetApplicationForm();
+    console.log('📝 [HEADER] Modal de candidature ouvert pour:', job.title);
+  }
+
+  closeApplicationModal() {
+    this.showApplicationModal = false;
+    this.selectedJob = null;
+    this.resetApplicationForm();
+  }
+
+  resetApplicationForm() {
+    this.applicationForm.reset({
+      country_code: 'SN' // Sénégal par défaut
+    });
+    this.uploadedFiles = {};
+    this.uploadingFiles = {};
+    this.error = null;
+    this.success = false;
+    this.submitting = false;
+  }
+
+  openSessionsModal(job: JobOffer) {
+    this.selectedJob = job;
+    this.loadAvailableSessions(Number(job.id));
+  }
+
+  closeSessionsModal() {
+    this.showSessionsModal = false;
+    this.selectedJob = null;
+    this.availableSessions = [];
+  }
+
+  loadAvailableSessions(jobId: number) {
+    // Pour l'instant, on simule des sessions vides
+    // Cette fonctionnalité sera implémentée plus tard
+    this.availableSessions = [];
+    this.showSessionsModal = true;
+    console.log('📅 [HEADER] Sessions non disponibles pour le moment');
+  }
+
+  selectSession(session: JobSession) {
+    this.selectedSession = session;
+    this.applicationForm.patchValue({
+      job_session_id: session.id
+    });
+    this.closeSessionsModal();
+    this.openApplicationModal(this.selectedJob!);
+  }
+
   formatDate(dateString: string): string {
+    if (!dateString) return '';
+
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
       year: 'numeric',
@@ -98,309 +204,518 @@ export class Header implements OnInit, OnDestroy {
     });
   }
 
-
-  getSkillsText(competencies: string): string {
-    const skills = competencies.split(',').map(s => s.trim());
-    return skills.slice(0, 3).join(', ') + (skills.length > 3 ? '...' : '');
-  }
-
   formatSalary(salary: number, currency: string): string {
     return new Intl.NumberFormat('fr-FR').format(salary) + ' ' + currency;
   }
 
-  openModal(job: JobOffer) {
-    this.selectedJob = job;
-    this.showModal = true;
-    this.loadJobSessions(job.id);
-    
-    // Empêcher le scroll du body quand le modal est ouvert
-    if (typeof document !== 'undefined') {
-      document.body.classList.add('modal-open');
+  /**
+   * Détermine les pièces jointes requises pour une offre d'emploi
+   */
+  getRequiredAttachments(job: JobOffer | null): string[] {
+    if (!job) return [];
+
+    // Si l'offre a des pièces jointes spécifiées dans l'API
+    if (job.attachment && Array.isArray(job.attachment) && job.attachment.length > 0) {
+      // Convertir les codes techniques en noms lisibles
+      return job.attachment.map((attachment: string) => this.getAttachmentDisplayName(attachment));
+    }
+
+    // Pièces jointes par défaut selon le type de poste
+    if (job.title && job.title.toLowerCase().includes('directeur')) {
+      return [
+        'CV détaillé',
+        'Lettre de motivation',
+        'Copie de la pièce d\'identité',
+        'Diplômes et certifications',
+        'Relevés de notes (Master)',
+        'Attestations de formation',
+        'Lettres de recommandation'
+      ];
+    } else {
+      return [
+        'CV',
+        'Lettre de motivation',
+        'Copie de la pièce d\'identité',
+        'Diplômes et certifications'
+      ];
     }
   }
 
-  loadJobSessions(jobId: string) {
-    // Simuler le chargement des sessions pour cette offre d'emploi
-    // Dans un vrai projet, vous feriez un appel API ici
-    this.availableSessions = [
-      {
-        id: '1',
-        job_offer_id: jobId,
-        start_date: '2024-02-01',
-        end_date: '2024-02-28',
-        registration_deadline: '2024-01-25',
-        available_positions: 5,
-        status: 'OPEN_FOR_REGISTRATION',
-        location: 'Dakar',
-        created_at: '2024-01-01',
-        updated_at: '2024-01-01'
-      },
-      {
-        id: '2',
-        job_offer_id: jobId,
-        start_date: '2024-03-01',
-        end_date: '2024-03-31',
-        registration_deadline: '2024-02-25',
-        available_positions: 3,
-        status: 'OPEN_FOR_REGISTRATION',
-        location: 'Ziguinchor',
-        created_at: '2024-01-01',
-        updated_at: '2024-01-01'
-      }
-    ];
+  /**
+   * Convertit les codes techniques des pièces jointes en noms lisibles
+   */
+  private getAttachmentDisplayName(attachmentCode: string): string {
+    const attachmentNames: { [key: string]: string } = {
+      'CV': 'CV',
+      'COVER_LETTER': 'Lettre de motivation',
+      'DIPLOMA': 'Diplômes et certifications',
+      'IDENTITY_CARD': 'Copie de la pièce d\'identité',
+      'TRANSCRIPT': 'Relevés de notes',
+      'CERTIFICATE': 'Attestations de formation',
+      'RECOMMENDATION_LETTER': 'Lettres de recommandation',
+      'RESUME': 'CV détaillé',
+      'MOTIVATION_LETTER': 'Lettre de motivation',
+      'DEGREE': 'Diplômes',
+      'ID_COPY': 'Copie de la pièce d\'identité'
+    };
+
+    return attachmentNames[attachmentCode] || attachmentCode;
   }
 
-  openSessionsModal() {
-    this.showSessionsModal = true;
-    
-    // Empêcher le scroll du body quand le modal est ouvert
-    if (typeof document !== 'undefined') {
-      document.body.classList.add('modal-open');
-    }
+  /**
+   * Convertit les noms d'affichage en codes techniques pour l'API
+   */
+  private getAttachmentTechnicalCode(displayName: string): string {
+    const technicalCodes: { [key: string]: string } = {
+      'CV': 'CV',
+      'CV détaillé': 'RESUME',
+      'Lettre de motivation': 'COVER_LETTER',
+      'Copie de la pièce d\'identité': 'IDENTITY_CARD',
+      'Diplômes et certifications': 'DIPLOMA',
+      'Diplômes': 'DEGREE',
+      'Relevés de notes': 'TRANSCRIPT',
+      'Relevés de notes (Master)': 'TRANSCRIPT',
+      'Attestations de formation': 'CERTIFICATE',
+      'Lettres de recommandation': 'RECOMMENDATION_LETTER'
+    };
+
+    return technicalCodes[displayName] || displayName;
   }
 
-  closeSessionsModal() {
-    this.showSessionsModal = false;
-    this.selectedSession = null;
-    
-    // Nettoyer l'état du modal
-    if (typeof document !== 'undefined') {
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      
-      const backdrops = document.querySelectorAll('.modal-backdrop');
-      backdrops.forEach(backdrop => backdrop.remove());
-    }
-  }
-
-  selectSession(session: JobSession) {
-    this.selectedSession = session;
-    this.closeSessionsModal();
-    this.openApplicationModal(this.selectedJob!);
-    
-    // Mettre à jour le formulaire avec l'ID de la session
-    this.applicationForm.patchValue({
-      job_session_id: session.id
-    });
-  }
-
-  closeModal() {
-    this.showModal = false;
-    this.selectedJob = null;
-    
-    // Nettoyer complètement l'état du modal
-    if (typeof document !== 'undefined') {
-      // Supprimer toutes les classes et styles liés au modal
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      document.body.style.padding = '';
-      
-      // Supprimer tous les backdrops existants
-      const backdrops = document.querySelectorAll('.modal-backdrop');
-      backdrops.forEach(backdrop => backdrop.remove());
-      
-      // Supprimer tous les overlays de modal
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-        modal.classList.remove('show');
-        (modal as HTMLElement).style.display = 'none';
-      });
-      
-      // Forcer le reflow pour s'assurer que les changements sont appliqués
-      document.body.offsetHeight;
-      
-      // Recharger la page après fermeture du modal
-      window.location.reload();
-    }
-  }
-
-  // Méthodes pour le modal de candidature
-  openApplicationModal(job: JobOffer) {
-    // Fermer complètement le modal de présentation du poste
-    this.showModal = false;
-    this.selectedJob = null; // Réinitialiser le job sélectionné pour le modal de présentation
-    
-    // Nettoyer l'état du modal de présentation
-    if (typeof document !== 'undefined') {
-      // Supprimer les backdrops du modal de présentation
-      const backdrops = document.querySelectorAll('.modal-backdrop');
-      backdrops.forEach(backdrop => backdrop.remove());
-      
-      // Supprimer les classes du body liées au modal de présentation
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-    }
-    
-    // Ouvrir le modal de candidature
-    this.selectedJob = job;
-    this.showApplicationModal = true;
-    this.success = false;
-    this.error = null;
-    
-    // Initialiser les pièces jointes requises
-    this.requiredAttachments = job.attachment && job.attachment.length > 0 
-      ? job.attachment 
-      : ['CV', 'Lettre de motivation', 'Copie de la pièce d\'identité'];
-    
-    // Mettre à jour le formulaire avec l'ID de l'offre
-    this.applicationForm.patchValue({
-      job_offer_id: job.id
-    });
-    
-    // Empêcher le scroll du body quand le modal de candidature est ouvert
-    if (typeof document !== 'undefined') {
-      document.body.classList.add('modal-open');
-    }
-  }
-
-  closeApplicationModal() {
-    this.showApplicationModal = false;
-    this.selectedJob = null;
-    this.success = false;
-    this.error = null;
-    this.uploadedFiles = {};
-    this.uploadingFiles = {};
-    this.applicationForm.reset();
-    
-    // Nettoyer complètement l'état du modal
-    if (typeof document !== 'undefined') {
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      
-      const backdrops = document.querySelectorAll('.modal-backdrop');
-      backdrops.forEach(backdrop => backdrop.remove());
-      
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-        modal.classList.remove('show');
-        (modal as HTMLElement).style.display = 'none';
-      });
-      
-      // Recharger la page entière après fermeture du modal de candidature
-      window.location.reload();
-    }
-  }
-
+  /**
+   * Gère la sélection de fichiers
+   */
   onFileSelected(event: any, attachmentType: string) {
     const file = event.target.files[0];
     if (file) {
+      // Vérifier le type de fichier
+      if (file.type !== 'application/pdf') {
+        this.error = 'Seuls les fichiers PDF sont acceptés';
+        return;
+      }
+      // Vérifier la taille du fichier (max 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        this.error = 'Le fichier ne doit pas dépasser 10MB';
+        return;
+      }
+      // Upload immédiat du fichier
       this.uploadFile(file, attachmentType);
     }
   }
 
+         /**
+          * Upload un fichier
+          */
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
+
+           console.log(`📤 [HEADER] Début de l'upload du fichier ${attachmentType}:`, {
+             fileName: fileName,
+             fileSize: file.size,
+             fileType: file.type
+           });
+
+           // Marquer comme en cours d'upload
     this.uploadingFiles[attachmentType] = true;
+           this.error = null; // Clear any previous errors
     
     this.subscription.add(
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
+                 console.log(`📤 [HEADER] Réponse d'upload pour ${attachmentType}:`, response);
+
           this.uploadingFiles[attachmentType] = false;
-          console.log('📎 [HEADER] Réponse upload:', response);
-          if (response.data && response.data.length > 0) {
-            console.log('📎 [HEADER] Données upload:', response.data[0]);
-            this.uploadedFiles[attachmentType] = {
+
+                 // Vérifier la structure de la réponse selon l'API backend
+                 console.log(`🔍 [HEADER] Structure de réponse pour ${attachmentType}:`, response);
+
+                 let uploadedFileData: any = null;
+
+                 // Structure attendue selon l'API: JobAttachmentListOutSuccess
+                 // { success: boolean, message: string, data: JobAttachmentOut[] }
+                 if (response && response.success && response.data && Array.isArray(response.data) && response.data.length > 0) {
+                   const attachmentData = response.data[0];
+                   uploadedFileData = {
+                     file: file,
+                     url: attachmentData.file_path, // L'API retourne file_path, pas url
+                     name: attachmentData.name || fileName
+                   };
+                   console.log(`✅ [HEADER] Structure API correcte détectée:`, attachmentData);
+                 }
+                 // Structure alternative: response.data[0].url
+                 else if (response && response.data && Array.isArray(response.data) && response.data.length > 0) {
+                   const attachmentData = response.data[0];
+                   uploadedFileData = {
+                     file: file,
+                     url: attachmentData.url || attachmentData.file_path,
+                     name: attachmentData.name || fileName
+                   };
+                   console.log(`✅ [HEADER] Structure alternative détectée:`, attachmentData);
+                 }
+                 // Structure 3: response.url directement
+                 else if (response && response.url) {
+                   uploadedFileData = {
+                     file: file,
+                     url: response.url,
+                     name: response.name || fileName
+                   };
+                   console.log(`✅ [HEADER] Structure URL directe détectée:`, response);
+                 }
+                 // Structure 4: Simuler une URL si l'upload a réussi mais pas d'URL
+                 else if (response && (response.success || response.message)) {
+                   console.warn(`⚠️ [HEADER] Upload réussi mais pas d'URL pour ${attachmentType}, simulation d'une URL temporaire`);
+                   uploadedFileData = {
               file: file,
-              url: response.data[0].url || response.data[0].file_path, // Fallback sur file_path
-              name: response.data[0].name
-            };
-            console.log('📎 [HEADER] Fichier stocké:', this.uploadedFiles[attachmentType]);
+                     url: `temp://uploaded/${fileName}`, // URL temporaire
+                     name: fileName
+                   };
+                 }
+
+                 if (uploadedFileData) {
+                   this.uploadedFiles[attachmentType] = uploadedFileData;
+
+                   console.log(`✅ [HEADER] Fichier ${attachmentType} uploadé avec succès:`, uploadedFileData);
+                   console.log(`✅ [HEADER] URL stockée: ${uploadedFileData.url}`);
+
+                   // Vérifier que l'URL est valide (mais accepter les URLs temporaires)
+                   if (!uploadedFileData.url || uploadedFileData.url.trim() === '') {
+                     console.error(`❌ [HEADER] URL vide ou invalide pour le fichier ${attachmentType}`);
+                     this.error = `Erreur: URL vide pour le fichier ${attachmentType}. Veuillez re-uploader ce fichier.`;
+                     // Supprimer le fichier de la liste des fichiers uploadés
+                     delete this.uploadedFiles[attachmentType];
+                   } else {
+                     console.log(`✅ [HEADER] Fichier ${attachmentType} correctement stocké avec URL: ${uploadedFileData.url}`);
+                   }
+                 } else {
+                   console.error('❌ [HEADER] Réponse d\'upload invalide:', response);
+                   this.error = `Réponse d'upload invalide pour ${attachmentType}. Structure de réponse: ${JSON.stringify(response)}`;
+                   // Supprimer le fichier de la liste des fichiers uploadés
+                   delete this.uploadedFiles[attachmentType];
           }
         },
         error: (error: any) => {
-          console.error(`Erreur lors de l'upload du fichier ${attachmentType}:`, error);
+                 console.error(`❌ [HEADER] Erreur lors de l'upload du fichier ${attachmentType}:`, error);
+                 console.error(`❌ [HEADER] Détails de l'erreur d'upload:`, {
+                   status: error.status,
+                   statusText: error.statusText,
+                   message: error.message,
+                   error: error.error,
+                   url: error.url
+                 });
+
           this.uploadingFiles[attachmentType] = false;
-          this.error = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message}`;
+
+                 // Messages d'erreur spécifiques
+                 if (error.status === 0) {
+                   this.error = `Erreur de connexion pour ${attachmentType}. Vérifiez votre connexion internet.`;
+                 } else if (error.status === 500) {
+                   this.error = `Erreur serveur pour ${attachmentType}. Le serveur a rencontré un problème.`;
+                 } else if (error.status === 413) {
+                   this.error = `Fichier ${attachmentType} trop volumineux. Taille maximale: 10MB.`;
+                 } else {
+                   this.error = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+                 }
+
+                 // Supprimer le fichier de la liste des fichiers uploadés
+                 delete this.uploadedFiles[attachmentType];
         }
       })
     );
   }
 
+  /**
+   * Supprime un fichier uploadé
+   */
   removeFile(attachmentType: string) {
     delete this.uploadedFiles[attachmentType];
+    console.log(`🗑️ [HEADER] Fichier ${attachmentType} supprimé`);
   }
 
-  getFileStatus(attachmentType: string): string {
-    if (this.uploadedFiles[attachmentType]) {
-      return 'uploaded';
+  /**
+   * Force la re-upload d'un fichier spécifique
+   */
+  retryUpload(attachmentType: string) {
+    console.log(`🔄 [HEADER] Tentative de re-upload pour ${attachmentType}`);
+
+    // Supprimer le fichier actuel
+    delete this.uploadedFiles[attachmentType];
+    this.uploadingFiles[attachmentType] = false;
+    this.error = null;
+
+    // Déclencher le sélecteur de fichier
+    const fileInput = document.querySelector(`input[type="file"][data-attachment="${attachmentType}"]`) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    } else {
+      console.error(`❌ [HEADER] Impossible de trouver l'input file pour ${attachmentType}`);
+      this.error = `Impossible de re-uploader ${attachmentType}. Veuillez sélectionner le fichier manuellement.`;
     }
-    if (this.uploadingFiles[attachmentType]) {
-      return 'uploading';
-    }
-    return 'pending';
   }
 
+  /**
+   * Méthode pour déboguer l'état actuel du formulaire
+   */
+  debugFormState() {
+    console.log('🔍 [HEADER] État actuel du formulaire:');
+    console.log('📝 [HEADER] Formulaire valide:', this.applicationForm.valid);
+    console.log('📝 [HEADER] Valeurs du formulaire:', this.applicationForm.value);
+    console.log('📎 [HEADER] Fichiers uploadés:', this.uploadedFiles);
+    console.log('📎 [HEADER] Fichiers en cours d\'upload:', this.uploadingFiles);
+    console.log('❌ [HEADER] Erreur actuelle:', this.error);
+    console.log('✅ [HEADER] Validation complète:', this.isFormValid());
+
+    // Vérifier chaque fichier uploadé
+    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+      console.log(`📎 [HEADER] Fichier ${type}:`, {
+        name: fileData.name,
+        url: fileData.url,
+        hasUrl: !!fileData.url,
+        urlLength: fileData.url ? fileData.url.length : 0,
+        isTemporary: fileData.url ? fileData.url.startsWith('temp://') : false
+      });
+    }
+  }
+
+  /**
+   * Force la re-upload de tous les fichiers avec des URLs temporaires
+   */
+  retryAllTemporaryUploads() {
+    console.log('🔄 [HEADER] Re-upload de tous les fichiers avec URLs temporaires');
+
+    const temporaryFiles: string[] = [];
+    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+      if (fileData.url && fileData.url.startsWith('temp://')) {
+        temporaryFiles.push(type);
+      }
+    }
+
+    if (temporaryFiles.length === 0) {
+      console.log('✅ [HEADER] Aucun fichier avec URL temporaire trouvé');
+      return;
+    }
+
+    console.log(`🔄 [HEADER] Fichiers avec URLs temporaires: ${temporaryFiles.join(', ')}`);
+
+    // Supprimer tous les fichiers temporaires
+    for (const type of temporaryFiles) {
+      delete this.uploadedFiles[type];
+    }
+
+    this.error = `Re-upload nécessaire pour ${temporaryFiles.length} fichier(s). Veuillez re-sélectionner les fichiers.`;
+  }
+
+  /**
+   * Vérifie si le formulaire est valide
+   */
   isFormValid(): boolean {
-    if (!this.applicationForm.valid) {
+    console.log('🔍 [HEADER] Vérification de la validité du formulaire...');
+
+    // Vérifier que tous les champs requis sont remplis
+    const formValid = this.applicationForm.valid;
+    console.log('📝 [HEADER] Formulaire valide:', formValid);
+    console.log('📝 [HEADER] Erreurs du formulaire:', this.getFormErrors());
+
+    if (!formValid) {
       return false;
     }
 
-    for (const attachmentType of this.requiredAttachments) {
+    // Vérifier que tous les fichiers requis sont uploadés
+    const requiredAttachments = this.getRequiredAttachments(this.selectedJob);
+    console.log('📎 [HEADER] Pièces jointes requises:', requiredAttachments);
+    console.log('📎 [HEADER] Fichiers uploadés:', Object.keys(this.uploadedFiles));
+
+    for (const attachmentType of requiredAttachments) {
       if (!this.uploadedFiles[attachmentType]) {
+        console.log(`❌ [HEADER] Fichier manquant: ${attachmentType}`);
         return false;
       }
     }
+
+    console.log('✅ [HEADER] Formulaire valide et tous les fichiers uploadés');
     return true;
   }
 
+  /**
+   * Récupère les erreurs du formulaire pour le débogage
+   */
+  private getFormErrors(): any {
+    const errors: any = {};
+    Object.keys(this.applicationForm.controls).forEach(key => {
+      const control = this.applicationForm.get(key);
+      if (control && control.errors) {
+        errors[key] = control.errors;
+      }
+    });
+    return errors;
+  }
+
+  /**
+   * Soumet la candidature
+   */
   onSubmitApplication() {
+    console.log('🚀 [HEADER] onSubmitApplication démarré');
+
+    if (!this.isFormValid()) {
+      this.error = 'Veuillez remplir tous les champs requis et uploader tous les documents';
+      return;
+    }
+
     this.submitting = true;
     this.error = null;
 
+    // Debug: Afficher les fichiers uploadés
+    console.log('📎 [HEADER] Fichiers uploadés détaillés:', this.uploadedFiles);
+
+    // Préparer les attachments selon le format attendu par le backend
     const attachments: JobAttachmentInput[] = [];
-    for (const [type, fileData] of Object.entries(this.uploadedFiles)) {
+    for (const [displayType, fileData] of Object.entries(this.uploadedFiles)) {
+      console.log(`📎 [HEADER] Traitement du fichier ${displayType}:`, fileData);
+
+      // Vérifier que l'URL existe
+      if (!fileData.url) {
+        console.error(`❌ [HEADER] URL manquante pour le fichier ${displayType}`);
+        this.error = `URL manquante pour le fichier ${displayType}. Veuillez re-uploader ce fichier.`;
+        this.submitting = false;
+        return;
+      }
+
+      // Gérer les URLs temporaires
+      let finalUrl = fileData.url;
+      if (fileData.url.startsWith('temp://')) {
+        console.warn(`⚠️ [HEADER] URL temporaire détectée pour ${displayType}, utilisation du nom de fichier`);
+        // Pour les URLs temporaires, utiliser le nom du fichier comme URL
+        finalUrl = fileData.name;
+      }
+
+      // Convertir le nom d'affichage en code technique
+      const technicalType = this.getAttachmentTechnicalCode(displayType);
+      console.log(`🔄 [HEADER] Conversion ${displayType} -> ${technicalType}`);
+
       attachments.push({
         name: fileData.name,
-        type: type,
-        url: fileData.url  // Ajouter l'URL du fichier uploadé
+        type: technicalType, // Utiliser le code technique pour l'API
+        url: finalUrl
       });
     }
-    
-    // Préparer les données en convertissant date_of_birth si nécessaire
-    const formValue = { ...this.applicationForm.value };
-    
-    // Convertir date_of_birth de string vers date si présent
-    if (formValue.date_of_birth && formValue.date_of_birth.trim() !== '') {
-      formValue.date_of_birth = new Date(formValue.date_of_birth).toISOString().split('T')[0];
-    } else {
-      // Supprimer le champ si vide pour éviter l'erreur de validation
-      delete formValue.date_of_birth;
-    }
+
+    console.log('📎 [HEADER] Attachments préparés:', attachments);
     
     const applicationData: JobApplicationCreateInput = {
-      ...formValue,
+      ...this.applicationForm.value,
+      job_offer_id: this.selectedJob?.id,
       attachments: attachments
     };
 
-    // Debug: Afficher les données envoyées
-    console.log('📤 [HEADER] Données de candidature à envoyer:', applicationData);
-    console.log('📎 [HEADER] Attachments:', attachments);
+    console.log('📤 [HEADER] Données de candidature complètes:', applicationData);
+    console.log('📤 [HEADER] Formulaire values:', this.applicationForm.value);
+    console.log('📤 [HEADER] Job offer ID:', this.selectedJob?.id);
 
     this.subscription.add(
       this.jobApplicationService.createApplication(applicationData).subscribe({
         next: (response: any) => {
+          console.log('✅ [HEADER] Réponse de la candidature:', response);
           this.success = true;
           this.submitting = false;
           
+          // Rediriger vers la page de paiement si disponible
           if (response.data && response.data.payment && response.data.payment.payment_link) {
+            console.log('💳 [HEADER] Redirection vers le paiement:', response.data.payment.payment_link);
             window.location.href = response.data.payment.payment_link;
           } else {
-            // Afficher le message de succès puis recharger la page
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+            console.log('ℹ️ [HEADER] Aucune redirection disponible, affichage du message de succès');
           }
         },
         error: (error: any) => {
-          console.error('Erreur lors de la soumission de la candidature:', error);
+          console.error('❌ [HEADER] Erreur lors de la soumission de la candidature:', error);
+          console.error('❌ [HEADER] Détails de l\'erreur:', {
+            status: error.status,
+            statusText: error.statusText,
+            message: error.message,
+            error: error.error,
+            url: error.url
+          });
+
+          // Afficher des messages d'erreur plus spécifiques
+          if (error.status === 422) {
+            this.error = `Erreur de validation: ${error.error?.detail || 'Données invalides'}`;
+          } else if (error.status === 0) {
+            this.error = 'Erreur de connexion. Vérifiez votre connexion internet.';
+          } else {
           this.error = `Erreur lors de la soumission: ${error.error?.message || error.message || 'Erreur inconnue'}`;
+          }
+
           this.submitting = false;
         }
       })
     );
+  }
+
+  /**
+   * Télécharge le document PDF d'appel d'offre
+   */
+  downloadDocument() {
+    const documentUrl = '/asset/Offre.pdf';
+    const fileName = 'Appel-d-offre-LAFAOM.pdf';
+
+    try {
+      // Créer un élément <a> temporaire pour déclencher le téléchargement
+      const link = document.createElement('a');
+      link.href = documentUrl;
+      link.download = fileName;
+      link.target = '_blank';
+
+      // Ajouter le lien au DOM temporairement
+      document.body.appendChild(link);
+
+      // Déclencher le téléchargement
+      link.click();
+
+      // Nettoyer le DOM
+      document.body.removeChild(link);
+
+      console.log('📄 Document téléchargé avec succès:', fileName);
+    } catch (error) {
+      console.error('❌ Erreur lors du téléchargement du document:', error);
+      // Fallback: ouvrir le document dans un nouvel onglet
+      window.open(documentUrl, '_blank');
+    }
+  }
+
+  /**
+   * Redirige vers le formulaire de candidature cabinet
+   */
+  applyForCabinet() {
+    this.router.navigate(['/form-cabinet']);
+  }
+
+  /**
+   * Méthode de test pour déboguer le formulaire
+   */
+  testFormSubmission() {
+    console.log('🧪 [HEADER] Test de soumission du formulaire');
+    console.log('🧪 [HEADER] État du formulaire:', {
+      valid: this.applicationForm.valid,
+      value: this.applicationForm.value,
+      errors: this.getFormErrors()
+    });
+    console.log('🧪 [HEADER] Fichiers uploadés:', this.uploadedFiles);
+    console.log('🧪 [HEADER] Validation du formulaire:', this.isFormValid());
+
+    // Simuler des données de test si nécessaire
+    if (Object.keys(this.uploadedFiles).length === 0) {
+      console.log('🧪 [HEADER] Aucun fichier uploadé - simulation de fichiers de test');
+      this.uploadedFiles = {
+        'CV': {
+          file: new File(['test'], 'test-cv.pdf', { type: 'application/pdf' }),
+          url: 'http://test-url.com/cv.pdf',
+          name: 'test-cv.pdf'
+        },
+        'Lettre de motivation': {
+          file: new File(['test'], 'test-letter.pdf', { type: 'application/pdf' }),
+          url: 'http://test-url.com/letter.pdf',
+          name: 'test-letter.pdf'
+        }
+      };
+    }
   }
 }

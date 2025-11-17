@@ -14,21 +14,35 @@ export class JobApplicationService {
     private http: HttpClient,
     private configService: ConfigService
   ) {
-    this.baseUrl = this.configService.API_BASE_URL;
+    this.baseUrl = this.configService.getApiBaseUrl();
+    console.log('🔧 [JOB-APPLICATION-SERVICE] Base URL initialisée:', this.baseUrl);
   }
 
   /**
    * Uploader un fichier d'attachement
    */
-  uploadAttachment(name: string, file: File): Observable<JobAttachmentUploadResponse> {
+  uploadAttachment(name: string, file: File): Observable<any> {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('file', file);
 
-    return this.http.post<JobAttachmentUploadResponse>(`${this.baseUrl}/job-attachments`, formData)
+    console.log('📤 [JOB-APPLICATION-SERVICE] Upload du fichier:', {
+      name: name,
+      fileName: file.name,
+      fileSize: file.size,
+      fileType: file.type
+    });
+
+    return this.http.post<any>(`${this.baseUrl}/job-attachments`, formData)
       .pipe(
         catchError(error => {
-          console.error('Erreur lors de l\'upload du fichier:', error);
+          console.error('❌ [JOB-APPLICATION-SERVICE] Erreur lors de l\'upload du fichier:', error);
+          console.error('❌ [JOB-APPLICATION-SERVICE] Détails de l\'erreur:', {
+            status: error.status,
+            statusText: error.statusText,
+            message: error.message,
+            error: error.error
+          });
           throw error;
         })
       );

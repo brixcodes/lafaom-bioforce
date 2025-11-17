@@ -46,16 +46,14 @@ export class StudentApplicationService {
 
     return this.http.post<StudentAttachmentResponse>(`${this.baseUrl}/my-student-applications/${applicationId}/attachments`, formData, {
       reportProgress: true,
-      observe: 'events'
+      observe: 'response'
     }).pipe(
-      map((event: any) => {
-        if (event.type === HttpEventType.Response) {
-          return event.body;
-        }
-        return null;
+      map((response: any) => {
+        console.log('📤 [STUDENT-APP] Upload response:', response);
+        return response.body;
       }),
       catchError((error: any) => {
-        console.error('Erreur lors de l\'upload du fichier:', error);
+        console.error('❌ [STUDENT-APP] Erreur lors de l\'upload du fichier:', error);
         throw error;
       })
     );
@@ -65,7 +63,17 @@ export class StudentApplicationService {
    * Soumettre une candidature (initie le paiement)
    */
   submitApplication(applicationId: number): Observable<InitPaymentOutSuccess> {
-    return this.http.post<InitPaymentOutSuccess>(`${this.baseUrl}/my-student-applications/${applicationId}/submit`, {})
+    // Paramètres pour activer les paiements bancaires
+    const paymentParams = {
+      payment_methods: ['MOBILE_MONEY', 'WALLET', 'CARD'],
+      enable_card_payments: true,
+      enable_bank_transfers: true,
+      channels: 'MOBILE_MONEY,WALLET,CREDIT_CARD,INTERNATIONAL_CARD'
+    };
+    
+    console.log('🚀 [STUDENT-APP-SERVICE] Envoi des paramètres de paiement:', paymentParams);
+    
+    return this.http.post<InitPaymentOutSuccess>(`${this.baseUrl}/my-student-applications/${applicationId}/submit`, paymentParams)
       .pipe(
         catchError((error: any) => {
           console.error('Erreur lors de la soumission de la candidature:', error);

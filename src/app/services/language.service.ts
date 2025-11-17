@@ -5,9 +5,9 @@ import { SimpleTranslateService } from './simple-translate.service';
   providedIn: 'root'
 })
 export class LanguageService {
-  private readonly STORAGE_KEY = 'lafaom-language';
+  private readonly STORAGE_KEY = 'LAFAOM-language';
   private readonly DEFAULT_LANG = 'fr';
-  private readonly SUPPORTED_LANGS = ['fr', 'en'];
+  private readonly SUPPORTED_LANGS = ['fr', 'en', 'de'];
 
   // Signal pour l'état de la langue actuelle
   public currentLanguage = signal<string>(this.DEFAULT_LANG);
@@ -45,14 +45,18 @@ export class LanguageService {
   public getLanguageName(lang: string): string {
     const languageNames: { [key: string]: string } = {
       'fr': 'Français',
-      'en': 'English'
+      'en': 'English',
+      'de': 'Deutsch'
     };
     return languageNames[lang] || lang;
   }
 
   public toggleLanguage(): void {
     const currentLang = this.getCurrentLanguage();
-    const newLang = currentLang === 'fr' ? 'en' : 'fr';
+    const supportedLangs = this.getSupportedLanguages();
+    const currentIndex = supportedLangs.indexOf(currentLang);
+    const nextIndex = (currentIndex + 1) % supportedLangs.length;
+    const newLang = supportedLangs[nextIndex];
     this.setLanguage(newLang);
   }
 }

@@ -1,0 +1,170 @@
+<div class="content">
+    <div class="container-1440">
+        <div class="page-header">
+            <div class="has-background container-full"
+                style="background-image: url('https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg')">
+                <img src="https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg"
+                    alt="">
+            </div>
+            <div class="page-header-inner">
+                <div class="page-title">
+                    <h1 style="text-transform: uppercase;">
+                        Candidater au recrutement de cabinet de conseil
+                    </h1>
+                </div>
+                <div class="page-sub-title">
+                    <div>
+                        <span class="has-border-l-t d-block"></span>
+                    </div>
+                    <div>
+                        <p>
+                            Soumettez votre candidature pour le recrutement d'un cabinet de conseil en gestion RH et révélation des profils.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row">
+        <div class="col-lg-8 container">
+    <div class="container-1440">
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="row container">
+                <div class="col-lg-11 mx-auto">
+                    <div class="application-card container-1440">
+                        <h2 class="title-h2">Informations de l'entreprise</h2>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Nom de l'entreprise <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="company_name">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('company_name')?.touched && form.get('company_name')?.invalid">Le nom de l'entreprise est obligatoire</div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Email de contact <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" formControlName="contact_email">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('contact_email')?.touched && form.get('contact_email')?.invalid">
+                                    <span *ngIf="form.get('contact_email')?.errors?.['required']">L'email est obligatoire</span>
+                                    <span *ngIf="form.get('contact_email')?.errors?.['email']">Veuillez entrer un email valide</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Téléphone de contact <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" formControlName="contact_phone" placeholder="Ex: +221 77 123 45 67">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('contact_phone')?.touched && form.get('contact_phone')?.invalid">
+                                    <span *ngIf="form.get('contact_phone')?.errors?.['required']">Le téléphone est obligatoire</span>
+                                    <span *ngIf="form.get('contact_phone')?.errors?.['minlength']">Le téléphone doit contenir au moins 8 caractères</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Numéro d'enregistrement <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" formControlName="registration_number">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('registration_number')?.touched && form.get('registration_number')?.invalid">
+                                    <span *ngIf="form.get('registration_number')?.errors?.['required']">Le numéro d'enregistrement est obligatoire</span>
+                                    <span *ngIf="form.get('registration_number')?.errors?.['minlength']">Le numéro d'enregistrement doit contenir au moins 3 caractères</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <label class="ml-2">Adresse complète <span class="text-danger">*</span></label>
+                                <textarea class="form-control" formControlName="address" rows="3"></textarea>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('address')?.touched && form.get('address')?.invalid">L'adresse est obligatoire</div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <label class="ml-2">Années d'expérience <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" formControlName="experience_years" min="0">
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('experience_years')?.touched && form.get('experience_years')?.invalid">Les années d'expérience sont obligatoires</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="application-card container-1440 mt-4">
+                        <h2 class="title-h2">Qualifications et propositions</h2>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label class="ml-2">Qualifications <span class="text-danger">*</span></label>
+                                <textarea class="form-control" formControlName="qualifications" rows="4"
+                                    placeholder="Décrivez les qualifications de votre cabinet..."></textarea>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('qualifications')?.touched && form.get('qualifications')?.invalid">
+                                    <span *ngIf="form.get('qualifications')?.errors?.['required']">Les qualifications sont obligatoires</span>
+                                    <span *ngIf="form.get('qualifications')?.errors?.['minlength']">Les qualifications doivent contenir au moins 10 caractères</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <label class="ml-2">Proposition technique <span class="text-danger">*</span></label>
+                                <textarea class="form-control" formControlName="technical_proposal" rows="6"
+                                    placeholder="Décrivez votre approche technique pour la gestion RH et la révélation des profils..."></textarea>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('technical_proposal')?.touched && form.get('technical_proposal')?.invalid">
+                                    <span *ngIf="form.get('technical_proposal')?.errors?.['required']">La proposition technique est obligatoire</span>
+                                    <span *ngIf="form.get('technical_proposal')?.errors?.['minlength']">La proposition technique doit contenir au moins 20 caractères</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <label class="ml-2">Proposition financière <span class="text-danger">*</span></label>
+                                <textarea class="form-control" formControlName="financial_proposal" rows="4"
+                                    placeholder="Décrivez votre proposition financière..."></textarea>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('financial_proposal')?.touched && form.get('financial_proposal')?.invalid">La proposition financière est obligatoire</div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 mb-3">
+                                <label class="ml-2">Références <span class="text-danger">*</span></label>
+                                <textarea class="form-control" formControlName="references" rows="4"
+                                    placeholder="Listez vos références et clients précédents..."></textarea>
+                                <div class="text-danger mt-4 ml-3"
+                                    *ngIf="form.get('references')?.touched && form.get('references')?.invalid">Les références sont obligatoires</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message d'erreur -->
+                    <div *ngIf="submitError" class="alert alert-danger mt-4" role="alert">
+                        <i class="icon-warning"></i>
+                        {{ submitError }}
+                    </div>
+
+                    <!-- Message de succès -->
+                    <div *ngIf="success" class="alert alert-success mt-4" role="alert">
+                        <h6>Candidature soumise avec succès !</h6>
+                        <p>Vous allez être redirigé vers la page de paiement...</p>
+                    </div>
+
+                    <!-- Boutons de soumission -->
+                    <div class="d-flex justify-content-between gap-4 mt-4 mb-4">
+                        <button type="button" class="btn btn-secondary rounded-pill" (click)="goBackRecruitments()">
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+                            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"
+                                aria-hidden="true"></span>
+                            {{ isSubmitting ? 'Soumission en cours...' : 'Soumettre la candidature' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+        </div>
+</div>
+</div>

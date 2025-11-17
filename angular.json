@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lafaom_website": {
+    "LAFAOM_website": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -30,9 +30,26 @@
               }
             ],
             "styles": [
-                "src/assets/css/base.css"
+              "public/asset/css/1.bundle.css",
+              "public/asset/css/bundle.css",
+              "src/styles.css",
+              "public/asset/css/style.min.css",
+              "public/asset/css/all.css",
+              "public/asset/css/custom.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "public/asset/js/jquery.min.js",
+              "public/asset/js/jquery-migrate.min.js",
+              "public/asset/js/jquery.bind-first-0.2.3.min.js",
+              "public/asset/js/js.cookie-2.1.3.min.js",
+              "public/asset/js/tld.min.js",
+              "public/asset/js/public.js",
+              "public/asset/js/chunk.js",
+              "public/asset/js/main.js",
+              "public/asset/js/custom.js",
+              "public/asset/js/owl.carousel.min.js",
+              "public/asset/js/single-formation.js"
+            ],
             "outputMode": "static",
             "ssr": false
           },
@@ -41,8 +58,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -64,10 +81,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "lafaom_website:build:production"
+              "buildTarget": "LAFAOM_website:build:production"
             },
             "development": {
-              "buildTarget": "lafaom_website:build:development"
+              "buildTarget": "LAFAOM_website:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,8 +116,5 @@
   },
   "cli": {
     "analytics": "f7133ae7-33c9-4867-b705-b3aacdde0d67"
-  }
-}
-3ae7-33c9-4867-b705-b3aacdde0d67"
   }
 }

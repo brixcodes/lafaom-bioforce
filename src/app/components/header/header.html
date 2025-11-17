@@ -1,4 +1,4 @@
-<header id="header" class="container-fluid position-absolute">
+<header id="header" class="container-fluid position-absolute" [class.scrolled]="isScrolled">
     <!-- Menu burger -->
     <span class="icon-burger">
         <button class="hamburger hamburger--spring js-hamburger" type="button" aria-label="Menu"
@@ -15,11 +15,114 @@
             <app-language-switcher></app-language-switcher>
         </div>
         <ul class="list-inline nav-top">
-            <li class="list-inline-item"><a href="/" title="Lafaom-mao">{{ 'navigation.home' | translate }}</a></li>
-            <li class="list-inline-item"><a href="/actualites" title="Actualités">{{ 'navigation.news' | translate }}</a></li>
-            <li class="list-inline-item"><a href="/formations" title="Formations">{{ 'navigation.training' | translate }}</a></li>
-            <li class="list-inline-item"><a href="/recrutements" title="Recrutement">{{ 'navigation.recruitment' | translate }}</a></li>
-            <!-- <li class="list-inline-item"><a href="/contact" title="Contact">{{ 'navigation.contact' | translate }}</a></li> -->
+            <li class="list-inline-item"><a href="/" title="LAFAOM-MAO">{{ 'navigation.home' | translate }}</a></li>
+            <!-- <li class="list-inline-item"><a href="/actualites" title="Actualités">{{ 'navigation.news' | translate }}</a></li> -->
+            <li class="list-inline-item dropdown-mobile">
+                <a href="#" title="Actualités" class="dropdown-toggle-mobile">
+                    Guide
+                    <span class="dropdown-arrow"><i class="icon-arrow-down"></i></span>
+                </a>
+                <div class="dropdown-menu-mobile" style="background-color: transparent;">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="/process-recruitment" title="Processus de recrutement">
+                                Recrutement
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/process-training" title="Processus de formation">
+                                Formation
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="list-inline-item dropdown-mobile">
+                <a href="#" title="Actualités" class="dropdown-toggle-mobile">
+                    {{ 'navigation.news' | translate }}
+                    <span class="dropdown-arrow"><i class="icon-arrow-down"></i></span>
+                </a>
+                <div class="dropdown-menu-mobile" style="background-color: transparent;">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="/key-dates" title="Dates clés">
+                                Dates clés
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/organizational-chart" title="Organigramme">
+                                Organigramme
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/budget-discussion" title="Budgétisation">
+                                Budgétisation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/board-meeting" title="Conseil d'administration">
+                                Conseil d'administration
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="list-inline-item dropdown-mobile">
+                <a href="#" title="Formations" class="dropdown-toggle-mobile">
+                    {{ 'navigation.training' | translate }}
+                    <span class="dropdown-arrow"><i class="icon-arrow-down"></i></span>
+                </a>
+                <div class="dropdown-menu-mobile" style="background-color: transparent;">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="/coordinator-message" title="Mot du coordonnateur">
+                                {{ 'navigation.coordinatorMessage' | translate }}
+                            </a>
+                        </li>
+                        <li class="dropdown-submenu-mobile">
+                            <a href="#" title="Spécialités" class="dropdown-toggle-mobile">
+                                {{ 'navigation.specialties' | translate }}
+                                <span class="dropdown-arrow"><i class="icon-arrow-right"></i></span>
+                            </a>
+                            <div class="dropdown-submenu-content-mobile">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="/assistance-technician" title="Technicien d'assistance">
+                                            {{ 'navigation.technician' | translate }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/penitentiary-support" title="Appui aux services pénitentiaires">
+                                            {{ 'navigation.penitentiarySupport' | translate }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/welcome-support" title="Accueil, écoute et accompagnement">
+                                            {{ 'navigation.welcomeSupport' | translate }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/training-schedule" title="Planning de formation">
+                                {{ 'navigation.planning' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admission-process" title="Processus d'admission">
+                                {{ 'navigation.certificate' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="list-inline-item dropdown-mobile">
+                <a href="/recruitment" title="Recrutement" class="dropdown-toggle-mobile">
+                    {{ 'navigation.recruitment' | translate }}
+                </a>
+            </li>
+            <li class="list-inline-item"><a href="/contact" title="Contact">{{ 'navigation.contact' | translate }}</a></li>
         </ul>
         <a href="https://admin.lafaom-mao.org/" title="Login" class="btn btn-top btn-outline-primary">{{ 'header.spaceCandidate' | translate }}</a>
     </div>
@@ -29,7 +132,7 @@
         <div class="logo">
 
             <a href="#" title="homepage">
-                <img src="lafaom-mao.png" alt="bioforce" style="width: 210px;">
+                <img src="logo.png" alt="LAFAOM-MAO" style="height: 80px; width:80px;">
                 <span class="sr-only">LAFAOM-MAO</span>
             </a>
         </div>
@@ -45,30 +148,56 @@
                         <div class="display_mobile">
                             <ul class="list-inline nav-top">
                                 <li class="list-inline-item">
-                                    <a href="" title="Lafaom-mao">
+                                    <a href="/" title="LAFAOM-MAO">
                                         {{ 'navigation.about' | translate }}
                                     </a>
                                 </li>
+                                
                                 <li class="list-inline-item">
-                                    <a href="/actualites" title="Actualités">
-                                        {{ 'navigation.news' | translate }}
+                                    <a href="/coordinator-message" title="Mot du coordonnateur">
+                                        {{ 'navigation.coordinatorMessage' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="/formations" title="Formations">
-                                        {{ 'navigation.training' | translate }}
+                                    <a href="/assistance-technician" title="Technicien d'assistance">
+                                        {{ 'navigation.technician' | translate }}
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="/recrutements" title="Recrutement">
+                                    <a href="/penitentiary-support" title="Appui aux services pénitentiaires">
+                                        {{ 'navigation.penitentiarySupport' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/welcome-support" title="Accueil, écoute et accompagnement">
+                                        {{ 'navigation.welcomeSupport' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/training-schedule" title="Planning de formation">
+                                        {{ 'navigation.planning' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/admission-process" title="Processus d'admission">
+                                        {{ 'navigation.certificate' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/recruitment" title="Recrutement">
                                         {{ 'navigation.recruitment' | translate }}
                                     </a>
                                 </li>
-                                <!-- <li class="list-inline-item">
+                                <li class="list-inline-item">
+                                    <a href="/recruitment" title="Processus de recrutement à un poste">
+                                        {{ 'navigation.jobRecruitmentProcess' | translate }}
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
                                     <a href="/contact" title="Contact">
                                         {{ 'navigation.contact' | translate }}
                                     </a>
-                                </li> -->
+                                </li>
                                 <li class="list-inline-item">
                                     <a href="https://admin.lafaom-mao.org/"
                                         title="Espace Candidat">
