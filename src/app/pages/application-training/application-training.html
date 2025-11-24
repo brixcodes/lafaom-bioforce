@@ -76,13 +76,16 @@
           <div class="job-summary">
             <h4>Résumé</h4>
             <div class="summary-item" *ngIf="training.duration">
-              <strong>Durée:</strong> {{ training.duration }} {{ training.duration_unit || '' }}
+              <strong>Durée:</strong> {{ training.duration }} {{ translateDurationUnit(training.duration_unit) }}
             </div>
             <div class="summary-item" *ngIf="training.status">
-              <strong>Statut:</strong> {{ training.status }}
+              <strong>Statut:</strong> {{ translateStatus(training.status) }}
             </div>
-            <div class="summary-item" *ngIf="sessions?.length">
-              <strong>Sessions disponibles:</strong> {{ sessions.length }}
+            <div class="summary-item" *ngIf="getRegistrationFee() != null">
+              <strong>Frais d'inscription:</strong> {{ formatAmount(getRegistrationFee()) }}
+            </div>
+            <div class="summary-item" *ngIf="getTrainingFee() != null">
+              <strong>Frais de formation:</strong> {{ formatAmount(getTrainingFee()) }}
             </div>
           </div>
 

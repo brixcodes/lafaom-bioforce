@@ -100,14 +100,17 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   applyFilters(filters: any) {
-    if (this.featuredTrainings.length === 0) return;
+    if (this.featuredTrainings.length === 0) {
+      this.filteredTrainings = [];
+      return;
+    }
 
     // Optimisation : vérifier d'abord si des filtres sont actifs
-    const hasActiveFilters = filters.searchTerm ||
-      filters.specialties.length > 0 ||
-      filters.locations.length > 0 ||
-      filters.types.length > 0 ||
-      filters.durations.length > 0;
+    const hasActiveFilters = (filters.searchTerm && filters.searchTerm.trim() !== '') ||
+      (filters.specialties && filters.specialties.length > 0) ||
+      (filters.locations && filters.locations.length > 0) ||
+      (filters.types && filters.types.length > 0) ||
+      (filters.durations && filters.durations.length > 0);
 
     if (!hasActiveFilters) {
       this.filteredTrainings = [...this.featuredTrainings];
@@ -115,32 +118,58 @@ export class Section1 implements OnInit, OnDestroy {
     }
 
     this.filteredTrainings = this.featuredTrainings.filter(training => {
+      // Vérifier d'abord si la formation a des sessions disponibles
+      const hasSessions = this.hasAvailableSessions(training);
+      if (!hasSessions) return false;
+
       // Filtre par terme de recherche (le plus rapide à vérifier)
-      if (filters.searchTerm && !training.title.toLowerCase().includes(filters.searchTerm.toLowerCase())) {
-        return false;
+      if (filters.searchTerm && filters.searchTerm.trim() !== '') {
+        const searchLower = filters.searchTerm.toLowerCase().trim();
+        if (!training.title.toLowerCase().includes(searchLower)) {
+          return false;
+        }
       }
 
       // Filtre par types (vérification directe)
-      if (filters.types.length > 0 && !filters.types.includes(training.type)) {
-        return false;
+      if (filters.types && filters.types.length > 0) {
+        if (!filters.types.includes(training.type)) {
+          return false;
+        }
       }
 
-      // Filtre par durées (vérification directe)
-      if (filters.durations.length > 0 && !filters.durations.includes(training.duration)) {
-        return false;
+      // Filtre par durées (vérification avec duration et duration_unit)
+      if (filters.durations && filters.durations.length > 0) {
+        const trainingDuration = training.duration?.toString();
+        const trainingDurationUnit = training.duration_unit?.toUpperCase();
+        const trainingDurationFull = `${trainingDuration} ${trainingDurationUnit}`;
+        
+        const matchesDuration = filters.durations.some((filterDuration: string) => {
+          const filterUpper = filterDuration.toUpperCase();
+          return filterDuration === trainingDuration || 
+                 filterUpper === trainingDurationUnit ||
+                 filterDuration === trainingDurationFull ||
+                 filterUpper === trainingDurationFull.toUpperCase();
+        });
+        if (!matchesDuration) return false;
       }
 
-      // Filtre par spécialités (si applicable)
-      if (filters.specialties.length > 0 && !filters.specialties.includes(training.id)) {
-        return false;
+      // Filtre par spécialités (utiliser specialty_id au lieu de id)
+      if (filters.specialties && filters.specialties.length > 0) {
+        const trainingSpecialtyId = training.specialty_id;
+        if (!filters.specialties.includes(trainingSpecialtyId)) {
+          return false;
+        }
       }
 
       // Filtre par lieux (le plus coûteux, à la fin)
-      if (filters.locations.length > 0) {
+      if (filters.locations && filters.locations.length > 0) {
         const trainingCities = this.getTrainingCities(training);
+        if (trainingCities.length === 0) return false; // Si pas de villes, exclure
+        
         const hasMatchingLocation = trainingCities.some(city =>
           filters.locations.some((filterLocation: string) =>
-            city.toLowerCase().includes(filterLocation.toLowerCase())
+            city.toLowerCase().includes(filterLocation.toLowerCase()) ||
+            filterLocation.toLowerCase().includes(city.toLowerCase())
           )
         );
         if (!hasMatchingLocation) return false;
@@ -149,7 +178,7 @@ export class Section1 implements OnInit, OnDestroy {
       return true;
     });
 
-    console.log('Formations filtrées:', this.filteredTrainings.length);
+    console.log('Formations filtrées:', this.filteredTrainings.length, 'sur', this.featuredTrainings.length);
   }
 
   loadFeaturedTrainings(showLoading: boolean = true) {
@@ -226,6 +255,16 @@ export class Section1 implements OnInit, OnDestroy {
           this.trainingSessionsCount.set(result.trainingId, result.count);
         });
 
+        // Filtrer les formations sans sessions disponibles
+        this.featuredTrainings = this.featuredTrainings.filter(training => {
+          const count = this.trainingSessionsCount.get(training.id.toString()) || 0;
+          return count > 0;
+        });
+
+        // Réappliquer les filtres actifs après le filtrage des sessions
+        const currentFilters = this.filterService.getCurrentFilters();
+        this.applyFilters(currentFilters);
+
         // Charger les villes des centres pour chaque formation
         this.loadCitiesForTrainings(results);
       },
@@ -285,6 +324,10 @@ export class Section1 implements OnInit, OnDestroy {
           });
           this.trainingCities.set(result.trainingId, Array.from(citiesForTraining));
         });
+
+        // Réappliquer les filtres après le chargement des villes (pour le filtre par lieu)
+        const currentFilters = this.filterService.getCurrentFilters();
+        this.applyFilters(currentFilters);
 
         this.loading = false;
         console.log('Villes chargées:', this.trainingCities);

@@ -145,7 +145,7 @@ export class CandidatureForm {
       formData.append('file', attachment.file);
 
       console.log('🌐 [CANDIDATURE-FORM] Envoi de la requête HTTP...');
-      const response = await this.http.post<any>('https://lafaom.vertex-cam.com/api/v1/job-attachments', formData, {
+      const response = await this.http.post<any>('https://api.lafaom-mao.org/api/v1/job-attachments', formData, {
         reportProgress: true,
         observe: 'events'
       }).toPromise();
