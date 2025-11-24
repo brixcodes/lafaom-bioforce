@@ -137,6 +137,7 @@ export interface FilterOptions {
   locations: string[];
   types: string[];
   durations: string[];
+  fees: string[];
 }
 
 export interface AttachmentInput {

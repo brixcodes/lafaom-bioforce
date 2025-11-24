@@ -20,7 +20,8 @@ export class Filters implements OnInit, OnDestroy {
     specialties: [],
     locations: [],
     types: [],
-    durations: []
+    durations: [],
+    fees: []
   };
 
   selectedFilters: TrainingFilters = {
@@ -28,6 +29,7 @@ export class Filters implements OnInit, OnDestroy {
     locations: [],
     types: [],
     durations: [],
+    fees: [],
     searchTerm: ''
   };
 
@@ -128,6 +130,12 @@ export class Filters implements OnInit, OnDestroy {
     this.applyFilters();
   }
 
+  onFeeChange(event: any) {
+    const selectedOptions = Array.from(event.target.selectedOptions, (option: any) => option.value);
+    this.selectedFilters.fees = selectedOptions;
+    this.applyFilters();
+  }
+
   onSearchChange(event: any) {
     this.selectedFilters.searchTerm = event.target.value;
     this.applyFilters();
@@ -143,6 +151,7 @@ export class Filters implements OnInit, OnDestroy {
     this.filterService.setSelectedLocations(filters.locations);
     this.filterService.setSelectedTypes(filters.types);
     this.filterService.setSelectedDurations(filters.durations);
+    this.filterService.setSelectedFees(filters.fees);
     this.filterService.setSearchTerm(filters.searchTerm);
 
     console.log('Filtres de formations appliqués:', filters);
@@ -154,6 +163,7 @@ export class Filters implements OnInit, OnDestroy {
       locations: [],
       types: [],
       durations: [],
+      fees: [],
       searchTerm: ''
     };
     this.filterService.resetFilters();

@@ -84,7 +84,7 @@
             <div class="summary-item" *ngIf="getRegistrationFee() != null">
               <strong>Frais d'inscription:</strong> {{ formatAmount(getRegistrationFee()) }}
             </div>
-            <div class="summary-item" *ngIf="getTrainingFee() != null">
+            <div class="summary-item" *ngIf="shouldShowTrainingFee()">
               <strong>Frais de formation:</strong> {{ formatAmount(getTrainingFee()) }}
             </div>
           </div>

@@ -6,6 +6,7 @@ export interface TrainingFilters {
   locations: string[];
   types: string[];
   durations: string[];
+  fees: string[];
   searchTerm: string;
 }
 
@@ -18,6 +19,7 @@ export class TrainingFilterService {
     locations: [],
     types: [],
     durations: [],
+    fees: [],
     searchTerm: ''
   });
 
@@ -70,6 +72,17 @@ export class TrainingFilterService {
   }
 
   /**
+   * Mettre à jour les frais sélectionnés
+   */
+  setSelectedFees(fees: string[]) {
+    const currentFilters = this.selectedFiltersSubject.value;
+    this.selectedFiltersSubject.next({
+      ...currentFilters,
+      fees
+    });
+  }
+
+  /**
    * Mettre à jour le terme de recherche
    */
   setSearchTerm(searchTerm: string) {
@@ -89,6 +102,7 @@ export class TrainingFilterService {
       locations: [],
       types: [],
       durations: [],
+      fees: [],
       searchTerm: ''
     });
   }

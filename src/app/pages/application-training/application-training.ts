@@ -13,6 +13,7 @@ export class ApplicationTraining implements OnInit {
   training: any = null;
   sessions: any[] = [];
   error: string | null = null;
+  specialty: any = null;
 
   constructor(private route: ActivatedRoute, private router: Router, private trainingService: TrainingService) {}
 
@@ -43,7 +44,16 @@ export class ApplicationTraining implements OnInit {
 
         // Charger la formation seulement s'il y a des sessions
         this.trainingService.getTrainingById(id).subscribe({
-          next: (res: any) => { this.training = res?.data || res; },
+          next: (res: any) => { 
+            this.training = res?.data || res;
+            // Charger la spécialité si specialty_id est disponible
+            if (this.training?.specialty_id) {
+              this.loadSpecialty(this.training.specialty_id);
+            } else if (this.training?.specialty) {
+              // Si la spécialité est déjà incluse dans la réponse
+              this.specialty = this.training.specialty;
+            }
+          },
           error: () => { this.error = 'Erreur de chargement de la formation'; }
         });
       },
@@ -110,6 +120,30 @@ export class ApplicationTraining implements OnInit {
       'ACTIVE': 'En cours'
     };
     return translations[status.toUpperCase()] || status;
+  }
+
+  // Charger la spécialité
+  loadSpecialty(specialtyId: number): void {
+    this.trainingService.getSpecialties().subscribe({
+      next: (specialties: any[]) => {
+        this.specialty = specialties.find(s => s.id === specialtyId);
+      },
+      error: () => {
+        console.error('Erreur lors du chargement de la spécialité');
+      }
+    });
+  }
+
+  // Vérifier si la spécialité est un séminaire
+  isSeminar(): boolean {
+    if (!this.specialty) return false;
+    const specialtyName = this.specialty.name || '';
+    return specialtyName.toLowerCase().includes('séminaire') || specialtyName.toLowerCase().includes('seminaire');
+  }
+
+  // Vérifier si on doit afficher les frais de formation
+  shouldShowTrainingFee(): boolean {
+    return !this.isSeminar() && this.getTrainingFee() != null;
   }
 
   apply(): void {

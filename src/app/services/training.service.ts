@@ -257,17 +257,23 @@ export class TrainingService {
    */
   getFilterOptions(): Observable<FilterOptions> {
     return this.getSpecialties().pipe(
-      map(specialties => {
-        // Extraire les types et durées uniques des formations existantes
+      switchMap(specialties => {
+        // Extraire les types uniques
         const types = [...new Set(['Formation métier ', 'Séminaire thématique '])];
-        const durations = [...new Set(['12 mois ','2 à  15 jours'])];
-
-        return {
-          specialties,
-          locations: [], // Sera rempli dynamiquement
-          types,
-          durations
-        };
+        
+        // Calculer les durées et frais à partir des sessions de formation
+        return forkJoin({
+          durations: this.calculateDurationsFromSessions(),
+          fees: this.calculateFeesFromSessions()
+        }).pipe(
+          map(({ durations, fees }) => ({
+            specialties,
+            locations: [], // Sera rempli dynamiquement
+            types,
+            durations,
+            fees
+          }))
+        );
       }),
       catchError((error: any) => {
         console.error('Erreur lors du chargement des options de filtres:', error);
@@ -275,10 +281,232 @@ export class TrainingService {
           specialties: [],
           locations: [],
           types: [],
-          durations: []
+          durations: [],
+          fees: []
         });
       })
     );
+  }
+
+  /**
+   * Calculer les durées à partir des sessions de formation
+   */
+  calculateDurationsFromSessions(): Observable<string[]> {
+    // Récupérer toutes les formations
+    return this.getTrainings({ per_page: 100 }).pipe(
+      switchMap((response: TrainingResponse) => {
+        const trainings = response.data || [];
+        if (trainings.length === 0) {
+          return of([]);
+        }
+
+        // Récupérer toutes les sessions pour toutes les formations
+        const sessionObservables = trainings.map(training =>
+          this.getTrainingSessions(training.id.toString(), { page_size: 100 }).pipe(
+            map((sessionResponse: TrainingSessionsResponse) => {
+              const sessions = sessionResponse.data || [];
+              const durations: string[] = [];
+
+              sessions.forEach((session: TrainingSession) => {
+                if (session.start_date && session.end_date) {
+                  const startDate = new Date(session.start_date);
+                  const endDate = new Date(session.end_date);
+                  
+                  // Calculer la différence en millisecondes
+                  const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                  
+                  // Formater la durée
+                  let durationStr = '';
+                  if (diffDays < 30) {
+                    // Moins de 30 jours : afficher en jours
+                    if (diffDays >= 2 && diffDays <= 15) {
+                      durationStr = `${diffDays} à ${diffDays} jours`;
+                    } else {
+                      durationStr = `${diffDays} ${diffDays === 1 ? 'jour' : 'jours'}`;
+                    }
+                  } else if (diffDays < 365) {
+                    // Moins d'un an : afficher en mois
+                    const months = Math.round(diffDays / 30);
+                    durationStr = `${months} ${months === 1 ? 'mois' : 'mois'}`;
+                  } else {
+                    // Plus d'un an : afficher en années
+                    const years = Math.round(diffDays / 365);
+                    durationStr = `${years} ${years === 1 ? 'année' : 'années'}`;
+                  }
+                  
+                  if (durationStr) {
+                    durations.push(durationStr);
+                  }
+                }
+              });
+
+              return durations;
+            }),
+            catchError((error: any) => {
+              console.error(`Erreur lors du calcul des durées pour la formation ${training.id}:`, error);
+              return of([]);
+            })
+          )
+        );
+
+        // Exécuter toutes les requêtes en parallèle
+        return forkJoin(sessionObservables).pipe(
+          map((allDurations: string[][]) => {
+            // Aplatir et dédupliquer les durées
+            const uniqueDurations = [...new Set(allDurations.flat())];
+            // Trier les durées
+            return uniqueDurations.sort((a, b) => {
+              // Extraire les nombres pour le tri
+              const numA = parseInt(a.match(/\d+/)?.[0] || '0');
+              const numB = parseInt(b.match(/\d+/)?.[0] || '0');
+              return numA - numB;
+            });
+          })
+        );
+      }),
+      catchError((error: any) => {
+        console.error('Erreur lors du calcul des durées:', error);
+        return of([]);
+      })
+    );
+  }
+
+  /**
+   * Calculer les tranches de frais à partir des sessions de formation
+   */
+  calculateFeesFromSessions(): Observable<string[]> {
+    // Récupérer toutes les formations
+    return this.getTrainings({ per_page: 100 }).pipe(
+      switchMap((response: TrainingResponse) => {
+        const trainings = response.data || [];
+        if (trainings.length === 0) {
+          return of([]);
+        }
+
+        // Récupérer toutes les sessions pour toutes les formations
+        const sessionObservables = trainings.map(training =>
+          this.getTrainingSessions(training.id.toString(), { page_size: 100 }).pipe(
+            map((sessionResponse: TrainingSessionsResponse) => {
+              const sessions = sessionResponse.data || [];
+              const totalFees: number[] = [];
+
+              sessions.forEach((session: TrainingSession) => {
+                // Calculer le total des frais (inscription + formation)
+                const registrationFee = session.registration_fee || 0;
+                const trainingFee = session.training_fee || 0;
+                const totalFee = registrationFee + trainingFee;
+                
+                if (totalFee > 0) {
+                  totalFees.push(totalFee);
+                }
+              });
+
+              return totalFees;
+            }),
+            catchError((error: any) => {
+              console.error(`Erreur lors du calcul des frais pour la formation ${training.id}:`, error);
+              return of([]);
+            })
+          )
+        );
+
+        // Exécuter toutes les requêtes en parallèle
+        return forkJoin(sessionObservables).pipe(
+          map((allFees: number[][]) => {
+            // Aplatir tous les frais
+            const allFeesFlat = allFees.flat();
+            if (allFeesFlat.length === 0) {
+              return ['Gratuit'];
+            }
+
+            // Trouver le min et max
+            const minFee = Math.min(...allFeesFlat);
+            const maxFee = Math.max(...allFeesFlat);
+
+            // Créer des tranches de frais
+            const feeRanges: string[] = [];
+            
+            // Vérifier s'il y a des formations gratuites
+            if (minFee === 0) {
+              feeRanges.push('Gratuit');
+            }
+
+            // Créer des tranches dynamiques basées sur les données
+            const ranges = this.createFeeRanges(minFee, maxFee);
+            feeRanges.push(...ranges);
+
+            return feeRanges;
+          })
+        );
+      }),
+      catchError((error: any) => {
+        console.error('Erreur lors du calcul des frais:', error);
+        return of([]);
+      })
+    );
+  }
+
+  /**
+   * Créer des tranches de frais dynamiques
+   */
+  private createFeeRanges(minFee: number, maxFee: number): string[] {
+    const ranges: string[] = [];
+    
+    // Si toutes les formations sont gratuites
+    if (minFee === 0 && maxFee === 0) {
+      return ['Gratuit'];
+    }
+
+    // Arrondir pour créer des tranches propres
+    const step = this.calculateStep(minFee, maxFee);
+    let current = minFee > 0 ? Math.floor(minFee / step) * step : step;
+
+    while (current < maxFee) {
+      const next = current + step;
+      if (next >= maxFee) {
+        ranges.push(`${this.formatFee(current)}+`);
+        break;
+      } else {
+        ranges.push(`${this.formatFee(current)} - ${this.formatFee(next)}`);
+        current = next;
+      }
+    }
+
+    return ranges;
+  }
+
+  /**
+   * Calculer le pas pour les tranches de frais
+   */
+  private calculateStep(minFee: number, maxFee: number): number {
+    const diff = maxFee - minFee;
+    if (diff <= 0) return 1000;
+    
+    // Créer environ 5-7 tranches
+    const numRanges = 6;
+    const rawStep = diff / numRanges;
+    
+    // Arrondir à une valeur "propre"
+    if (rawStep < 1000) return 1000;
+    if (rawStep < 5000) return 5000;
+    if (rawStep < 10000) return 10000;
+    if (rawStep < 50000) return 50000;
+    if (rawStep < 100000) return 100000;
+    return Math.ceil(rawStep / 100000) * 100000;
+  }
+
+  /**
+   * Formater un montant pour l'affichage
+   */
+  private formatFee(amount: number): string {
+    if (amount >= 1000000) {
+      return `${(amount / 1000000).toFixed(1)}M`;
+    }
+    if (amount >= 1000) {
+      return `${(amount / 1000).toFixed(0)}K`;
+    }
+    return amount.toString();
   }
 
   /**
