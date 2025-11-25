@@ -2,12 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { JobOffer } from '../../models/job.models';
 import { JobOffersService } from '../../services/job-offers.service';
+import { LanguageService } from '../../services/language.service';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-application-recuitement',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './application-recuitement.html',
   styleUrl: './application-recuitement.css'
 })
@@ -15,12 +18,14 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
   jobOffer: JobOffer | null = null;
   error: string | null = null;
   private subscription = new Subscription();
+  private languageSubscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private jobOffersService: JobOffersService
-  ) {}
+    private jobOffersService: JobOffersService,
+    private languageService: LanguageService
+  ) { }
   hasContent(html: string): boolean {
     if (!html) return false;
     const tempDiv = document.createElement('div');
@@ -29,10 +34,26 @@ export class ApplicationRecuitement implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.loadJobOffer();
+    this.subscribeToLanguageChanges();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
+  /**
+   * S'abonner aux changements de langue pour recharger les données
+   */
+  private subscribeToLanguageChanges(): void {
+    this.languageSubscription = this.languageService.languageChange$
+      .pipe(debounceTime(100))
+      .subscribe((newLang: string) => {
+        console.log('🔄 [APPLICATION-RECRUITEMENT] Changement de langue détecté:', newLang);
+        this.loadJobOffer();
+      });
   }
 
   loadJobOffer(): void {

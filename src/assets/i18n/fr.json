@@ -16,7 +16,9 @@
     "search": "Rechercher",
     "filter": "Filtrer",
     "reset": "Réinitialiser",
-    "retry": "Réessayer"
+    "retry": "Réessayer",
+    "notSpecified": "Non spécifié",
+    "backToList": "Retour à la liste"
   },
   "language": {
     "switch": "Changer de langue",
@@ -45,7 +47,10 @@
     "budgeting": "Budgétisation",
     "trainingRecruitmentProcess": "Processus de recrutement aux formations",
     "jobRecruitmentProcess": "Processus de recrutement à un poste",
-    "jobOffers": "Offres d'emploi"
+    "jobOffers": "Offres d'emploi",
+    "guide": "Guide",
+    "recruitmentProcess": "Recrutement",
+    "trainingProcess": "Formation"
   },
   "header": {
     "title": "LAFAOM",
@@ -60,7 +65,15 @@
     "contact": "Contact",
     "followUs": "Suivez-nous",
     "allRightsReserved": "Tous droits réservés",
-    "trainingCenters": "Centre de formation"
+    "trainingCenters": "Centre de formation",
+    "address": "B.P : 221  Ziguinchor",
+    "city": "Ziguinchor - Sénégal",
+    "phone": "Tél : +4942151603476",
+    "email": "Email : contact@lafaom-mao.org",
+    "website": "Website : https:lafaom-mao.org",
+    "senegal": "Sénégal",
+    "location": "Quartier Cadior lot 457",
+    "commune": "Commune de Ziguinchor"
   },
   "home": {
     "hero": {
@@ -156,6 +169,28 @@
     "readMore": "Lire la suite",
     "publishedOn": "Publié le",
     "author": "Auteur",
+    "keyDatesTitle": "Quelques dates Clés",
+    "admissionLaunch": "Lancement des processus d'admission à la formation des auxiliaires de vie en univers juridiciaire",
+    "keyDates": {
+      "date1": "17 décembre 2025 : Rentrée pédagogique",
+      "description1": "L'équipe pédagogique se réunira pour préparer le lancement des activités éducatives, incluant la mise en place des programmes de formation et la coordination des ressources pédagogiques.",
+      "date2": "19 janvier 2026 : Rentrée des apprenants",
+      "description2": "Les apprenants débuteront officiellement leur formation à l'Institut de Formation des auxiliaires de Vie en Univers Judiciaire, marquant le début du cycle académique.",
+      "date3": "17 décembre 2026 : Fin de la formation",
+      "description3": "Clôture du programme de formation, avec évaluation finale des apprenants et validation des acquis.",
+      "date4": "7 janvier 2027 : Remise des diplômes",
+      "description4": "Une cérémonie officielle sera organisée pour la remise des diplômes aux apprenants ayant complété avec succès leur formation.",
+      "date5": "19 janvier 2027 : Affectation aux postes de travail",
+      "description5": "Les diplômés seront orientés vers des postes professionnels dans le cadre des activités de l'Institut, favorisant leur insertion dans le milieu judiciaire."
+    },
+    "budgetDiscussion": {
+      "title": "Budgétisation",
+      "description": "La discussion sur le budget de l'Institut a été reportée au 19 novembre 2025."
+    },
+    "boardMeeting": {
+      "title": "Conseil d'administration",
+      "description": "Le Conseil d'Administration, réuni lors de sa session du 9 au 11 octobre 2025 à Brême, en Allemagne, a minutieusement défini et validé un calendrier précis pour encadrer l'organisation et le déroulement des activités de l'Institut de Formation LAFAOM-MAO. Ce calendrier, fruit de délibérations approfondies, vise à structurer les étapes clés du cycle de formation des auxiliaires de vie en univers judiciaire, tout en garantissant une planification rigoureuse pour les apprenants, l'équipe pédagogique et les parties prenantes. Les dates suivantes ont été arrêtées pour assurer le bon fonctionnement des programmes éducatifs et administratifs de l'Institut, en alignement avec les objectifs stratégiques de la Fondation Ateba Ombala Marc :"
+    },
     "categoriesList": {
       "governance": "gouvernance",
       "formation": "Formation",
@@ -168,6 +203,14 @@
     "findTraining": "Trouver ma formation",
     "subtitle": "Formez-vous en quelques clics.",
     "description": "Rejoignez une formation unique et engagez-vous pour une justice plus humaine.",
+    "detailsTitle": "Détails de la formation",
+    "detailsSubtitle": "Consultez tous les détails de cette formation et postulez directement.",
+    "applyToTraining": "Postuler à cette formation",
+    "summary": "Résumé",
+    "needHelp": "Besoin d'aide ?",
+    "contactQuestion": "Si vous avez des questions sur cette formation, contactez-nous :",
+    "whatsappContact": "Cliquez ici pour discuter avec notre équipe sur WhatsApp",
+    "videoNotSupported": "Votre navigateur ne supporte pas la lecture de vidéos.",
     "filters": {
       "title": "Filtrer les résultats",
       "search": "Rechercher",
@@ -180,6 +223,8 @@
       "allLocations": "Tous",
       "allTypes": "Tous",
       "allDurations": "Toutes",
+      "fees": "Frais",
+      "allFees": "Tous les frais",
       "reset": "Réinitialiser les filtres",
       "applied": "Filtres appliqués en temps réel",
       "loading": "Chargement des options de filtres...",
@@ -217,6 +262,29 @@
       "trainingFee": "Frais de formation",
       "select": "Sélectionner"
     },
+    "error": {
+      "missingId": "ID de formation manquant",
+      "noSessionsAvailable": "Aucune session disponible pour cette formation",
+      "loadingTraining": "Erreur de chargement de la formation",
+      "loadingSessions": "Erreur de chargement des sessions"
+    },
+    "durationUnit": {
+      "MONTHS": "Mois",
+      "DAYS": "Jours",
+      "HOURS": "Heures",
+      "YEARS": "Années",
+      "MONTH": "Mois",
+      "DAY": "Jour",
+      "HOUR": "Heure",
+      "YEAR": "Année"
+    },
+    "status": {
+      "ACTIVE": "En cours",
+      "INACTIVE": "Inactif",
+      "OPEN_FOR_REGISTRATION": "Ouvert aux inscriptions",
+      "CLOSED": "Fermé",
+      "CANCELLED": "Annulé"
+    },
     "application": {
       "title": "Candidature à la formation",
       "fillInfo": "Remplissez vos informations personnelles",
@@ -249,7 +317,93 @@
       "submit": "Soumettre la candidature",
       "submitting": "Soumission en cours...",
       "success": "Candidature soumise avec succès !",
-      "redirecting": "Vous allez être redirigé vers la page de paiement..."
+      "redirecting": "Vous allez être redirigé vers la page de paiement...",
+      "applyToTraining": "Candidater à notre formation",
+      "applyToJob": "Candidater à notre offre",
+      "applyToCabinet": "Candidater au recrutement de cabinet de conseil",
+      "applyToCabinetDescription": "Soumettez votre candidature pour le recrutement d'un cabinet de conseil en gestion RH et révélation des profils.",
+      "paymentMethod": "Méthode de paiement",
+      "selectPaymentMethod": "Sélectionner votre méthode de paiement",
+      "payOnline": "Payer directement en ligne",
+      "payByTransfer": "Payer par virement bancaire",
+      "bankAccountInfo": "Informations du compte bancaire",
+      "bank": "Banque",
+      "agency": "Agence",
+      "bankCode": "Code banque",
+      "branchCode": "Code guichet",
+      "accountNumber": "Numéro de compte",
+      "beneficiary": "Bénéficiaire",
+      "requiredDocument": "Document requis",
+      "uploadBankReceipt": "Veuillez télécharger le reçu de virement bancaire au format PDF :",
+      "bankReceiptLabel": "Reçu de virement bancaire - ce document ne doit pas dépasser 10MB et doit être en format PDF",
+      "bankReceiptRequired": "Veuillez télécharger le reçu de virement bancaire.",
+      "submissionError": "Erreur lors de la soumission.",
+      "noFileSelected": "Aucun fichier sélectionné",
+      "submitting": "Envoi...",
+      "submitApplication": "Soumettre la candidature à la formation",
+      "selectSession": "-- Sélectionner une session --",
+      "sessionRequired": "Veuillez sélectionner une session",
+      "fieldRequired": "Champ obligatoire",
+      "firstNameFieldRequired": "Champ Prénom est obligatoire",
+      "lastNameFieldRequired": "Champ Nom est obligatoire",
+      "invalidEmail": "Email invalide",
+      "companyInfo": "Informations de l'entreprise",
+      "companyName": "Nom de l'entreprise",
+      "companyNameRequired": "Le nom de l'entreprise est obligatoire",
+      "contactEmail": "Email de contact",
+      "contactEmailRequired": "L'email est obligatoire",
+      "contactPhone": "Téléphone de contact",
+      "contactPhoneRequired": "Le téléphone est obligatoire",
+      "phoneMinLength": "Le téléphone doit contenir au moins 8 caractères",
+      "registrationNumber": "Numéro d'enregistrement",
+      "registrationNumberRequired": "Le numéro d'enregistrement est obligatoire",
+      "registrationNumberMinLength": "Le numéro d'enregistrement doit contenir au moins 3 caractères",
+      "fullAddress": "Adresse complète",
+      "addressRequired": "L'adresse est obligatoire",
+      "experienceYears": "Années d'expérience",
+      "experienceYearsRequired": "Les années d'expérience sont obligatoires",
+      "qualifications": "Qualifications et propositions",
+      "qualificationsLabel": "Qualifications",
+      "qualificationsRequired": "Les qualifications sont obligatoires",
+      "qualificationsMinLength": "Les qualifications doivent contenir au moins 10 caractères",
+      "qualificationsPlaceholder": "Décrivez les qualifications de votre cabinet...",
+      "technicalProposal": "Proposition technique",
+      "technicalProposalRequired": "La proposition technique est obligatoire",
+      "technicalProposalMinLength": "La proposition technique doit contenir au moins 20 caractères",
+      "technicalProposalPlaceholder": "Décrivez votre approche technique pour la gestion RH et la révélation des profils...",
+      "financialProposal": "Proposition financière",
+      "financialProposalRequired": "La proposition financière est obligatoire",
+      "financialProposalPlaceholder": "Décrivez votre proposition financière...",
+      "references": "Références",
+      "referencesRequired": "Les références sont obligatoires",
+      "referencesPlaceholder": "Listez vos références et clients précédents...",
+      "consent": "J'accepte le traitement de mes données personnelles pour cette candidature.",
+      "consentRequired": "Consentement requis",
+      "applicationSubmitted": "Candidature soumise",
+      "applicationSubmittedSuccess": "Candidature soumise avec succès",
+      "applicationNumber": "Numéro de candidature",
+      "nextSteps": "Prochaines étapes",
+      "nextStepsDescription": "Si vous êtes convoqué pour un entretien, préparez-vous en amont.",
+      "nextStep1": "Effectuez le paiement des frais d'étude de dossier en cliquant sur le bouton",
+      "continueToPayment": "Continuer vers le paiement",
+      "nextStep2": "Vous recevrez un email de confirmation",
+      "nextStep3": "Votre candidature sera étudiée par notre équipe",
+      "nextStep4": "Vous serez informé du résultat par email.",
+      "backToJobs": "Retour aux offres d'emploi",
+      "jobOffer": "Offre",
+      "mainMissions": "Missions Principales",
+      "requiredCompetencies": "Compétences requises",
+      "soughtProfile": "Profil recherché",
+      "documentsToDownload": "Documents à télécharger",
+      "applyToOffer": "Postuler à cette offre",
+      "jobSummary": "Résumé du poste",
+      "weeklyHours": "Heures par semaine",
+      "deadlinePassed": "La date limite de candidature est dépassée.",
+      "needHelpJob": "Besoin d'aide ?",
+      "contactQuestionJob": "Si vous avez des questions sur cette offre, contactez-nous :",
+      "loadingJobOffer": "Chargement de l'offre d'emploi...",
+      "retry": "Réessayer",
+      "backToList": "Retour à la liste"
     }
   },
   "recruitment": {
@@ -265,6 +419,26 @@
     "applicationFee": "Frais candidature",
     "grossSalary": "Salaire brut",
     "hoursPerWeek": "h/sem",
+    "offer": "Offre",
+    "offerDescription": "Consultez tous les détails de cette offre d'emploi et postulez directement.",
+    "mainMissions": "Missions Principales",
+    "responsibilities": "Responsabilités",
+    "requiredSkills": "Compétences requises",
+    "desiredProfile": "Profil recherché",
+    "benefits": "Avantages",
+    "conditions": "Conditions",
+    "requiredDocuments": "Documents à télécharger",
+    "applyToOffer": "Postuler à cette offre",
+    "jobSummary": "Résumé du poste",
+    "reference": "Référence",
+    "location": "Localisation",
+    "contractType": "Type de contrat",
+    "salary": "Salaire",
+    "deadline": "Date limite",
+    "apply": "Postuler",
+    "deadlinePassed": "La date limite de candidature est dépassée.",
+    "needHelp": "Besoin d'aide ?",
+    "contactUs": "Si vous avez des questions sur cette offre, contactez-nous :",
     "modal": {
       "viewDetails": "Voir la fiche en détails",
       "reference": "Référence",
@@ -320,6 +494,7 @@
       "uploading": "Upload en cours...",
       "noFileSelected": "Aucun fichier sélectionné",
       "remove": "Supprimer",
+      "missingUrl": "URL manquante",
       "submit": "Soumettre la candidature",
       "submitting": "Soumission en cours...",
       "success": "Candidature soumise avec succès !",
@@ -362,6 +537,98 @@
         "startApplication": "Commencer ma candidature"
       }
     },
+    "processTraining": {
+      "title": "Guide détaillé du processus pour candidater à la formation",
+      "subtitle": "Découvrez étape par étape comment soumettre votre candidature pour rejoindre nos programmes de formation spécialisés.",
+      "howToApply": {
+        "title": "Comment candidater à une formation ?",
+        "description": "Le processus de candidature à nos formations est simple et transparent. Suivez ce guide étape par étape pour soumettre votre candidature avec succès."
+      },
+      "step1": {
+        "title": "Étape 1 : Accéder à la page Formations",
+        "description": "Rendez-vous sur notre site web et cliquez sur le menu \"Processus d'admission à l'institut\" dans la navigation principale.",
+        "item1": "Cliquez sur \"Formations\" puis sur \"Processus d'admission à l'institut\" dans le menu de navigation",
+        "item2": "Vous serez redirigé vers la page des formations disponibles"
+      },
+      "step2": {
+        "title": "Étape 2 : Explorer les formations disponibles",
+        "description": "Parcourez la liste des formations et utilisez les filtres pour trouver celle qui correspond à vos besoins.",
+        "item1": "Cliquez sur le boutton plus (+) qui est à l'extrémité droite de la formation pour voir les détails de la formation",
+        "item2": "Consultez les descriptions détaillées de chaque formation",
+        "item3": "Vérifiez les prérequis et conditions d'admission",
+        "item4": "Notez les dates de sessions disponibles"
+      },
+      "step3": {
+        "title": "Étape 3 : Sélectionner une formation",
+        "description": "Cliquez sur \"S'inscrire\" ou à défaut sur \"Sélectionner\" pour se faire rediriger vers le formulaire de candidature."
+      },
+      "step4": {
+        "title": "Étape 4 : Remplir le formulaire de candidature",
+        "description": "Complétez le formulaire en ligne avec vos informations personnelles et professionnelles.",
+        "item1": "Informations personnelles : Nom, prénom, email, téléphone"
+      },
+      "step5": {
+        "title": "Étape 5 : Télécharger les documents requis",
+        "description": "Joignez les documents nécessaires à votre candidature au format PDF.",
+        "item1": "CV détaillé",
+        "item2": "Lettre de motivation",
+        "item3": "Copie des diplômes",
+        "item4": "Copie de la pièce d'identité",
+        "item5": "Tout document qui vous sera demandé par la formation (format PDF, max 10MB)"
+      },
+      "step6": {
+        "title": "Étape 6 : Soumettre votre candidature",
+        "description": "Vérifiez toutes les informations, puis cliquez sur \"Soumettre la candidature\".",
+        "item1": "Relisez attentivement toutes les informations saisies",
+        "item2": "Vérifiez que tous les documents sont bien téléchargés"
+      },
+      "step7": {
+        "title": "Étape 7 : Paiement des frais de candidature",
+        "description": "Vous serez redirigé vers la page de paiement pour régler les frais de candidature.",
+        "item1": "Choisissez votre mode de paiement",
+        "item2": "Effectuez le paiement en ligne de manière sécurisée",
+        "item3": "Conservez le reçu de paiement"
+      },
+      "step8": {
+        "title": "Étape 8 : Confirmation et suivi",
+        "description": "Vous recevrez un email de confirmation avec les détails de votre candidature.",
+        "item1": "Email de confirmation de réception",
+        "item2": "Numéro de référence de votre candidature",
+        "item3": "Informations sur les prochaines étapes"
+      },
+      "tips": {
+        "title": "Conseils pour réussir votre candidature",
+        "prepareDocuments": {
+          "title": "Préparez vos documents",
+          "description": "Assurez-vous que vos documents sont à jour et que votre lettre de motivation est personnalisée pour la formation choisie.",
+          "item1": "CV détaillé",
+          "item2": "Lettre de motivation",
+          "item3": "Copie des diplômes",
+          "item4": "Copie de la pièce d'identité",
+          "item5": "Tout document qui vous sera demandé par la formation"
+        },
+        "respectDeadlines": {
+          "title": "Respectez les délais",
+          "description": "Vérifiez les dates limites de candidature et soumettez votre dossier dans les temps."
+        },
+        "checkRequirements": {
+          "title": "Vérifiez les prérequis",
+          "description": "Assurez-vous de remplir tous les critères d'admission avant de candidater."
+        },
+        "checkEmail": {
+          "title": "Vérifiez votre email",
+          "description": "Utilisez une adresse email valide et vérifiez régulièrement vos messages pour les notifications."
+        }
+      },
+      "needHelp": {
+        "title": "Besoin d'aide ?",
+        "description": "Si vous rencontrez des difficultés lors de votre candidature, notre équipe est là pour vous aider.",
+        "contact": "Contact",
+        "email": "Email :",
+        "phone": "Téléphone :",
+        "address": "Adresse :"
+      }
+    },
     "jobProcess": {
       "title": "Processus de recrutement à un poste",
       "subtitle": "Découvrez comment rejoindre notre équipe professionnelle",
@@ -382,6 +649,125 @@
         "description": "Découvrez nos offres d'emploi et postulez dès aujourd'hui",
         "viewJobs": "Voir nos offres",
         "contactUs": "Nous contacter"
+      }
+    },
+    "processRecruitment": {
+      "title": "Guide détaillé du processus de recrutement à un poste",
+      "subtitle": "Découvrez étape par étape comment soumettre votre candidature pour rejoindre notre équipe professionnelle.",
+      "howToApply": {
+        "title": "Comment candidater à un poste d'emploi ?",
+        "description": "Le processus de candidature à nos offres d'emploi est simple et transparent. Suivez ce guide étape par étape pour soumettre votre candidature avec succès."
+      },
+      "step1": {
+        "title": "Étape 1 : Accéder à la page Recrutement",
+        "description": "Rendez-vous sur notre site web et cliquez sur le menu \"Recrutement\" dans la navigation principale.",
+        "item1": "Cliquez sur \"Recrutement\" dans le menu de navigation",
+        "item2": "Vous serez redirigé vers la page des offres d'emploi disponibles"
+      },
+      "step2": {
+        "title": "Étape 2 : Explorer les offres d'emploi disponibles",
+        "description": "Parcourez la liste des offres d'emploi et consultez les détails de chaque poste.",
+        "item1": "Consultez les descriptions détaillées de chaque poste",
+        "item2": "Vérifiez les prérequis et conditions d'emploi",
+        "item3": "Notez les dates limites de candidature",
+        "item4": "Vérifiez la localisation et le type de contrat"
+      },
+      "step3": {
+        "title": "Étape 3 : Sélectionner une offre d'emploi",
+        "description": "Cliquez sur le bouton \"(+)\" a l'extrémité droite de l'offre d'emploi pour voir les détails de l'offre d'emploi puis \"Postuler\" pour l'offre d'emploi de votre choix.",
+        "item1": "Lisez attentivement les informations du poste",
+        "item2": "Vérifiez que vous remplissez les conditions d'emploi",
+        "item3": "Notez les compétences requises et l'expérience demandée"
+      },
+      "step4": {
+        "title": "Étape 4 : Remplir le formulaire de candidature",
+        "description": "Complétez le formulaire en ligne avec vos informations personnelles et professionnelles.",
+        "item1": "Informations personnelles : Nom, prénom, email, téléphone, adresse"
+      },
+      "step5": {
+        "title": "Étape 5 : Télécharger les documents requis",
+        "description": "Joignez les documents nécessaires à votre candidature au format PDF.",
+        "item1": "CV détaillé (format PDF, max 10MB)",
+        "item2": "Lettre de motivation (format PDF, max 10MB)",
+        "item3": "Copie des diplômes (format PDF, max 10MB)",
+        "item4": "Copie de la pièce d'identité (format PDF, max 10MB)",
+        "item5": "Attestations d'expérience professionnelle (format PDF, max 10MB)",
+        "item6": "Tout document qui vous sera demandé par l'offre d'emploi (format PDF, max 10MB)"
+      },
+      "step6": {
+        "title": "Étape 6 : Soumettre votre candidature",
+        "description": "Vérifiez toutes les informations, puis cliquez sur \"Postuler directement\"."
+      },
+      "step7": {
+        "title": "Étape 7 : Paiement des frais de candidature",
+        "description": "Vous serez redirigé vers la page de paiement pour régler les frais de candidature.",
+        "item1": "Choisissez le mode de paiement",
+        "onlinePayment": "Mode de paiement en ligne : vous serez redirigé vers la page de paiement pour régler les frais de candidature.",
+        "bankTransfer": "Mode de paiement par virement : Ici en plus de présenter les documents, vous devrez présenter un reçu de paiement pour que votre candidature soit validée.",
+        "item2": "Conservez le reçu de paiement",
+        "item3": "Relisez attentivement toutes les informations saisies",
+        "item4": "Vérifiez que tous les documents sont bien téléchargés",
+        "item5": "Confirmez votre candidature"
+      },
+      "step8": {
+        "title": "Étape 8 : Confirmation et suivi",
+        "description": "Vous recevrez un email de confirmation avec les détails de votre candidature.",
+        "item1": "Email de confirmation de réception",
+        "item2": "Numéro de référence de votre candidature",
+        "item3": "Informations sur les prochaines étapes du processus de recrutement"
+      },
+      "step9": {
+        "title": "Étape 9 : Processus de sélection",
+        "description": "Notre équipe RH examinera votre candidature et vous contactera si vous êtes retenu.",
+        "item1": "Pré-sélection : Évaluation initiale de votre dossier",
+        "item2": "Tests et évaluations : Tests techniques et psychologiques si requis",
+        "item3": "Entretien RH : Premier entretien avec les ressources humaines",
+        "item4": "Entretien technique : Entretien avec le responsable hiérarchique",
+        "item5": "Entretien final : Dernier entretien avec la direction",
+        "item6": "Décision finale : Notification de la décision d'embauche"
+      },
+      "tips": {
+        "title": "Conseils pour réussir votre candidature",
+        "prepareDocuments": {
+          "title": "Préparez vos documents",
+          "description": "Assurez-vous que vos documents sont à jour et que votre lettre de motivation est personnalisée pour le poste choisi.",
+          "item1": "CV détaillé et à jour",
+          "item2": "Lettre de motivation personnalisée",
+          "item3": "Copie des diplômes et certificats",
+          "item4": "Copie de la pièce d'identité",
+          "item5": "Attestations d'expérience professionnelle",
+          "item6": "Références professionnelles",
+          "item7": "Tout document qui vous sera demandé par l'offre d'emploi"
+        },
+        "respectDeadlines": {
+          "title": "Respectez les délais",
+          "description": "Vérifiez les dates limites de candidature et soumettez votre dossier dans les temps."
+        },
+        "checkRequirements": {
+          "title": "Vérifiez les prérequis",
+          "description": "Assurez-vous de remplir tous les critères d'emploi avant de candidater."
+        },
+        "prepareInterviews": {
+          "title": "Préparez-vous aux entretiens",
+          "description": "Si vous êtes convoqué pour un entretien, préparez-vous en amont.",
+          "item1": "Renseignez-vous sur l'entreprise et le poste",
+          "item2": "Préparez des exemples concrets de vos réalisations",
+          "item3": "Anticipez les questions techniques et comportementales",
+          "item4": "Soyez authentique et montrez votre motivation",
+          "item5": "Posez des questions pertinentes sur le poste et l'équipe"
+        },
+        "checkEmail": {
+          "title": "Vérifiez votre email",
+          "description": "Utilisez une adresse email valide et vérifiez régulièrement vos messages pour les notifications."
+        }
+      },
+      "needHelp": {
+        "title": "Besoin d'aide ?",
+        "description": "Si vous rencontrez des difficultés lors de votre candidature, notre équipe est là pour vous aider.",
+        "contact": "Contact",
+        "email": "Email :",
+        "phone": "Téléphone :",
+        "address": "Adresse :"
       }
     }
   },
@@ -600,7 +986,19 @@
         "phase4": "À l'issue de votre période d'intégration vous êtes intégrés dans une équipe pour le projet collectif vous intervenez dans le volet de votre chef-d'œuvre en collaboration avec les autres confrères qui ont choisi des chefs-d'œuvre dans les autres missions Appui aux services pénitentiaires le tout dans un plan d'intervention individualisée entier pendant 4 mois.",
         "phase5": "+ 3 mois de mission humanitaire : À l'issue de la conduite du Chef-d'œuvre et du projet collectif on intègre pendant trois mois un projet associatif en faveur des détenus en pratique d'intégration dans une association partenaire.",
         "note1": "Le premier mois de la formation est celui de l'élaboration des outils et des démarches administratives pour l'obtention à la faveur de l'apprenant de toutes les accréditations nécessaires à la formation.",
-        "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
+        "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises.",
+        "trainingFeesTitle": "Frais de formation",
+        "trainingFeesDescription": "Pour bénéficier de cette formation, le candidat retenu devra s'acquitter des frais de la somme de <strong>3206.4 Euros</strong> répartie comme suit :",
+        "registrationFee": "Inscription :",
+        "trainingAndAccommodation": "Formation et logement :",
+        "paymentTermsTitle": "Modalités de paiement des frais de formation en 3 tranches :",
+        "firstInstallment": "Première tranche :",
+        "secondInstallment": "Deuxième tranche :",
+        "lastInstallment": "Dernière tranche :",
+        "beforeDate": "avant le",
+        "dateJanuary2026": "1<sup>er</sup> janvier 2026",
+        "dateMarch2026": "1<sup>er</sup> mars 2026",
+        "dateJune2026": "1<sup>er</sup> juin 2026"
       },
       "welcomeSupport": {
         "title": "III - Accueil, écoute et accompagnement",
@@ -622,7 +1020,19 @@
         "phase4": "À l'issue de votre période d'intégration vous êtes intégrés dans une équipe pour le projet collectif vous intervenez dans le volet de votre chef-d'œuvre en collaboration avec les autres confrères qui ont choisi des chefs-d'œuvre dans les autres missions de l'Accueil, écoute et accompagnement ; le tout dans un plan d'intervention individualisée entier pendant 4 mois.",
         "phase5": "+ 3 mois de mission humanitaire : À l'issue de la conduite du Chef-d'œuvre et du projet collectif on intègre pendant trois mois un projet associatif en faveur des détenus en pratique d'intégration dans une association partenaire.",
         "note1": "Le premier mois de la formation est celui de l'élaboration des outils et des démarches administratives pour l'obtention à la faveur de l'apprenant de toutes les accréditations nécessaires à la formation.",
-        "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
+        "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises.",
+        "trainingFeesTitle": "Frais de formation",
+        "trainingFeesDescription": "Pour bénéficier de cette formation, le candidat retenu devra s'acquitter des frais de la somme de <strong>3206.4 Euros</strong> répartie comme suit :",
+        "registrationFee": "Inscription :",
+        "trainingAndAccommodation": "Formation et logement :",
+        "paymentTermsTitle": "Modalités de paiement des frais de formation en 3 tranches :",
+        "firstInstallment": "Première tranche :",
+        "secondInstallment": "Deuxième tranche :",
+        "lastInstallment": "Dernière tranche :",
+        "beforeDate": "avant le",
+        "dateJanuary2026": "1<sup>er</sup> janvier 2026",
+        "dateMarch2026": "1<sup>er</sup> mars 2026",
+        "dateJune2026": "1<sup>er</sup> juin 2026"
       },
       "planning": {
         "title": "Planning prévisionnel de la formation",
@@ -640,7 +1050,37 @@
         "collectiveProjects": "Projets collectifs (Entre 13 et 23 unités)",
         "knowledge": "Savoirs (Jusqu'à 32 unités)",
         "support": "Accompagnement (6 unités)",
-        "evaluation": "Évaluation (10 unités)."
+        "evaluation": "Évaluation (10 unités).",
+        "month1_2Content1": "Lettre d'engagement ;",
+        "month1_2Content2": "Application du génotype de la pupille ;",
+        "month1_2Content3": "Lettres d'autorisation administrative",
+        "month1_2Content4": "Plan d'intervention individualisée de la pupille :",
+        "month1_2Content5": "Choix des projets collectifs ;",
+        "month1_2Content6": "Choix des chefs-d'œuvre",
+        "month1_2Content7": "Orientation de spécialisation",
+        "masterpieceRealization": "Réalisation du chef-d'œuvre",
+        "writing": "Rédaction",
+        "presentation": "Présentation",
+        "finalDossierWriting": "Rédaction du dossier final",
+        "collectiveProjectMonth3": "Constitution des équipes et mise en place du projet : 1",
+        "collectiveProjectMonths4_9": "Réalisation du projet collectif et rédaction des articles et des comptes rendus",
+        "balance": "Bilan",
+        "contentDevelopment": "Élaboration des contenus",
+        "individualizedContentSetup": "Mise en place des contenus individualisés",
+        "learningActivitiesRealization": "Réalisation des activités d'apprentissage",
+        "supportMonth1_2": "Initiation à l'application des outils d'enquête, au traitement et à l'analyse des données",
+        "rdv1": "RDV1",
+        "endOfPreTraining": "fin de préformation",
+        "rdv2": "RDV 2",
+        "rdv3": "RDV 3",
+        "rdv4": "RDV 4",
+        "startupKit": "Kit de démarrage",
+        "evalDisp1": "Eval disp 1",
+        "eval1": "Eval 1",
+        "evalDisp2": "Eval disp 2",
+        "eval2": "Eval 2",
+        "evalDisp3": "Eval disp 3",
+        "eval3": "Eval 3"
       }
     },
     "specialties": {
@@ -722,19 +1162,35 @@
         "dateOfBirth": "Date de naissance",
         "address": "Adresse",
         "city": "Ville",
+        "addressLabel": "Adresse complète",
+        "country": "Pays",
         "requiredDocuments": "Documents requis",
         "uploadDocuments": "Veuillez télécharger les documents requis pour votre candidature",
+        "uploadDocumentsDescription": "Veuillez uploader les documents suivants (PDF, DOC, DOCX)",
+        "fillPersonalInfo": "Veuillez remplir vos informations personnelles",
+        "residenceAddress": "Votre adresse de résidence",
         "dragDrop": "Glissez-déposez votre fichier ici",
         "orClick": "ou cliquez pour sélectionner",
         "uploading": "Téléchargement en cours...",
+        "uploadProgress": "Upload en cours...",
+        "progress": "Progression",
         "uploaded": "Téléchargé avec succès",
         "remove": "Supprimer",
         "noFileSelected": "Aucun fichier sélectionné",
+        "fileSelected": "Fichier sélectionné",
+        "clickToSelectCV": "Cliquez pour sélectionner votre CV",
+        "clickToSelectLetter": "Cliquez pour sélectionner votre lettre de motivation",
+        "clickToSelectDiploma": "Cliquez pour sélectionner votre diplôme",
+        "pending": "En attente",
+        "completed": "Terminé",
+        "error": "Erreur",
+        "reset": "Réinitialiser",
         "submit": "Soumettre ma candidature",
         "submitting": "Soumission en cours...",
         "success": "Candidature soumise avec succès",
         "redirecting": "Redirection en cours...",
-        "helpMessage": "Assurez-vous que tous les champs requis sont remplis et que tous les documents sont téléchargés avant de soumettre votre candidature."
+        "helpMessage": "Assurez-vous que tous les champs requis sont remplis et que tous les documents sont téléchargés avant de soumettre votre candidature.",
+        "applicationFormTitle": "Formulaire de Candidature"
       },
       "modal": {
         "viewDetails": "Voir les détails",
@@ -757,8 +1213,31 @@
         "applyDirectly": "Postuler directement",
         "salaryLabel": "Salaire",
         "requiredDocuments": "Documents requis pour candidater",
-        "documentsNote": "Les documents suivants sont requis pour votre candidature :",
-        "documentsWarning": "Tous les documents doivent être au format PDF et ne pas dépasser 10MB chacun."
+        "requiredDocumentsDescription": "Les documents suivants sont requis pour votre candidature :",
+        "documentsFormatWarning": "Tous les documents doivent être au format PDF et ne pas dépasser 10MB chacun.",
+        "positionAvailable": "Poste disponible",
+        "deadline": "Date limite"
+      },
+      "cabinetRecruitment": {
+        "title": "Recrutement d'un cabinet de conseil en gestion RH et révélation des profils",
+        "location": "Lieu",
+        "contractType": "Type de contrat",
+        "contractDescription": "Services de sélection et recrutement pour postes administratifs, pédagogiques et apprentis",
+        "download": "Télécharger",
+        "apply": "Postuler"
+      },
+      "sessions": {
+        "title": "Sessions disponibles pour",
+        "session": "Session",
+        "period": "Période",
+        "registrationDeadline": "Date limite d'inscription",
+        "location": "Lieu",
+        "availablePositions": "Postes disponibles",
+        "status": "Statut",
+        "select": "Sélectionner",
+        "backToJob": "Retour à l'offre d'emploi",
+        "noSessions": "Aucune session disponible",
+        "noSessionsMessage": "Il n'y a actuellement aucune session disponible pour cette offre d'emploi."
       }
     }
   }

@@ -5,10 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TrainingService } from '../../services/training.service';
 import { JobApplicationService } from '../../services/job-application.service';
 import { StudentApplicationCreateInput, StudentApplicationResponse } from '../../models/training.models';
+import { TranslatePipe } from '../../pipes/translate.pipe';
+import { SimpleTranslateService } from '../../services/simple-translate.service';
 
 @Component({
   selector: 'app-form-training',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './form-training.html',
   styleUrl: './form-training.css'
 })
@@ -30,7 +32,8 @@ export class FormTraining implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private trainingService: TrainingService,
-    private jobApplicationService: JobApplicationService
+    private jobApplicationService: JobApplicationService,
+    private translateService: SimpleTranslateService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -78,7 +81,14 @@ export class FormTraining implements OnInit {
   formatSessionDate(dateString: string): string {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', {
+    const currentLang = this.translateService.getCurrentLanguage();
+    const localeMap: { [key: string]: string } = {
+      'fr': 'fr-FR',
+      'en': 'en-US',
+      'de': 'de-DE'
+    };
+    const locale = localeMap[currentLang] || 'fr-FR';
+    return date.toLocaleDateString(locale, {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -150,7 +160,8 @@ export class FormTraining implements OnInit {
     // Pour les formations : aucun document si paiement en ligne, seulement reçu si virement
     if (this.paymentMethod === 'TRANSFER') {
       if (!this.uploadedFiles['BANK_TRANSFER_RECEIPT']) {
-        this.submitError = 'Veuillez télécharger le reçu de virement bancaire.';
+        // Le message d'erreur sera traduit dans le template
+        this.submitError = 'bankReceiptRequired';
         return;
       }
     }
@@ -213,7 +224,8 @@ const attachments = Object.keys(this.uploadedFiles).map((key) => {
       },
       error: (err: any) => {
         this.isSubmitting = false;
-        this.submitError = err?.error?.message || 'Erreur lors de la soumission.';
+        // Si c'est un message d'erreur de l'API, l'afficher tel quel, sinon utiliser une clé de traduction
+        this.submitError = err?.error?.message || 'submissionError';
         console.error('❌ [FORM-TRAINING] Erreur lors de la soumission:', err);
       }
     });

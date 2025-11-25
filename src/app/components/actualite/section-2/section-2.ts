@@ -7,14 +7,18 @@ import { FilterService } from '../../../services/filter.service';
 import { News, BlogCategory, SearchFilters } from '../../../models/api.models';
 import { Subscription } from 'rxjs';
 
+/**
+ * Composant Section Filtres des Actualités
+ * Affiche les actualités filtrées
+ */
 @Component({
-  selector: 'app-section-2',
+  selector: 'app-news-filters-section',
   standalone: true,
   imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './section-2.html',
   styleUrl: './section-2.css'
 })
-export class Section2 implements OnInit, OnDestroy {
+export class NewsFiltersSection implements OnInit, OnDestroy {
   recentNews: News[] = [];
   loading = false;
   error: string | null = null;

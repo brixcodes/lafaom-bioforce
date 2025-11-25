@@ -9,14 +9,18 @@ import { JobOffer, JobSession } from '../../../models/job.models';
 import { JobApplicationCreateInput, JobAttachmentInput } from '../../../models/job-application.models';
 import { Subscription } from 'rxjs';
 
+/**
+ * Composant Header pour la page Recrutements
+ * Affiche les offres d'emploi et gère les candidatures
+ */
 @Component({
-  selector: 'app-header',
+  selector: 'app-recrutements-header',
   standalone: true,
   imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class Header implements OnInit, OnDestroy {
+export class RecrutementsHeader implements OnInit, OnDestroy {
   featuredJobs: JobOffer[] = [];
   loading = false;
   error: string | null = null;

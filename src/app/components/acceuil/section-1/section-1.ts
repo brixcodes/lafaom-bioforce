@@ -1,15 +1,19 @@
+/**
+ * Composant Section Héro de la page d'accueil
+ * Affiche la vidéo de présentation et le contenu principal
+ */
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../pipes/translate.pipe';
 
 @Component({
-  selector: 'app-acceuil-section-1',
+  selector: 'app-home-hero-section',
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './section-1.html',
   styleUrl: './section-1.css'
 })
-export class Section1 {
+export class HomeHeroSection {
   showVideoModal = false;
 
   openVideoModal() {

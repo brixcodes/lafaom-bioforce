@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 
+/**
+ * Composant Header pour les détails d'actualité
+ */
 @Component({
-  selector: 'app-header',
+  selector: 'app-actualite-details-header',
   imports: [],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class Header {
+export class ActualiteDetailsHeader {
 
 }

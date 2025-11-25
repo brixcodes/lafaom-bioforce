@@ -7,15 +7,20 @@ import { TrainingFilterService, TrainingFilters } from '../../../services/traini
 import { FilterOptions, Specialty } from '../../../models/training.models';
 import { Subscription, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 
+/**
+ * Composant Filtres des Formations
+ * Gère les filtres pour la recherche de formations
+ */
 @Component({
-  selector: 'app-filters',
+  selector: 'app-training-filters',
   standalone: true,
   imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './filters.html',
   styleUrl: './filters.css'
 })
-export class Filters implements OnInit, OnDestroy {
+export class TrainingFiltersComponent implements OnInit, OnDestroy {
   filterOptions: FilterOptions = {
     specialties: [],
     locations: [],
@@ -146,15 +151,17 @@ export class Filters implements OnInit, OnDestroy {
     this.filterSubject.next({ ...this.selectedFilters });
   }
 
+  /**
+   * Appliquer les filtres immédiatement (après debounce)
+   * Utilise la nouvelle méthode setFilters() pour une mise à jour atomique
+   */
   applyFiltersImmediate(filters: TrainingFilters) {
-    this.filterService.setSelectedSpecialties(filters.specialties);
-    this.filterService.setSelectedLocations(filters.locations);
-    this.filterService.setSelectedTypes(filters.types);
-    this.filterService.setSelectedDurations(filters.durations);
-    this.filterService.setSelectedFees(filters.fees);
-    this.filterService.setSearchTerm(filters.searchTerm);
+    // Utilisation de la méthode générique setFilters() pour une mise à jour atomique
+    this.filterService.setFilters(filters);
 
-    console.log('Filtres de formations appliqués:', filters);
+    if (!environment.production) {
+      console.log('Filtres de formations appliqués:', filters);
+    }
   }
 
   resetFilters() {

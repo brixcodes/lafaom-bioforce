@@ -7,14 +7,18 @@ import { FilterService } from '../../../services/filter.service';
 import { News, BlogCategory, PaginationParams, SearchFilters } from '../../../models/api.models';
 import { Subscription } from 'rxjs';
 
+/**
+ * Composant Section Pagination des Actualités
+ * Affiche la pagination et la liste complète des actualités
+ */
 @Component({
-  selector: 'app-section-3',
+  selector: 'app-news-pagination-section',
   standalone: true,
   imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './section-3.html',
   styleUrl: './section-3.css'
 })
-export class Section3 implements OnInit, OnDestroy {
+export class NewsPaginationSection implements OnInit, OnDestroy {
   allNews: News[] = [];
   loading = false;
   error: string | null = null;

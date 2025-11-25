@@ -1,3 +1,9 @@
+/**
+ * Composant Bouton WhatsApp
+ * 
+ * Composant flottant permettant d'ouvrir une conversation WhatsApp
+ * avec un message pré-rempli pour contacter l'équipe LAFAOM-MAO.
+ */
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,9 +15,18 @@ import { CommonModule } from '@angular/common';
   styleUrl: './whatsapp-button.css'
 })
 export class WhatsAppButton {
-  // Lien WhatsApp direct avec message pré-rempli
-  whatsappUrl = 'https://wa.me/237673596327?text=Salut%20équipe%20LAFAOM-MAO%20!%20Je%20suis%20intéressé(e)%20par%20vos%20formations,%20mais%20j\'ai%20besoin%20d\'aide%20pour%20comprendre%20le%20processus%20de%20candidature.%20Pouvez-vous%20m\'expliquer%20comment%20procéder%20%3F';
+  /** Numéro de téléphone WhatsApp */
+  private readonly WHATSAPP_NUMBER = '237673596327';
+  
+  /** Message pré-rempli pour la conversation WhatsApp */
+  private readonly DEFAULT_MESSAGE = 'Salut équipe LAFAOM-MAO ! Je suis intéressé(e) par vos formations, mais j\'ai besoin d\'aide pour comprendre le processus de candidature. Pouvez-vous m\'expliquer comment procéder ?';
+  
+  /** URL complète pour ouvrir WhatsApp avec le message pré-rempli */
+  readonly whatsappUrl = `https://wa.me/${this.WHATSAPP_NUMBER}?text=${encodeURIComponent(this.DEFAULT_MESSAGE)}`;
 
+  /**
+   * Ouvrir WhatsApp dans un nouvel onglet avec le message pré-rempli
+   */
   openWhatsApp(): void {
     window.open(this.whatsappUrl, '_blank');
   }

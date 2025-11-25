@@ -9,14 +9,18 @@ import { JobOffer } from '../../../models/job.models';
 import { JobApplicationCreateInput, JobAttachmentInput } from '../../../models/job-application.models';
 import { Subscription } from 'rxjs';
 
+/**
+ * Composant Section Candidature aux Recrutements
+ * Gère le formulaire de candidature pour les offres d'emploi
+ */
 @Component({
-  selector: 'app-recrutements-section-1',
+  selector: 'app-job-application-section',
   standalone: true,
   imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './section-1.html',
   styleUrl: './section-1.css'
 })
-export class Section1 implements OnInit, OnDestroy {
+export class JobApplicationSection implements OnInit, OnDestroy {
   @ViewChildren('fileInputs') fileInputs!: QueryList<ElementRef<HTMLInputElement>>;
   
   jobOffer: JobOffer | null = null;

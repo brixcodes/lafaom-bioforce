@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Header } from '../../components/contact/header/header';
+import { ContactHeader } from '../../components/contact/header/header';
 
 @Component({
   selector: 'app-contact',
-  imports: [Header],
+  imports: [ContactHeader],
   templateUrl: './contact.html',
   styleUrl: './contact.css'
 })

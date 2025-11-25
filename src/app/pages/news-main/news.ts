@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Header } from '../../components/actualite/header/header';
+import { ActualiteHeader } from '../../components/actualite/header/header';
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [Header],
+  imports: [ActualiteHeader],
   templateUrl: './news.html',
   styleUrl: './news.css'
 })

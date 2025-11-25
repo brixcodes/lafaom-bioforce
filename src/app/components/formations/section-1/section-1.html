@@ -461,15 +461,15 @@
                                                             <div class="d-flex justify-content-end gap-3 mt-4">
                                                                 <button type="button" class="btn btn-secondary mx-1"
                                                                     (click)="closeApplicationModal()">
-                                                                    Annuler
+                                                                    {{ 'common.cancel' | translate }}
                                                                 </button>
                                                                 <button type="submit" class="btn btn-primary mx-1"
                                                                     [disabled]="!isFormValid() || submitting">
                                                                     <span *ngIf="submitting"
                                                                         class="spinner-border spinner-border-sm me-2"
                                                                         role="status" aria-hidden="true"></span>
-                                                                    {{ submitting ? 'Soumission en cours...' :
-                                                                    'Soumettre la candidature' }}
+                                                                    {{ submitting ? ('training.application.submitting' | translate) :
+                                                                    ('training.application.submit' | translate) }}
                                                                 </button>
                                                             </div>
                                                         </div>

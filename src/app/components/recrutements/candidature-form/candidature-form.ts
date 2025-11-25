@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 
 interface UploadStatus {
   uploading: boolean;
@@ -20,7 +21,7 @@ interface Attachment {
 @Component({
   selector: 'app-candidature-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './candidature-form.html',
   styleUrl: './candidature-form.css'
 })

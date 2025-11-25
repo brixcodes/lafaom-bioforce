@@ -1,13 +1,16 @@
+/**
+ * Composant Section À Propos de la page d'accueil
+ */
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-section-3',
+  selector: 'app-home-about-section',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './section-3.html',
   styleUrl: './section-3.css'
 })
-export class Section3 {
+export class HomeAboutSection {
 
 }

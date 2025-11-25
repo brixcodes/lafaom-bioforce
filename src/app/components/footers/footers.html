@@ -6,11 +6,11 @@
                 <img src="lafaom-mao.png" class="mb-3" alt="logo" width="220" height="80">
                 <address>
                     <p class="highlight">
-                        B.P : 221  Ziguinchor<br>
-                        Ziguinchor - Sénégal<br>
-                        Tél : +4942151603476<br>
-                        Email : contact@lafaom-mao.org <br>
-                        Website : https:lafaom-mao.org
+                        {{ 'footer.address' | translate }}<br>
+                        {{ 'footer.city' | translate }}<br>
+                        {{ 'footer.phone' | translate }}<br>
+                        {{ 'footer.email' | translate }} <br>
+                        {{ 'footer.website' | translate }}
                     </p>
                     <p>
                         {{ 'footer.description' | translate }}
@@ -44,12 +44,12 @@
 
                         <a href="#">
                             <img src="favicon-192x192.png" alt="logo" width="30" height="30">
-                            <span class="ml-2" style="margin-top: 15px;">Sénégal</span>
+                            <span class="ml-2" style="margin-top: 15px;">{{ 'footer.senegal' | translate }}</span>
                         </a>
                     </h5>
                     <p>
-                        Quartier Cadior lot 457<br>
-                        Commune de Ziguinchor
+                        {{ 'footer.location' | translate }}<br>
+                        {{ 'footer.commune' | translate }}
                     </p>
                 </address>
             </div>

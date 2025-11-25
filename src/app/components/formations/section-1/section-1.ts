@@ -7,22 +7,28 @@ import { TranslatePipe } from '../../../pipes/translate.pipe';
 import { TrainingService } from '../../../services/training.service';
 import { TrainingFilterService, TrainingFilters } from '../../../services/training-filter.service';
 import { StudentApplicationService } from '../../../services/student-application.service';
+import { LanguageService } from '../../../services/language.service';
 import { Training, TrainingSession, Specialty } from '../../../models/training.models';
 import { StudentApplicationCreateInput } from '../../../models/student-application.models';
 import { Observable, interval, Subscription, of } from 'rxjs';
 import { forkJoin } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, debounceTime } from 'rxjs/operators';
 
+/**
+ * Composant Section Liste des Formations
+ * Affiche la liste des formations avec filtres et candidatures
+ */
 @Component({
-  selector: 'app-formations-section-1',
+  selector: 'app-formations-list-section',
   standalone: true,
   imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './section-1.html',
   styleUrl: './section-1.css'
 })
-export class Section1 implements OnInit, OnDestroy {
+export class FormationsListSection implements OnInit, OnDestroy {
   featuredTrainings$: Observable<any> | undefined;
   featuredTrainings: Training[] = [];
+  trainingSessions: Map<string, TrainingSession[]> = new Map(); // ID de formation -> sessions disponibles
   trainingSessionsCount: Map<string, number> = new Map(); // ID de formation -> nombre de sessions disponibles
   trainingCities: Map<string, string[]> = new Map(); // ID de formation -> liste des villes
   trainingSpecialties: Map<string, Specialty> = new Map(); // ID de formation -> spécialité
@@ -46,12 +52,14 @@ export class Section1 implements OnInit, OnDestroy {
 
   private refreshSubscription: Subscription | undefined;
   private filterSubscription: Subscription | undefined;
+  private languageSubscription: Subscription | undefined;
   private readonly REFRESH_INTERVAL = 30000; // 30 secondes
 
   constructor(
     private trainingService: TrainingService,
     private filterService: TrainingFilterService,
     private studentApplicationService: StudentApplicationService,
+    private languageService: LanguageService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -70,13 +78,52 @@ export class Section1 implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadSpecialties();
-    this.loadFeaturedTrainings();
+    // Charger les spécialités et les formations en parallèle pour optimiser le temps de chargement
+    this.loadSpecialtiesAndTrainings();
     this.startAutoRefresh();
     this.subscribeToFilters();
+    this.subscribeToLanguageChanges();
   }
 
-  // Charger toutes les spécialités
+  // Charger les spécialités et les formations en parallèle
+  loadSpecialtiesAndTrainings() {
+    this.loading = true;
+    this.error = null;
+
+    // Utiliser forkJoin pour charger en parallèle
+    forkJoin({
+      specialties: this.trainingService.getSpecialties(),
+      trainings: this.trainingService.getFeaturedTrainings(5)
+    }).subscribe({
+        next: ({ specialties, trainings }: { specialties: Specialty[], trainings: any }) => {
+        // Traiter les spécialités
+        this.allSpecialties = specialties;
+        
+        // Traiter les formations
+        this.featuredTrainings = trainings.data || [];
+        this.filteredTrainings = [...this.featuredTrainings];
+        
+        // Associer les spécialités aux formations
+        this.loadSpecialtiesForTrainings();
+        
+        // Charger les sessions pour chaque formation
+        this.loadSessionsForTrainings();
+        
+        // Appliquer les filtres initiaux
+        const currentFilters = this.filterService.getCurrentFilters();
+        this.applyFilters(currentFilters);
+        
+        this.loading = false;
+      },
+      error: (error: any) => {
+        console.error('Erreur lors du chargement des données:', error);
+        this.error = 'Impossible de charger les données';
+        this.loading = false;
+      }
+    });
+  }
+
+  // Charger toutes les spécialités (méthode conservée pour compatibilité)
   loadSpecialties() {
     this.trainingService.getSpecialties().subscribe({
       next: (specialties: Specialty[]) => {
@@ -102,6 +149,22 @@ export class Section1 implements OnInit, OnDestroy {
     if (this.filterSubscription) {
       this.filterSubscription.unsubscribe();
     }
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
+  /**
+   * S'abonner aux changements de langue pour recharger les données
+   */
+  private subscribeToLanguageChanges(): void {
+    this.languageSubscription = this.languageService.languageChange$
+      .pipe(debounceTime(100)) // Délai de 100ms pour éviter les rechargements multiples
+      .subscribe((newLang: string) => {
+        console.log('🔄 [FORMATIONS] Changement de langue détecté:', newLang);
+        // Recharger les données pour obtenir les traductions
+        this.loadSpecialtiesAndTrainings();
+      });
   }
 
   startAutoRefresh() {
@@ -123,7 +186,7 @@ export class Section1 implements OnInit, OnDestroy {
     });
   }
 
-  applyFilters(filters: any) {
+  applyFilters(filters: TrainingFilters) {
     if (this.featuredTrainings.length === 0) return;
 
     // Optimisation : vérifier d'abord si des filtres sont actifs
@@ -208,8 +271,11 @@ export class Section1 implements OnInit, OnDestroy {
       }
 
       // Filtre par spécialités (si applicable)
-      if (filters.specialties.length > 0 && !filters.specialties.includes(training.id)) {
-        return false;
+      if (filters.specialties.length > 0) {
+        const specialty = this.trainingSpecialties.get(training.id.toString());
+        if (!specialty || !filters.specialties.includes(specialty.id)) {
+          return false;
+        }
       }
 
       // Filtre par frais
@@ -295,104 +361,28 @@ export class Section1 implements OnInit, OnDestroy {
       return;
     }
 
-    // Créer un observable pour chaque formation
+    // Créer un observable pour chaque formation et les charger en parallèle avec forkJoin
     const sessionObservables = this.featuredTrainings.map(training =>
       this.trainingService.getTrainingSessions(training.id.toString(), {
         page: 1,
         page_size: 100
         // Pas de filtre de statut pour récupérer toutes les sessions
       }).pipe(
-        map((response: any) => {
-          const today = new Date();
-          console.log(`Formation ${training.id} - Sessions reçues:`, response.data);
-
-              const availableSessions = response.data.filter((session: any) => {
-            // Vérifier que la session n'a pas encore commencé ET qu'elle est ouverte aux inscriptions
-            if (session.start_date && session.status === 'OPEN_FOR_REGISTRATION') {
-              const startDate = new Date(session.start_date);
-              const isAvailable = startDate > today;
-              console.log(`Session ${session.id}: start_date=${session.start_date}, startDate=${startDate}, today=${today}, status=${session.status}, isAvailable=${isAvailable}`);
-              return isAvailable;
-            }
-            console.log(`Session ${session.id} rejetée: start_date=${session.start_date}, status=${session.status}`);
-            return false;
-          });
-
-          // Calculer les durées et frais à partir des sessions disponibles
-          const durations: string[] = [];
-          let totalFee = 0;
-          let feeCount = 0;
-
-          availableSessions.forEach((session: any) => {
-            // Calculer la durée
-            if (session.start_date && session.end_date) {
-              const startDate = new Date(session.start_date);
-              const endDate = new Date(session.end_date);
-              const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-              
-              // Formater la durée (même logique que dans calculateDurationsFromSessions)
-              let durationStr = '';
-              if (diffDays < 30) {
-                if (diffDays >= 2 && diffDays <= 15) {
-                  durationStr = `${diffDays} à ${diffDays} jours`;
-                } else {
-                  durationStr = `${diffDays} ${diffDays === 1 ? 'jour' : 'jours'}`;
-                }
-              } else if (diffDays < 365) {
-                const months = Math.round(diffDays / 30);
-                durationStr = `${months} ${months === 1 ? 'mois' : 'mois'}`;
-              } else {
-                const years = Math.round(diffDays / 365);
-                durationStr = `${years} ${years === 1 ? 'année' : 'années'}`;
-              }
-              
-              if (durationStr) {
-                durations.push(durationStr);
-              }
-            }
-
-            // Calculer les frais (moyenne des frais des sessions)
-            const registrationFee = session.registration_fee || 0;
-            const trainingFee = session.training_fee || 0;
-            const sessionTotalFee = registrationFee + trainingFee;
-            if (sessionTotalFee > 0) {
-              totalFee += sessionTotalFee;
-              feeCount++;
-            }
-          });
-
-          // Calculer la moyenne des frais
-          const averageFee = feeCount > 0 ? totalFee / feeCount : 0;
-
-          console.log(`Formation ${training.id} - Sessions disponibles:`, availableSessions.length, '- Durées:', durations, '- Frais moyen:', averageFee);
-          return {
-            trainingId: training.id.toString(),
-            count: availableSessions.length,
-            sessions: availableSessions,
-            durations: [...new Set(durations)], // Dédupliquer les durées
-            averageFee: averageFee
-          };
-        }),
         catchError((error: any) => {
           console.error(`Erreur lors du chargement des sessions pour la formation ${training.id}:`, error);
-          return of({ trainingId: training.id.toString(), count: 0, sessions: [], durations: [], averageFee: 0 });
+          // Retourner un tableau vide en cas d'erreur
+          return of({ data: [] });
         })
       )
     );
 
-    // Exécuter toutes les requêtes en parallèle
+    // Charger toutes les sessions en parallèle
     forkJoin(sessionObservables).subscribe({
-      next: (results: any[]) => {
-        // Mettre à jour les Maps avec les comptes, durées et frais
-        results.forEach((result: any) => {
-          this.trainingSessionsCount.set(result.trainingId, result.count);
-          if (result.durations && result.durations.length > 0) {
-            this.trainingDurations.set(result.trainingId, result.durations);
-          }
-          if (result.averageFee !== undefined) {
-            this.trainingFees.set(result.trainingId, result.averageFee);
-          }
+      next: (responses: any[]) => {
+        // Traiter chaque réponse
+        responses.forEach((response, index) => {
+          const training = this.featuredTrainings[index];
+          this.processSessionsForTraining(training, response.data || []);
         });
 
         // Filtrer les formations sans sessions disponibles
@@ -417,7 +407,9 @@ export class Section1 implements OnInit, OnDestroy {
         this.applyFilters(currentFilters);
 
         // Charger les villes des centres pour chaque formation
-        this.loadCitiesForTrainings(results);
+        this.loadCitiesForTrainingsFromSessions();
+        
+        this.loading = false;
       },
       error: (error: any) => {
         console.error('Erreur lors du chargement des sessions:', error);
@@ -426,11 +418,89 @@ export class Section1 implements OnInit, OnDestroy {
     });
   }
 
-  loadCitiesForTrainings(results: any[]) {
+  /**
+   * Traiter les sessions pour une formation donnée
+   */
+  private processSessionsForTraining(training: any, sessions: any[]): void {
+    const today = new Date();
+    const availableSessions = sessions.filter((session: any) => {
+      // Vérifier que la session n'a pas encore commencé ET qu'elle est ouverte aux inscriptions
+      if (session.start_date && session.status === 'OPEN_FOR_REGISTRATION') {
+        const startDate = new Date(session.start_date);
+        return startDate > today;
+      }
+      return false;
+    });
+
+    // Stocker les sessions disponibles
+    this.trainingSessions.set(training.id.toString(), availableSessions);
+
+    // Calculer les durées et frais à partir des sessions disponibles
+    const durations: string[] = [];
+    let totalFee = 0;
+    let feeCount = 0;
+
+    availableSessions.forEach((session: any) => {
+      // Calculer la durée
+      if (session.start_date && session.end_date) {
+        const startDate = new Date(session.start_date);
+        const endDate = new Date(session.end_date);
+        const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        // Formater la durée (même logique que dans calculateDurationsFromSessions)
+        let durationStr = '';
+        if (diffDays < 30) {
+          if (diffDays >= 2 && diffDays <= 15) {
+            durationStr = `${diffDays} à ${diffDays} jours`;
+          } else {
+            durationStr = `${diffDays} ${diffDays === 1 ? 'jour' : 'jours'}`;
+          }
+        } else if (diffDays < 365) {
+          const months = Math.round(diffDays / 30);
+          durationStr = `${months} ${months === 1 ? 'mois' : 'mois'}`;
+        } else {
+          const years = Math.round(diffDays / 365);
+          durationStr = `${years} ${years === 1 ? 'année' : 'années'}`;
+        }
+        
+        if (durationStr) {
+          durations.push(durationStr);
+        }
+      }
+
+      // Calculer les frais
+      const registrationFee = session.registration_fee || 0;
+      const trainingFee = session.training_fee || 0;
+      const total = registrationFee + trainingFee;
+      
+      if (total > 0) {
+        totalFee += total;
+        feeCount++;
+      }
+    });
+
+    // Stocker les durées uniques
+    const uniqueDurations = [...new Set(durations)];
+    this.trainingDurations.set(training.id.toString(), uniqueDurations);
+
+    // Stocker la moyenne des frais
+    if (feeCount > 0) {
+      this.trainingFees.set(training.id.toString(), Math.round(totalFee / feeCount));
+    }
+
+    // Stocker le compte de sessions
+    this.trainingSessionsCount.set(training.id.toString(), availableSessions.length);
+  }
+
+  /**
+   * Charger les villes des centres à partir des sessions stockées
+   */
+  loadCitiesForTrainingsFromSessions() {
     // Récupérer tous les centre_id uniques de toutes les sessions
     const centerIds = new Set<number>();
-    results.forEach((result: any) => {
-      result.sessions.forEach((session: any) => {
+    this.trainingSessions.forEach((sessions: TrainingSession[], trainingId: string) => {
+      sessions.forEach((session: any) => {
         if (session.center_id) {
           centerIds.add(session.center_id);
         }
@@ -463,9 +533,9 @@ export class Section1 implements OnInit, OnDestroy {
         });
 
         // Assigner les villes à chaque formation
-        results.forEach((result: any) => {
+        this.trainingSessions.forEach((sessions: TrainingSession[], trainingId: string) => {
           const citiesForTraining = new Set<string>();
-          result.sessions.forEach((session: any) => {
+          sessions.forEach((session: any) => {
             if (session.center_id && centerIdToCity.has(session.center_id)) {
               const city = centerIdToCity.get(session.center_id);
               if (city && city !== 'N/A') {
@@ -473,7 +543,7 @@ export class Section1 implements OnInit, OnDestroy {
               }
             }
           });
-          this.trainingCities.set(result.trainingId, Array.from(citiesForTraining));
+          this.trainingCities.set(trainingId, Array.from(citiesForTraining));
         });
 
         this.loading = false;

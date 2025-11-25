@@ -1,12 +1,12 @@
 <div class="candidature-form">
   <div class="form-container">
-    <h2 class="form-title">Formulaire de Candidature</h2>
+    <h2 class="form-title">{{ 'recruitment.application.applicationFormTitle' | translate }}</h2>
 
     <!-- Indicateur de progression -->
     <div class="upload-progress" *ngIf="uploadingCount > 0 || uploadProgress > 0">
       <div class="progress-info">
-        <span *ngIf="uploadingCount > 0">Upload en cours... ({{uploadingCount}} fichier(s))</span>
-        <span *ngIf="uploadingCount === 0 && uploadProgress > 0">Progression: {{uploadProgress}}%</span>
+        <span *ngIf="uploadingCount > 0">{{ 'recruitment.application.uploadProgress' | translate }} ({{uploadingCount}} fichier(s))</span>
+        <span *ngIf="uploadingCount === 0 && uploadProgress > 0">{{ 'recruitment.application.progress' | translate }}: {{uploadProgress}}%</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" [style.width.%]="uploadProgress"></div>
@@ -23,22 +23,22 @@
     <form (ngSubmit)="submitApplication()">
       <!-- Informations personnelles -->
       <div class="form-section">
-        <h4>Informations personnelles</h4>
-        <p class="section-description">Veuillez remplir vos informations personnelles</p>
+        <h4>{{ 'recruitment.application.personalInfo' | translate }}</h4>
+        <p class="section-description">{{ 'recruitment.application.fillPersonalInfo' | translate }}</p>
         
         <div class="form-row">
           <div class="form-group">
-            <label for="civility">Civilité *</label>
+            <label for="civility">{{ 'recruitment.application.civility' | translate }} *</label>
             <select id="civility" [(ngModel)]="form.civility" name="civility" required
                     (change)="logChange('Civilité', $event)">
-              <option value="">Sélectionner</option>
+              <option value="">{{ 'recruitment.application.selectCivility' | translate }}</option>
               <option *ngFor="let option of civilityOptions" [value]="option.value">
                 {{option.label}}
               </option>
             </select>
           </div>
           <div class="form-group">
-            <label for="date_of_birth">Date de naissance</label>
+            <label for="date_of_birth">{{ 'recruitment.application.dateOfBirth' | translate }}</label>
             <input type="date" id="date_of_birth" [(ngModel)]="form.date_of_birth" name="date_of_birth"
                    (change)="logChange('Date de naissance', $event)">
           </div>
@@ -46,12 +46,12 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="first_name">Prénom *</label>
+            <label for="first_name">{{ 'recruitment.application.firstName' | translate }} *</label>
             <input type="text" id="first_name" [(ngModel)]="form.first_name" name="first_name" required
                    (change)="logChange('Prénom', $event)">
           </div>
           <div class="form-group">
-            <label for="last_name">Nom *</label>
+            <label for="last_name">{{ 'recruitment.application.lastName' | translate }} *</label>
             <input type="text" id="last_name" [(ngModel)]="form.last_name" name="last_name" required
                    (change)="logChange('Nom', $event)">
           </div>
@@ -59,12 +59,12 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="email">Email *</label>
+            <label for="email">{{ 'recruitment.application.email' | translate }} *</label>
             <input type="email" id="email" [(ngModel)]="form.email" name="email" required
                    (change)="logChange('Email', $event)">
           </div>
           <div class="form-group">
-            <label for="phone_number">Téléphone *</label>
+            <label for="phone_number">{{ 'recruitment.application.phoneNumber' | translate }} *</label>
             <input type="tel" id="phone_number" [(ngModel)]="form.phone_number" name="phone_number" required
                    (change)="logChange('Téléphone', $event)">
           </div>
@@ -73,16 +73,16 @@
 
       <!-- Adresse -->
       <div class="form-section">
-        <h4>Adresse</h4>
-        <p class="section-description">Votre adresse de résidence</p>
+        <h4>{{ 'recruitment.application.address' | translate }}</h4>
+        <p class="section-description">{{ 'recruitment.application.residenceAddress' | translate }}</p>
         
         <div class="form-row">
           <div class="form-group">
-            <label for="city">Ville *</label>
+            <label for="city">{{ 'recruitment.application.city' | translate }} *</label>
             <input type="text" id="city" [(ngModel)]="form.city" name="city" required>
           </div>
           <div class="form-group">
-            <label for="country_code">Pays</label>
+            <label for="country_code">{{ 'recruitment.application.country' | translate }}</label>
             <select id="country_code" [(ngModel)]="form.country_code" name="country_code">
               <option value="SN">Sénégal</option>
               <option value="ML">Mali</option>
@@ -94,15 +94,15 @@
         </div>
 
         <div class="form-group">
-          <label for="address">Adresse complète *</label>
+          <label for="address">{{ 'recruitment.application.addressLabel' | translate }} *</label>
           <input type="text" id="address" [(ngModel)]="form.address" name="address" required>
         </div>
       </div>
 
       <!-- Documents requis -->
       <div class="form-section">
-        <h4>Documents requis</h4>
-        <p class="section-description">Veuillez uploader les documents suivants (PDF, DOC, DOCX)</p>
+        <h4>{{ 'recruitment.application.requiredDocuments' | translate }}</h4>
+        <p class="section-description">{{ 'recruitment.application.uploadDocumentsDescription' | translate }}</p>
         
         <div class="documents-grid">
           <!-- CV -->
@@ -110,10 +110,10 @@
             <div class="document-header">
               <h5>CV *</h5>
               <span class="document-status" [ngClass]="getDocumentStatus('CV')">
-                <span *ngIf="getDocumentStatus('CV') === 'pending'">En attente</span>
-                <span *ngIf="getDocumentStatus('CV') === 'uploading'">Upload en cours...</span>
-                <span *ngIf="getDocumentStatus('CV') === 'completed'">✓ Terminé</span>
-                <span *ngIf="getDocumentStatus('CV') === 'error'">✗ Erreur</span>
+                <span *ngIf="getDocumentStatus('CV') === 'pending'">{{ 'recruitment.application.pending' | translate }}</span>
+                <span *ngIf="getDocumentStatus('CV') === 'uploading'">{{ 'recruitment.application.uploading' | translate }}</span>
+                <span *ngIf="getDocumentStatus('CV') === 'completed'">✓ {{ 'recruitment.application.completed' | translate }}</span>
+                <span *ngIf="getDocumentStatus('CV') === 'error'">✗ {{ 'recruitment.application.error' | translate }}</span>
               </span>
             </div>
             <div class="file-input-container">
@@ -123,11 +123,11 @@
                      accept=".pdf,.doc,.docx">
               <label class="file-label">
                 <span>📄</span>
-                <span>Cliquez pour sélectionner votre CV</span>
+                <span>{{ 'recruitment.application.clickToSelectCV' | translate }}</span>
               </label>
             </div>
             <div class="file-info" *ngIf="getSelectedFile('CV')">
-              Fichier sélectionné: {{getSelectedFile('CV')?.name}}
+              {{ 'recruitment.application.fileSelected' | translate }}: {{getSelectedFile('CV')?.name}}
             </div>
           </div>
 
@@ -136,10 +136,10 @@
             <div class="document-header">
               <h5>Lettre de motivation *</h5>
               <span class="document-status" [ngClass]="getDocumentStatus('COVER_LETTER')">
-                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'pending'">En attente</span>
-                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'uploading'">Upload en cours...</span>
-                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'completed'">✓ Terminé</span>
-                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'error'">✗ Erreur</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'pending'">{{ 'recruitment.application.pending' | translate }}</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'uploading'">{{ 'recruitment.application.uploading' | translate }}</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'completed'">✓ {{ 'recruitment.application.completed' | translate }}</span>
+                <span *ngIf="getDocumentStatus('COVER_LETTER') === 'error'">✗ {{ 'recruitment.application.error' | translate }}</span>
               </span>
             </div>
             <div class="file-input-container">
@@ -149,11 +149,11 @@
                      accept=".pdf,.doc,.docx">
               <label class="file-label">
                 <span>📝</span>
-                <span>Cliquez pour sélectionner votre lettre de motivation</span>
+                <span>{{ 'recruitment.application.clickToSelectLetter' | translate }}</span>
               </label>
             </div>
             <div class="file-info" *ngIf="getSelectedFile('COVER_LETTER')">
-              Fichier sélectionné: {{getSelectedFile('COVER_LETTER')?.name}}
+              {{ 'recruitment.application.fileSelected' | translate }}: {{getSelectedFile('COVER_LETTER')?.name}}
             </div>
           </div>
 
@@ -162,10 +162,10 @@
             <div class="document-header">
               <h5>Diplôme *</h5>
               <span class="document-status" [ngClass]="getDocumentStatus('DIPLOMA')">
-                <span *ngIf="getDocumentStatus('DIPLOMA') === 'pending'">En attente</span>
-                <span *ngIf="getDocumentStatus('DIPLOMA') === 'uploading'">Upload en cours...</span>
-                <span *ngIf="getDocumentStatus('DIPLOMA') === 'completed'">✓ Terminé</span>
-                <span *ngIf="getDocumentStatus('DIPLOMA') === 'error'">✗ Erreur</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'pending'">{{ 'recruitment.application.pending' | translate }}</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'uploading'">{{ 'recruitment.application.uploading' | translate }}</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'completed'">✓ {{ 'recruitment.application.completed' | translate }}</span>
+                <span *ngIf="getDocumentStatus('DIPLOMA') === 'error'">✗ {{ 'recruitment.application.error' | translate }}</span>
               </span>
             </div>
             <div class="file-input-container">
@@ -175,11 +175,11 @@
                      accept=".pdf,.doc,.docx">
               <label class="file-label">
                 <span>🎓</span>
-                <span>Cliquez pour sélectionner votre diplôme</span>
+                <span>{{ 'recruitment.application.clickToSelectDiploma' | translate }}</span>
               </label>
             </div>
             <div class="file-info" *ngIf="getSelectedFile('DIPLOMA')">
-              Fichier sélectionné: {{getSelectedFile('DIPLOMA')?.name}}
+              {{ 'recruitment.application.fileSelected' | translate }}: {{getSelectedFile('DIPLOMA')?.name}}
             </div>
           </div>
         </div>
@@ -198,14 +198,14 @@
           date_of_birth: '',
           country_code: 'SN'
         }; attachments = []; errors = [];">
-          Réinitialiser
+          {{ 'recruitment.application.reset' | translate }}
         </button>
         <button type="submit" 
                 class="btn btn-primary" 
                 [disabled]="!isFormValid() || isSubmitting"
                 [ngClass]="{'loading': isSubmitting}">
-          <span *ngIf="isSubmitting">Soumission en cours...</span>
-          <span *ngIf="!isSubmitting">Soumettre ma candidature</span>
+          <span *ngIf="isSubmitting">{{ 'recruitment.application.submitting' | translate }}</span>
+          <span *ngIf="!isSubmitting">{{ 'recruitment.application.submit' | translate }}</span>
         </button>
       </div>
     </form>

@@ -6,14 +6,18 @@ import { News, BlogCategory } from '../../../models/api.models';
 import { Observable, interval, Subscription } from 'rxjs';
 import { TranslatePipe } from '../../../pipes/translate.pipe';
 
+/**
+ * Composant Section Actualités de la page d'accueil
+ * Affiche les dernières actualités
+ */
 @Component({
-  selector: 'app-section-5',
+  selector: 'app-home-news-section',
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './section-5.html',
   styleUrl: './section-5.css'
 })
-export class Section5 implements OnInit, OnDestroy {
+export class HomeNewsSection implements OnInit, OnDestroy {
   recentNews$: Observable<any> | undefined;
   recentNews: News[] = [];
   loading = false;

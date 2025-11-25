@@ -84,9 +84,9 @@
                     <!-- Frais -->
                     <div class="form-group col-md-3">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
-                            <span>Frais</span>
+                            <span>{{ 'training.filters.fees' | translate }}</span>
                             <select name="fees" class="s-select" multiple (change)="onFeeChange($event)">
-                                <option value="0" data-placeholder="true">Tous les frais</option>
+                                <option value="0" data-placeholder="true">{{ 'training.filters.allFees' | translate }}</option>
                                 <option *ngFor="let fee of filterOptions.fees" [value]="fee">
                                     {{ fee }}
                                 </option>

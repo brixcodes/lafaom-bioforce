@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Header } from '../../components/recrutements/header/header';
+import { RecrutementsHeader } from '../../components/recrutements/header/header';
 
 @Component({
   selector: 'app-recrutements',
   standalone: true,
-  imports: [Header],
+  imports: [RecrutementsHeader],
   templateUrl: './recrutements.html',
   styleUrl: './recrutements.css'
 })

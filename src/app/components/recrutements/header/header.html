@@ -260,12 +260,12 @@
                           *ngIf="getRequiredAttachments(selectedJob) && getRequiredAttachments(selectedJob).length > 0">
                           <br>
                           <h3 class="has-border-l lead mb-5" role="heading" aria-level="1" data-uw-rm-heading="level">
-                            Documents requis pour candidater :
+                            {{ 'recruitment.modal.requiredDocuments' | translate }} :
                           </h3>
                           <div class="mt-3">
                             <div class="alert alert-info">
                               <!-- <i class="fas fa-info-circle me-2"></i> -->
-                              <strong>Les documents suivants sont requis pour votre candidature :</strong>
+                              <strong>{{ 'recruitment.modal.requiredDocumentsDescription' | translate }}</strong>
                             </div>
                             <ul class="list-unstyled">
                               <li *ngFor="let attachment of getRequiredAttachments(selectedJob)"
@@ -276,8 +276,7 @@
                             </ul>
                             <div class="alert alert-warning mt-3">
                               <!-- <i class="fas fa-exclamation-triangle me-2"></i> -->
-                              <small>Tous les documents doivent être au format PDF et ne pas dépasser 10MB
-                                chacun.</small>
+                              <small>{{ 'recruitment.modal.documentsFormatWarning' | translate }}</small>
                             </div>
                           </div>
                         </div>
@@ -303,15 +302,14 @@
 
                                 <!-- Infos du poste -->
                                 <div>
-                                  <span class="session-aviriable">Poste
-                                    disponible</span>
+                                  <span class="session-aviriable">{{ 'recruitment.modal.positionAvailable' | translate }}</span>
                                   <strong class="session-date">
-                                    Date limite :
+                                    {{ 'recruitment.modal.deadline' | translate }} :
                                     {{ formatDate(selectedJob?.submission_deadline
                                     || '') }}
                                   </strong>
                                   <span class="session-aviriable-date">
-                                    Frais de candidature :
+                                    {{ 'recruitment.modal.applicationFee' | translate }} :
                                     {{ selectedJob?.submission_fee }} {{
                                     selectedJob?.currency }}
                                   </span>
@@ -359,18 +357,17 @@
         <div class="content">
           <span class="download-pic"><i class="icon-download"></i></span>
           <h4>
-            Recrutement d’un cabinet de conseil en gestion RH et révélation des profils</h4>
+            {{ 'recruitment.cabinetRecruitment.title' | translate }}</h4>
           <p>
-            <strong>Lieu :</strong> Ziguinchor, Sénégal<br />
-            <strong>Type de contrat :</strong> Services de sélection et recrutement pour postes administratifs,
-            pédagogiques et apprentis
+            <strong>{{ 'recruitment.cabinetRecruitment.location' | translate }} :</strong> Ziguinchor, Sénégal<br />
+            <strong>{{ 'recruitment.cabinetRecruitment.contractType' | translate }} :</strong> {{ 'recruitment.cabinetRecruitment.contractDescription' | translate }}
           </p>
           <div class="d-flex gap-3 align-items-center">
             <button (click)="downloadDocument()" class="btn btn-outline-primary btn-download mr-2" type="button">
-              Télécharger<i class="icon-download"></i>
+              {{ 'recruitment.cabinetRecruitment.download' | translate }}<i class="icon-download"></i>
             </button>
             <button (click)="applyForCabinet()" class="btn btn-primary ml-2" type="button">
-              Postuler
+              {{ 'recruitment.cabinetRecruitment.apply' | translate }}
             </button>
           </div>
         </div>
@@ -410,71 +407,71 @@
                       <br>
                       <div class="row">
                         <div class="col-12 col-md-12 form-group">
-                          <label for="civility" class="form-label ml-2">Civilité</label>
+                          <label for="civility" class="form-label ml-2">{{ 'recruitment.application.civility' | translate }}</label>
                           <select id="civility" formControlName="civility" class="form-control col-12 col-md-12">
-                                    <option value="">Sélectionner</option>
-                                    <option value="M.">M.</option>
-                                    <option value="Mme">Mme</option>
+                                    <option value="">{{ 'recruitment.application.selectCivility' | translate }}</option>
+                                    <option value="M.">{{ 'recruitment.application.mr' | translate }}</option>
+                                    <option value="Mme">{{ 'recruitment.application.mrs' | translate }}</option>
                                   </select>
                                 </div>
                         <div class="col-12 col-md-6 form-group">
-                          <label for="first_name" class="form-label">Prénom <span class="text-danger">*</span></label>
+                          <label for="first_name" class="form-label">{{ 'recruitment.application.firstName' | translate }} <span class="text-danger">*</span></label>
                           <input type="text" id="first_name" formControlName="first_name" class="form-control" required>
                                   <div
                                     *ngIf="applicationForm.get('first_name')?.invalid && applicationForm.get('first_name')?.touched"
                             class="text-danger small ml-3 mt-2">
-                                    Le prénom est obligatoire.
+                                    {{ 'recruitment.application.firstNameRequired' | translate }}
                                   </div>
 
                                 </div>
                         <div class="col-12 col-md-6 form-group">
-                          <label for="last_name" class="form-label">Nom <span class="text-danger">*</span></label>
+                          <label for="last_name" class="form-label">{{ 'recruitment.application.lastName' | translate }} <span class="text-danger">*</span></label>
                           <input type="text" id="last_name" formControlName="last_name" class="form-control" required>
                                   <div
                                     *ngIf="applicationForm.get('last_name')?.invalid && applicationForm.get('last_name')?.touched"
                             class="text-danger small ml-3 mt-2">
-                                    Le nom est obligatoire.
+                                    {{ 'recruitment.application.lastNameRequired' | translate }}
                                   </div>
                                 </div>
                         <div class="col-12 col-md-6 form-group">
-                          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                          <label for="email" class="form-label">{{ 'recruitment.application.email' | translate }} <span class="text-danger">*</span></label>
                                   <input type="email" id="email" formControlName="email" class="form-control" required>
                           <div *ngIf="applicationForm.get('email')?.invalid && applicationForm.get('email')?.touched"
                             class="text-danger small ml-3 mt-2">
-                                    Veuillez entrer une adresse email valide.
+                                    {{ 'recruitment.application.emailRequired' | translate }}
                                   </div>
                                 </div>
                         <div class="col-12 col-md-6 form-group">
-                                  <label for="phone_number" class="form-label">Numéro de téléphone <span
+                                  <label for="phone_number" class="form-label">{{ 'recruitment.application.phoneNumber' | translate }} <span
                                       class="text-danger">*</span></label>
                           <input type="text" id="phone_number" formControlName="phone_number" class="form-control"
                             required>
                                   <div
                                     *ngIf="applicationForm.get('phone_number')?.invalid && applicationForm.get('phone_number')?.touched"
                             class="text-danger small ml-3 mt-2">
-                                    Le numéro de téléphone est obligatoire.
+                                    {{ 'recruitment.application.phoneRequired' | translate }}
                                 </div>
                               </div>
 
                         <div class="col-12 col-md-6 form-group">
-                                  <label for="address" class="form-label">Adresse</label>
+                                  <label for="address" class="form-label">{{ 'recruitment.application.address' | translate }}</label>
                           <input type="text" id="address" formControlName="address" class="form-control" required>
                                 </div>
                         <input type="hidden" formControlName="country_code">
                         <div class="col-12 col-md-6 form-group">
-                                  <label for="city" class="form-label">Ville</label>
+                                  <label for="city" class="form-label">{{ 'recruitment.application.city' | translate }}</label>
                           <input type="text" id="city" formControlName="city" class="form-control" required>
                                 </div>
                         <div class="col-12 col-md-12  form-group">
-                          <label for="date_of_birth" class="form-label">Date de naissance</label>
+                          <label for="date_of_birth" class="form-label">{{ 'recruitment.application.dateOfBirth' | translate }}</label>
                           <input type="date" id="date_of_birth" formControlName="date_of_birth" class="form-control"
                             required>
                               </div>
 
 
                         <div class="col-12 col-md-12 mt-2 form-group">
-                                <h6>Documents requis</h6>
-                          <p class="text-muted mb-3">Veuillez télécharger les documents suivants au format PDF :</p>
+                                <h6>{{ 'recruitment.application.requiredDocuments' | translate }}</h6>
+                          <p class="text-muted mb-3">{{ 'recruitment.application.uploadDocuments' | translate }}</p>
                           <div *ngFor="let attachmentType of getRequiredAttachments(selectedJob)">
                             <span class="form-group">
                               <label class="form-label mt-2">{{ attachmentType }} <span
@@ -488,7 +485,7 @@
                                     <div class="alert alert-info d-flex align-items-center">
                                       <span class="spinner-border spinner-border-sm me-2" role="status"
                                         aria-hidden="true"></span>
-                                      <span>Upload en cours...</span>
+                                      <span>{{ 'recruitment.application.uploading' | translate }}</span>
                                     </div>
                                   </div>
 
@@ -500,7 +497,7 @@
                                 <span>✅ {{ uploadedFiles[attachmentType].name }}</span>
                                 <div class="btn-group" role="group">
                                       <button type="button" (click)="removeFile(attachmentType)"
-                                        class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                        class="btn btn-sm btn-outline-danger">{{ 'recruitment.application.remove' | translate }}</button>
                                     </div>
                                   </div>
                                   </div>
@@ -510,19 +507,19 @@
                               *ngIf="uploadedFiles[attachmentType] && !uploadingFiles[attachmentType] && !uploadedFiles[attachmentType].url"
                               class="mt-2">
                               <div class="alert alert-warning d-flex justify-content-between align-items-center">
-                                <span>⚠️ {{ uploadedFiles[attachmentType].name }} (URL manquante)</span>
+                                <span>⚠️ {{ uploadedFiles[attachmentType].name }} ({{ 'recruitment.application.missingUrl' | translate }})</span>
                                 <div class="btn-group" role="group">
                                   <button type="button" (click)="retryUpload(attachmentType)"
-                                    class="btn btn-sm btn-outline-warning">Réessayer</button>
+                                    class="btn btn-sm btn-outline-warning">{{ 'common.retry' | translate }}</button>
                                   <button type="button" (click)="removeFile(attachmentType)"
-                                    class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                    class="btn btn-sm btn-outline-danger">{{ 'recruitment.application.remove' | translate }}</button>
                                 </div>
                               </div>
                             </div>
 
                             <!-- Aucun fichier -->
                             <div *ngIf="!uploadedFiles[attachmentType] && !uploadingFiles[attachmentType]" class="mt-1">
-                              <small class="text-muted">Aucun fichier sélectionné</small>
+                              <small class="text-muted">{{ 'recruitment.application.noFileSelected' | translate }}</small>
                             </div>
                           </div>
                         </div>
@@ -535,18 +532,18 @@
 
                               <!-- Message de succès -->
                               <div *ngIf="success" class="alert alert-success" role="alert">
-                                <h6>✅ Candidature soumise avec succès !</h6>
-                          <p>Vous allez être redirigé vers la page de paiement...</p>
+                                <h6>✅ {{ 'recruitment.application.success' | translate }}</h6>
+                          <p>{{ 'recruitment.application.redirecting' | translate }}</p>
                               </div>
 
                               <div class="d-flex justify-content-end gap-3 mt-4">
                           <button type="button" class="btn btn-secondary mx-1" (click)="closeApplicationModal()">
-                                  Annuler
+                                  {{ 'common.cancel' | translate }}
                                 </button>
                           <button type="submit" class="btn btn-primary mx-1" [disabled]="!isFormValid() || submitting">
                                   <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2" role="status"
                                     aria-hidden="true"></span>
-                            {{ submitting ? 'Soumission en cours...' : 'Soumettre la candidature' }}
+                            {{ submitting ? ('recruitment.application.submitting' | translate) : ('recruitment.application.submit' | translate) }}
                                 </button>
                         </div>
 
@@ -577,16 +574,16 @@
               <button class="button-close" type="button" (click)="closeSessionsModal()" aria-label="Close">
                 <i class="icon-cross"></i>
               </button>
-              <a href="#" class="go-back" title="Retour à l'offre d'emploi" (click)="closeSessionsModal()">
+              <a href="#" class="go-back" [title]="'recruitment.sessions.backToJob' | translate" (click)="closeSessionsModal()">
                 <i class="icon-arrow-left"></i>
-                <span>Retour à l'offre d'emploi</span>
+                <span>{{ 'recruitment.sessions.backToJob' | translate }}</span>
               </a>
               <div class="details-formation-wrapper" id="printJS-sessions">
 
                 <!-- Titre -->
                 <div class="details-formation-intro">
                   <h3 class="has-border-l lead" role="heading" aria-level="1">
-                    Sessions disponibles pour {{ selectedJob?.title }}
+                    {{ 'recruitment.sessions.title' | translate }} {{ selectedJob?.title }}
                   </h3>
                   <br>
 
@@ -597,24 +594,24 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="flex-grow-1">
                             <h5 class="card-title">
-                              Session {{ session.id }}
+                              {{ 'recruitment.sessions.session' | translate }} {{ session.id }}
                             </h5>
                             <div class="row">
                               <div class="col-md-6">
-                                <p><strong>Période :</strong>
+                                <p><strong>{{ 'recruitment.sessions.period' | translate }} :</strong>
                                   {{ formatDate(session.start_date) }} - {{
                                   formatDate(session.end_date) }}
                                 </p>
-                                <p><strong>Date limite d'inscription :</strong>
+                                <p><strong>{{ 'recruitment.sessions.registrationDeadline' | translate }} :</strong>
                                   {{ formatDate(session.registration_deadline) }}
                                 </p>
                               </div>
                               <div class="col-md-6">
-                                <p><strong>Lieu :</strong> {{ session.location }}
+                                <p><strong>{{ 'recruitment.sessions.location' | translate }} :</strong> {{ session.location }}
                                 </p>
-                                <p><strong>Postes disponibles :</strong> {{
+                                <p><strong>{{ 'recruitment.sessions.availablePositions' | translate }} :</strong> {{
                                   session.available_positions }}</p>
-                                <p><strong>Statut :</strong>
+                                <p><strong>{{ 'recruitment.sessions.status' | translate }} :</strong>
                                   <span class="badge badge-success">{{
                                     session.status }}</span>
                                 </p>
@@ -623,8 +620,8 @@
                           </div>
                           <div class="ms-3">
                             <button (click)="selectSession(session)" class="btn btn-primary"
-                              title="Sélectionner cette session">
-                              Sélectionner
+                              [title]="'recruitment.sessions.select' | translate">
+                              {{ 'recruitment.sessions.select' | translate }}
                             </button>
                           </div>
                         </div>
@@ -634,9 +631,8 @@
 
                   <!-- Message si aucune session -->
                   <div *ngIf="availableSessions.length === 0" class="alert alert-info">
-                    <h6>Aucune session disponible</h6>
-                    <p>Il n'y a actuellement aucune session disponible pour cette offre
-                      d'emploi.</p>
+                    <h6>{{ 'recruitment.sessions.noSessions' | translate }}</h6>
+                    <p>{{ 'recruitment.sessions.noSessionsMessage' | translate }}</p>
                   </div>
                 </div>
               </div>
