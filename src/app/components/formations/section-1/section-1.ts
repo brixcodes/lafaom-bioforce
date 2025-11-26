@@ -36,6 +36,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
   trainingFees: Map<string, number> = new Map(); // ID de formation -> frais total (inscription + formation)
   allSpecialties: Specialty[] = []; // Toutes les spécialités
   filteredTrainings: Training[] = []; // Formations filtrées
+  hasFiltersApplied = false; // Indique si des filtres ont été appliqués
   loading = false;
   error: string | null = null;
 
@@ -91,28 +92,29 @@ export class FormationsListSection implements OnInit, OnDestroy {
     this.error = null;
 
     // Utiliser forkJoin pour charger en parallèle
+    // Récupérer toutes les formations (pas seulement featured) avec une limite élevée
     forkJoin({
       specialties: this.trainingService.getSpecialties(),
-      trainings: this.trainingService.getFeaturedTrainings(5)
+      trainings: this.trainingService.getTrainings({ per_page: 100, page: 1 })
     }).subscribe({
-        next: ({ specialties, trainings }: { specialties: Specialty[], trainings: any }) => {
+      next: ({ specialties, trainings }: { specialties: Specialty[], trainings: any }) => {
         // Traiter les spécialités
         this.allSpecialties = specialties;
-        
-        // Traiter les formations
+
+        // Traiter les formations - récupérer toutes les formations (ACTIVE et INACTIVE)
         this.featuredTrainings = trainings.data || [];
-        this.filteredTrainings = [...this.featuredTrainings];
-        
+        this.filteredTrainings = []; // Ne rien afficher initialement
+
         // Associer les spécialités aux formations
         this.loadSpecialtiesForTrainings();
-        
+
         // Charger les sessions pour chaque formation
         this.loadSessionsForTrainings();
-        
+
         // Appliquer les filtres initiaux
         const currentFilters = this.filterService.getCurrentFilters();
         this.applyFilters(currentFilters);
-        
+
         this.loading = false;
       },
       error: (error: any) => {
@@ -181,7 +183,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
   }
 
   subscribeToFilters() {
-    this.filterSubscription = this.filterService.selectedFilters$.subscribe(filters => {
+    this.filterSubscription = this.filterService.selectedFilters$.subscribe((filters: TrainingFilters) => {
       this.applyFilters(filters);
     });
   }
@@ -190,82 +192,98 @@ export class FormationsListSection implements OnInit, OnDestroy {
     if (this.featuredTrainings.length === 0) return;
 
     // Optimisation : vérifier d'abord si des filtres sont actifs
-    const hasActiveFilters = filters.searchTerm ||
+    const hasActiveFilters = Boolean(
+      (filters.searchTerm && filters.searchTerm.trim().length > 0) ||
       filters.specialties.length > 0 ||
       filters.locations.length > 0 ||
       filters.types.length > 0 ||
       filters.durations.length > 0 ||
-      filters.fees.length > 0;
+      filters.fees.length > 0
+    );
+
+    // Mettre à jour l'état des filtres
+    this.hasFiltersApplied = hasActiveFilters;
 
     if (!hasActiveFilters) {
-      this.filteredTrainings = [...this.featuredTrainings];
+      // Ne rien afficher quand aucun filtre n'est appliqué
+      this.filteredTrainings = [];
       return;
     }
 
     this.filteredTrainings = this.featuredTrainings.filter(training => {
       // Filtre par terme de recherche (le plus rapide à vérifier)
-      if (filters.searchTerm && !training.title.toLowerCase().includes(filters.searchTerm.toLowerCase())) {
-        return false;
+      if (filters.searchTerm && filters.searchTerm.trim().length > 0) {
+        const searchTermLower = filters.searchTerm.trim().toLowerCase();
+        if (!training.title.toLowerCase().includes(searchTermLower)) {
+          return false;
+        }
       }
 
-      // Filtre par types - maintenant basé sur la spécialité
+      // Filtre par types - basé sur la présence de specialty_id
       if (filters.types.length > 0) {
-        const trainingSpecialty = this.trainingSpecialties.get(training.id.toString());
-        const specialtyName = trainingSpecialty?.name?.toLowerCase() || '';
-        const isSeminar = specialtyName.includes('séminaire') || specialtyName.includes('seminaire');
+        // Vérifier si la formation a une spécialité (specialty_id existe et n'est pas null/undefined/0)
+        const hasSpecialty = training.specialty_id != null && training.specialty_id !== 0;
         
-        // Si "Séminaire thématique" est sélectionné
+        // Vérifier si "Séminaire" est sélectionné
         const isSeminarSelected = filters.types.some((type: string) => {
           const typeLower = type.toLowerCase().trim();
-          return typeLower.includes('séminaire') || typeLower.includes('seminaire');
+          return typeLower === 'séminaire' || typeLower === 'seminaire';
         });
-        
-        console.log(`Formation ${training.id} - Spécialité: ${specialtyName}, isSeminar: ${isSeminar}, isSeminarSelected: ${isSeminarSelected}`);
-        
-        if (isSeminarSelected) {
-          // Afficher uniquement les formations dont la spécialité contient "séminaire"
-          if (!isSeminar) {
-            console.log(`Formation ${training.id} exclue (pas un séminaire)`);
+
+        // Vérifier si "Formation" est sélectionné
+        const isFormationSelected = filters.types.some((type: string) => {
+          const typeLower = type.toLowerCase().trim();
+          return typeLower === 'formation';
+        });
+
+        console.log(`Formation ${training.id} - specialty_id: ${training.specialty_id}, hasSpecialty: ${hasSpecialty}, isSeminarSelected: ${isSeminarSelected}, isFormationSelected: ${isFormationSelected}`);
+
+        if (isSeminarSelected && isFormationSelected) {
+          // Si les deux sont sélectionnés, afficher toutes les formations
+          // Ne rien faire, continuer le filtrage
+        } else if (isSeminarSelected) {
+          // Si seulement "Séminaire" est sélectionné, afficher uniquement les formations
+          // dont la durée est inférieure à 8 jours (indépendamment de la spécialité)
+          const durationInDays = this.convertDurationToDays(training.duration, training.duration_unit);
+          if (durationInDays >= 8) {
+            console.log(`Formation ${training.id} exclue (durée de ${durationInDays} jours >= 8 jours, ce n'est pas un séminaire)`);
             return false;
           }
-        } else {
-          // Si un autre type est sélectionné (pas séminaire), afficher uniquement les formations dont la spécialité ne contient pas "séminaire"
-          if (isSeminar) {
-            console.log(`Formation ${training.id} exclue (c'est un séminaire)`);
+        } else if (isFormationSelected) {
+          // Si seulement "Formation" est sélectionné, afficher uniquement les formations AVEC spécialité
+          // ET dont la durée est supérieure ou égale à 8 jours
+          if (!hasSpecialty) {
+            console.log(`Formation ${training.id} exclue (n'a pas de spécialité, ce n'est pas une formation)`);
+            return false;
+          }
+          
+          // Vérifier que la durée est supérieure ou égale à 8 jours
+          const durationInDays = this.convertDurationToDays(training.duration, training.duration_unit);
+          if (durationInDays < 8) {
+            console.log(`Formation ${training.id} exclue (durée de ${durationInDays} jours < 8 jours, ce n'est pas une formation)`);
             return false;
           }
         }
       }
 
-      // Filtre par durées - utiliser les durées calculées depuis les sessions
+      // Filtre par durées - maintenant basé sur le titre de la formation + durée
       if (filters.durations.length > 0) {
-        // Récupérer les durées calculées depuis les sessions de cette formation
-        const sessionDurations = this.trainingDurations.get(training.id.toString()) || [];
+        // Le filtre contient maintenant "Titre de la formation - durée"
+        // On compare le titre de la formation avec le filtre sélectionné
+        const trainingTitle = training.title || '';
         
-        // Si aucune durée de session n'est disponible, utiliser la durée de la formation comme fallback
-        let durationsToCheck = sessionDurations;
-        if (sessionDurations.length === 0) {
-          const trainingDurationStr = this.formatDurationForFilter(training.duration, training.duration_unit);
-          if (trainingDurationStr) {
-            durationsToCheck = [trainingDurationStr];
-          }
-        }
-        
-        // Vérifier si l'une des durées de la formation correspond à l'une des durées sélectionnées
-        const matchesDuration = filters.durations.some((filterDuration: string) => {
-          const normalizedFilter = filterDuration.trim().toLowerCase();
+        const matchesDuration = filters.durations.some((filterValue: string) => {
+          // Extraire le titre du filtre (tout ce qui précède " - ")
+          const filterTitle = filterValue.split(' - ')[0]?.trim() || filterValue.trim();
           
-          return durationsToCheck.some((trainingDuration: string) => {
-            const normalizedTraining = trainingDuration.trim().toLowerCase();
-            // Comparaison exacte ou partielle
-            return normalizedTraining === normalizedFilter || 
-                   normalizedTraining.includes(normalizedFilter) ||
-                   normalizedFilter.includes(normalizedTraining);
-          });
+          // Comparer les titres (insensible à la casse)
+          return trainingTitle.toLowerCase() === filterTitle.toLowerCase() ||
+                 trainingTitle.toLowerCase().includes(filterTitle.toLowerCase()) ||
+                 filterTitle.toLowerCase().includes(trainingTitle.toLowerCase());
         });
-        
+
         if (!matchesDuration) {
-          console.log(`Formation ${training.id} exclue par durée - Durées sessions: ${sessionDurations.join(', ')}, Filtres: ${filters.durations.join(', ')}`);
+          console.log(`Formation ${training.id} exclue par durée - Titre: ${trainingTitle}, Filtres: ${filters.durations.join(', ')}`);
           return false;
         }
       }
@@ -278,15 +296,45 @@ export class FormationsListSection implements OnInit, OnDestroy {
         }
       }
 
-      // Filtre par frais
+      // Filtre par frais - maintenant basé sur le nom de la formation + type de frais
       if (filters.fees.length > 0) {
-        const totalFee = this.trainingFees.get(training.id.toString()) || 0;
-        const matchesFee = filters.fees.some((feeRange: string) => {
-          return this.feeMatchesRange(totalFee, feeRange);
-        });
+        const trainingTitle = training.title || '';
         
+        const matchesFee = filters.fees.some((filterValue: string) => {
+          // Le filtre contient "Frais inscription : nom formation = (prix devise)" ou "Frais formation : nom formation = (prix devise)"
+          // Extraire le nom de la formation du filtre (entre " : " et " = ")
+          const match = filterValue.match(/Frais (inscription|formation) : (.+?) = \(/);
+          if (!match) return false;
+          
+          const feeType = match[1]; // "inscription" ou "formation"
+          const filterTitle = match[2]?.trim() || '';
+          
+          // Comparer le titre de la formation
+          if (trainingTitle.toLowerCase() !== filterTitle.toLowerCase() &&
+              !trainingTitle.toLowerCase().includes(filterTitle.toLowerCase()) &&
+              !filterTitle.toLowerCase().includes(trainingTitle.toLowerCase())) {
+            return false;
+          }
+          
+          // Vérifier que la formation a des sessions avec les frais correspondants
+          const sessions = this.trainingSessions.get(training.id.toString()) || [];
+          if (sessions.length === 0) return false;
+          
+          // Vérifier si au moins une session a les frais correspondants (>= 2)
+          return sessions.some((session: any) => {
+            if (feeType === 'inscription') {
+              const fee = session.registration_fee || 0;
+              return fee >= 2;
+            } else if (feeType === 'formation') {
+              const fee = session.training_fee || 0;
+              return fee >= 2;
+            }
+            return false;
+          });
+        });
+
         if (!matchesFee) {
-          console.log(`Formation ${training.id} exclue par frais - Total: ${totalFee}, Filtres: ${filters.fees.join(', ')}`);
+          console.log(`Formation ${training.id} exclue par frais - Titre: ${trainingTitle}, Filtres: ${filters.fees.join(', ')}`);
           return false;
         }
       }
@@ -294,12 +342,19 @@ export class FormationsListSection implements OnInit, OnDestroy {
       // Filtre par lieux (le plus coûteux, à la fin)
       if (filters.locations.length > 0) {
         const trainingCities = this.getTrainingCities(training);
-        const hasMatchingLocation = trainingCities.some(city =>
-          filters.locations.some((filterLocation: string) =>
-            city.toLowerCase().includes(filterLocation.toLowerCase())
-          )
-        );
-        if (!hasMatchingLocation) return false;
+        // Si la formation n'a pas de villes (pas de sessions), on peut quand même l'afficher
+        // sauf si le filtre de lieu est strictement requis
+        if (trainingCities.length > 0) {
+          const hasMatchingLocation = trainingCities.some(city =>
+            filters.locations.some((filterLocation: string) =>
+              city.toLowerCase().includes(filterLocation.toLowerCase())
+            )
+          );
+          if (!hasMatchingLocation) return false;
+        }
+        // Si pas de villes mais filtre de lieu actif, on peut choisir de l'exclure ou non
+        // Ici on l'exclut pour être cohérent avec le filtre
+        // Mais on pourrait aussi l'inclure si on veut afficher les formations sans sessions
       }
 
       return true;
@@ -314,11 +369,12 @@ export class FormationsListSection implements OnInit, OnDestroy {
     }
     this.error = null;
 
-    this.trainingService.getFeaturedTrainings(5).subscribe({
+    // Récupérer toutes les formations (pas seulement featured) avec une limite élevée
+    this.trainingService.getTrainings({ per_page: 100, page: 1 }).subscribe({
       next: (response: any) => {
         console.log('Réponse API formations:', response);
         this.featuredTrainings = response.data || [];
-        this.filteredTrainings = [...this.featuredTrainings]; // Initialiser avec toutes les formations
+        this.filteredTrainings = []; // Ne rien afficher initialement
 
         // Charger les spécialités pour chaque formation (si déjà disponibles)
         if (this.allSpecialties.length > 0) {
@@ -327,7 +383,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
           const currentFilters = this.filterService.getCurrentFilters();
           this.applyFilters(currentFilters);
         }
-        
+
         // Charger les sessions pour chaque formation
         this.loadSessionsForTrainings();
       },
@@ -385,17 +441,8 @@ export class FormationsListSection implements OnInit, OnDestroy {
           this.processSessionsForTraining(training, response.data || []);
         });
 
-        // Filtrer les formations sans sessions disponibles
-        this.featuredTrainings = this.featuredTrainings.filter(training => {
-          const count = this.trainingSessionsCount.get(training.id.toString()) || 0;
-          return count > 0;
-        });
-
-        // Mettre à jour les formations filtrées
-        this.filteredTrainings = this.filteredTrainings.filter(training => {
-          const count = this.trainingSessionsCount.get(training.id.toString()) || 0;
-          return count > 0;
-        });
+        // Ne pas filtrer les formations sans sessions - les afficher quand même
+        // Les formations peuvent être affichées même sans sessions disponibles
 
         // S'assurer que les spécialités sont chargées pour les formations
         if (this.allSpecialties.length > 0) {
@@ -408,7 +455,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
 
         // Charger les villes des centres pour chaque formation
         this.loadCitiesForTrainingsFromSessions();
-        
+
         this.loading = false;
       },
       error: (error: any) => {
@@ -447,7 +494,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
         const endDate = new Date(session.end_date);
         const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        
+
         // Formater la durée (même logique que dans calculateDurationsFromSessions)
         let durationStr = '';
         if (diffDays < 30) {
@@ -463,7 +510,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
           const years = Math.round(diffDays / 365);
           durationStr = `${years} ${years === 1 ? 'année' : 'années'}`;
         }
-        
+
         if (durationStr) {
           durations.push(durationStr);
         }
@@ -473,7 +520,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
       const registrationFee = session.registration_fee || 0;
       const trainingFee = session.training_fee || 0;
       const total = registrationFee + trainingFee;
-      
+
       if (total > 0) {
         totalFee += total;
         feeCount++;
@@ -611,15 +658,48 @@ export class FormationsListSection implements OnInit, OnDestroy {
   }
 
   /**
+   * Convertir la durée en jours
+   */
+  convertDurationToDays(duration: number | string | null | undefined, durationUnit: string | null | undefined): number {
+    if (!duration) return 0;
+
+    const durationNum = typeof duration === 'string' ? parseFloat(duration) : duration;
+    if (isNaN(durationNum)) return 0;
+
+    const unit = durationUnit ? durationUnit.toUpperCase() : '';
+    
+    // Convertir en jours selon l'unité
+    switch (unit) {
+      case 'HOURS':
+      case 'HOUR':
+        return durationNum / 24; // Convertir les heures en jours
+      case 'DAYS':
+      case 'DAY':
+        return durationNum;
+      case 'WEEKS':
+      case 'WEEK':
+        return durationNum * 7;
+      case 'MONTHS':
+      case 'MONTH':
+        return durationNum * 30; // Approximation : 1 mois = 30 jours
+      case 'YEARS':
+      case 'YEAR':
+        return durationNum * 365; // Approximation : 1 année = 365 jours
+      default:
+        return 0;
+    }
+  }
+
+  /**
    * Formater la durée pour le filtre (ex: "12 mois", "2 à 15 jours")
    * Cette méthode doit correspondre au format calculé dans calculateDurationsFromSessions
    */
   formatDurationForFilter(duration: number | string | null | undefined, durationUnit: string | null | undefined): string {
     if (!duration) return '';
-    
+
     const durationNum = typeof duration === 'string' ? parseInt(duration) : duration;
     if (isNaN(durationNum)) return '';
-    
+
     // Traduire l'unité
     const unitMap: { [key: string]: string } = {
       'MONTHS': 'mois',
@@ -631,9 +711,9 @@ export class FormationsListSection implements OnInit, OnDestroy {
       'HOUR': 'heure',
       'YEAR': 'année'
     };
-    
+
     const unit = durationUnit ? unitMap[durationUnit.toUpperCase()] || durationUnit.toLowerCase() : '';
-    
+
     // Formater selon le format calculé depuis les sessions
     // Format cohérent avec calculateDurationsFromSessions
     if (unit === 'jours' && durationNum >= 2 && durationNum <= 15) {
@@ -645,7 +725,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
     } else if (unit === 'années') {
       return `${durationNum} ${durationNum === 1 ? 'année' : 'années'}`;
     }
-    
+
     return `${durationNum} ${unit}`;
   }
 
@@ -659,7 +739,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
 
     // Parser la tranche (ex: "10K - 50K", "100K+")
     const rangeLower = feeRange.toLowerCase().trim();
-    
+
     // Gérer les tranches avec "+" (ex: "100K+")
     if (rangeLower.includes('+')) {
       const minStr = rangeLower.replace('+', '').trim();
@@ -685,17 +765,17 @@ export class FormationsListSection implements OnInit, OnDestroy {
    */
   private parseFeeValue(value: string): number {
     const cleanValue = value.trim().toLowerCase();
-    
+
     if (cleanValue.endsWith('m')) {
       const num = parseFloat(cleanValue.replace('m', ''));
       return Math.round(num * 1000000);
     }
-    
+
     if (cleanValue.endsWith('k')) {
       const num = parseFloat(cleanValue.replace('k', ''));
       return Math.round(num * 1000);
     }
-    
+
     return parseFloat(cleanValue) || 0;
   }
 
@@ -704,7 +784,8 @@ export class FormationsListSection implements OnInit, OnDestroy {
    */
   resetFilters() {
     this.filterService.resetFilters();
-    this.filteredTrainings = [...this.featuredTrainings];
+    this.filteredTrainings = []; // Vider l'affichage au lieu d'afficher toutes les formations
+    this.hasFiltersApplied = false;
   }
 
   // ===== MÉTHODES POUR LES MODALS DE CANDIDATURE =====
@@ -880,7 +961,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
 
     // Préparer les données de base
     const formValue = { ...this.applicationForm.value };
-    
+
     const applicationData: StudentApplicationCreateInput = {
       email: formValue.email,
       target_session_id: this.selectedSession?.id || '',
@@ -901,21 +982,21 @@ export class FormationsListSection implements OnInit, OnDestroy {
     this.studentApplicationService.createApplication(applicationData).subscribe({
       next: (response: any) => {
         console.log('✅ [FORMATIONS] Candidature créée avec succès:', response);
-        
+
         const applicationId = response.data?.id;
         if (applicationId) {
           console.log('🔄 [FORMATIONS] Soumission de la candidature ID:', applicationId);
-          
+
           // Étape 2: Soumettre la candidature (génère le paiement)
           this.studentApplicationService.submitApplication(applicationId).subscribe({
             next: (submitResponse: any) => {
               console.log('✅ [FORMATIONS] Candidature soumise avec succès:', submitResponse);
               console.log('🔍 [FORMATIONS] Payment info:', submitResponse.data);
               console.log('🔍 [FORMATIONS] Payment link:', submitResponse.data?.payment_link);
-              
+
               this.success = true;
               this.submitting = false;
-              
+
               // Redirection vers le paiement
               if (submitResponse.data && submitResponse.data.payment_link) {
                 console.log('🔗 [FORMATIONS] Redirection vers le paiement...');

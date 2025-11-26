@@ -26,7 +26,7 @@
                     
 
                     <!-- Spécialités -->
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>{{ 'training.filters.specialties' | translate }}</span>
                             <select name="specialties" class="s-select" multiple (change)="onSpecialtyChange($event)">
@@ -40,7 +40,7 @@
                     </div>
 
                     <!-- Lieux -->
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>{{ 'training.filters.location' | translate }}</span>
                             <select name="locations" class="s-select" multiple (change)="onLocationChange($event)">
@@ -54,7 +54,7 @@
                     </div>
 
                     <!-- Types de formation -->
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>{{ 'training.filters.type' | translate }}</span>
                             <select name="types" class="s-select" multiple (change)="onTypeChange($event)">
@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- Durées -->
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-12">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>{{ 'training.filters.duration' | translate }}</span>
                             <select name="durations" class="s-select" multiple (change)="onDurationChange($event)">
@@ -82,7 +82,7 @@
                     </div>
 
                     <!-- Frais -->
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-8">
                         <label class="m-custom-select w-100 s-select-lg bg-secondary">
                             <span>{{ 'training.filters.fees' | translate }}</span>
                             <select name="fees" class="s-select" multiple (change)="onFeeChange($event)">
@@ -94,21 +94,8 @@
                         </label>
                     </div>
 
-                    <!-- Recherche -->
-                    <div class="form-group col-md-3">
-                        <label class="m-custom-select w-100 s-select-lg bg-secondary">
-                            <!-- <span>{{ 'training.filters.search' | translate }}</span> -->
-                            <input type="text" class="form-control"
-                                [placeholder]="'training.filters.search' | translate"
-                                (input)="onSearchChange($event)">
-                        </label>
-                    </div>
-
-                </div>
-
-                <!-- Boutons d'action -->
-                <div class="row mt-3">
-                    <div class="col-md-6">
+                    <!-- Frais -->
+                    <div class="form-group col-md-4">
                         <button type="button" class="btn btn-secondary" (click)="resetFilters()">
                             {{ 'training.filters.reset' | translate }}
                         </button>

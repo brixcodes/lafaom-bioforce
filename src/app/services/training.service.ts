@@ -259,7 +259,7 @@ export class TrainingService {
     return this.getSpecialties().pipe(
       switchMap(specialties => {
         // Extraire les types uniques
-        const types = [...new Set(['Formation métier ', 'Séminaire thématique '])];
+        const types = [...new Set(['Formation', 'Séminaire'])];
         
         // Calculer les durées et frais à partir des sessions de formation
         return forkJoin({
@@ -289,81 +289,60 @@ export class TrainingService {
   }
 
   /**
-   * Calculer les durées à partir des sessions de formation
+   * Calculer les durées à partir des formations (nom + durée)
    */
   calculateDurationsFromSessions(): Observable<string[]> {
     // Récupérer toutes les formations
     return this.getTrainings({ per_page: 100 }).pipe(
-      switchMap((response: TrainingResponse) => {
+      map((response: TrainingResponse) => {
         const trainings = response.data || [];
         if (trainings.length === 0) {
-          return of([]);
+          return [];
         }
 
-        // Récupérer toutes les sessions pour toutes les formations
-        const sessionObservables = trainings.map(training =>
-          this.getTrainingSessions(training.id.toString(), { page_size: 100 }).pipe(
-            map((sessionResponse: TrainingSessionsResponse) => {
-              const sessions = sessionResponse.data || [];
-              const durations: string[] = [];
+        // Créer une liste avec le nom de chaque formation suivi de sa durée
+        const durationsWithNames: string[] = trainings.map(training => {
+          const title = training.title || 'Formation sans titre';
+          
+          // Formater la durée à partir de duration et duration_unit
+          let durationStr = '';
+          if (training.duration && training.duration_unit) {
+            const unitMap: { [key: string]: string } = {
+              'HOURS': 'heures',
+              'HOUR': 'heure',
+              'DAYS': 'jours',
+              'DAY': 'jour',
+              'WEEKS': 'semaines',
+              'WEEK': 'semaine',
+              'MONTHS': 'mois',
+              'MONTH': 'mois',
+              'YEARS': 'années',
+              'YEAR': 'année'
+            };
+            
+            const unit = unitMap[training.duration_unit.toUpperCase()] || training.duration_unit.toLowerCase();
+            const duration = training.duration;
+            
+            // Gérer le pluriel
+            if (duration === 1) {
+              if (unit === 'jours') durationStr = '1 jour';
+              else if (unit === 'heures') durationStr = '1 heure';
+              else if (unit === 'semaines') durationStr = '1 semaine';
+              else if (unit === 'mois') durationStr = '1 mois';
+              else if (unit === 'années') durationStr = '1 année';
+              else durationStr = `${duration} ${unit}`;
+            } else {
+              durationStr = `${duration} ${unit}`;
+            }
+          } else {
+            durationStr = 'Durée non spécifiée';
+          }
+          
+          return `${title} - ${durationStr}`;
+        });
 
-              sessions.forEach((session: TrainingSession) => {
-                if (session.start_date && session.end_date) {
-                  const startDate = new Date(session.start_date);
-                  const endDate = new Date(session.end_date);
-                  
-                  // Calculer la différence en millisecondes
-                  const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                  
-                  // Formater la durée
-                  let durationStr = '';
-                  if (diffDays < 30) {
-                    // Moins de 30 jours : afficher en jours
-                    if (diffDays >= 2 && diffDays <= 15) {
-                      durationStr = `${diffDays} à ${diffDays} jours`;
-                    } else {
-                      durationStr = `${diffDays} ${diffDays === 1 ? 'jour' : 'jours'}`;
-                    }
-                  } else if (diffDays < 365) {
-                    // Moins d'un an : afficher en mois
-                    const months = Math.round(diffDays / 30);
-                    durationStr = `${months} ${months === 1 ? 'mois' : 'mois'}`;
-                  } else {
-                    // Plus d'un an : afficher en années
-                    const years = Math.round(diffDays / 365);
-                    durationStr = `${years} ${years === 1 ? 'année' : 'années'}`;
-                  }
-                  
-                  if (durationStr) {
-                    durations.push(durationStr);
-                  }
-                }
-              });
-
-              return durations;
-            }),
-            catchError((error: any) => {
-              console.error(`Erreur lors du calcul des durées pour la formation ${training.id}:`, error);
-              return of([]);
-            })
-          )
-        );
-
-        // Exécuter toutes les requêtes en parallèle
-        return forkJoin(sessionObservables).pipe(
-          map((allDurations: string[][]) => {
-            // Aplatir et dédupliquer les durées
-            const uniqueDurations = [...new Set(allDurations.flat())];
-            // Trier les durées
-            return uniqueDurations.sort((a, b) => {
-              // Extraire les nombres pour le tri
-              const numA = parseInt(a.match(/\d+/)?.[0] || '0');
-              const numB = parseInt(b.match(/\d+/)?.[0] || '0');
-              return numA - numB;
-            });
-          })
-        );
+        // Trier par nom de formation
+        return durationsWithNames.sort((a, b) => a.localeCompare(b));
       }),
       catchError((error: any) => {
         console.error('Erreur lors du calcul des durées:', error);
@@ -373,7 +352,8 @@ export class TrainingService {
   }
 
   /**
-   * Calculer les tranches de frais à partir des sessions de formation
+   * Calculer les frais à partir des sessions de formation
+   * Format: "Frais inscription : nom formation = (prix devise)" ou "Frais formation : nom formation = (prix devise)"
    */
   calculateFeesFromSessions(): Observable<string[]> {
     // Récupérer toutes les formations
@@ -389,20 +369,31 @@ export class TrainingService {
           this.getTrainingSessions(training.id.toString(), { page_size: 100 }).pipe(
             map((sessionResponse: TrainingSessionsResponse) => {
               const sessions = sessionResponse.data || [];
-              const totalFees: number[] = [];
+              const feesList: string[] = [];
+              const title = training.title || 'Formation sans titre';
 
               sessions.forEach((session: TrainingSession) => {
-                // Calculer le total des frais (inscription + formation)
                 const registrationFee = session.registration_fee || 0;
                 const trainingFee = session.training_fee || 0;
-                const totalFee = registrationFee + trainingFee;
-                
-                if (totalFee > 0) {
-                  totalFees.push(totalFee);
+                const currency = session.currency || 'FCFA';
+
+                // Formater le prix
+                const formatPrice = (price: number) => {
+                  return new Intl.NumberFormat('fr-FR').format(price);
+                };
+
+                // Ajouter les frais d'inscription si >= 2
+                if (registrationFee >= 2) {
+                  feesList.push(`Frais inscription : ${title} = (${formatPrice(registrationFee)} ${currency})`);
+                }
+
+                // Ajouter les frais de formation si >= 2
+                if (trainingFee >= 2) {
+                  feesList.push(`Frais formation : ${title} = (${formatPrice(trainingFee)} ${currency})`);
                 }
               });
 
-              return totalFees;
+              return feesList;
             }),
             catchError((error: any) => {
               console.error(`Erreur lors du calcul des frais pour la formation ${training.id}:`, error);
@@ -413,30 +404,11 @@ export class TrainingService {
 
         // Exécuter toutes les requêtes en parallèle
         return forkJoin(sessionObservables).pipe(
-          map((allFees: number[][]) => {
-            // Aplatir tous les frais
-            const allFeesFlat = allFees.flat();
-            if (allFeesFlat.length === 0) {
-              return ['Gratuit'];
-            }
-
-            // Trouver le min et max
-            const minFee = Math.min(...allFeesFlat);
-            const maxFee = Math.max(...allFeesFlat);
-
-            // Créer des tranches de frais
-            const feeRanges: string[] = [];
-            
-            // Vérifier s'il y a des formations gratuites
-            if (minFee === 0) {
-              feeRanges.push('Gratuit');
-            }
-
-            // Créer des tranches dynamiques basées sur les données
-            const ranges = this.createFeeRanges(minFee, maxFee);
-            feeRanges.push(...ranges);
-
-            return feeRanges;
+          map((allFees: string[][]) => {
+            // Aplatir tous les frais et dédupliquer
+            const uniqueFees = [...new Set(allFees.flat())];
+            // Trier par nom de formation
+            return uniqueFees.sort((a, b) => a.localeCompare(b));
           })
         );
       }),

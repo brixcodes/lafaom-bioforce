@@ -26,155 +26,133 @@
             </div>
         </div>
 
-        <div class="section-textriche">
-
-            <h2 class="title-h2">{{ 'home.section4.planning.title' | translate }}</h2>
-            <br>
-            <p>
-                {{ 'home.section4.planning.description' | translate }}
-            </p>
-            <br>
+        <h2 class="title-h2">{{ 'trainingSchedule.title' | translate }}</h2>
+        <br>
+        <p>
+            {{ 'trainingSchedule.description' | translate }}
+        </p>
+        <br>
 
 
-            <table class="table table-bordered" style="width: 100%; text-align: center; border-color: #000;">
-                <thead>
-                    <tr>
-                        <th style="border-top-color: transparent; border-left-color: transparent;"></th>
-                        <th style="background-color: #4472C4; color: #fff;" colspan="2">{{
-                            'home.section4.planning.months1_2' | translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month3' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month4' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month5' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month6' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month7' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month8' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;">{{ 'home.section4.planning.month9' |
-                            translate }}</th>
-                        <th style="background-color: #4472C4; color: #fff;" colspan="4">{{
-                            'home.section4.planning.months10_11_12' | translate }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="background-color: #FFC000;">
-                            <strong style="color: #fff;">{{ 'home.section4.planning.masterpiece' | translate
-                                }}<br></strong>
-                        </td>
-                        <td rowspan="2" style="background-color: #FFF2CC;">
-                            {{ 'home.section4.planning.month1_2Content1' | translate }}<br>
-                            {{ 'home.section4.planning.month1_2Content2' | translate }}<br>
-                            {{ 'home.section4.planning.month1_2Content3' | translate }}
-                        </td>
-                        <td rowspan="2" style="background-color: #FFF2CC;">
-                            {{ 'home.section4.planning.month1_2Content4' | translate }}<br>
-                            {{ 'home.section4.planning.month1_2Content5' | translate }}<br>
-                            {{ 'home.section4.planning.month1_2Content6' | translate }}<br>
-                            {{ 'home.section4.planning.month1_2Content7' | translate }}
-                        </td>
-                        <td colspan="4" style="background-color: #FFF2CC;">
-                            <br>{{ 'home.section4.planning.masterpieceRealization' | translate }}
-                        </td>
-                        <td style="background-color: #FFF2CC;">{{ 'home.section4.planning.writing' | translate }}</td>
-                        <td style="background-color: #FFF2CC;">{{ 'home.section4.planning.presentation' | translate }}</td>
-                        <td style="background-color: #FFF2CC;" colspan="5">
-                            <br>{{ 'home.section4.planning.finalDossierWriting' | translate }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="background-color: #ED7D31;">
-                            <strong style="color: #fff;">{{ 'home.section4.planning.collectiveProjects' | translate
-                                }}<br></strong>
-                        </td>
-                        <td style="background-color: #F7CAAC;">
-                            {{ 'home.section4.planning.collectiveProjectMonth3' | translate }}
-                        </td>
-                        <td style="background-color: #F7CAAC;" colspan="7">
-                            {{ 'home.section4.planning.collectiveProjectMonths4_9' | translate }}
-                        </td>
-                        <td style="background-color: #F7CAAC;"></td>
-                        <td style="background-color: #F7CAAC;">{{ 'home.section4.planning.balance' | translate }}</td>
-                        <td style="background-color: #F7CAAC;"></td>
-                    </tr>
+        <table class="table table-bordered" style="width: 100%; text-align: center; border-color: #000;">
+            <thead style="background-color: #FF6600;">
+                <tr>
+                    <th style="color: #fff; font-weight: bold;">{{ 'trainingSchedule.table.headers.name' | translate
+                        }}</th>
+                    <th style="color: #fff; font-weight: bold;">{{ 'trainingSchedule.table.headers.specialty' |
+                        translate }}</th>
+                    <th style="color: #fff; font-weight: bold;">{{ 'trainingSchedule.table.headers.location' |
+                        translate }}</th>
+                    <th style="color: #fff; font-weight: bold;">{{ 'trainingSchedule.table.headers.type' | translate
+                        }}</th>
+                    <th style="color: #fff; font-weight: bold;">{{ 'trainingSchedule.table.headers.duration' |
+                        translate }}</th>
+                    <th style="color: #fff; font-weight: bold;">{{ 'trainingSchedule.table.headers.cost' | translate
+                        }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Formation 1: Auxiliaires de vie en univers judiciaire -->
+                <tr style="background-color: #FFE5CC;">
+                    <td style="font-weight: bold; text-align: left; padding: 10px;">
+                        {{ 'trainingSchedule.table.formations.formation1.name' | translate }}
+                    </td>
+                    <td style="text-align: left; padding: 10px;">
+                        <ul style="list-style-type: disc; margin: 0; padding-left: 20px;">
+                            <li>{{ 'trainingSchedule.table.formations.formation1.specialties.specialty1' | translate
+                                }}</li>
+                            <li>{{ 'trainingSchedule.table.formations.formation1.specialties.specialty2' | translate
+                                }}</li>
+                            <li>{{ 'trainingSchedule.table.formations.formation1.specialties.specialty3' | translate
+                                }}</li>
+                        </ul>
+                    </td>
+                    <td>{{ 'trainingSchedule.table.formations.formation1.location' | translate }}</td>
+                    <td style="font-weight: bold;">{{ 'trainingSchedule.table.formations.formation1.type' |
+                        translate }}</td>
+                    <td>{{ 'trainingSchedule.table.formations.formation1.duration' | translate }}</td>
+                    <td style="color: #0000FF; text-decoration: underline;">{{
+                        'trainingSchedule.table.formations.formation1.cost' | translate }}</td>
+                </tr>
 
-                    <tr>
-                        <td style="background-color: #FF0066;">
-                            <strong style="color: #fff">{{ 'home.section4.planning.knowledge' | translate
-                                }}<br></strong>
-                        </td>
-                        <td style="background-color: #FFB6C1;"></td>
-                        <td style="background-color: #FFB6C1;" colspan="1">{{ 'home.section4.planning.contentDevelopment' | translate }}</td>
-                        <td style="background-color: #FFB6C1;" colspan="1">{{ 'home.section4.planning.individualizedContentSetup' | translate }}
-                        </td>
-                        <td style="background-color: #FFB6C1;" colspan="9">
-                            {{ 'home.section4.planning.learningActivitiesRealization' | translate }}
-                        </td>
-                        <td style="background-color: #FFB6C1;"></td>
-                    </tr>
-                    <tr>
-                        <td style="background-color: #4472C4;" colspan="1">
-                            <br>
-                            <strong style="color: #fff;">{{ 'home.section4.planning.support' | translate }}</strong>
-                            <br>
-                        </td>
-                        <td colspan="2">
-                            {{ 'home.section4.planning.supportMonth1_2' | translate }}
-                        </td>
-                        <td>
-                            {{ 'home.section4.planning.rdv1' | translate }} <br>
-                            <i style="font-size: 10px;">({{ 'home.section4.planning.endOfPreTraining' | translate }})</i>
-                        </td>
-                        <td>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ 'home.section4.planning.rdv2' | translate }}</td>
-                        <td></td>
-                        <td>{{ 'home.section4.planning.rdv3' | translate }}</td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ 'home.section4.planning.rdv4' | translate }} : </td>
-                    </tr>
-                    <tr>
-                        <td style="background-color: #70AD47;" colspan="1">
-                            <br>
-                            <strong style="color: #fff;">{{ 'home.section4.planning.evaluation' | translate }}</strong>
-                            <br>
-                        </td>
-                        <td style="background-color: #C5E0B3;" colspan="2">
-                            {{ 'home.section4.planning.startupKit' | translate }} :
-                        </td>
-                        <td style="background-color: #C5E0B3;">
+                <!-- Formation 2: Droits successoraux des femmes -->
+                <tr style="background-color: #FFE5CC;">
+                    <td style="font-weight: bold; text-align: left; padding: 10px;">
+                        {{ 'trainingSchedule.table.formations.formation2.name' | translate }}
+                    </td>
+                    <td style="text-align: left; padding: 10px;">
+                        <ul style="list-style-type: disc; margin: 0; padding-left: 20px;">
+                            <li>{{ 'trainingSchedule.table.formations.formation2.specialties.specialty1' | translate
+                                }}</li>
+                        </ul>
+                    </td>
+                    <td>{{ 'trainingSchedule.table.formations.formation2.location' | translate }}</td>
+                    <td style="font-weight: bold;">{{ 'trainingSchedule.table.formations.formation2.type' |
+                        translate }}</td>
+                    <td>{{ 'trainingSchedule.table.formations.formation2.duration' | translate }}</td>
+                    <td style="color: #0000FF; text-decoration: underline;">{{
+                        'trainingSchedule.table.formations.formation2.cost' | translate }}</td>
+                </tr>
 
-                        </td>
-                        <td style="background-color: #C5E0B3;">{{ 'home.section4.planning.evalDisp1' | translate }} :</td>
-                        <td style="background-color: #C5E0B3;"></td>
-                        <td style="background-color: #C5E0B3;">{{ 'home.section4.planning.eval1' | translate }} :</td>
-                        <td style="background-color: #C5E0B3;"></td>
-                        <td style="background-color: #C5E0B3;">{{ 'home.section4.planning.evalDisp2' | translate }} </td>
-                        <td style="background-color: #C5E0B3;">{{ 'home.section4.planning.eval2' | translate }}</td>
-                        <td style="background-color: #C5E0B3;"></td>
-                        <td style="background-color: #C5E0B3;"></td>
-                        <td style="background-color: #C5E0B3;">{{ 'home.section4.planning.evalDisp3' | translate }} :</td>
-                        <td style="background-color: #C5E0B3;">{{ 'home.section4.planning.eval3' | translate }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                <!-- Formation 3: Droits de subsistance -->
+                <tr style="background-color: #FFE5CC;">
+                    <td style="font-weight: bold; text-align: left; padding: 10px;">
+                        {{ 'trainingSchedule.table.formations.formation3.name' | translate }}
+                    </td>
+                    <td style="text-align: left; padding: 10px;">
+                        <ul style="list-style-type: disc; margin: 0; padding-left: 20px;">
+                            <li>{{ 'trainingSchedule.table.formations.formation3.specialties.specialty1' | translate
+                                }}</li>
+                        </ul>
+                    </td>
+                    <td>{{ 'trainingSchedule.table.formations.formation3.location' | translate }}</td>
+                    <td style="font-weight: bold;">{{ 'trainingSchedule.table.formations.formation3.type' |
+                        translate }}</td>
+                    <td>{{ 'trainingSchedule.table.formations.formation3.duration' | translate }}</td>
+                    <td style="color: #0000FF; text-decoration: underline;">{{
+                        'trainingSchedule.table.formations.formation3.cost' | translate }}</td>
+                </tr>
 
+                <!-- Formation 4: Renforcement des capacités -->
+                <tr style="background-color: #FFE5CC;">
+                    <td style="font-weight: bold; text-align: left; padding: 10px;">
+                        {{ 'trainingSchedule.table.formations.formation4.name' | translate }}
+                    </td>
+                    <td style="text-align: left; padding: 10px;">
+                        <ul style="list-style-type: disc; margin: 0; padding-left: 20px;">
+                            <li>{{ 'trainingSchedule.table.formations.formation4.specialties.specialty1' | translate
+                                }}</li>
+                        </ul>
+                    </td>
+                    <td>{{ 'trainingSchedule.table.formations.formation4.location' | translate }}</td>
+                    <td style="font-weight: bold;">{{ 'trainingSchedule.table.formations.formation4.type' |
+                        translate }}</td>
+                    <td>{{ 'trainingSchedule.table.formations.formation4.duration' | translate }}</td>
+                    <td style="color: #0000FF; text-decoration: underline;">{{
+                        'trainingSchedule.table.formations.formation4.cost' | translate }}</td>
+                </tr>
 
-
-
-
-
+                <!-- Formation 5: Coparentalité post-divorce -->
+                <tr style="background-color: #FFE5CC;">
+                    <td style="font-weight: bold; text-align: left; padding: 10px;">
+                        {{ 'trainingSchedule.table.formations.formation5.name' | translate }}
+                    </td>
+                    <td style="text-align: left; padding: 10px;">
+                        <ul style="list-style-type: disc; margin: 0; padding-left: 20px;">
+                            <li>{{ 'trainingSchedule.table.formations.formation5.specialties.specialty1' | translate
+                                }}</li>
+                        </ul>
+                    </td>
+                    <td>{{ 'trainingSchedule.table.formations.formation5.location' | translate }}</td>
+                    <td style="font-weight: bold;">{{ 'trainingSchedule.table.formations.formation5.type' |
+                        translate }}</td>
+                    <td>{{ 'trainingSchedule.table.formations.formation5.duration' | translate }}</td>
+                    <td style="color: #0000FF; text-decoration: underline;">{{
+                        'trainingSchedule.table.formations.formation5.cost' | translate }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
     <br>
     <br>
 </div>

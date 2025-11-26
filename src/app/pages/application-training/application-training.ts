@@ -182,8 +182,10 @@ export class ApplicationTraining implements OnInit, OnDestroy {
   }
 
   // Vérifier si on doit afficher les frais de formation
+  // Ne pas afficher si les frais de formation sont < 5
   shouldShowTrainingFee(): boolean {
-    return !this.isSeminar() && this.getTrainingFee() != null;
+    const trainingFee = this.getTrainingFee();
+    return !this.isSeminar() && trainingFee != null && trainingFee >= 5;
   }
 
   apply(): void {

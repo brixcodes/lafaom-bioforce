@@ -219,17 +219,18 @@
       "location": "Lieu",
       "type": "Type de formation",
       "duration": "Durée",
-      "all": "Toutes",
-      "allLocations": "Tous",
-      "allTypes": "Tous",
-      "allDurations": "Toutes",
+      "all": "Aucune sélection",
+      "allLocations": "Aucune sélection",
+      "allTypes": "Aucune sélection",
+      "allDurations": "Aucune sélection",
       "fees": "Frais",
-      "allFees": "Tous les frais",
+      "allFees": "Aucune sélection",
       "reset": "Réinitialiser les filtres",
       "applied": "Filtres appliqués en temps réel",
       "loading": "Chargement des options de filtres...",
       "retry": "Réessayer",
-      "noResults": "Aucun résultat trouvé !"
+      "noResults": "Aucun résultat trouvé !",
+      "selectFiltersMessage": "Veuillez sélectionner des filtres pour afficher les formations"
     },
     "duration": "Durée",
     "availableSessions": "sessions disponibles",
@@ -1238,6 +1239,74 @@
         "backToJob": "Retour à l'offre d'emploi",
         "noSessions": "Aucune session disponible",
         "noSessionsMessage": "Il n'y a actuellement aucune session disponible pour cette offre d'emploi."
+      }
+    }
+  },
+  "trainingSchedule": {
+    "title": "Planning de formation",
+    "description": "Découvrez nos formations spécialisées dans le domaine judiciaire.",
+    "table": {
+      "headers": {
+        "name": "NOM DE LA FORMATION",
+        "specialty": "SPECIALITE",
+        "location": "LIEU",
+        "type": "TYPE DE FORMATION",
+        "duration": "Durée de la formation",
+        "cost": "Coût de la formation"
+      },
+      "formations": {
+        "formation1": {
+          "name": "Auxiliaires de vie en univers judiciaire",
+          "specialties": {
+            "specialty1": "Technicien d'assistance",
+            "specialty2": "Appui aux services judiciaire",
+            "specialty3": "Accueil, écoute et accompagnement"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "FORMATION METIER",
+          "duration": "19 janvier au 31 décembre 2026",
+          "cost": "2,1 millions :3700,44 €"
+        },
+        "formation2": {
+          "name": "Droits successoraux des femmes : de la décision judiciaire à la pleine jouissance",
+          "specialties": {
+            "specialty1": "Accueil, Ecoute et Accompagnement"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 juin 2026",
+          "cost": ":264,32 € : 150000 fcfa"
+        },
+        "formation3": {
+          "name": "Droits de subsistance des salariés privés de liberté : sensibilisation et renforcement des capacités pour leur mise en œuvre effective",
+          "specialties": {
+            "specialty1": "Appui aux Services Judiciaire"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 septembre 2026",
+          "cost": ":352,42 € : 200.000fcfa"
+        },
+        "formation4": {
+          "name": "Renforcement des capacités des organisations pour l'activation des dynamiques sociales préexistantes de solidarité selon le milieu de vie",
+          "specialties": {
+            "specialty1": "Technicien d'Assistance"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 décembre 2026",
+          "cost": "Frais d'inscription :264,32 € :150.000 fcfa"
+        },
+        "formation5": {
+          "name": "Coparentalité post-divorce et recompositions familiales : accompagner la socialité de l'enfant",
+          "specialties": {
+            "specialty1": "Technicien d'Assistance"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 mars 2026",
+          "cost": ":528,63 € :300.000 FCFA"
+        }
       }
     }
   }

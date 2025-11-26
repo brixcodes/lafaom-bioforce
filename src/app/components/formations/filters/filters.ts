@@ -176,14 +176,34 @@ export class TrainingFiltersComponent implements OnInit, OnDestroy {
     this.filterService.resetFilters();
 
     // Réinitialiser les sélections dans le DOM
+    // Pour les selects multiples, désélectionner toutes les options
     const selects = document.querySelectorAll('.s-select');
     selects.forEach((select: any) => {
-      select.selectedIndex = 0;
+      if (select.multiple) {
+        // Pour les selects multiples, désélectionner toutes les options
+        Array.from(select.options).forEach((option: any) => {
+          option.selected = false;
+        });
+        // Sélectionner uniquement l'option placeholder (value="0")
+        const placeholderOption = Array.from(select.options).find((option: any) => option.value === '0');
+        if (placeholderOption) {
+          (placeholderOption as HTMLOptionElement).selected = true;
+        }
+      } else {
+        // Pour les selects simples, remettre à l'index 0
+        select.selectedIndex = 0;
+      }
+      
+      // Déclencher l'événement change pour mettre à jour l'état
+      select.dispatchEvent(new Event('change', { bubbles: true }));
     });
 
+    // Réinitialiser le champ de recherche
     const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
     if (searchInput) {
       searchInput.value = '';
+      // Déclencher l'événement input pour mettre à jour l'état
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
   }
 }

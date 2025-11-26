@@ -70,8 +70,15 @@
         </div>
     </div>
 
-    <!-- Message si aucune formation -->
-    <div *ngIf="!loading && !error && filteredTrainings.length === 0" class="no-trainings">
+    <!-- Message si aucun filtre n'est appliqué -->
+    <div *ngIf="!loading && !error && !hasFiltersApplied && filteredTrainings.length === 0"
+        class="alert alert-info text-center" style="margin: 2rem 0; padding: 2rem;">
+        <i class="fas fa-filter" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+        <p style="font-size: 1.1rem; margin: 0;">{{ 'training.filters.selectFiltersMessage' | translate }}</p>
+    </div>
+
+    <!-- Message si aucune formation ne correspond aux filtres -->
+    <div *ngIf="!loading && !error && hasFiltersApplied && filteredTrainings.length === 0" class="no-trainings">
         <p>{{ 'training.noTrainings' | translate }}</p>
         <button (click)="resetFilters()" class="btn btn-outline-primary">{{ 'training.resetFilters' | translate
             }}</button>
@@ -468,7 +475,8 @@
                                                                     <span *ngIf="submitting"
                                                                         class="spinner-border spinner-border-sm me-2"
                                                                         role="status" aria-hidden="true"></span>
-                                                                    {{ submitting ? ('training.application.submitting' | translate) :
+                                                                    {{ submitting ? ('training.application.submitting' |
+                                                                    translate) :
                                                                     ('training.application.submit' | translate) }}
                                                                 </button>
                                                             </div>

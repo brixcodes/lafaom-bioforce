@@ -435,17 +435,18 @@
       "location": "Location",
       "type": "Training type",
       "duration": "Duration",
-      "all": "All",
-      "allLocations": "All",
-      "allTypes": "All",
-      "allDurations": "All",
+      "all": "No selection",
+      "allLocations": "No selection",
+      "allTypes": "No selection",
+      "allDurations": "No selection",
       "reset": "Reset filters",
       "applied": "Filters applied in real time",
       "loading": "Loading filter options...",
       "retry": "Retry",
       "noResults": "No results found!",
-      "allFees": "All fees",
-      "fees": "Fees"
+      "allFees": "No selection",
+      "fees": "Fees",
+      "selectFiltersMessage": "Please select filters to display trainings"
     },
     "duration": "Duration",
     "availableSessions": "available sessions",
@@ -1034,6 +1035,74 @@
         "email": "Email:",
         "phone": "Phone:",
         "address": "Address:"
+      }
+    }
+  },
+  "trainingSchedule": {
+    "title": "Training Schedule",
+    "description": "Discover our specialized training programs in the judicial field.",
+    "table": {
+      "headers": {
+        "name": "TRAINING NAME",
+        "specialty": "SPECIALTY",
+        "location": "LOCATION",
+        "type": "TRAINING TYPE",
+        "duration": "Training duration",
+        "cost": "Training cost"
+      },
+      "formations": {
+        "formation1": {
+          "name": "Judicial Life Assistants",
+          "specialties": {
+            "specialty1": "Technical Assistant",
+            "specialty2": "Judicial Services Support",
+            "specialty3": "Welcome, listening and support"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "PROFESSIONAL TRAINING",
+          "duration": "January 19 to December 31, 2026",
+          "cost": "2.1 million :3700.44 €"
+        },
+        "formation2": {
+          "name": "Women's inheritance rights: from judicial decision to full enjoyment",
+          "specialties": {
+            "specialty1": "Welcome, Listening and Support"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "June 15-20, 2026",
+          "cost": ":264.32 € : 150000 fcfa"
+        },
+        "formation3": {
+          "name": "Subsistence rights of employees deprived of liberty: awareness and capacity building for their effective implementation",
+          "specialties": {
+            "specialty1": "Judicial Services Support"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "September 15-20, 2026",
+          "cost": ":352.42 € : 200.000fcfa"
+        },
+        "formation4": {
+          "name": "Strengthening the capacities of organizations to activate pre-existing social solidarity dynamics according to the living environment",
+          "specialties": {
+            "specialty1": "Technical Assistant"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "December 15-20, 2026",
+          "cost": "Registration fee :264.32 € :150.000 fcfa"
+        },
+        "formation5": {
+          "name": "Post-divorce co-parenting and family recomposition: supporting the child's sociality",
+          "specialties": {
+            "specialty1": "Technical Assistant"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "March 15-20, 2026",
+          "cost": ":528.63 € :300.000 FCFA"
+        }
       }
     }
   },

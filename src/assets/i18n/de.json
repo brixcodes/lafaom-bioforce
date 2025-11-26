@@ -435,17 +435,18 @@
       "location": "Ort",
       "type": "Ausbildungsart",
       "duration": "Dauer",
-      "all": "Alle",
-      "allLocations": "Alle",
-      "allTypes": "Alle",
-      "allDurations": "Alle",
+      "all": "Keine Auswahl",
+      "allLocations": "Keine Auswahl",
+      "allTypes": "Keine Auswahl",
+      "allDurations": "Keine Auswahl",
       "reset": "Filter zurücksetzen",
       "applied": "Filter in Echtzeit angewendet",
       "loading": "Filteroptionen werden geladen...",
       "retry": "Wiederholen",
       "noResults": "Keine Ergebnisse gefunden!",
-      "allFees": "Alle Gebühren",
-      "fees": "Gebühren"
+      "allFees": "Keine Auswahl",
+      "fees": "Gebühren",
+      "selectFiltersMessage": "Bitte wählen Sie Filter aus, um Schulungen anzuzeigen"
     },
     "duration": "Dauer",
     "availableSessions": "verfügbare Sitzungen",
@@ -1034,6 +1035,74 @@
         "email": "E-Mail:",
         "phone": "Telefon:",
         "address": "Adresse:"
+      }
+    }
+  },
+  "trainingSchedule": {
+    "title": "Ausbildungsplan",
+    "description": "Entdecken Sie unsere spezialisierten Ausbildungsprogramme im Justizbereich.",
+    "table": {
+      "headers": {
+        "name": "AUSBILDUNGSNAME",
+        "specialty": "SPEZIALITÄT",
+        "location": "ORT",
+        "type": "AUSBILDUNGSART",
+        "duration": "Ausbildungsdauer",
+        "cost": "Ausbildungskosten"
+      },
+      "formations": {
+        "formation1": {
+          "name": "Lebensassistenten im Justizbereich",
+          "specialties": {
+            "specialty1": "Technischer Assistent",
+            "specialty2": "Unterstützung der Justizdienste",
+            "specialty3": "Aufnahme, Zuhören und Begleitung"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "BERUFSAUSBILDUNG",
+          "duration": "19. Januar bis 31. Dezember 2026",
+          "cost": "2,1 Millionen :3700,44 €"
+        },
+        "formation2": {
+          "name": "Erbrechte der Frauen: von der Justizentscheidung zum vollen Genuss",
+          "specialties": {
+            "specialty1": "Aufnahme, Zuhören und Begleitung"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematisches Seminar",
+          "duration": "15.-20. Juni 2026",
+          "cost": ":264,32 € : 150000 fcfa"
+        },
+        "formation3": {
+          "name": "Subsistenzrechte von freiheitsentzogenen Arbeitnehmern: Sensibilisierung und Kapazitätsaufbau für ihre wirksame Umsetzung",
+          "specialties": {
+            "specialty1": "Unterstützung der Justizdienste"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematisches Seminar",
+          "duration": "15.-20. September 2026",
+          "cost": ":352,42 € : 200.000fcfa"
+        },
+        "formation4": {
+          "name": "Stärkung der Kapazitäten von Organisationen zur Aktivierung vorbestehender sozialer Solidaritätsdynamiken je nach Lebensumfeld",
+          "specialties": {
+            "specialty1": "Technischer Assistent"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematisches Seminar",
+          "duration": "15.-20. Dezember 2026",
+          "cost": "Anmeldegebühr :264,32 € :150.000 fcfa"
+        },
+        "formation5": {
+          "name": "Gemeinsame Elternschaft nach Scheidung und Familienzusammenführung: Unterstützung der Sozialität des Kindes",
+          "specialties": {
+            "specialty1": "Technischer Assistent"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematisches Seminar",
+          "duration": "15.-20. März 2026",
+          "cost": ":528,63 € :300.000 FCFA"
+        }
       }
     }
   },
