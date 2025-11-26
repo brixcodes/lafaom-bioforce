@@ -28,7 +28,7 @@ export class SimpleTranslateService {
   private readonly CACHE_VERSION_KEY = 'LAFAOM-translations-version';
   
   /** Version actuelle du cache (incrémenter pour invalider le cache) */
-  private readonly CACHE_VERSION = '1.0.1';
+  private readonly CACHE_VERSION = '1.0.3';
   
   /** Langues supportées */
   private readonly SUPPORTED_LANGUAGES = ['fr', 'en', 'de'];

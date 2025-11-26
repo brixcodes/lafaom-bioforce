@@ -505,6 +505,7 @@
     "application": {
       "title": "Training application",
       "fillInfo": "Fill in your personal information",
+      "personalInfo": "Personal information",
       "civility": "Civility",
       "selectCivility": "Select",
       "mr": "Mr.",
@@ -771,6 +772,14 @@
       "requiredFiles": "Required files",
       "buttonActive": "Button active",
       "helpMessage": "💡 You can submit the form even if some fields are not filled"
+    },
+    "cabinetRecruitment": {
+      "title": "Recruitment of a consulting firm in HR management and profile revelation",
+      "location": "Location",
+      "contractType": "Contract Type",
+      "contractDescription": "Selection and recruitment services for administrative, pedagogical and apprentice positions",
+      "download": "Download",
+      "apply": "Apply"
     },
     "sessions": {
       "title": "Available sessions for",

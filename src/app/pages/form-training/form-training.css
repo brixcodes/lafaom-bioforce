@@ -1,0 +1,25 @@
+/* Style pour le bouton de soumission - s'assurer que le texte est visible */
+.btn-primary {
+  color: #ffffff !important;
+  background-color: #D14B6B !important;
+  border-color: #D14B6B !important;
+}
+
+.btn-primary:disabled {
+  color: #ffffff !important;
+  background-color: #D14B6B !important;
+  border-color: #D14B6B !important;
+  opacity: 0.65;
+}
+
+.btn-primary span {
+  color: #ffffff !important;
+}
+
+/* S'assurer que le texte dans le bouton est toujours visible */
+button.btn-primary,
+button.btn-primary span,
+button.btn-primary * {
+  color: #ffffff !important;
+}
+

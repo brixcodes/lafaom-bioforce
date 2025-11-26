@@ -289,6 +289,7 @@
     "application": {
       "title": "Candidature à la formation",
       "fillInfo": "Remplissez vos informations personnelles",
+      "personalInfo": "Informations personnelles",
       "civility": "Civilité",
       "selectCivility": "Sélectionner",
       "mr": "M.",

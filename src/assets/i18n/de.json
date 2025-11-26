@@ -505,6 +505,7 @@
     "application": {
       "title": "Ausbildungsbewerbung",
       "fillInfo": "Füllen Sie Ihre persönlichen Informationen aus",
+      "personalInfo": "Persönliche Informationen",
       "civility": "Anrede",
       "selectCivility": "Auswählen",
       "mr": "Herr",
@@ -771,6 +772,14 @@
       "requiredFiles": "Erforderliche Dateien",
       "buttonActive": "Button aktiv",
       "helpMessage": "💡 Sie können das Formular einreichen, auch wenn einige Felder nicht ausgefüllt sind"
+    },
+    "cabinetRecruitment": {
+      "title": "Rekrutierung einer Beratungsfirma für Personalmanagement und Profiloffenlegung",
+      "location": "Standort",
+      "contractType": "Vertragsart",
+      "contractDescription": "Auswahl- und Rekrutierungsdienstleistungen für administrative, pädagogische und Ausbildungsstellen",
+      "download": "Herunterladen",
+      "apply": "Bewerben"
     },
     "sessions": {
       "title": "Verfügbare Sitzungen für",
