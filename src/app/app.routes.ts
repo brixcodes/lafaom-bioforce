@@ -1,6 +1,6 @@
 /**
  * Configuration des routes de l'application
- * 
+ *
  * Ce fichier définit toutes les routes de l'application LAFAOM-MAO.
  * Les routes sont organisées par catégories pour faciliter la maintenance.
  */
@@ -45,7 +45,7 @@ import { BoardMeeting } from './pages/news/board-meeting/board-meeting';
 
 /**
  * Routes de l'application
- * 
+ *
  * Organisation :
  * 1. Pages principales (accueil, formations, recrutements, etc.)
  * 2. Pages de candidature et formulaires
@@ -59,8 +59,8 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'home', component: Home },
   { path: 'news', component: News },
-  { 
-    path: 'actualite/:id', 
+  {
+    path: 'actualite/:id',
     loadComponent: () => import('./pages/actualite-details/actualite-details').then(m => m.ActualiteDetails)
   },
   { path: 'training', component: Formations },
@@ -94,7 +94,7 @@ export const routes: Routes = [
   { path: 'organizational-chart', component: OrganizationalChart },
   { path: 'budget-discussion', component: BudgetDiscussion },
   { path: 'board-meeting', component: BoardMeeting },
-  
+
   // ===== ROUTE DE FALLBACK =====
   // Redirection vers la page d'accueil pour toutes les routes non trouvées
   { path: '**', redirectTo: '' }
