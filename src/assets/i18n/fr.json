@@ -35,10 +35,10 @@
     "recruitment": "Recrutement",
     "contact": "Contact",
     "coordinatorMessage": "Mot du coordonnateur",
-    "specialties": "Spécialités",
-    "technician": "Technicien d'assistance",
-    "penitentiarySupport": "Appui aux services pénitentiaires",
-    "welcomeSupport": "Accueil, écoute et accompagnement",
+    "specialties": "Référentiel institutionnel de la formation",
+    "technician": "Le Fondement Associatif de la Formation des AVUJ",
+    "penitentiarySupport": "Le Cadre Opérationnel de la formation des AVUJ",
+    "welcomeSupport": "Une formation à l'Ingénierie systémique",
     "planning": "Architecture pédagogique",
     "certificate": "Processus d'admission à l'institut",
     "administrationCouncil": "Conseil d'administration",
@@ -1238,5 +1238,26 @@
         "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
       }
     }
+  },
+  "operationalFramework": {
+    "title": "Le Cadre Opérationnel de la formation des AVUJ",
+    "intro": "Le processus d'intervention repose sur le principe de la résolution informatisée des situations sociales problématiques.",
+    "description1": "Le processus d'intervention repose sur le principe de la résolution informatisée des situations sociales problématiques. Il suit les six phases du modèle LAFAOM : la Lecture de la situation (L), l'Analyse et l'évaluation de la crise (A), la Formalisation de l'intervention (F), l'Assistance à la mise en œuvre (A), l'Observation opérationnelle (O), ainsi que la Mobilisation vers l'autonomie et la réinsertion sociale (M).",
+    "description2": "L'ensemble du déroulement s'effectue par la saisie et l'analyse des données avec un appui informatique, d'où provient l'acronyme MAO (« Mentoring Assisté par Orbiteur »). Ensemble, ces deux niveaux constituent le modèle intégré LAFAOM‑MAO.",
+    "imageAlt": "Cadre Opérationnel de la formation des AVUJ"
+  },
+  "associativeFoundation": {
+    "title": "Le Fondement Associatif de la Formation des AVUJ",
+    "intro": "Les Auxiliaires de vie en Univers judiciaire sont formés pour la mise en œuvre projet de l'Association LAFAOM.",
+    "description1": "Les Auxiliaires de vie en Univers judiciaire sont formés pour la mise en œuvre projet de l'Association LAFAOM qui est d'accompagner la personnes affectées directement ou indirectement par une décision de justice pour garder l'équilibre avec son milieu.",
+    "description2": "On l'accompagne on le pren au stade de Es, on évalue son Ei et on l'accompagne au Es. Il s'agit de transformer l'aide sociale en ingénierie systémique.",
+    "imageAlt": "Fondement Associatif de la Formation des AVUJ"
+  },
+  "systemicEngineering": {
+    "title": "Une formation à l'Ingénierie systémique",
+    "subtitle": "Mao « Mentorat Assisté par Orbiteur »",
+    "description1": "L'institut former des nouveaux professionnels spécialisés dans l'utilisation du logiciel MAO, « mentorat assisté par orbiteur ».",
+    "description2": "La pratique du métier de travailleur social à partir de l'ingénierie systémique.",
+    "imageAlt": "Formation à l'Ingénierie systémique MAO"
   }
 }

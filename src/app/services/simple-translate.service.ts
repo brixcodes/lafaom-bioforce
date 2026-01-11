@@ -4,9 +4,10 @@
  * Ce service gère le chargement et l'utilisation des traductions
  * pour l'application. Il supporte le français, l'anglais et l'allemand.
  */
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,9 @@ export class SimpleTranslateService {
   
   /** Langue actuelle (signal réactif) */
   private currentLang = signal<string>('fr');
+  
+  /** Observable de la langue actuelle pour les composants */
+  public currentLang$ = toObservable(this.currentLang);
   
   /** Clé de stockage pour la langue dans localStorage */
   private readonly STORAGE_KEY = 'LAFAOM-language';
@@ -410,6 +414,15 @@ export class SimpleTranslateService {
     }
     
     return typeof result === 'string' ? result : key;
+  }
+
+  /**
+   * Traduire une clé de manière synchrone (alias de translate)
+   * @param key - La clé de traduction
+   * @returns La traduction ou la clé si non trouvée
+   */
+  public instant(key: string): string {
+    return this.translate(key);
   }
 
   /**

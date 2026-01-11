@@ -33,10 +33,10 @@
     "recruitment": "Rekrutierung",
     "contact": "Kontakt",
     "coordinatorMessage": "Botschaft des Koordinators",
-    "specialties": "Spezialitäten",
-    "technician": "Technischer Assistent",
-    "penitentiarySupport": "Unterstützung der Gefängnisdienste",
-    "welcomeSupport": "Willkommen, Zuhören und Unterstützung",
+    "specialties": "Institutioneller Ausbildungsrahmen",
+    "technician": "Die Assoziative Grundlage der AVUJ-Ausbildung",
+    "penitentiarySupport": "Der Operative Rahmen für die AVUJ-Ausbildung",
+    "welcomeSupport": "Ausbildung in Systemischer Ingenieurwissenschaft",
     "planning": "Pädagogische Architektur",
     "certificate": "Institutszulassungsprozess",
     "administrationCouncil": "Verwaltungsrat",
@@ -1190,5 +1190,26 @@
     "sending": "Senden...",
     "success": "Nachricht erfolgreich gesendet!",
     "error": "Fehler beim Senden der Nachricht"
+  },
+  "operationalFramework": {
+    "title": "Der Operative Rahmen für die AVUJ-Ausbildung",
+    "intro": "Der Interventionsprozess basiert auf dem Prinzip der computergestützten Lösung problematischer sozialer Situationen.",
+    "description1": "Der Interventionsprozess basiert auf dem Prinzip der computergestützten Lösung problematischer sozialer Situationen. Er folgt den sechs Phasen des LAFAOM-Modells: Lesen der Situation (L), Analyse und Bewertung der Krise (A), Formalisierung der Intervention (F), Unterstützung bei der Umsetzung (A), Operative Beobachtung (O) sowie Mobilisierung zur Autonomie und sozialen Wiedereingliederung (M).",
+    "description2": "Der gesamte Ablauf erfolgt durch Dateneingabe und -analyse mit Computerunterstützung, daher das Akronym MAO ('Mentoring Assisted by Orbiter'). Zusammen bilden diese beiden Ebenen das integrierte LAFAOM-MAO-Modell.",
+    "imageAlt": "Operativer Rahmen für die AVUJ-Ausbildung"
+  },
+  "associativeFoundation": {
+    "title": "Die Assoziative Grundlage der AVUJ-Ausbildung",
+    "intro": "Lebensassistenten im Justizuniversum werden für die Umsetzung des LAFAOM-Vereinsprojekts ausgebildet.",
+    "description1": "Lebensassistenten im Justizuniversum werden für die Umsetzung des LAFAOM-Vereinsprojekts ausgebildet, das darauf abzielt, Personen zu begleiten, die direkt oder indirekt von einer Gerichtsentscheidung betroffen sind, um das Gleichgewicht mit ihrer Umgebung zu wahren.",
+    "description2": "Wir begleiten sie vom Es-Stadium, bewerten ihr Ei und begleiten sie zum Es. Es geht darum, Sozialhilfe in systemische Ingenieurwissenschaft zu verwandeln.",
+    "imageAlt": "Assoziative Grundlage der AVUJ-Ausbildung"
+  },
+  "systemicEngineering": {
+    "title": "Ausbildung in Systemischer Ingenieurwissenschaft",
+    "subtitle": "MAO 'Mentoring Assisted by Orbiter'",
+    "description1": "Das Institut bildet neue Fachkräfte aus, die auf die Nutzung der MAO-Software spezialisiert sind, 'Mentoring Assisted by Orbiter'.",
+    "description2": "Die Ausübung des Berufs des Sozialarbeiters auf der Grundlage systemischer Ingenieurwissenschaft.",
+    "imageAlt": "Ausbildung in Systemischer Ingenieurwissenschaft MAO"
   }
 }

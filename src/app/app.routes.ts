@@ -83,11 +83,16 @@ export const routes: Routes = [
 
   // ===== PAGES SPÉCIALISÉES =====
   { path: 'coordinator-message', component: CoordinatorMessage },
-  { path: 'assistance-technician', component: AssistanceTechnician },
-  { path: 'penitentiary-support', component: PenitentiarySupport },
-  { path: 'welcome-support', component: WelcomeSupport },
+  { path: 'fondement-associatif', component: AssistanceTechnician },
+  { path: 'cadre-operationnel', component: PenitentiarySupport },
+  { path: 'ingenierie-systemique', component: WelcomeSupport },
   { path: 'training-schedule', component: TrainingSchedule },
   { path: 'admission-process', component: AdmissionProcess },
+  
+  // Redirections pour les anciennes URLs (compatibilité)
+  { path: 'assistance-technician', redirectTo: 'fondement-associatif', pathMatch: 'full' },
+  { path: 'penitentiary-support', redirectTo: 'cadre-operationnel', pathMatch: 'full' },
+  { path: 'welcome-support', redirectTo: 'ingenierie-systemique', pathMatch: 'full' },
 
   // ===== PAGES D'ACTUALITÉS =====
   { path: 'key-dates', component: KeyDates },

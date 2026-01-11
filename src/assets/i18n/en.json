@@ -33,10 +33,10 @@
     "recruitment": "Recruitment",
     "contact": "Contact",
     "coordinatorMessage": "Coordinator's message",
-    "specialties": "Specialties",
-    "technician": "Technical Assistant",
-    "penitentiarySupport": "Penitentiary Services Support",
-    "welcomeSupport": "Welcome, listening and support",
+    "specialties": "Institutional Training Framework",
+    "technician": "The Associative Foundation of AVUJ Training",
+    "penitentiarySupport": "The Operational Framework for AVUJ Training",
+    "welcomeSupport": "Training in Systemic Engineering",
     "planning": "Pedagogical Architecture",
     "certificate": "Institute admission process",
     "administrationCouncil": "Board of Directors",
@@ -1081,5 +1081,26 @@
     },
     "success": "Message sent successfully!",
     "error": "Error sending message"
+  },
+  "operationalFramework": {
+    "title": "The Operational Framework for AVUJ Training",
+    "intro": "The intervention process is based on the principle of computerized resolution of problematic social situations.",
+    "description1": "The intervention process is based on the principle of computerized resolution of problematic social situations. It follows the six phases of the LAFAOM model: Reading the situation (L), Analysis and evaluation of the crisis (A), Formalization of the intervention (F), Assistance with implementation (A), Operational observation (O), as well as Mobilization towards autonomy and social reintegration (M).",
+    "description2": "The entire process is carried out by data entry and analysis with computer support, hence the acronym MAO ('Mentoring Assisted by Orbiter'). Together, these two levels constitute the integrated LAFAOM-MAO model.",
+    "imageAlt": "Operational Framework for AVUJ Training"
+  },
+  "associativeFoundation": {
+    "title": "The Associative Foundation of AVUJ Training",
+    "intro": "Life Assistants in the Judicial Universe are trained to implement the LAFAOM Association project.",
+    "description1": "Life Assistants in the Judicial Universe are trained to implement the LAFAOM Association project, which aims to support people directly or indirectly affected by a judicial decision to maintain balance with their environment.",
+    "description2": "We support them from the Es stage, evaluate their Ei and accompany them to Es. It is about transforming social assistance into systemic engineering.",
+    "imageAlt": "Associative Foundation of AVUJ Training"
+  },
+  "systemicEngineering": {
+    "title": "Training in Systemic Engineering",
+    "subtitle": "MAO 'Mentoring Assisted by Orbiter'",
+    "description1": "The institute trains new professionals specialized in the use of MAO software, 'Mentoring Assisted by Orbiter'.",
+    "description2": "The practice of the social worker profession based on systemic engineering.",
+    "imageAlt": "Training in Systemic Engineering MAO"
   }
 }
