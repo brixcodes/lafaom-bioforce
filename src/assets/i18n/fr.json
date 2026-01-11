@@ -39,12 +39,12 @@
     "technician": "Technicien d'assistance",
     "penitentiarySupport": "Appui aux services pénitentiaires",
     "welcomeSupport": "Accueil, écoute et accompagnement",
-    "planning": "Planning de formation",
+    "planning": "Architecture pédagogique",
     "certificate": "Processus d'admission à l'institut",
     "administrationCouncil": "Conseil d'administration",
     "keyDates": "Dates clés",
     "organigram": "Organigramme",
-    "budgeting": "Budgétisation",
+    "budgeting": "Mécanisme de financement",
     "trainingRecruitmentProcess": "Processus de recrutement aux formations",
     "jobRecruitmentProcess": "Processus de recrutement à un poste",
     "jobOffers": "Offres d'emploi",
@@ -161,12 +161,30 @@
       "description5": "Les diplômés seront orientés vers des postes professionnels dans le cadre des activités de l'Institut, favorisant leur insertion dans le milieu judiciaire."
     },
     "budgetDiscussion": {
-      "title": "Budgétisation",
-      "description": "La discussion sur le budget de l'Institut a été reportée au 19 novembre 2025."
+      "title": "Mécanisme de financement de l'Institut Lafaom-Mao",
+      "description": "Le modèle de financement est hybride autour d'une victime de décision judiciaire, avec :",
+      "item1": "le réseau parrain qui finance les interventions par solidarité directe,",
+      "item2": "les bailleurs institutionnels qui soutiennent les investissements lourds,",
+      "item3": "les variables‑ponts qui articulent les deux volets.",
+      "image": "mecanisme.png"
     },
     "boardMeeting": {
       "title": "Conseil d'administration",
-      "description": "Le Conseil d'Administration, réuni lors de sa session du 9 au 11 octobre 2025 à Brême, en Allemagne, a minutieusement défini et validé un calendrier précis pour encadrer l'organisation et le déroulement des activités de l'Institut de Formation LAFAOM-MAO. Ce calendrier, fruit de délibérations approfondies, vise à structurer les étapes clés du cycle de formation des auxiliaires de vie en univers judiciaire, tout en garantissant une planification rigoureuse pour les apprenants, l'équipe pédagogique et les parties prenantes. Les dates suivantes ont été arrêtées pour assurer le bon fonctionnement des programmes éducatifs et administratifs de l'Institut, en alignement avec les objectifs stratégiques de la Fondation LAFAOM MAO :"
+      "subtitle": "Résolutions du Conseil d'Administration de LAFAOM des 8 et 9 janvier 2026, Brême",
+      "intro": "Le Conseil d'administration de LAFAOM, réuni les 8 et 9 janvier 2026 à Brême (Allemagne), a adopté trois résolutions majeures consacrées à l'Institut LAFAOM‑MAO, marquant une étape déterminante dans son développement institutionnel et opérationnel.",
+      "resolution1": {
+        "title": "1. Nouveau référentiel institutionnel",
+        "description": "Le Conseil a validé un référentiel rénové qui articule désormais trois dimensions : la formation professionnelle en univers judiciaire, la restauration de l'autonomie sociale et la transition écologique. Ce cadre affirme l'identité hybride et innovante de l'Institut."
+      },
+      "resolution2": {
+        "title": "2. Nouvelle architecture pédagogique",
+        "description": "Une refonte complète du modèle pédagogique a été adoptée. Les parcours individualisés ce traduisent par l'absence de rentrée officielle : chaque apprenant débute lorsqu'il est prêt, intellectuellement, humainement et financièrement. L'ouverture du centre d'hébergement est fixée au 16 février 2026, et celle du bloc académique au 19 février 2026. La période de stage devient une phase d'acculturation environnementale au sein de projets d'économie verte à l'international."
+      },
+      "resolution3": {
+        "title": "3. Modèle hybride de financement",
+        "description": "Le Conseil a approuvé un schéma financier combinant ressources publiques, partenariats privés, mécénats et contributions issues de projets environnementaux, garantissant la pérennité et l'agilité de l'Institut."
+      },
+      "footer": "Les détails de ces résolutions sont présentés dans les rubriques spécialisées du site de l'Institut LAFAOM‑MAO."
     },
     "categoriesList": {
       "governance": "gouvernance",
@@ -769,6 +787,112 @@
     "success": "Message envoyé avec succès !",
     "error": "Erreur lors de l'envoi du message"
   },
+  "trainingSchedule": {
+    "title": "Architecture pédagogique de la formation",
+    "subtitle": "En continu à partir du 19 février 2026",
+    "intro": "La formation à l'institut lafaom-mao est individualisée, chacun peut commencer à tout moment son processus, il n'y a pas de rentrée formelle, elle dure 12 mois et s'étale de la façon suivante :",
+    "sectionTitle": "Déroulement de la formation",
+    "phase1": {
+      "title": "1- Une phase de l'élaboration du plan d'intervention individualisée",
+      "duration": "Durée : 2 mois",
+      "description": "Pendant cette période qui dure deux mois, à partir d'un logiciel professionnel, l'apprenant initier à la technique de détermination par ordre de priorité des besoins d'une personne affectée, directement ou indirectement par une décision de justice.",
+      "note": "Le besoin c'est l'écart qui existe entre un équilibre Initiale objectivée et la situation vécue."
+    },
+    "phase2": {
+      "title": "2- Une deuxième phase d'autonomisation",
+      "duration": "Durée : 7 mois",
+      "description": "Pendant cette période qui dure 7 mois ; l'apprenant conduit deux activités d'apprentissage, le chef d'œuvre et le projet collectif, ponctués par des rendez-vous.",
+      "masterpiece": {
+        "title": "Le chef d'œuvre",
+        "description": "Production de l'apprenant qui rend compte de l'activité menée dans une concomitance entre savoirs théoriques, et la prise en charge effective d'un besoin identifié chez une cible choisie à la première phase."
+      },
+      "collectiveProject": {
+        "title": "Le projet collectif",
+        "description": "Production d'un groupe d'apprenants qui rend compte de l'activité concertée menée dans une concomitance entre savoirs théoriques, et la prise en charge effective de l'ensemble des besoins d'une cible choisie à la première phase. Pour arriver à la mise en autonomie."
+      },
+      "appointments": {
+        "title": "Les rendez-vous",
+        "description": "Ce sont des périodes de rencontre avec l'équipe pédagogique d'Évaluation spécifique à chaque apprenant pour les chefs d'œuvre et à chaque groupe pour les projets collectifs."
+      }
+    },
+    "phase3": {
+      "title": "3- La phase d'Acculturation environnementale et économie verte",
+      "duration": "Durée : 3 mois",
+      "description": "C'est une période de stage qui dure trois mois pendant la quelle l'apprenant apprend à comprendre et intégrer une culture écologique et professionnelle qui couvre à la fois :",
+      "items": {
+        "item1": "la sensibilisation écologique,",
+        "item2": "la compréhension des métiers verts,",
+        "item3": "la préparation à l'accompagnement des publics,",
+        "item4": "la logique d'insertion dans l'économie verte."
+      },
+      "note": "Il s'intègre harmonieusement dans un parcours par compétences et dans la logique LAFAOM‑MAO. Il se déroule dans un Projet de transition environnementale le monde."
+    },
+    "description": "Découvrez nos formations spécialisées dans le domaine judiciaire.",
+    "table": {
+      "headers": {
+        "name": "NOM DE LA FORMATION",
+        "specialty": "SPECIALITE",
+        "location": "LIEU",
+        "type": "TYPE DE FORMATION",
+        "duration": "Durée de la formation",
+        "cost": "Coût de la formation"
+      },
+      "formations": {
+        "formation1": {
+          "name": "Auxiliaires de vie en univers judiciaire",
+          "specialties": {
+            "specialty1": "Technicien d'assistance",
+            "specialty2": "Appui aux services judiciaire",
+            "specialty3": "Accueil, écoute et accompagnement"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "FORMATION METIER",
+          "duration": "En continu à partir du 19 février 2026",
+          "cost": "2,1 millions :3700,44 €"
+        },
+        "formation2": {
+          "name": "Droits successoraux des femmes : de la décision judiciaire à la pleine jouissance",
+          "specialties": {
+            "specialty1": "Accueil, Ecoute et Accompagnement"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 juin 2026",
+          "cost": ":264,32 € : 150000 fcfa"
+        },
+        "formation3": {
+          "name": "Droits de subsistance des salariés privés de liberté : sensibilisation et renforcement des capacités pour leur mise en œuvre effective",
+          "specialties": {
+            "specialty1": "Appui aux Services Judiciaire"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 septembre 2026",
+          "cost": ":352,42 € : 200.000fcfa"
+        },
+        "formation4": {
+          "name": "Renforcement des capacités des organisations pour l'activation des dynamiques sociales préexistantes de solidarité selon le milieu de vie",
+          "specialties": {
+            "specialty1": "Technicien d'Assistance"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 décembre 2026",
+          "cost": "Frais d'inscription :264,32 € :150.000 fcfa"
+        },
+        "formation5": {
+          "name": "Coparentalité post-divorce et recompositions familiales : accompagner la socialité de l'enfant",
+          "specialties": {
+            "specialty1": "Technicien d'Assistance"
+          },
+          "location": "Ziguinchor - Sénégal",
+          "type": "Séminaire thématique",
+          "duration": "15-20 mars 2026",
+          "cost": ":528,63 € :300.000 FCFA"
+        }
+      }
+    }
+  },
   "home": {
     "hero": {
       "title": "Formation d'excellence pour l'amélioration du système judiciaire en Afrique",
@@ -1111,74 +1235,6 @@
         "phase5": "Mission humanitaire (3 mois) - À l'issue de la conduite du Chef d'œuvre et du projet collectif on intègre pendant trois mois un projet associatif en faveur des détenus en pratique d'intégration dans une association partenaire.",
         "note1": "Le premier mois de la formation est celui de l'élaboration des outils et des démarches administratives pour l'obtention à la faveur de l'apprenant de toutes les accréditations nécessaires à la formation.",
         "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
-      }
-    },
-    "trainingSchedule": {
-      "title": "Planning de formation",
-      "description": "Découvrez nos formations spécialisées dans le domaine judiciaire.",
-      "table": {
-        "headers": {
-          "name": "NOM DE LA FORMATION",
-          "specialty": "SPECIALITE",
-          "location": "LIEU",
-          "type": "TYPE DE FORMATION",
-          "duration": "Durée de la formation",
-          "cost": "Coût de la formation"
-        },
-        "formations": {
-          "formation1": {
-            "name": "Auxiliaires de vie en univers judiciaire",
-            "specialties": {
-              "specialty1": "Technicien d'assistance",
-              "specialty2": "Appui aux services judiciaire",
-              "specialty3": "Accueil, écoute et accompagnement"
-            },
-            "location": "Ziguinchor - Sénégal",
-            "type": "FORMATION METIER",
-            "duration": "19 janvier au 31 décembre 2026",
-            "cost": "2,1 millions :3700,44 €"
-          },
-          "formation2": {
-            "name": "Droits successoraux des femmes : de la décision judiciaire à la pleine jouissance",
-            "specialties": {
-              "specialty1": "Accueil, Ecoute et Accompagnement"
-            },
-            "location": "Ziguinchor - Sénégal",
-            "type": "Séminaire thématique",
-            "duration": "15-20 juin 2026",
-            "cost": ":264,32 € : 150000 fcfa"
-          },
-          "formation3": {
-            "name": "Droits de subsistance des salariés privés de liberté : sensibilisation et renforcement des capacités pour leur mise en œuvre effective",
-            "specialties": {
-              "specialty1": "Appui aux Services Judiciaire"
-            },
-            "location": "Ziguinchor - Sénégal",
-            "type": "Séminaire thématique",
-            "duration": "15-20 septembre 2026",
-            "cost": ":352,42 € : 200.000fcfa"
-          },
-          "formation4": {
-            "name": "Renforcement des capacités des organisations pour l'activation des dynamiques sociales préexistantes de solidarité selon le milieu de vie",
-            "specialties": {
-              "specialty1": "Technicien d'Assistance"
-            },
-            "location": "Ziguinchor - Sénégal",
-            "type": "Séminaire thématique",
-            "duration": "15-20 décembre 2026",
-            "cost": "Frais d'inscription :264,32 € :150.000 fcfa"
-          },
-          "formation5": {
-            "name": "Coparentalité post-divorce et recompositions familiales : accompagner la socialité de l'enfant",
-            "specialties": {
-              "specialty1": "Technicien d'Assistance"
-            },
-            "location": "Ziguinchor - Sénégal",
-            "type": "Séminaire thématique",
-            "duration": "15-20 mars 2026",
-            "cost": ":528,63 € :300.000 FCFA"
-          }
-        }
       }
     }
   }

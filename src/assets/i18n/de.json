@@ -37,12 +37,12 @@
     "technician": "Technischer Assistent",
     "penitentiarySupport": "Unterstützung der Gefängnisdienste",
     "welcomeSupport": "Willkommen, Zuhören und Unterstützung",
-    "planning": "Ausbildungsplanung",
+    "planning": "Pädagogische Architektur",
     "certificate": "Institutszulassungsprozess",
     "administrationCouncil": "Verwaltungsrat",
     "keyDates": "Wichtige Termine",
     "organigram": "Organigramm",
-    "budgeting": "Budgetierung",
+    "budgeting": "Finanzierungsmechanismus des ",
     "guide": "Führer",
     "jobOffers": "Stellenangebote",
     "jobRecruitmentProcess": "Stellenrekrutierungsprozess",
@@ -676,12 +676,30 @@
       "description5": "Die Absolventen werden zu beruflichen Positionen innerhalb der Aktivitäten des Instituts geleitet, was ihre Integration in das Justizumfeld fördert."
     },
     "budgetDiscussion": {
-      "title": "Budgetierung",
-      "description": "Die Diskussion über das Budget des Instituts wurde auf den 19. November 2025 verschoben."
+      "title": "Finanzierungsmechanismus des Lafaom-Mao-Instituts",
+      "description": "Das Finanzierungsmodell ist hybrid und dreht sich um ein Opfer einer Justizentscheidung, mit:",
+      "item1": "dem Patennetzwerk, das Interventionen durch direkte Solidarität finanziert,",
+      "item2": "institutionellen Geldgebern, die große Investitionen unterstützen,",
+      "item3": "Brückenvariablen, die die beiden Komponenten artikulieren.",
+      "image": "mecanisme.png"
     },
     "boardMeeting": {
       "title": "Verwaltungsrat",
-      "description": "Der Verwaltungsrat, der während seiner Sitzung vom 9. bis 11. Oktober 2025 in Bremen, Deutschland, tagte, hat sorgfältig einen präzisen Kalender definiert und validiert, um die Organisation und Durchführung der Aktivitäten des LAFAOM-MAO Ausbildungsinstituts zu strukturieren. Dieser Kalender, das Ergebnis eingehender Beratungen, zielt darauf ab, die Schlüsselphasen des Ausbildungszyklus für Lebensassistenten im Justizbereich zu strukturieren und gleichzeitig eine rigorose Planung für Lernende, das pädagogische Team und Interessengruppen sicherzustellen. Die folgenden Termine wurden festgelegt, um das ordnungsgemäße Funktionieren der Bildungs- und Verwaltungsprogramme des Instituts sicherzustellen, in Übereinstimmung mit den strategischen Zielen der LAFAOM MAO Stiftung:"
+      "subtitle": "Beschlüsse des LAFAOM-Verwaltungsrats vom 8. und 9. Januar 2026, Bremen",
+      "intro": "Der Verwaltungsrat von LAFAOM, der am 8. und 9. Januar 2026 in Bremen (Deutschland) tagte, hat drei wichtige Beschlüsse zum LAFAOM‑MAO-Institut gefasst, die einen entscheidenden Schritt in seiner institutionellen und operativen Entwicklung markieren.",
+      "resolution1": {
+        "title": "1. Neuer institutioneller Rahmen",
+        "description": "Der Rat hat einen erneuerten Rahmen validiert, der nun drei Dimensionen artikuliert: Berufsausbildung im Justizbereich, Wiederherstellung der sozialen Autonomie und ökologischer Übergang. Dieser Rahmen bekräftigt die hybride und innovative Identität des Instituts."
+      },
+      "resolution2": {
+        "title": "2. Neue pädagogische Architektur",
+        "description": "Eine vollständige Überarbeitung des pädagogischen Modells wurde verabschiedet. Individualisierte Lernwege bedeuten das Fehlen eines offiziellen Starttermins: Jeder Lernende beginnt, wenn er intellektuell, menschlich und finanziell bereit ist. Die Eröffnung des Unterkunftszentrums ist für den 16. Februar 2026 und die des akademischen Blocks für den 19. Februar 2026 festgelegt. Die Praktikumsphase wird zu einer Phase der Umweltakkulturation innerhalb internationaler grüner Wirtschaftsprojekte."
+      },
+      "resolution3": {
+        "title": "3. Hybrides Finanzierungsmodell",
+        "description": "Der Rat hat ein Finanzierungsschema genehmigt, das öffentliche Ressourcen, private Partnerschaften, Mäzenatentum und Beiträge aus Umweltprojekten kombiniert und die Nachhaltigkeit und Agilität des Instituts garantiert."
+      },
+      "footer": "Details zu diesen Beschlüssen werden in den spezialisierten Rubriken der Website des LAFAOM‑MAO-Instituts präsentiert."
     }
   },
   "recruitment": {
@@ -1055,7 +1073,45 @@
     }
   },
   "trainingSchedule": {
-    "title": "Ausbildungsplan",
+    "title": "Pädagogische Architektur der Ausbildung",
+    "subtitle": "Kontinuierlich ab 19. Februar 2026",
+    "intro": "Die Ausbildung am lafaom-mao-Institut ist individualisiert, jeder kann seinen Prozess jederzeit beginnen, es gibt keinen formellen Starttermin, sie dauert 12 Monate und verteilt sich wie folgt:",
+    "sectionTitle": "Ausbildungsverlauf",
+    "phase1": {
+      "title": "1- Phase der Entwicklung des individualisierten Interventionsplans",
+      "duration": "Dauer: 2 Monate",
+      "description": "Während dieser zweimonatigen Periode wird der Lernende mithilfe professioneller Software in die Technik der Priorisierung der Bedürfnisse einer Person eingeführt, die direkt oder indirekt von einer Justizentscheidung betroffen ist.",
+      "note": "Das Bedürfnis ist die Lücke, die zwischen einem objektivierten Anfangsgleichgewicht und der gelebten Situation besteht."
+    },
+    "phase2": {
+      "title": "2- Zweite Phase der Befähigung",
+      "duration": "Dauer: 7 Monate",
+      "description": "Während dieser 7-monatigen Periode führt der Lernende zwei Lernaktivitäten durch, das Meisterwerk und das Kollektivprojekt, unterbrochen von Terminen.",
+      "masterpiece": {
+        "title": "Das Meisterwerk",
+        "description": "Produktion des Lernenden, die über die durchgeführte Aktivität in einer Gleichzeitigkeit zwischen theoretischem Wissen und der effektiven Betreuung eines in der ersten Phase identifizierten Bedürfnisses bei einem ausgewählten Ziel berichtet."
+      },
+      "collectiveProject": {
+        "title": "Das Kollektivprojekt",
+        "description": "Produktion einer Gruppe von Lernenden, die über die konzertierte Aktivität in einer Gleichzeitigkeit zwischen theoretischem Wissen und der effektiven Betreuung aller Bedürfnisse eines in der ersten Phase ausgewählten Ziels berichtet. Um Autonomie zu erreichen."
+      },
+      "appointments": {
+        "title": "Die Termine",
+        "description": "Dies sind Treffen mit dem pädagogischen Team zur spezifischen Bewertung für jeden Lernenden für Meisterwerke und für jede Gruppe für Kollektivprojekte."
+      }
+    },
+    "phase3": {
+      "title": "3- Phase der Umweltakkulturation und grünen Wirtschaft",
+      "duration": "Dauer: 3 Monate",
+      "description": "Dies ist eine dreimonatige Praktikumsphase, während der der Lernende lernt, eine ökologische und berufliche Kultur zu verstehen und zu integrieren, die Folgendes umfasst:",
+      "items": {
+        "item1": "ökologisches Bewusstsein,",
+        "item2": "Verständnis grüner Berufe,",
+        "item3": "Vorbereitung auf die Begleitung von Zielgruppen,",
+        "item4": "Logik der Integration in die grüne Wirtschaft."
+      },
+      "note": "Es integriert sich harmonisch in einen kompetenzbasierten Weg und in die LAFAOM‑MAO-Logik. Es findet in einem weltweiten Umwelttransitionsprojekt statt."
+    },
     "description": "Entdecken Sie unsere spezialisierten Ausbildungsprogramme im Justizbereich.",
     "table": {
       "headers": {
@@ -1076,7 +1132,7 @@
           },
           "location": "Ziguinchor - Senegal",
           "type": "BERUFSAUSBILDUNG",
-          "duration": "19. Januar bis 31. Dezember 2026",
+          "duration": "Kontinuierlich ab 19. Februar 2026",
           "cost": "2,1 Millionen :3700,44 €"
         },
         "formation2": {

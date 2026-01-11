@@ -37,12 +37,12 @@
     "technician": "Technical Assistant",
     "penitentiarySupport": "Penitentiary Services Support",
     "welcomeSupport": "Welcome, listening and support",
-    "planning": "Training planning",
+    "planning": "Pedagogical Architecture",
     "certificate": "Institute admission process",
     "administrationCouncil": "Board of Directors",
     "keyDates": "Key dates",
     "organigram": "Organigram",
-    "budgeting": "Budgeting",
+    "budgeting": "Financing Mechanism",
     "guide": "User Guide",
     "jobOffers": "Job Offers",
     "jobRecruitmentProcess": "Job Recruitment Process",
@@ -432,7 +432,7 @@
       "uploaded": "Uploaded successfully",
       "uploading": "Uploading..."
     },
-     "processTraining": {
+    "processTraining": {
       "title": "Detailed guide to the training application process",
       "subtitle": "Discover step by step how to submit your application to join our specialized training programs.",
       "howToApply": {
@@ -559,7 +559,6 @@
     },
     "noOffers": "No job offers available at the moment.",
     "retry": "Retry",
-   
     "processRecruitment": {
       "title": "Detailed guide to the job recruitment process",
       "subtitle": "Discover step by step how to submit your application to join our professional team.",
@@ -927,38 +926,134 @@
       "description5": "Graduates will be directed to professional positions within the Institute's activities, promoting their integration into the judicial environment."
     },
     "budgetDiscussion": {
-      "title": "Budgeting",
-      "description": "The discussion on the Institute's budget has been postponed to November 19, 2025."
+      "title": "Lafaom-Mao Institute Financing Mechanism",
+      "description": "The financing model is hybrid around a victim of a judicial decision, with:",
+      "item1": "the sponsor network that finances interventions through direct solidarity,",
+      "item2": "institutional donors who support major investments,",
+      "item3": "bridge variables that articulate the two components.",
+      "image": "mecanisme.png"
     },
     "boardMeeting": {
       "title": "Board of Directors",
-      "description": "The Board of Directors, meeting during its session from October 9 to 11, 2025 in Bremen, Germany, meticulously defined and validated a precise calendar to frame the organization and conduct of activities of the LAFAOM-MAO Training Institute. This calendar, the result of in-depth deliberations, aims to structure the key stages of the training cycle for judicial life assistants, while ensuring rigorous planning for learners, the pedagogical team and stakeholders. The following dates have been set to ensure the proper functioning of the Institute's educational and administrative programs, in alignment with the strategic objectives of the LAFAOM MAO Foundation:"
+      "subtitle": "Resolutions of the LAFAOM Board of Directors of January 8 and 9, 2026, Bremen",
+      "intro": "The LAFAOM Board of Directors, meeting on January 8 and 9, 2026 in Bremen (Germany), adopted three major resolutions dedicated to the LAFAOM‑MAO Institute, marking a decisive step in its institutional and operational development.",
+      "resolution1": {
+        "title": "1. New institutional framework",
+        "description": "The Board validated a renewed framework that now articulates three dimensions: professional training in the judicial environment, restoration of social autonomy and ecological transition. This framework affirms the hybrid and innovative identity of the Institute."
+      },
+      "resolution2": {
+        "title": "2. New pedagogical architecture",
+        "description": "A complete overhaul of the pedagogical model has been adopted. Individualized pathways translate into the absence of an official start date: each learner begins when they are ready, intellectually, humanly and financially. The opening of the accommodation center is set for February 16, 2026, and that of the academic block for February 19, 2026. The internship period becomes a phase of environmental acculturation within international green economy projects."
+      },
+      "resolution3": {
+        "title": "3. Hybrid financing model",
+        "description": "The Board approved a financial scheme combining public resources, private partnerships, patronage and contributions from environmental projects, guaranteeing the sustainability and agility of the Institute."
+      },
+      "footer": "Details of these resolutions are presented in the specialized sections of the LAFAOM‑MAO Institute website."
     }
   },
   "trainingSchedule": {
-    "title": "Training Schedule",
+    "title": "Pedagogical Architecture of Training",
+    "subtitle": "Continuous from February 19, 2026",
+    "intro": "Training at the lafaom-mao institute is individualized, everyone can start their process at any time, there is no formal start date, it lasts 12 months and is spread out as follows:",
+    "sectionTitle": "Training Process",
+    "phase1": {
+      "title": "1- Phase of developing the individualized intervention plan",
+      "duration": "Duration: 2 months",
+      "description": "During this two-month period, using professional software, the learner is introduced to the technique of determining by order of priority the needs of a person affected, directly or indirectly, by a judicial decision.",
+      "note": "The need is the gap that exists between an objectified initial balance and the lived situation."
+    },
+    "phase2": {
+      "title": "2- Second phase of empowerment",
+      "duration": "Duration: 7 months",
+      "description": "During this 7-month period; the learner conducts two learning activities, the masterpiece and the collective project, punctuated by appointments.",
+      "masterpiece": {
+        "title": "The masterpiece",
+        "description": "Production by the learner that accounts for the activity carried out in a concomitance between theoretical knowledge and the effective care of a need identified in a target chosen in the first phase."
+      },
+      "collectiveProject": {
+        "title": "The collective project",
+        "description": "Production by a group of learners that accounts for the concerted activity carried out in a concomitance between theoretical knowledge and the effective care of all the needs of a target chosen in the first phase. To achieve empowerment."
+      },
+      "appointments": {
+        "title": "Appointments",
+        "description": "These are periods of meeting with the pedagogical team for specific evaluation for each learner for masterpieces and for each group for collective projects."
+      }
+    },
+    "phase3": {
+      "title": "3- Phase of Environmental Acculturation and Green Economy",
+      "duration": "Duration: 3 months",
+      "description": "This is an internship period lasting three months during which the learner learns to understand and integrate an ecological and professional culture that covers:",
+      "items": {
+        "item1": "ecological awareness,",
+        "item2": "understanding of green jobs,",
+        "item3": "preparation for supporting audiences,",
+        "item4": "logic of integration into the green economy."
+      },
+      "note": "It integrates harmoniously into a skills-based pathway and into the LAFAOM‑MAO logic. It takes place in an environmental transition project worldwide."
+    },
     "description": "Discover our specialized training programs in the judicial field.",
     "table": {
       "headers": {
         "name": "TRAINING NAME",
-        "duration": "DURATION",
-        "cost": "COST"
+        "specialty": "SPECIALTY",
+        "location": "LOCATION",
+        "type": "TRAINING TYPE",
+        "duration": "Training Duration",
+        "cost": "Training Cost"
       },
-      "rows": {
-        "technicalAssistant": {
-          "name": "Judicial Life Assistant specialty: Technical Assistant",
-          "duration": "March 15-20, 2026",
-          "cost": ":528.63 € :300.000 FCFA"
+      "formations": {
+        "formation1": {
+          "name": "Judicial Life Assistants",
+          "specialties": {
+            "specialty1": "Technical Assistant",
+            "specialty2": "Support for judicial services",
+            "specialty3": "Welcome, listening and support"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "PROFESSIONAL TRAINING",
+          "duration": "Continuous from February 19, 2026",
+          "cost": "2.1 million :3700.44 €"
         },
-        "penitentiarySupport": {
-          "name": "Judicial Life Assistant specialty: Support for penitentiary services",
-          "duration": "March 15-20, 2026",
-          "cost": ":528.63 € :300.000 FCFA"
+        "formation2": {
+          "name": "Women's inheritance rights: from judicial decision to full enjoyment",
+          "specialties": {
+            "specialty1": "Welcome, Listening and Support"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "June 15-20, 2026",
+          "cost": ":264.32 € : 150000 fcfa"
         },
-        "welcomeSupport": {
-          "name": "Judicial Life Assistant specialty: Welcome, listening and support",
+        "formation3": {
+          "name": "Subsistence rights of employees deprived of liberty: awareness and capacity building for their effective implementation",
+          "specialties": {
+            "specialty1": "Support for Judicial Services"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "September 15-20, 2026",
+          "cost": ":352.42 € : 200,000 fcfa"
+        },
+        "formation4": {
+          "name": "Capacity building of organizations for activating pre-existing social dynamics of solidarity according to living environment",
+          "specialties": {
+            "specialty1": "Technical Assistant"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
+          "duration": "December 15-20, 2026",
+          "cost": "Registration fee :264.32 € :150,000 fcfa"
+        },
+        "formation5": {
+          "name": "Post-divorce co-parenting and blended families: supporting the child's sociality",
+          "specialties": {
+            "specialty1": "Technical Assistant"
+          },
+          "location": "Ziguinchor - Senegal",
+          "type": "Thematic seminar",
           "duration": "March 15-20, 2026",
-          "cost": ":528.63 € :300.000 FCFA"
+          "cost": ":528.63 € :300,000 FCFA"
         }
       }
     }

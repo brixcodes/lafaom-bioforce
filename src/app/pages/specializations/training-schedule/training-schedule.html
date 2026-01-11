@@ -11,7 +11,7 @@
                 <div class="page-title">
                     <span class="d-block page-parent">{{ 'navigation.training' | translate }}</span>
                     <h1 style="text-transform: uppercase;">
-                        {{ 'home.section4.planning.title' | translate }}
+                        {{ 'trainingSchedule.title' | translate }}
                     </h1>
                 </div>
                 <div class="page-sub-title">
@@ -27,10 +27,54 @@
         </div>
 
         <h2 class="title-h2">{{ 'trainingSchedule.title' | translate }}</h2>
+        <h3 style="color: #333; margin-top: 20px;">{{ 'trainingSchedule.subtitle' | translate }}</h3>
         <br>
-        <p>
-            {{ 'trainingSchedule.description' | translate }}
-        </p>
+        <p>{{ 'trainingSchedule.intro' | translate }}</p>
+        <br>
+
+        <h3 style="color: #333;">{{ 'trainingSchedule.sectionTitle' | translate }}</h3>
+        <br>
+
+        <!-- Phase 1 -->
+        <div style="margin-bottom: 30px;">
+            <h4 style="color: #333; font-weight: bold;">{{ 'trainingSchedule.phase1.title' | translate }}</h4>
+            <p style="font-style: italic; color: #666;">{{ 'trainingSchedule.phase1.duration' | translate }}</p>
+            <p>{{ 'trainingSchedule.phase1.description' | translate }}</p>
+            <p style="font-style: italic;">{{ 'trainingSchedule.phase1.note' | translate }}</p>
+        </div>
+
+        <!-- Phase 2 -->
+        <div style="margin-bottom: 30px;">
+            <h4 style="color: #333; font-weight: bold;">{{ 'trainingSchedule.phase2.title' | translate }}</h4>
+            <p style="font-style: italic; color: #666;">{{ 'trainingSchedule.phase2.duration' | translate }}</p>
+            <p>{{ 'trainingSchedule.phase2.description' | translate }}</p>
+            
+            <div style="margin-left: 20px; margin-top: 15px;">
+                <p><strong>{{ 'trainingSchedule.phase2.masterpiece.title' | translate }} :</strong> {{ 'trainingSchedule.phase2.masterpiece.description' | translate }}</p>
+                
+                <p><strong>{{ 'trainingSchedule.phase2.collectiveProject.title' | translate }} :</strong> {{ 'trainingSchedule.phase2.collectiveProject.description' | translate }}</p>
+                
+                <p><strong>{{ 'trainingSchedule.phase2.appointments.title' | translate }} :</strong> {{ 'trainingSchedule.phase2.appointments.description' | translate }}</p>
+            </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div style="margin-bottom: 30px;">
+            <h4 style="color: #333; font-weight: bold;">{{ 'trainingSchedule.phase3.title' | translate }}</h4>
+            <p style="font-style: italic; color: #666;">{{ 'trainingSchedule.phase3.duration' | translate }}</p>
+            <p>{{ 'trainingSchedule.phase3.description' | translate }}</p>
+            <ul style="list-style-type: disc; padding-left: 40px; margin-top: 10px;">
+                <li>{{ 'trainingSchedule.phase3.items.item1' | translate }}</li>
+                <li>{{ 'trainingSchedule.phase3.items.item2' | translate }}</li>
+                <li>{{ 'trainingSchedule.phase3.items.item3' | translate }}</li>
+                <li>{{ 'trainingSchedule.phase3.items.item4' | translate }}</li>
+            </ul>
+            <p style="font-style: italic; margin-top: 15px;">{{ 'trainingSchedule.phase3.note' | translate }}</p>
+        </div>
+        <br>
+        <br>
+
+        <h3 style="color: #333;">{{ 'trainingSchedule.description' | translate }}</h3>
         <br>
 
 
@@ -70,7 +114,7 @@
                     <td>{{ 'trainingSchedule.table.formations.formation1.location' | translate }}</td>
                     <td style="font-weight: bold;">{{ 'trainingSchedule.table.formations.formation1.type' |
                         translate }}</td>
-                    <td>{{ 'trainingSchedule.table.formations.formation1.duration' | translate }}</td>
+                    <td>{{ 'trainingSchedule.subtitle' | translate }}</td>
                     <td style="color: #0000FF; text-decoration: underline;">{{
                         'trainingSchedule.table.formations.formation1.cost' | translate }}</td>
                 </tr>
