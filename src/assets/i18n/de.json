@@ -400,7 +400,6 @@
         "uploaded": "Erfolgreich hochgeladen",
         "uploading": "Hochladen..."
       },
-      "cabinetRecruitment": "Rekrutierungsanzeige",
       "loading": "Stellenangebote werden geladen...",
       "modal": {
         "applicationDeadline": "Bewerbungsschluss",
@@ -691,7 +690,14 @@
     "subtitle": "Schließen Sie sich einem engagierten Team an.",
     "description": "Bewerben Sie sich online auf unsere Stellenangebote, sei es am Hauptsitz, in unseren regionalen Ausbildungszentren oder bei unseren Missionen, und entdecken Sie auf dieser Seite alle Möglichkeiten, sich bei uns zu engagieren.",
     "availablePositions": "Verschiedene Stellenangebote verfügbar",
-    "cabinetRecruitment": "Kanzlei-Rekrutierung",
+    "cabinetRecruitment": {
+      "title": "Rekrutierung einer Beratungsfirma für Personalmanagement und Profiloffenlegung",
+      "location": "Standort",
+      "contractType": "Vertragsart",
+      "contractDescription": "Auswahl- und Rekrutierungsdienstleistungen für administrative, pädagogische und Ausbildungsstellen",
+      "download": "Herunterladen",
+      "apply": "Bewerben"
+    },
     "loading": "Stellenangebote werden geladen...",
     "retry": "Wiederholen",
     "viewDetails": "Details anzeigen",
@@ -781,14 +787,6 @@
       "requiredFiles": "Erforderliche Dateien",
       "buttonActive": "Button aktiv",
       "helpMessage": "💡 Sie können das Formular einreichen, auch wenn einige Felder nicht ausgefüllt sind"
-    },
-    "cabinetRecruitment": {
-      "title": "Rekrutierung einer Beratungsfirma für Personalmanagement und Profiloffenlegung",
-      "location": "Standort",
-      "contractType": "Vertragsart",
-      "contractDescription": "Auswahl- und Rekrutierungsdienstleistungen für administrative, pädagogische und Ausbildungsstellen",
-      "download": "Herunterladen",
-      "apply": "Bewerben"
     },
     "sessions": {
       "title": "Verfügbare Sitzungen für",

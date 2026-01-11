@@ -4,10 +4,9 @@
  * Composant permettant de changer la langue de l'application.
  * Affiche un menu déroulant avec les langues disponibles.
  */
-import { Component, signal, effect } from '@angular/core';
+import { Component, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-language-switcher',
@@ -16,32 +15,31 @@ import { environment } from '../../../environments/environment';
   templateUrl: './language-switcher.html',
   styleUrl: './language-switcher.css'
 })
-export class LanguageSwitcher {
-  /** Langue actuellement sélectionnée */
-  public currentLanguage = signal<string>('fr');
+export class LanguageSwitcher implements OnInit {
+  /** Langue actuellement sélectionnée - computed depuis le service */
+  public currentLanguage = computed(() => this.languageService.currentLanguage());
   
-  /** État d'ouverture du menu déroulant */
-  public isOpen = signal<boolean>(false);
+  /** État d'ouverture du menu */
+  public isOpen = false;
 
-  constructor(private languageService: LanguageService) {
-    // Écouter les changements de langue avec un effet réactif
-    effect(() => {
-      this.currentLanguage.set(this.languageService.currentLanguage());
-    });
+  constructor(private languageService: LanguageService) {}
+
+  ngOnInit(): void {
+    console.log('🚀 LanguageSwitcher: Initialisation avec langue:', this.currentLanguage());
   }
 
   /**
-   * Basculer l'état d'ouverture du menu déroulant
+   * Toggle l'ouverture du menu
    */
-  public toggleDropdown(): void {
-    this.isOpen.set(!this.isOpen());
+  public toggleMenu(): void {
+    this.isOpen = !this.isOpen;
   }
 
   /**
-   * Fermer le menu déroulant
+   * Fermer le menu
    */
-  public closeDropdown(): void {
-    this.isOpen.set(false);
+  public closeMenu(): void {
+    this.isOpen = false;
   }
 
   /**
@@ -49,12 +47,9 @@ export class LanguageSwitcher {
    * @param lang - Code de la langue à définir
    */
   public setLanguage(lang: string): void {
-    if (!environment.production) {
-      console.log('🎯 LanguageSwitcher: Changement de langue vers:', lang);
-    }
-    
+    console.log('🎯 LanguageSwitcher: Changement de langue vers:', lang);
     this.languageService.setLanguage(lang);
-    this.closeDropdown();
+    this.closeMenu();
   }
 
   /**
@@ -72,13 +67,5 @@ export class LanguageSwitcher {
    */
   public getLanguageName(lang: string): string {
     return this.languageService.getLanguageName(lang);
-  }
-
-  /**
-   * Obtenir le nom de la langue actuelle
-   * @returns Le nom de la langue actuelle
-   */
-  public getCurrentLanguageName(): string {
-    return this.getLanguageName(this.currentLanguage());
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, effect } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SimpleTranslateService } from './simple-translate.service';
 import { clearAllCache } from '../interceptors/cache.interceptor';
@@ -35,18 +35,20 @@ export class LanguageService {
     if (this.SUPPORTED_LANGS.includes(lang)) {
       const oldLang = this.currentLanguage();
 
-      // Si la langue a changé, invalider tout le cache
-      if (oldLang !== lang) {
-        console.log(`🌐 [LANGUAGE] Changement de langue: ${oldLang} → ${lang}`);
-        clearAllCache();
-      }
+      console.log(`🌐 [LANGUAGE] Changement de langue: ${oldLang} → ${lang}`);
 
+      // Mettre à jour le SimpleTranslateService
       this.simpleTranslateService.setLanguage(lang);
+      
+      // Mettre à jour notre signal
       this.currentLanguage.set(lang);
+      
+      // Sauvegarder dans localStorage
       localStorage.setItem(this.STORAGE_KEY, lang);
 
-      // Émettre un événement de changement de langue si la langue a changé
+      // Si la langue a changé, invalider le cache et émettre l'événement
       if (oldLang !== lang) {
+        clearAllCache();
         this.languageChange$.next(lang);
       }
     }
@@ -76,5 +78,15 @@ export class LanguageService {
     const nextIndex = (currentIndex + 1) % supportedLangs.length;
     const newLang = supportedLangs[nextIndex];
     this.setLanguage(newLang);
+  }
+
+  /**
+   * Méthode de debug pour vérifier l'état de synchronisation
+   */
+  public debugLanguageState(): void {
+    console.log('=== DEBUG LANGUAGE STATE ===');
+    console.log('LanguageService.currentLanguage:', this.currentLanguage());
+    console.log('SimpleTranslateService.getCurrentLanguage:', this.simpleTranslateService.getCurrentLanguage());
+    console.log('localStorage LAFAOM-language:', localStorage.getItem(this.STORAGE_KEY));
   }
 }

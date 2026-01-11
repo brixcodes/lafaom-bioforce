@@ -1,111 +1,159 @@
+/* Sélecteur de langue - utilise les mêmes styles que les autres dropdowns */
 .language-switcher {
   position: relative;
   display: inline-block;
 }
 
-.language-button {
+.language-switcher .dropdown-toggle-mobile {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  color: #333;
-  min-width: 120px;
-  justify-content: space-between;
+  gap: 5px;
+  transition: color 0.3s ease;
 }
 
-.language-button:hover {
-  background: #f8f9fa;
-  border-color: #007bff;
+.language-switcher .dropdown-toggle-mobile:hover {
+  color: #D14B6B;
 }
 
-.language-button:focus {
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
-}
-
-.language-flag {
+.language-flag-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
   font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.language-name {
-  flex: 1;
-  text-align: left;
+.language-switcher:hover .language-flag-circle {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
-.dropdown-arrow {
-  font-size: 10px;
-  transition: transform 0.2s ease;
-  color: #666;
-}
-
-.dropdown-arrow.open {
-  transform: rotate(180deg);
-}
-
-.language-dropdown {
+/* Menu déroulant - utilise les styles du header */
+.language-switcher .dropdown-menu-mobile {
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+  min-width: 150px;
   z-index: 1000;
-  margin-top: 4px;
-  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
-.language-option {
+/* Afficher le menu quand la classe .show est présente */
+.language-switcher .dropdown-menu-mobile.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.language-switcher .dropdown-menu-mobile a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
-  background: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  padding: 8px 15px;
+  color: white;
+  text-decoration: none;
   font-size: 14px;
-  color: #333;
-  width: 100%;
-  text-align: left;
+  transition: all 0.3s ease;
 }
 
-.language-option:hover {
-  background: #f8f9fa;
+.language-switcher .dropdown-menu-mobile a:hover {
+  background-color: transparent;
+  color: #D14B6B;
 }
 
-.language-option.active {
-  background: #e3f2fd;
-  color: #1976d2;
+.language-switcher .dropdown-menu-mobile a.active {
+  color: #D14B6B;
+  font-weight: 500;
 }
 
-.language-option.active .checkmark {
-  color: #1976d2;
-  font-weight: bold;
+.lang-flag {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.lang-name {
+  flex: 1;
+  color: white;
+}
+
+.language-switcher .dropdown-menu-mobile a:hover .lang-name {
+  color: #D14B6B;
+}
+
+.language-switcher .dropdown-menu-mobile a.active .lang-name {
+  color: #D14B6B;
 }
 
 .checkmark {
+  color: #D14B6B;
+  font-weight: bold;
   margin-left: auto;
-  font-size: 12px;
+}
+
+/* Styles pour le header scrollé */
+#header.scrolled .language-switcher .dropdown-toggle-mobile {
+  color: #333;
+}
+
+#header.scrolled .language-switcher .dropdown-toggle-mobile:hover {
+  color: #D14B6B;
+}
+
+#header.scrolled .language-flag-circle {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+#header.scrolled .language-switcher:hover .language-flag-circle {
+  background: rgba(209, 75, 107, 0.1);
+}
+
+#header.scrolled .language-switcher .dropdown-menu-mobile a {
+  color: #333;
+}
+
+#header.scrolled .language-switcher .dropdown-menu-mobile a .lang-name {
+  color: #333;
+}
+
+#header.scrolled .language-switcher .dropdown-menu-mobile a:hover {
+  color: #D14B6B;
+}
+
+#header.scrolled .language-switcher .dropdown-menu-mobile a:hover .lang-name {
+  color: #D14B6B;
+}
+
+#header.scrolled .language-switcher .dropdown-menu-mobile a.active .lang-name {
+  color: #D14B6B;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .language-button {
-    min-width: 100px;
-    padding: 6px 10px;
-    font-size: 13px;
+  .language-switcher .dropdown-menu-mobile {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: #f8f9fa;
   }
   
-  .language-option {
-    padding: 8px 10px;
-    font-size: 13px;
+  .language-switcher .dropdown-menu-mobile a {
+    color: #333;
   }
 }

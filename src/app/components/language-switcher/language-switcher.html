@@ -1,43 +1,45 @@
-<!-- Version simple active -->
-<!-- <div class="lang-switch">
-  <div class="lang-switcher">
-    <ul>
+<!-- Sélecteur de langue avec structure dropdown standard -->
+<div class="language-switcher dropdown-mobile">
+  <a href="javascript:void(0)" class="dropdown-toggle-mobile" (click)="toggleMenu()">
+    <span class="language-flag-circle">
+      @switch (currentLanguage()) {
+        @case ('fr') { 🇫🇷 }
+        @case ('en') { 🇬🇧 }
+        @case ('de') { 🇩🇪 }
+        @default { 🇫🇷 }
+      }
+    </span>
+    <span class="dropdown-arrow"><i class="icon-arrow-down"></i></span>
+  </a>
+  <div class="dropdown-menu-mobile dropdown-menu-transparent" [class.show]="isOpen">
+    <ul class="list-unstyled">
       <li>
-        <span 
-          class="selectLang" 
-          [class.active]="currentLanguage() === 'fr'"
-          (click)="setLanguage('fr')">
-          🇫🇷 {{ 'language.french' | translate }}
-        </span>
+        <a href="javascript:void(0)" (click)="setLanguage('fr')" [class.active]="currentLanguage() === 'fr'">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-name">Français</span>
+          @if (currentLanguage() === 'fr') {
+            <span class="checkmark">✓</span>
+          }
+        </a>
       </li>
       <li>
-        <a 
-          href="javascript:void(0)"
-          [class.active]="currentLanguage() === 'en'"
-          (click)="setLanguage('en')">
-          🇬🇧 {{ 'language.english' | translate }}
+        <a href="javascript:void(0)" (click)="setLanguage('en')" [class.active]="currentLanguage() === 'en'">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-name">English</span>
+          @if (currentLanguage() === 'en') {
+            <span class="checkmark">✓</span>
+          }
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" (click)="setLanguage('de')" [class.active]="currentLanguage() === 'de'">
+          <span class="lang-flag">🇩🇪</span>
+          <span class="lang-name">Deutsch</span>
+          @if (currentLanguage() === 'de') {
+            <span class="checkmark">✓</span>
+          }
         </a>
       </li>
     </ul>
   </div>
-</div> -->
-
-<div class="lang-switcher">
-  <ul>
-    <li>
-      <span class="selectLang" [class.active]="currentLanguage() === 'fr'" (click)="setLanguage('fr')">
-        Fr
-      </span>
-    </li>
-    <li>
-      <span class="selectLang" [class.active]="currentLanguage() === 'en'" (click)="setLanguage('en')">
-        En
-      </span>
-    </li>
-    <li>
-      <span class="selectLang" [class.active]="currentLanguage() === 'de'" (click)="setLanguage('de')">
-        Ds
-      </span>
-    </li>
-  </ul>
 </div>

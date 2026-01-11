@@ -28,7 +28,7 @@ export class SimpleTranslateService {
   private readonly CACHE_VERSION_KEY = 'LAFAOM-translations-version';
   
   /** Version actuelle du cache (incrémenter pour invalider le cache) */
-  private readonly CACHE_VERSION = '1.0.4';
+  private readonly CACHE_VERSION = '3.0.6';
   
   /** Langues supportées */
   private readonly SUPPORTED_LANGUAGES = ['fr', 'en', 'de'];
@@ -49,10 +49,20 @@ export class SimpleTranslateService {
       return this.loadPromise;
     }
 
+    // Force clear cache pour debug
+    if (!environment.production) {
+      console.log('🔄 Initialisation des traductions - vidage du cache...');
+      this.clearCache();
+    }
+
     this.loadPromise = new Promise((resolve) => {
       // Récupérer la langue sauvegardée ou utiliser 'fr' par défaut
       const savedLang = localStorage.getItem(this.STORAGE_KEY) || 'fr';
       const lang = this.SUPPORTED_LANGUAGES.includes(savedLang) ? savedLang : 'fr';
+      
+      if (!environment.production) {
+        console.log(`🌐 Chargement des traductions pour la langue: ${lang}`);
+      }
       
       // Essayer de charger depuis le cache d'abord
       const cached = this.loadFromCache(lang);
@@ -63,6 +73,7 @@ export class SimpleTranslateService {
         
         if (!environment.production) {
           console.log(`✅ Traductions ${lang} chargées depuis le cache`);
+          console.log(`📊 Sections disponibles:`, Object.keys(cached));
         }
         
         // Précharger les autres langues en arrière-plan
@@ -84,6 +95,8 @@ export class SimpleTranslateService {
           
           if (!environment.production) {
             console.log(`✅ Traductions ${lang} chargées depuis le serveur`);
+            console.log(`📊 Sections disponibles:`, Object.keys(data));
+            console.log(`🔍 Section recruitment existe:`, 'recruitment' in data);
           }
           
           // Précharger les autres langues en arrière-plan
@@ -151,6 +164,64 @@ export class SimpleTranslateService {
       localStorage.removeItem(this.CACHE_VERSION_KEY);
     } catch (error) {
       console.error('Erreur lors du nettoyage du cache:', error);
+    }
+  }
+
+  /**
+   * Forcer le rechargement des traductions (méthode publique pour debug)
+   */
+  public forceReload(): void {
+    this.clearCache();
+    this.translations = {};
+    this.loadPromise = null;
+    this.initialize();
+  }
+
+  /**
+   * Vider complètement le cache et forcer un rechargement immédiat
+   */
+  public clearAllCache(): void {
+    try {
+      // Vider tout le localStorage lié aux traductions
+      const keys = Object.keys(localStorage);
+      keys.forEach(key => {
+        if (key.startsWith('LAFAOM-translations') || key.startsWith('LAFAOM_API_CACHE')) {
+          localStorage.removeItem(key);
+        }
+      });
+      
+      // Réinitialiser les traductions en mémoire
+      this.translations = {};
+      this.loadPromise = null;
+      
+      console.log('🗑️ Cache complètement vidé, rechargement forcé...');
+      
+      // Forcer le rechargement immédiat
+      this.initialize().then(() => {
+        console.log('✅ Traductions rechargées. Sections disponibles:', Object.keys(this.translations[this.getCurrentLanguage()] || {}));
+      });
+    } catch (error) {
+      console.error('Erreur lors du vidage complet du cache:', error);
+    }
+  }
+
+  /**
+   * Méthode de debug pour afficher l'état des traductions
+   */
+  public debugTranslations(): void {
+    const lang = this.getCurrentLanguage();
+    console.log('=== DEBUG TRADUCTIONS ===');
+    console.log('Langue actuelle:', lang);
+    console.log('Langues chargées:', Object.keys(this.translations));
+    console.log('Sections disponibles pour', lang, ':', Object.keys(this.translations[lang] || {}));
+    
+    if (this.translations[lang]?.recruitment) {
+      console.log('Section recruitment trouvée:', Object.keys(this.translations[lang].recruitment));
+      if (this.translations[lang].recruitment.cabinetRecruitment) {
+        console.log('Section cabinetRecruitment trouvée:', Object.keys(this.translations[lang].recruitment.cabinetRecruitment));
+      }
+    } else {
+      console.log('❌ Section recruitment manquante !');
     }
   }
 
@@ -295,8 +366,26 @@ export class SimpleTranslateService {
     if (!translation) {
       if (!environment.production) {
         console.warn(`Traductions non chargées pour la langue: ${lang}`);
+        console.log('Langues chargées:', Object.keys(this.translations));
       }
       return key;
+    }
+
+    // Debug: afficher la taille de l'objet de traduction
+    if (!environment.production && Object.keys(translation).length === 0) {
+      console.warn(`Objet de traduction vide pour la langue: ${lang}`);
+      return key;
+    }
+
+    // Debug spécial pour les clés recruitment
+    if (!environment.production && key.startsWith('recruitment.')) {
+      console.log(`🔍 Debug pour ${key}:`);
+      console.log(`  - Langue actuelle: ${lang}`);
+      console.log(`  - Sections disponibles:`, Object.keys(translation));
+      console.log(`  - Section recruitment existe:`, 'recruitment' in translation);
+      if ('recruitment' in translation) {
+        console.log(`  - Clés dans recruitment:`, Object.keys(translation.recruitment));
+      }
     }
 
     // Navigation dans l'objet de traduction
@@ -309,6 +398,12 @@ export class SimpleTranslateService {
       } else {
         if (!environment.production) {
           console.warn(`Clé de traduction non trouvée: ${key}`);
+          // Debug: afficher les clés disponibles au niveau actuel
+          if (result && typeof result === 'object') {
+            console.log(`Clés disponibles au niveau "${keys.slice(0, keys.indexOf(k)).join('.')}":`, Object.keys(result));
+          } else {
+            console.log(`Résultat au niveau "${keys.slice(0, keys.indexOf(k)).join('.')}" n'est pas un objet:`, typeof result, result);
+          }
         }
         return key;
       }

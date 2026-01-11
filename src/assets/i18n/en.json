@@ -344,90 +344,340 @@
         "support": "Support<br><i style=\"font-size: 10px;\">(6 units)</i>",
         "evaluation": "Evaluation<br><i style=\"font-size: 10px;\">(10 units)</i>"
       }
+    }
+  },
+  "recruitment": {
+    "title": "Recruitment",
+    "parent": "recruitment",
+    "subtitle": "Join an engaged team.",
+    "description": "Apply online to our job offers, whether at headquarters, in our regional training centers or on our missions, and discover on this page all the ways to get involved with us.",
+    "availablePositions": "Various job positions available",
+    "loading": "Loading job offers...",
+    "retry": "Retry",
+    "viewDetails": "View details",
+    "applicationFee": "Application fee",
+    "grossSalary": "Gross salary",
+    "hoursPerWeek": "h/week",
+    "offer": "Offer",
+    "offerDescription": "View all details of this job offer and apply directly.",
+    "mainMissions": "Main Missions",
+    "responsibilities": "Responsibilities",
+    "requiredSkills": "Required skills",
+    "desiredProfile": "Desired profile",
+    "benefits": "Benefits",
+    "conditions": "Conditions",
+    "requiredDocuments": "Documents to download",
+    "applyToOffer": "Apply to this offer",
+    "jobSummary": "Job summary",
+    "reference": "Reference",
+    "location": "Location",
+    "contractType": "Contract type",
+    "salary": "Salary",
+    "deadline": "Deadline",
+    "apply": "Apply",
+    "deadlinePassed": "The application deadline has passed.",
+    "needHelp": "Need help?",
+    "contactUs": "If you have questions about this offer, contact us:",
+    "application": {
+      "address": "Address",
+      "addressLabel": "Full address",
+      "applicationFee": "Application fee",
+      "applicationFormTitle": "Application Form",
+      "city": "City",
+      "civility": "Civility",
+      "clickToSelectCV": "Click to select your CV",
+      "clickToSelectDiploma": "Click to select your diploma",
+      "clickToSelectLetter": "Click to select your cover letter",
+      "completed": "Completed",
+      "contractType": "Contract type",
+      "country": "Country",
+      "dateOfBirth": "Date of birth",
+      "deadline": "Deadline",
+      "dragDrop": "Drag and drop your file here",
+      "email": "Email",
+      "emailRequired": "Email is required",
+      "error": "Error",
+      "fileSelected": "File selected",
+      "fillPersonalInfo": "Please fill in your personal information",
+      "firstName": "First name",
+      "firstNameRequired": "First name is required",
+      "helpMessage": "Make sure all required fields are filled and all documents are uploaded before submitting your application.",
+      "lastName": "Last name",
+      "lastNameRequired": "Last name is required",
+      "location": "Location",
+      "mr": "Mr.",
+      "mrs": "Mrs.",
+      "noFileSelected": "No file selected",
+      "orClick": "or click to select",
+      "pending": "Pending",
+      "personalInfo": "Personal information",
+      "phoneNumber": "Phone number",
+      "phoneRequired": "Phone is required",
+      "progress": "Progress",
+      "redirecting": "Redirecting...",
+      "reference": "Reference",
+      "remove": "Remove",
+      "requiredDocuments": "Required documents",
+      "reset": "Reset",
+      "residenceAddress": "Your residence address",
+      "selectCivility": "Select",
+      "submit": "Submit my application",
+      "submitting": "Submitting...",
+      "subtitle": "Information about the offer",
+      "success": "Application submitted successfully",
+      "title": "Job offer application",
+      "uploadDocuments": "Please upload the required documents for your application",
+      "uploadDocumentsDescription": "Please upload the following documents (PDF, DOC, DOCX)",
+      "uploadProgress": "Upload in progress...",
+      "uploaded": "Uploaded successfully",
+      "uploading": "Uploading..."
     },
-    "recruitment": {
-      "application": {
-        "address": "Address",
-        "addressLabel": "Full address",
-        "applicationFee": "Application fee",
-        "applicationFormTitle": "Application Form",
-        "city": "City",
-        "civility": "Civility",
-        "clickToSelectCV": "Click to select your CV",
-        "clickToSelectDiploma": "Click to select your diploma",
-        "clickToSelectLetter": "Click to select your cover letter",
-        "completed": "Completed",
-        "contractType": "Contract type",
-        "country": "Country",
-        "dateOfBirth": "Date of birth",
-        "deadline": "Deadline",
-        "dragDrop": "Drag and drop your file here",
-        "email": "Email",
-        "emailRequired": "Email is required",
-        "error": "Error",
-        "fileSelected": "File selected",
-        "fillPersonalInfo": "Please fill in your personal information",
-        "firstName": "First name",
-        "firstNameRequired": "First name is required",
-        "helpMessage": "Make sure all required fields are filled and all documents are uploaded before submitting your application.",
-        "lastName": "Last name",
-        "lastNameRequired": "Last name is required",
-        "location": "Location",
-        "mr": "Mr.",
-        "mrs": "Mrs.",
-        "noFileSelected": "No file selected",
-        "orClick": "or click to select",
-        "pending": "Pending",
-        "personalInfo": "Personal information",
-        "phoneNumber": "Phone number",
-        "phoneRequired": "Phone is required",
-        "progress": "Progress",
-        "redirecting": "Redirecting...",
-        "reference": "Reference",
-        "remove": "Remove",
-        "requiredDocuments": "Required documents",
-        "reset": "Reset",
-        "residenceAddress": "Your residence address",
-        "selectCivility": "Select",
-        "submit": "Submit my application",
-        "submitting": "Submitting...",
-        "subtitle": "Information about the offer",
-        "success": "Application submitted successfully",
-        "title": "Job offer application",
-        "uploadDocuments": "Please upload the required documents for your application",
-        "uploadDocumentsDescription": "Please upload the following documents (PDF, DOC, DOCX)",
-        "uploadProgress": "Upload in progress...",
-        "uploaded": "Uploaded successfully",
-        "uploading": "Uploading..."
+     "processTraining": {
+      "title": "Detailed guide to the training application process",
+      "subtitle": "Discover step by step how to submit your application to join our specialized training programs.",
+      "howToApply": {
+        "title": "How to apply for a training?",
+        "description": "The application process for our training programs is simple and transparent. Follow this step-by-step guide to successfully submit your application."
       },
-      "cabinetRecruitment": "Recruitment notice",
-      "loading": "Loading job offers...",
-      "modal": {
-        "applicationDeadline": "Application deadline",
-        "applicationFee": "Application fee",
-        "applyDirectly": "Apply directly",
-        "backToList": "Back to list",
-        "benefits": "Benefits",
-        "competencies": "Competencies",
-        "conditions": "Conditions",
-        "contractType": "Contract type",
-        "directApplication": "Direct application",
-        "documentsNote": "The following documents are required for your application:",
-        "documentsWarning": "All documents must be in PDF format and not exceed 10MB each.",
-        "hoursPerWeek": "Hours per week",
-        "jobPresentation": "Job presentation",
-        "location": "Location",
-        "mainMission": "Main mission",
-        "profile": "Sought profile",
-        "reference": "Reference",
-        "requiredDocuments": "Required documents to apply",
-        "responsibilities": "Responsibilities",
-        "salary": "Salary",
-        "salaryLabel": "Salary",
-        "viewDetails": "View details"
+      "step1": {
+        "title": "Step 1: Access the Training page",
+        "description": "Visit our website and click on the \"Institute admission process\" menu in the main navigation.",
+        "item1": "Click on \"Training\" then on \"Institute admission process\" in the navigation menu",
+        "item2": "You will be redirected to the available training programs page"
       },
-      "noOffers": "No job offers available at the moment.",
-      "retry": "Retry"
+      "step2": {
+        "title": "Step 2: Explore available training programs",
+        "description": "Browse the list of training programs and use filters to find the one that matches your needs.",
+        "item1": "Click on the plus (+) button at the right end of the training to see the training details",
+        "item2": "Review detailed descriptions of each training",
+        "item3": "Check prerequisites and admission conditions",
+        "item4": "Note available session dates"
+      },
+      "step3": {
+        "title": "Step 3: Select a training",
+        "description": "Click on \"Register\" or alternatively on \"Select\" to be redirected to the application form."
+      },
+      "step4": {
+        "title": "Step 4: Fill out the application form",
+        "description": "Complete the online form with your personal and professional information.",
+        "item1": "Personal information: Last name, first name, email, phone"
+      },
+      "step5": {
+        "title": "Step 5: Upload required documents",
+        "description": "Attach the necessary documents for your application in PDF format.",
+        "item1": "Detailed CV",
+        "item2": "Cover letter",
+        "item3": "Copy of diplomas",
+        "item4": "Copy of ID card",
+        "item5": "Any document requested by the training (PDF format, max 10MB)"
+      },
+      "step6": {
+        "title": "Step 6: Submit your application",
+        "description": "Check all information, then click on \"Submit application\".",
+        "item1": "Carefully review all entered information",
+        "item2": "Verify that all documents are uploaded"
+      },
+      "step7": {
+        "title": "Step 7: Payment of application fees",
+        "description": "You will be redirected to the payment page to pay the application fees.",
+        "item1": "Choose your payment method",
+        "item2": "Make the payment online securely",
+        "item3": "Keep the payment receipt"
+      },
+      "step8": {
+        "title": "Step 8: Confirmation and follow-up",
+        "description": "You will receive a confirmation email with the details of your application.",
+        "item1": "Receipt confirmation email",
+        "item2": "Your application reference number",
+        "item3": "Information about the next steps"
+      },
+      "tips": {
+        "title": "Tips for a successful application",
+        "prepareDocuments": {
+          "title": "Prepare your documents",
+          "description": "Make sure your documents are up to date and that your cover letter is personalized for the chosen training.",
+          "item1": "Detailed CV",
+          "item2": "Cover letter",
+          "item3": "Copy of diplomas",
+          "item4": "Copy of ID card",
+          "item5": "Any document requested by the training"
+        },
+        "respectDeadlines": {
+          "title": "Respect deadlines",
+          "description": "Check application deadlines and submit your file on time."
+        },
+        "checkRequirements": {
+          "title": "Check prerequisites",
+          "description": "Make sure you meet all admission criteria before applying."
+        },
+        "checkEmail": {
+          "title": "Check your email",
+          "description": "Use a valid email address and regularly check your messages for notifications."
+        }
+      },
+      "needHelp": {
+        "title": "Need help?",
+        "description": "If you encounter difficulties during your application, our team is here to help you.",
+        "contact": "Contact",
+        "email": "Email:",
+        "phone": "Phone:",
+        "address": "Address:"
+      }
+    },
+    "cabinetRecruitment": {
+      "title": "Recruitment of a consulting firm in HR management and profile revelation",
+      "location": "Location",
+      "contractType": "Contract Type",
+      "contractDescription": "Selection and recruitment services for administrative, pedagogical and apprentice positions",
+      "download": "Download",
+      "apply": "Apply"
+    },
+    "loading": "Loading job offers...",
+    "modal": {
+      "applicationDeadline": "Application deadline",
+      "applicationFee": "Application fee",
+      "applyDirectly": "Apply directly",
+      "backToList": "Back to list",
+      "benefits": "Benefits",
+      "competencies": "Competencies",
+      "conditions": "Conditions",
+      "contractType": "Contract type",
+      "directApplication": "Direct application",
+      "documentsNote": "The following documents are required for your application:",
+      "documentsWarning": "All documents must be in PDF format and not exceed 10MB each.",
+      "hoursPerWeek": "Hours per week",
+      "jobPresentation": "Job presentation",
+      "location": "Location",
+      "mainMission": "Main mission",
+      "profile": "Sought profile",
+      "reference": "Reference",
+      "requiredDocuments": "Required documents to apply",
+      "responsibilities": "Responsibilities",
+      "salary": "Salary",
+      "salaryLabel": "Salary",
+      "viewDetails": "View details"
+    },
+    "noOffers": "No job offers available at the moment.",
+    "retry": "Retry",
+   
+    "processRecruitment": {
+      "title": "Detailed guide to the job recruitment process",
+      "subtitle": "Discover step by step how to submit your application to join our professional team.",
+      "howToApply": {
+        "title": "How to apply for a job position?",
+        "description": "The application process for our job offers is simple and transparent. Follow this step-by-step guide to successfully submit your application."
+      },
+      "step1": {
+        "title": "Step 1: Access the Recruitment page",
+        "description": "Visit our website and click on the \"Recruitment\" menu in the main navigation.",
+        "item1": "Click on \"Recruitment\" in the navigation menu",
+        "item2": "You will be redirected to the available job offers page"
+      },
+      "step2": {
+        "title": "Step 2: Explore available job offers",
+        "description": "Browse the list of job offers and review the details of each position.",
+        "item1": "Review detailed descriptions of each position",
+        "item2": "Check prerequisites and employment conditions",
+        "item3": "Note application deadlines",
+        "item4": "Check location and contract type"
+      },
+      "step3": {
+        "title": "Step 3: Select a job offer",
+        "description": "Click on the \"(+)\" button at the right end of the job offer to see the job offer details, then \"Apply\" for the job offer of your choice.",
+        "item1": "Carefully read the position information",
+        "item2": "Verify that you meet the employment conditions",
+        "item3": "Note the required skills and requested experience"
+      },
+      "step4": {
+        "title": "Step 4: Fill out the application form",
+        "description": "Complete the online form with your personal and professional information.",
+        "item1": "Personal information: Last name, first name, email, phone, address"
+      },
+      "step5": {
+        "title": "Step 5: Upload required documents",
+        "description": "Attach the necessary documents for your application in PDF format.",
+        "item1": "Detailed CV (PDF format, max 10MB)",
+        "item2": "Cover letter (PDF format, max 10MB)",
+        "item3": "Copy of diplomas (PDF format, max 10MB)",
+        "item4": "Copy of ID card (PDF format, max 10MB)",
+        "item5": "Professional experience certificates (PDF format, max 10MB)",
+        "item6": "Any document requested by the job offer (PDF format, max 10MB)"
+      },
+      "step6": {
+        "title": "Step 6: Submit your application",
+        "description": "Check all information, then click on \"Apply directly\"."
+      },
+      "step7": {
+        "title": "Step 7: Payment of application fees",
+        "description": "You will be redirected to the payment page to pay the application fees.",
+        "item1": "Choose the payment method",
+        "onlinePayment": "Online payment method: you will be redirected to the payment page to pay the application fees.",
+        "bankTransfer": "Bank transfer payment method: Here, in addition to presenting the documents, you will need to present a payment receipt for your application to be validated.",
+        "item2": "Keep the payment receipt",
+        "item3": "Carefully review all entered information",
+        "item4": "Verify that all documents are uploaded",
+        "item5": "Confirm your application"
+      },
+      "step8": {
+        "title": "Step 8: Confirmation and follow-up",
+        "description": "You will receive a confirmation email with the details of your application.",
+        "item1": "Receipt confirmation email",
+        "item2": "Your application reference number",
+        "item3": "Information about the next steps in the recruitment process"
+      },
+      "step9": {
+        "title": "Step 9: Selection process",
+        "description": "Our HR team will review your application and contact you if you are selected.",
+        "item1": "Pre-selection: Initial evaluation of your file",
+        "item2": "Tests and assessments: Technical and psychological tests if required",
+        "item3": "HR interview: First interview with human resources",
+        "item4": "Technical interview: Interview with the line manager",
+        "item5": "Final interview: Last interview with management",
+        "item6": "Final decision: Notification of the hiring decision"
+      },
+      "tips": {
+        "title": "Tips for a successful application",
+        "prepareDocuments": {
+          "title": "Prepare your documents",
+          "description": "Make sure your documents are up to date and that your cover letter is personalized for the chosen position.",
+          "item1": "Detailed and up-to-date CV",
+          "item2": "Personalized cover letter",
+          "item3": "Copy of diplomas and certificates",
+          "item4": "Copy of ID card",
+          "item5": "Professional experience certificates",
+          "item6": "Professional references",
+          "item7": "Any document requested by the job offer"
+        },
+        "respectDeadlines": {
+          "title": "Respect deadlines",
+          "description": "Check application deadlines and submit your file on time."
+        },
+        "checkRequirements": {
+          "title": "Check prerequisites",
+          "description": "Make sure you meet all employment criteria before applying."
+        },
+        "prepareInterviews": {
+          "title": "Prepare for interviews",
+          "description": "If you are invited for an interview, prepare in advance.",
+          "item1": "Research the company and the position",
+          "item2": "Prepare concrete examples of your achievements",
+          "item3": "Anticipate technical and behavioral questions",
+          "item4": "Be authentic and show your motivation",
+          "item5": "Ask relevant questions about the position and the team"
+        },
+        "checkEmail": {
+          "title": "Check your email",
+          "description": "Use a valid email address and regularly check your messages for notifications."
+        }
+      },
+      "needHelp": {
+        "title": "Need help?",
+        "description": "If you encounter difficulties during your application, our team is here to help you.",
+        "contact": "Contact",
+        "email": "Email:",
+        "phone": "Phone:",
+        "address": "Address:"
+      }
     }
   },
   "training": {
@@ -685,439 +935,28 @@
       "description": "The Board of Directors, meeting during its session from October 9 to 11, 2025 in Bremen, Germany, meticulously defined and validated a precise calendar to frame the organization and conduct of activities of the LAFAOM-MAO Training Institute. This calendar, the result of in-depth deliberations, aims to structure the key stages of the training cycle for judicial life assistants, while ensuring rigorous planning for learners, the pedagogical team and stakeholders. The following dates have been set to ensure the proper functioning of the Institute's educational and administrative programs, in alignment with the strategic objectives of the LAFAOM MAO Foundation:"
     }
   },
-  "recruitment": {
-    "title": "Recruitment",
-    "parent": "recruitment",
-    "subtitle": "Join an engaged team.",
-    "description": "Apply online to our job offers, whether at headquarters, in our regional training centers or on our missions, and discover on this page all the ways to get involved with us.",
-    "availablePositions": "Various job positions available",
-    "cabinetRecruitment": "Cabinet recruitment",
-    "loading": "Loading job offers...",
-    "retry": "Retry",
-    "viewDetails": "View details",
-    "applicationFee": "Application fee",
-    "grossSalary": "Gross salary",
-    "hoursPerWeek": "h/week",
-    "offer": "Offer",
-    "offerDescription": "View all details of this job offer and apply directly.",
-    "mainMissions": "Main Missions",
-    "responsibilities": "Responsibilities",
-    "requiredSkills": "Required Skills",
-    "desiredProfile": "Desired Profile",
-    "benefits": "Benefits",
-    "conditions": "Conditions",
-    "requiredDocuments": "Documents to download",
-    "applyToOffer": "Apply to this offer",
-    "jobSummary": "Job Summary",
-    "reference": "Reference",
-    "location": "Location",
-    "contractType": "Contract Type",
-    "salary": "Salary",
-    "deadline": "Deadline",
-    "apply": "Apply",
-    "deadlinePassed": "The application deadline has passed.",
-    "needHelp": "Need help?",
-    "contactUs": "If you have questions about this offer, contact us:",
-    "modal": {
-      "viewDetails": "View details",
-      "reference": "Reference",
-      "register": "Register",
-      "backToList": "Back to training list",
-      "jobPresentation": "Job presentation",
-      "location": "Location",
-      "contractType": "Contract type",
-      "hoursPerWeek": "Hours per week",
-      "salary": "Salary",
-      "applicationFee": "Application fee",
-      "applicationDeadline": "Application deadline",
-      "mainMission": "Main mission",
-      "responsibilities": "Responsibilities",
-      "competencies": "Competencies",
-      "profile": "Profile sought",
-      "benefits": "Benefits",
-      "conditions": "Conditions",
-      "directApplication": "Direct application",
-      "applyDirectly": "Apply directly",
-      "positionAvailable": "Position available",
-      "deadline": "Deadline",
-      "salaryLabel": "Salary"
-    },
-    "application": {
-      "title": "Application",
-      "subtitle": "Apply to this job offer",
-      "reference": "Reference",
-      "location": "Location",
-      "contractType": "Contract type",
-      "applicationFee": "Application fee",
-      "deadline": "Deadline",
-      "personalInfo": "Your personal information",
-      "civility": "Civility",
-      "selectCivility": "Select",
-      "mr": "Mr.",
-      "mrs": "Mrs.",
-      "firstName": "First name",
-      "lastName": "Last name",
-      "email": "Email",
-      "phoneNumber": "Phone number",
-      "dateOfBirth": "Date of birth",
-      "address": "Address",
-      "city": "City",
-      "required": "required",
-      "firstNameRequired": "First name is required.",
-      "lastNameRequired": "Last name is required.",
-      "emailRequired": "Please enter a valid email address.",
-      "phoneRequired": "Phone number is required.",
-      "requiredDocuments": "Required documents",
-      "uploadDocuments": "Please upload the following documents in PDF format:",
-      "uploading": "Uploading...",
-      "noFileSelected": "No file selected",
-      "remove": "Remove",
-      "submit": "Submit application",
-      "submitting": "Submitting...",
-      "success": "Application submitted successfully!",
-      "redirecting": "You will be redirected to the payment page...",
-      "formValid": "Form valid",
-      "uploadedFiles": "Uploaded files",
-      "requiredFiles": "Required files",
-      "buttonActive": "Button active",
-      "helpMessage": "💡 You can submit the form even if some fields are not filled"
-    },
-    "cabinetRecruitment": {
-      "title": "Recruitment of a consulting firm in HR management and profile revelation",
-      "location": "Location",
-      "contractType": "Contract Type",
-      "contractDescription": "Selection and recruitment services for administrative, pedagogical and apprentice positions",
-      "download": "Download",
-      "apply": "Apply"
-    },
-    "sessions": {
-      "title": "Available sessions for",
-      "session": "Session",
-      "period": "Period",
-      "registrationDeadline": "Registration deadline",
-      "location": "Location",
-      "availablePositions": "Available positions",
-      "status": "Status",
-      "select": "Select",
-      "noSessions": "No sessions available",
-      "noSessionsMessage": "There are currently no sessions available for this job offer.",
-      "backToJob": "Back to job offer"
-    },
-    "jobProcess": {
-      "benefits": {
-        "title": "Benefits of working with us"
-      },
-      "cta": {
-        "contactUs": "Contact us",
-        "description": "Discover our job offers and apply today",
-        "title": "Ready to join our team?",
-        "viewJobs": "View our offers"
-      },
-      "documents": {
-        "title": "Required documents"
-      },
-      "requirements": {
-        "title": "Prerequisites"
-      },
-      "subtitle": "Discover how to join our professional team",
-      "tips": {
-        "title": "Interview tips"
-      },
-      "title": "Job recruitment process"
-    },
-    "processRecruitment": {
-      "title": "Detailed guide to the job recruitment process",
-      "subtitle": "Discover step by step how to submit your application to join our professional team.",
-      "howToApply": {
-        "title": "How to apply for a job?",
-        "description": "The application process for our job offers is simple and transparent. Follow this step-by-step guide to successfully submit your application."
-      },
-      "step1": {
-        "title": "Step 1: Access the Recruitment page",
-        "description": "Visit our website and click on the \"Recruitment\" menu in the main navigation.",
-        "item1": "Click on \"Recruitment\" in the navigation menu",
-        "item2": "You will be redirected to the page of available job offers"
-      },
-      "step2": {
-        "title": "Step 2: Explore available job offers",
-        "description": "Browse the list of job offers and review the details of each position.",
-        "item1": "Review detailed descriptions of each position",
-        "item2": "Check prerequisites and employment conditions",
-        "item3": "Note application deadlines",
-        "item4": "Check location and contract type"
-      },
-      "step3": {
-        "title": "Step 3: Select a job offer",
-        "description": "Click on the \"(+)\" button at the right end of the job offer to see the job offer details, then \"Apply\" for the job offer of your choice.",
-        "item1": "Read the job information carefully",
-        "item2": "Check that you meet the employment conditions",
-        "item3": "Note the required skills and experience"
-      },
-      "step4": {
-        "title": "Step 4: Fill out the application form",
-        "description": "Complete the online form with your personal and professional information.",
-        "item1": "Personal information: Name, first name, email, phone, address"
-      },
-      "step5": {
-        "title": "Step 5: Upload required documents",
-        "description": "Attach the documents necessary for your application in PDF format.",
-        "item1": "Detailed CV (PDF format, max 10MB)",
-        "item2": "Cover letter (PDF format, max 10MB)",
-        "item3": "Copy of diplomas (PDF format, max 10MB)",
-        "item4": "Copy of ID (PDF format, max 10MB)",
-        "item5": "Professional experience certificates (PDF format, max 10MB)",
-        "item6": "Any document required by the job offer (PDF format, max 10MB)"
-      },
-      "step6": {
-        "title": "Step 6: Submit your application",
-        "description": "Review all information, then click on \"Apply directly\"."
-      },
-      "step7": {
-        "title": "Step 7: Payment of application fees",
-        "description": "You will be redirected to the payment page to pay the application fees.",
-        "item1": "Choose payment method",
-        "onlinePayment": "Online payment method: you will be redirected to the payment page to pay the application fees.",
-        "bankTransfer": "Bank transfer payment method: In addition to presenting the documents, you will need to present a payment receipt for your application to be validated.",
-        "item2": "Keep the payment receipt",
-        "item3": "Carefully review all entered information",
-        "item4": "Verify that all documents are uploaded",
-        "item5": "Confirm your application"
-      },
-      "step8": {
-        "title": "Step 8: Confirmation and follow-up",
-        "description": "You will receive a confirmation email with the details of your application.",
-        "item1": "Confirmation email of receipt",
-        "item2": "Your application reference number",
-        "item3": "Information about the next steps in the recruitment process"
-      },
-      "step9": {
-        "title": "Step 9: Selection process",
-        "description": "Our HR team will review your application and contact you if you are selected.",
-        "item1": "Pre-selection: Initial evaluation of your file",
-        "item2": "Tests and assessments: Technical and psychological tests if required",
-        "item3": "HR interview: First interview with human resources",
-        "item4": "Technical interview: Interview with the line manager",
-        "item5": "Final interview: Last interview with management",
-        "item6": "Final decision: Notification of hiring decision"
-      },
-      "tips": {
-        "title": "Tips to succeed in your application",
-        "prepareDocuments": {
-          "title": "Prepare your documents",
-          "description": "Make sure your documents are up to date and that your cover letter is personalized for the chosen position.",
-          "item1": "Detailed and up-to-date CV",
-          "item2": "Personalized cover letter",
-          "item3": "Copy of diplomas and certificates",
-          "item4": "Copy of ID",
-          "item5": "Professional experience certificates",
-          "item6": "Professional references",
-          "item7": "Any document required by the job offer"
-        },
-        "respectDeadlines": {
-          "title": "Respect deadlines",
-          "description": "Check application deadlines and submit your file on time."
-        },
-        "checkRequirements": {
-          "title": "Check prerequisites",
-          "description": "Make sure you meet all employment criteria before applying."
-        },
-        "prepareInterviews": {
-          "title": "Prepare for interviews",
-          "description": "If you are called for an interview, prepare in advance.",
-          "item1": "Research the company and position",
-          "item2": "Prepare concrete examples of your achievements",
-          "item3": "Anticipate technical and behavioral questions",
-          "item4": "Be authentic and show your motivation",
-          "item5": "Ask relevant questions about the position and team"
-        },
-        "checkEmail": {
-          "title": "Check your email",
-          "description": "Use a valid email address and regularly check your messages for notifications."
-        }
-      },
-      "needHelp": {
-        "title": "Need help?",
-        "description": "If you encounter difficulties during your application, our team is here to help you.",
-        "contact": "Contact",
-        "email": "Email:",
-        "phone": "Phone:",
-        "address": "Address:"
-      }
-    },
-    "trainingProcess": {
-      "benefits": {
-        "title": "Benefits of our training"
-      },
-      "cta": {
-        "description": "Join our community of learners and develop your professional skills",
-        "startApplication": "Start my application",
-        "title": "Ready to start your training?",
-        "viewFormations": "View our training"
-      },
-      "documents": {
-        "title": "Required documents"
-      },
-      "requirements": {
-        "title": "Prerequisites"
-      },
-      "subtitle": "Discover how to join our training programs",
-      "title": "Training recruitment process"
-    },
-    "processTraining": {
-      "title": "Detailed guide to the process for applying to training",
-      "subtitle": "Discover step by step how to submit your application to join our specialized training programs.",
-      "howToApply": {
-        "title": "How to apply for training?",
-        "description": "The application process for our training is simple and transparent. Follow this step-by-step guide to successfully submit your application."
-      },
-      "step1": {
-        "title": "Step 1: Access the Training page",
-        "description": "Visit our website and click on the \"Institute admission process\" menu in the main navigation.",
-        "item1": "Click on \"Training\" then on \"Institute admission process\" in the navigation menu",
-        "item2": "You will be redirected to the page of available training"
-      },
-      "step2": {
-        "title": "Step 2: Explore available training",
-        "description": "Browse the list of training and use the filters to find the one that matches your needs.",
-        "item1": "Click on the plus button (+) at the right end of the training to see the training details",
-        "item2": "Review detailed descriptions of each training",
-        "item3": "Check prerequisites and admission conditions",
-        "item4": "Note available session dates"
-      },
-      "step3": {
-        "title": "Step 3: Select a training",
-        "description": "Click on \"Register\" or alternatively on \"Select\" to be redirected to the application form."
-      },
-      "step4": {
-        "title": "Step 4: Fill out the application form",
-        "description": "Complete the online form with your personal and professional information.",
-        "item1": "Personal information: Name, first name, email, phone"
-      },
-      "step5": {
-        "title": "Step 5: Upload required documents",
-        "description": "Attach the documents necessary for your application in PDF format.",
-        "item1": "Detailed CV",
-        "item2": "Cover letter",
-        "item3": "Copy of diplomas",
-        "item4": "Copy of ID",
-        "item5": "Any document required by the training (PDF format, max 10MB)"
-      },
-      "step6": {
-        "title": "Step 6: Submit your application",
-        "description": "Review all information, then click on \"Submit application\".",
-        "item1": "Carefully review all entered information",
-        "item2": "Verify that all documents are uploaded"
-      },
-      "step7": {
-        "title": "Step 7: Payment of application fees",
-        "description": "You will be redirected to the payment page to pay the application fees.",
-        "item1": "Choose your payment method",
-        "item2": "Make the online payment securely",
-        "item3": "Keep the payment receipt"
-      },
-      "step8": {
-        "title": "Step 8: Confirmation and follow-up",
-        "description": "You will receive a confirmation email with the details of your application.",
-        "item1": "Confirmation email of receipt",
-        "item2": "Your application reference number",
-        "item3": "Information about next steps"
-      },
-      "tips": {
-        "title": "Tips to succeed in your application",
-        "prepareDocuments": {
-          "title": "Prepare your documents",
-          "description": "Make sure your documents are up to date and that your cover letter is personalized for the chosen training.",
-          "item1": "Detailed CV",
-          "item2": "Cover letter",
-          "item3": "Copy of diplomas",
-          "item4": "Copy of ID",
-          "item5": "Any document required by the training"
-        },
-        "respectDeadlines": {
-          "title": "Respect deadlines",
-          "description": "Check application deadlines and submit your file on time."
-        },
-        "checkRequirements": {
-          "title": "Check prerequisites",
-          "description": "Make sure you meet all admission criteria before applying."
-        },
-        "checkEmail": {
-          "title": "Check your email",
-          "description": "Use a valid email address and regularly check your messages for notifications."
-        }
-      },
-      "needHelp": {
-        "title": "Need help?",
-        "description": "If you encounter difficulties during your application, our team is here to help you.",
-        "contact": "Contact",
-        "email": "Email:",
-        "phone": "Phone:",
-        "address": "Address:"
-      }
-    }
-  },
   "trainingSchedule": {
     "title": "Training Schedule",
     "description": "Discover our specialized training programs in the judicial field.",
     "table": {
       "headers": {
         "name": "TRAINING NAME",
-        "specialty": "SPECIALTY",
-        "location": "LOCATION",
-        "type": "TRAINING TYPE",
-        "duration": "Training duration",
-        "cost": "Training cost"
+        "duration": "DURATION",
+        "cost": "COST"
       },
-      "formations": {
-        "formation1": {
-          "name": "Judicial Life Assistants",
-          "specialties": {
-            "specialty1": "Technical Assistant",
-            "specialty2": "Judicial Services Support",
-            "specialty3": "Welcome, listening and support"
-          },
-          "location": "Ziguinchor - Senegal",
-          "type": "PROFESSIONAL TRAINING",
-          "duration": "January 19 to December 31, 2026",
-          "cost": "2.1 million :3700.44 €"
+      "rows": {
+        "technicalAssistant": {
+          "name": "Judicial Life Assistant specialty: Technical Assistant",
+          "duration": "March 15-20, 2026",
+          "cost": ":528.63 € :300.000 FCFA"
         },
-        "formation2": {
-          "name": "Women's inheritance rights: from judicial decision to full enjoyment",
-          "specialties": {
-            "specialty1": "Welcome, Listening and Support"
-          },
-          "location": "Ziguinchor - Senegal",
-          "type": "Thematic seminar",
-          "duration": "June 15-20, 2026",
-          "cost": ":264.32 € : 150000 fcfa"
+        "penitentiarySupport": {
+          "name": "Judicial Life Assistant specialty: Support for penitentiary services",
+          "duration": "March 15-20, 2026",
+          "cost": ":528.63 € :300.000 FCFA"
         },
-        "formation3": {
-          "name": "Subsistence rights of employees deprived of liberty: awareness and capacity building for their effective implementation",
-          "specialties": {
-            "specialty1": "Judicial Services Support"
-          },
-          "location": "Ziguinchor - Senegal",
-          "type": "Thematic seminar",
-          "duration": "September 15-20, 2026",
-          "cost": ":352.42 € : 200.000fcfa"
-        },
-        "formation4": {
-          "name": "Strengthening the capacities of organizations to activate pre-existing social solidarity dynamics according to the living environment",
-          "specialties": {
-            "specialty1": "Technical Assistant"
-          },
-          "location": "Ziguinchor - Senegal",
-          "type": "Thematic seminar",
-          "duration": "December 15-20, 2026",
-          "cost": "Registration fee :264.32 € :150.000 fcfa"
-        },
-        "formation5": {
-          "name": "Post-divorce co-parenting and family recomposition: supporting the child's sociality",
-          "specialties": {
-            "specialty1": "Technical Assistant"
-          },
-          "location": "Ziguinchor - Senegal",
-          "type": "Thematic seminar",
+        "welcomeSupport": {
+          "name": "Judicial Life Assistant specialty: Welcome, listening and support",
           "duration": "March 15-20, 2026",
           "cost": ":528.63 € :300.000 FCFA"
         }
@@ -1127,12 +966,23 @@
   "contact": {
     "title": "Contact us",
     "subtitle": "We are here to help you",
-    "name": "Name",
-    "email": "Email",
-    "subject": "Subject",
-    "message": "Message",
-    "send": "Send",
-    "sending": "Sending...",
+    "description": "Contact us for any questions or information about our training programs.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address"
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Opening hours"
+    },
     "success": "Message sent successfully!",
     "error": "Error sending message"
   }

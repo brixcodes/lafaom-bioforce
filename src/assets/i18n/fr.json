@@ -391,7 +391,14 @@
     "subtitle": "Rejoignez une équipe engagée.",
     "description": "Postulez en ligne à nos offres d'emploi, que ce soit au siège, dans nos centres de formation régionaux ou sur nos missions, et découvrez sur cette page toutes les façons de vous engager avec nous.",
     "availablePositions": "Différents postes d'emploi disponibles",
-    "cabinetRecruitment": "Avis de recrutement",
+    "cabinetRecruitment": {
+      "title": "Recrutement d'un cabinet de conseil en gestion RH et révélation des profils",
+      "location": "Lieu",
+      "contractType": "Type de contrat",
+      "contractDescription": "Services de sélection et recrutement pour postes administratifs, pédagogiques et apprentis",
+      "download": "Télécharger",
+      "apply": "Postuler"
+    },
     "loading": "Chargement des offres d'emploi...",
     "retry": "Réessayer",
     "viewDetails": "Voir les détails",
@@ -1106,178 +1113,71 @@
         "note2": "Lors de l'étape de la détermination des savoirs, l'équipe pédagogique étudiera avec attention votre parcours (niveau et domaine de formations, nature, durée et niveau de responsabilités de vos expériences professionnelles...), et pour vous proposer un contenu théorique adapté aux compétences requises."
       }
     },
-    "recruitment": {
-      "loading": "Chargement des offres d'emploi...",
-      "retry": "Réessayer",
-      "noOffers": "Aucune offre d'emploi disponible pour le moment.",
-      "cabinetRecruitment": "Avis de recrutement",
-      "application": {
-        "title": "Candidature à l'offre d'emploi",
-        "subtitle": "Informations sur l'offre",
-        "reference": "Référence",
-        "location": "Lieu",
-        "contractType": "Type de contrat",
-        "applicationFee": "Frais de candidature",
-        "deadline": "Date limite",
-        "personalInfo": "Informations personnelles",
-        "civility": "Civilité",
-        "selectCivility": "Sélectionner une civilité",
-        "mr": "Monsieur",
-        "mrs": "Madame",
-        "firstName": "Prénom",
-        "firstNameRequired": "Le prénom est requis",
-        "lastName": "Nom",
-        "lastNameRequired": "Le nom est requis",
-        "email": "Email",
-        "emailRequired": "L'email est requis",
-        "phoneNumber": "Téléphone",
-        "phoneRequired": "Le téléphone est requis",
-        "dateOfBirth": "Date de naissance",
-        "address": "Adresse",
-        "city": "Ville",
-        "addressLabel": "Adresse complète",
-        "country": "Pays",
-        "requiredDocuments": "Documents requis",
-        "uploadDocuments": "Veuillez télécharger les documents requis pour votre candidature",
-        "uploadDocumentsDescription": "Veuillez uploader les documents suivants (PDF, DOC, DOCX)",
-        "fillPersonalInfo": "Veuillez remplir vos informations personnelles",
-        "residenceAddress": "Votre adresse de résidence",
-        "dragDrop": "Glissez-déposez votre fichier ici",
-        "orClick": "ou cliquez pour sélectionner",
-        "uploading": "Téléchargement en cours...",
-        "uploadProgress": "Upload en cours...",
-        "progress": "Progression",
-        "uploaded": "Téléchargé avec succès",
-        "remove": "Supprimer",
-        "noFileSelected": "Aucun fichier sélectionné",
-        "fileSelected": "Fichier sélectionné",
-        "clickToSelectCV": "Cliquez pour sélectionner votre CV",
-        "clickToSelectLetter": "Cliquez pour sélectionner votre lettre de motivation",
-        "clickToSelectDiploma": "Cliquez pour sélectionner votre diplôme",
-        "pending": "En attente",
-        "completed": "Terminé",
-        "error": "Erreur",
-        "reset": "Réinitialiser",
-        "submit": "Soumettre ma candidature",
-        "submitting": "Soumission en cours...",
-        "success": "Candidature soumise avec succès",
-        "redirecting": "Redirection en cours...",
-        "helpMessage": "Assurez-vous que tous les champs requis sont remplis et que tous les documents sont téléchargés avant de soumettre votre candidature.",
-        "applicationFormTitle": "Formulaire de Candidature"
-      },
-      "modal": {
-        "viewDetails": "Voir les détails",
-        "reference": "Référence",
-        "backToList": "Retour à la liste",
-        "jobPresentation": "Présentation du poste",
-        "location": "Localisation",
-        "contractType": "Type de contrat",
-        "hoursPerWeek": "Heures par semaine",
-        "salary": "Salaire",
-        "applicationFee": "Frais de candidature",
-        "applicationDeadline": "Date limite de candidature",
-        "mainMission": "Mission principale",
-        "responsibilities": "Responsabilités",
-        "competencies": "Compétences",
-        "profile": "Profil recherché",
-        "benefits": "Avantages",
-        "conditions": "Conditions",
-        "directApplication": "Candidature directe",
-        "applyDirectly": "Postuler directement",
-        "salaryLabel": "Salaire",
-        "requiredDocuments": "Documents requis pour candidater",
-        "requiredDocumentsDescription": "Les documents suivants sont requis pour votre candidature :",
-        "documentsFormatWarning": "Tous les documents doivent être au format PDF et ne pas dépasser 10MB chacun.",
-        "positionAvailable": "Poste disponible",
-        "deadline": "Date limite"
-      },
-      "cabinetRecruitment": {
-        "title": "Recrutement d'un cabinet de conseil en gestion RH et révélation des profils",
-        "location": "Lieu",
-        "contractType": "Type de contrat",
-        "contractDescription": "Services de sélection et recrutement pour postes administratifs, pédagogiques et apprentis",
-        "download": "Télécharger",
-        "apply": "Postuler"
-      },
-      "sessions": {
-        "title": "Sessions disponibles pour",
-        "session": "Session",
-        "period": "Période",
-        "registrationDeadline": "Date limite d'inscription",
-        "location": "Lieu",
-        "availablePositions": "Postes disponibles",
-        "status": "Statut",
-        "select": "Sélectionner",
-        "backToJob": "Retour à l'offre d'emploi",
-        "noSessions": "Aucune session disponible",
-        "noSessionsMessage": "Il n'y a actuellement aucune session disponible pour cette offre d'emploi."
-      }
-    }
-  },
-  "trainingSchedule": {
-    "title": "Planning de formation",
-    "description": "Découvrez nos formations spécialisées dans le domaine judiciaire.",
-    "table": {
-      "headers": {
-        "name": "NOM DE LA FORMATION",
-        "specialty": "SPECIALITE",
-        "location": "LIEU",
-        "type": "TYPE DE FORMATION",
-        "duration": "Durée de la formation",
-        "cost": "Coût de la formation"
-      },
-      "formations": {
-        "formation1": {
-          "name": "Auxiliaires de vie en univers judiciaire",
-          "specialties": {
-            "specialty1": "Technicien d'assistance",
-            "specialty2": "Appui aux services judiciaire",
-            "specialty3": "Accueil, écoute et accompagnement"
-          },
-          "location": "Ziguinchor - Sénégal",
-          "type": "FORMATION METIER",
-          "duration": "19 janvier au 31 décembre 2026",
-          "cost": "2,1 millions :3700,44 €"
+    "trainingSchedule": {
+      "title": "Planning de formation",
+      "description": "Découvrez nos formations spécialisées dans le domaine judiciaire.",
+      "table": {
+        "headers": {
+          "name": "NOM DE LA FORMATION",
+          "specialty": "SPECIALITE",
+          "location": "LIEU",
+          "type": "TYPE DE FORMATION",
+          "duration": "Durée de la formation",
+          "cost": "Coût de la formation"
         },
-        "formation2": {
-          "name": "Droits successoraux des femmes : de la décision judiciaire à la pleine jouissance",
-          "specialties": {
-            "specialty1": "Accueil, Ecoute et Accompagnement"
+        "formations": {
+          "formation1": {
+            "name": "Auxiliaires de vie en univers judiciaire",
+            "specialties": {
+              "specialty1": "Technicien d'assistance",
+              "specialty2": "Appui aux services judiciaire",
+              "specialty3": "Accueil, écoute et accompagnement"
+            },
+            "location": "Ziguinchor - Sénégal",
+            "type": "FORMATION METIER",
+            "duration": "19 janvier au 31 décembre 2026",
+            "cost": "2,1 millions :3700,44 €"
           },
-          "location": "Ziguinchor - Sénégal",
-          "type": "Séminaire thématique",
-          "duration": "15-20 juin 2026",
-          "cost": ":264,32 € : 150000 fcfa"
-        },
-        "formation3": {
-          "name": "Droits de subsistance des salariés privés de liberté : sensibilisation et renforcement des capacités pour leur mise en œuvre effective",
-          "specialties": {
-            "specialty1": "Appui aux Services Judiciaire"
+          "formation2": {
+            "name": "Droits successoraux des femmes : de la décision judiciaire à la pleine jouissance",
+            "specialties": {
+              "specialty1": "Accueil, Ecoute et Accompagnement"
+            },
+            "location": "Ziguinchor - Sénégal",
+            "type": "Séminaire thématique",
+            "duration": "15-20 juin 2026",
+            "cost": ":264,32 € : 150000 fcfa"
           },
-          "location": "Ziguinchor - Sénégal",
-          "type": "Séminaire thématique",
-          "duration": "15-20 septembre 2026",
-          "cost": ":352,42 € : 200.000fcfa"
-        },
-        "formation4": {
-          "name": "Renforcement des capacités des organisations pour l'activation des dynamiques sociales préexistantes de solidarité selon le milieu de vie",
-          "specialties": {
-            "specialty1": "Technicien d'Assistance"
+          "formation3": {
+            "name": "Droits de subsistance des salariés privés de liberté : sensibilisation et renforcement des capacités pour leur mise en œuvre effective",
+            "specialties": {
+              "specialty1": "Appui aux Services Judiciaire"
+            },
+            "location": "Ziguinchor - Sénégal",
+            "type": "Séminaire thématique",
+            "duration": "15-20 septembre 2026",
+            "cost": ":352,42 € : 200.000fcfa"
           },
-          "location": "Ziguinchor - Sénégal",
-          "type": "Séminaire thématique",
-          "duration": "15-20 décembre 2026",
-          "cost": "Frais d'inscription :264,32 € :150.000 fcfa"
-        },
-        "formation5": {
-          "name": "Coparentalité post-divorce et recompositions familiales : accompagner la socialité de l'enfant",
-          "specialties": {
-            "specialty1": "Technicien d'Assistance"
+          "formation4": {
+            "name": "Renforcement des capacités des organisations pour l'activation des dynamiques sociales préexistantes de solidarité selon le milieu de vie",
+            "specialties": {
+              "specialty1": "Technicien d'Assistance"
+            },
+            "location": "Ziguinchor - Sénégal",
+            "type": "Séminaire thématique",
+            "duration": "15-20 décembre 2026",
+            "cost": "Frais d'inscription :264,32 € :150.000 fcfa"
           },
-          "location": "Ziguinchor - Sénégal",
-          "type": "Séminaire thématique",
-          "duration": "15-20 mars 2026",
-          "cost": ":528,63 € :300.000 FCFA"
+          "formation5": {
+            "name": "Coparentalité post-divorce et recompositions familiales : accompagner la socialité de l'enfant",
+            "specialties": {
+              "specialty1": "Technicien d'Assistance"
+            },
+            "location": "Ziguinchor - Sénégal",
+            "type": "Séminaire thématique",
+            "duration": "15-20 mars 2026",
+            "cost": ":528,63 € :300.000 FCFA"
+          }
         }
       }
     }
