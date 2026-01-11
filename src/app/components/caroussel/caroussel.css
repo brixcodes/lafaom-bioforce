@@ -1,0 +1,26 @@
+/* Éviter le flash de contenu non stylé */
+.owl-introSlider {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+/* Afficher au moins la première slide pendant le chargement */
+.owl-introSlider:not(.owl-loaded) .item {
+  display: none;
+}
+
+.owl-introSlider:not(.owl-loaded) .item:first-child {
+  display: block;
+}
+
+/* S'assurer que les images sont visibles immédiatement */
+.owl-introSlider .wrp-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Précharger la première image en priorité */
+.owl-introSlider .item:first-child .wrp-img img {
+  content-visibility: auto;
+}
