@@ -75,29 +75,6 @@
     "location": "Quartier Cadior lot 457",
     "commune": "Commune de Ziguinchor"
   },
-  "home": {
-    "hero": {
-      "title": "Bienvenue chez LAFAOM",
-      "subtitle": "Formation et Développement Professionnel",
-      "description": "Découvrez nos programmes de formation de qualité et développez vos compétences professionnelles.",
-      "cta": "Découvrir nos formations"
-    },
-    "features": {
-      "title": "Pourquoi choisir LAFAOM ?",
-      "quality": {
-        "title": "Formation de qualité",
-        "description": "Nos formations sont conçues par des experts et adaptées aux besoins du marché."
-      },
-      "expertise": {
-        "title": "Expertise reconnue",
-        "description": "Plus de 10 ans d'expérience dans la formation professionnelle."
-      },
-      "support": {
-        "title": "Accompagnement personnalisé",
-        "description": "Un suivi individuel pour chaque apprenant."
-      }
-    }
-  },
   "training": {
     "title": "Nos Formations",
     "subtitle": "Découvrez nos programmes de formation",
@@ -785,11 +762,6 @@
     "success": "Message envoyé avec succès !",
     "error": "Erreur lors de l'envoi du message"
   },
-  "language": {
-    "french": "Français",
-    "english": "English",
-    "german": "Deutsch"
-  },
   "home": {
     "hero": {
       "title": "Formation d'excellence pour l'amélioration du système judiciaire en Afrique",
@@ -838,16 +810,6 @@
         "restoration": "Le rétablissement et la substitution"
       }
     },
-    "coordinator": {
-      "title": "Le mot du coordonnateur du programme MAO",
-      "description1": "Les organisations LAFAOM-MAO dont l'insitut LAFAOM-MAO de Ziguinchor au Sénégal, appartiennent au réseau inter-africain LAFAOM-MAO mis en place par le Programme MAO de l'association LAFAOM-MAO. C'est un programme qui a pour objectif de prendre en charge les personnes affectées directement ou indirectement par une décision de justice. Notre mission est de rendre la justice plus humaine et efficace en réduisant les impacts dévastateurs sur les femmes, les enfants, les personnes âgées, victimes de vulnérabilités sociales et sanitaires.",
-      "description2": "Une étude conduite de 2020 à 2023 dans le système judiciaire en Afrique, a établi que, comme l'hypertension artérielle est pour  l'organisme humain, les décisions de justice sont des tueurs silencieux. Elles ont pour conséquences :",
-      "women": "Pour les femmes",
-      "children": "Pour les enfants",
-      "elderly": "Pour les personnes âgées",
-      "human": "Pour l'être humain",
-      "conclusion": "En valeur absolue, le nombre de victimes des décisions de justice en Afrique est supérieur à celui des catastrophes naturelles ou des guerres."
-    },
     "activities": {
       "title": "activités récentes",
       "loading": "Chargement des actualités...",
@@ -879,37 +841,46 @@
       "skip": "Passer"
     },
     "coordinator": {
-      "title": "Le mot du coordonnateur du programme MAO",
-      "intro": "Les organisations LAFAOM-MAO dont l'insitut LAFAOM-MAO de Ziguinchor au Sénégal, appartiennent au réseau inter-africain LAFAOM-MAO mis en place par le Programme MAO de l'association LAFAOM-MAO. C'est un programme qui a pour objectif de prendre en charge les personnes affectées directement ou indirectement par une décision de justice. Notre mission est de rendre la justice plus humaine et efficace en réduisant les impacts dévastateurs sur les femmes, les enfants, les personnes âgées, victimes de vulnérabilités sociales et sanitaires.",
-      "study": "Une étude conduite de 2020 à 2023 dans le système judiciaire en Afrique, a établi que, comme l'hypertension artérielle est pour l'organisme humain, les décisions de justice sont des tueurs silencieux. Elles ont pour conséquences :",
-      "women": {
-        "title": "Pour les femmes",
-        "item1": "Double assignation domestico-judiciaire : Concilier rôles domestiques et contraintes de l'incarcération;",
-        "item2": "Solidarité conjugale sous contrainte pénale : Soutien au conjoint incarcéré malgré pressions légales;",
-        "item3": "Perversions sexuelles pénitentiaires : Abus sexuels ciblant les femmes détenues;",
-        "item4": "Abus sexuel sous autorité judiciaire : Exploitation par figures d'autorité dans le système judiciaire."
+      "title": "Le mot du coordonnateur des programmes",
+      "intro": "L’Institut de formation Lafaom‑Mao mobilise la transition écologique comme levier d’autonomie, de réinsertion et de formation en univers judiciaire, en préparant des publics vulnérables à intégrer durablement les métiers et projets liés à la protection de l’environnement.",
+      "section1": {
+        "title": "I. Contribution du projet au secteur de l’environnement",
+        "description": "L’Institut de formation Lafaom‑Mao développe une approche innovante qui articule formation professionnelle en univers judiciaire, restauration de l’autonomie sociale et transition écologique. Notre mission consiste à former des auxiliaires de vie en univers judiciaire, dont le rôle est d’accompagner vers l’autonomie les personnes dont l’équilibre social a été rompu par une décision de justice :",
+        "item1": "personnes sous main de justice,",
+        "item2": "anciens détenus en réinsertion,",
+        "item3": "enfants et adolescents en situation de détresse,",
+        "item4": "familles et proches de personnes incarcérées,",
+        "item5": "personnes en rupture avec leur milieu de vie initial.",
+        "footer": "Grâce à une pédagogie par compétences, l’Institut s’appuie sur ses centres d’application où ces publics sont pris en charge, accompagnés et préparés à une réorientation durable. C’est dans ce cadre que nous intégrons pleinement les métiers et projets liés à la protection de l’environnement."
       },
-      "children": {
-        "title": "Pour les enfants",
-        "item1": "Déperdition scolaire liée à :",
-        "item2": "Incarcération d'un parent/tuteur : Perturbation de l'encadrement familial.",
-        "item3": "Séparation des parents : Instabilité émotionnelle et sociale."
+      "section2": {
+        "title": "II. Développement de compétences environnementales adaptées aux publics judiciaires et sociaux",
+        "description": "Les parcours de formation incluent des modules opérationnels permettant aux bénéficiaires d’acquérir des compétences directement mobilisables dans l’économie verte, notamment :",
+        "item1": "gestion des déchets et économie circulaire,",
+        "item2": "reboisement, restauration écologique et entretien des espaces naturels,",
+        "item3": "agriculture durable et agroécologie,",
+        "item4": "participation à des projets internationaux de protection de l’environnement,",
+        "item5": "sensibilisation environnementale et médiation écologique.",
+        "footer": "Ces compétences sont intégrées dans les référentiels de formation des auxiliaires de vie en univers judiciaire, afin qu’ils puissent eux‑mêmes accompagner les publics vers une autonomie durable."
       },
-      "elderly": {
-        "title": "Pour les personnes âgées",
-        "item1": "Privation du soutien filial : Perte d'aide des enfants incarcérés.",
-        "item2": "Vulnérabilité parentale : Fragilité accrue par l'absence de descendants.",
-        "item3": "Sévrage socio-affectif : Isolement émotionnel dû à l'incarcération des proches."
+      "section3": {
+        "title": "III. Insertion professionnelle par l’activité environnementale",
+        "description": "Les centres d’application de Lafaom‑Mao constituent des espaces d’expérimentation, de mise en situation et de transition. Ils permettent :",
+        "item1": "l’accueil et la prise en charge de personnes en réinsertion ou en rupture sociale,",
+        "item2": "la mise en pratique immédiate des compétences environnementales,",
+        "item3": "l’intégration progressive dans des chantiers-écoles, des projets territoriaux ou des partenariats internationaux liés à l’environnement.",
+        "footer": "Cette démarche favorise une insertion professionnelle durable, tout en renforçant les capacités locales dans les secteurs environnementaux."
       },
-      "human": {
-        "title": "Pour l'être humain",
-        "item1": "Vulnérabilité sanitaire : Risques de santé accrus en détention.",
-        "item2": "Vulnérabilité sociale : Exclusion et stigmatisation liées à l'incarcération."
-      },
-      "conclusion": "En valeur absolue, le nombre de victimes des décisions de justice en Afrique est supérieur à celui des catastrophes naturelles ou des guerres. Le système judiciaire est inapproprié au modèle social. Ces deux dernières années, il a été question de convaincre les bailleurs de fonds, en s'appuyant sur l'approche « nexus », qu'il s'agit là d'une situation qui relève du secteur humanitaire. C'est une crise à classer parmi les urgences humanitaires permanentes. Le plus grand succès est d'avoir pu les amener à accepter que l'intervention dans ce secteur avait besoin d'un savoir-faire et d'un savoir-être spécifiques. Celui des professionnels du travail social que nous avons appelés : des auxiliaires de vie en Univers Judiciaire (AVUJ).",
-      "institute": "Avec les Inspecteurs d'Académie du Ministère de l'Éducation Nationale du Sénégal, nous avons pu mettre en place, à Ziguinchor, l'Institut de formation LAFAOM-MAO spécialisé dans la formation en 12 mois des auxiliaires de Vie en Univers Judiciaire. Une formation qui s'appuie sur le système pédagogique Mao.",
-      "quote": "« Être auxiliaire de vie en univers judiciaire, c'est mettre en œuvre les plans d'intervention individualisée des différentes pupilles en vue de réduire les effets dévastateurs de la décision de justice. Il est question de rendre la justice plus humaine et, par conséquent, plus efficace. »",
-      "final": "A l'Institut de formation LAFAOM-MAO, nous savons que pour venir en aide à une personne en situation de vulnérabilité, il est important que l'auxiliaire de vie en univers judiciaire ait un bagage académique respectable. Toutefois, les principes pédagogiques mis en œuvre nous permettent d'adapter tous les niveaux académiques à l'opérationnalité recherchée. C'est un défi que nous nous sommes donnés."
+      "section4": {
+        "title": "IV. Une transition écologique inclusive et socialement réparatrice",
+        "description": "En orientant vers les métiers de l’environnement des publics souvent marginalisés, l’Institut contribue à une transition juste, qui associe :",
+        "item1": "réparation sociale,",
+        "item2": "autonomisation,",
+        "item3": "participation citoyenne,",
+        "item4": "réduction des inégalités,",
+        "item5": "accès équitable aux opportunités de la transition écologique.",
+        "footer": "L’environnement devient ainsi un levier de reconstruction personnelle, de réinsertion professionnelle et de cohésion sociale."
+      }
     },
     "section4": {
       "title": "Le mot du coordonnateur",

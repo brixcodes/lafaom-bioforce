@@ -142,37 +142,46 @@
       }
     },
     "coordinator": {
-      "title": "Message from the MAO Program Coordinator",
-      "intro": "LAFAOM-MAO organizations, including the LAFAOM-MAO Institute of Ziguinchor in Senegal, belong to the inter-African LAFAOM-MAO network established by the MAO Program of the LAFAOM Association. This is a program aimed at supporting people directly or indirectly affected by judicial decisions.",
-      "study": "A study conducted from 2020 to 2023 in the judicial system in Africa established that, like arterial hypertension for the human body, judicial decisions are silent killers. They have consequences:",
-      "women": {
-        "title": "For women",
-        "item1": "Double domestic-carceral assignment: Reconciling domestic roles and incarceration constraints.",
-        "item2": "Conjugal solidarity under criminal constraint: Support for incarcerated spouse despite legal pressures.",
-        "item3": "Penitentiary sexual perversions: Sexual abuse targeting female detainees.",
-        "item4": "Sexual abuse under judicial authority: Exploitation by authority figures in the judicial system."
+      "title": "Message from the Program Coordinator",
+      "intro": "The Lafaom‑Mao Training Institute mobilizes the ecological transition as a lever for autonomy, reintegration, and training in the judicial universe, preparing vulnerable audiences to sustainably integrate professions and projects related to environmental protection.",
+      "section1": {
+        "title": "I. Contribution of the project to the environment sector",
+        "description": "The Lafaom‑Mao Training Institute develops an innovative approach that links vocational training in the judicial universe, restoration of social autonomy, and ecological transition. Our mission is to train judicial life assistants, whose role is to accompany towards autonomy those whose social balance has been broken by a court decision:",
+        "item1": "persons under judicial supervision,",
+        "item2": "former prisoners in reintegration,",
+        "item3": "children and adolescents in distress,",
+        "item4": "families and relatives of incarcerated persons,",
+        "item5": "persons in rupture with their initial living environment.",
+        "footer": "Thanks to competency-based pedagogy, the Institute relies on its application centers where these audiences are cared for, accompanied, and prepared for sustainable redirection. It is in this context that we fully integrate professions and projects related to environmental protection."
       },
-      "children": {
-        "title": "For children",
-        "item1": "School dropout related to:",
-        "item2": "Incarceration of a parent/guardian: Disruption of family supervision.",
-        "item3": "Parental separation: Emotional and social instability."
+      "section2": {
+        "title": "II. Development of environmental skills adapted to judicial and social audiences",
+        "description": "Training courses include operational modules allowing beneficiaries to acquire skills directly mobilizable in the green economy, notably:",
+        "item1": "waste management and circular economy,",
+        "item2": "reforestation, ecological restoration, and maintenance of natural spaces,",
+        "item3": "sustainable agriculture and agroecology,",
+        "item4": "participation in international environmental protection projects,",
+        "item5": "environmental awareness and ecological mediation.",
+        "footer": "These skills are integrated into the training frameworks for judicial life assistants, so that they can themselves accompany audiences towards sustainable autonomy."
       },
-      "elderly": {
-        "title": "For the elderly",
-        "item1": "Deprivation of filial support: Loss of help from incarcerated children.",
-        "item2": "Parental vulnerability: Increased fragility due to absence of descendants.",
-        "item3": "Socio-affective weaning: Emotional isolation due to incarceration of loved ones."
+      "section3": {
+        "title": "III. Professional integration through environmental activity",
+        "description": "Lafaom‑Mao application centers constitute spaces for experimentation, situational work, and transition. They allow:",
+        "item1": "reception and care of persons in reintegration or social rupture,",
+        "item2": "immediate practice of environmental skills,",
+        "item3": "gradual integration into training workshops, territorial projects, or international partnerships related to the environment.",
+        "footer": "This approach promotes sustainable professional integration, while strengthening local capacities in environmental sectors."
       },
-      "human": {
-        "title": "For human beings",
-        "item1": "Health vulnerability: Increased health risks in detention.",
-        "item2": "Social vulnerability: Exclusion and stigmatization related to incarceration."
-      },
-      "conclusion": "In absolute terms, the number of victims of judicial decisions in Africa is higher than that of natural disasters or wars. The judicial system is inappropriate to the social model. Over the past two years, it has been about convincing funders, based on the 'nexus' approach, that this is a situation that falls under the humanitarian sector. This is a crisis to be classified among permanent humanitarian emergencies. The greatest success has been to get them to accept that intervention in this sector required specific know-how and know-how. That of social work professionals we have called: Judicial Life Assistants (JLA).",
-      "institute": "With the Academy Inspectors of the Ministry of National Education of Senegal, we were able to establish, in Ziguinchor, the LAFAOM-MAO Training Institute specialized in the 12-month training of Judicial Life Assistants. A training based on the Mao pedagogical system.",
-      "quote": "Being a Judicial Life Assistant means implementing individualized intervention plans for different wards to reduce the devastating effects of judicial decisions. It is about making justice more human and, therefore, more effective.",
-      "final": "At the LAFAOM-MAO Training Institute, we know that to help a person in a vulnerable situation, it is important that the Judicial Life Assistant has a respectable academic background. However, the pedagogical principles implemented allow us to adapt all academic levels to the desired operability. This is a challenge we have set ourselves."
+      "section4": {
+        "title": "IV. An inclusive and socially restorative ecological transition",
+        "description": "By directing often marginalized audiences towards environmental professions, the Institute contributes to a just transition, which combines:",
+        "item1": "social repair,",
+        "item2": "empowerment,",
+        "item3": "citizen participation,",
+        "item4": "reduction of inequalities,",
+        "item5": "equitable access to ecological transition opportunities.",
+        "footer": "The environment thus becomes a lever for personal reconstruction, professional reintegration, and social cohesion."
+      }
     },
     "activities": {
       "title": "recent activities",

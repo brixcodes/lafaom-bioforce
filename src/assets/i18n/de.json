@@ -142,37 +142,46 @@
       }
     },
     "coordinator": {
-      "title": "Das Wort des MAO-Programmkoordinators",
-      "intro": "Die LAFAOM-MAO Organisationen, einschließlich des LAFAOM-MAO Instituts von Ziguinchor im Senegal, gehören zum inter-afrikanischen LAFAOM-MAO Netzwerk, das vom MAO-Programm der LAFAOM-Vereinigung eingerichtet wurde. Dies ist ein Programm, das darauf abzielt, Menschen zu unterstützen, die direkt oder indirekt von Justizentscheidungen betroffen sind.",
-      "study": "Eine von 2020 bis 2023 im Justizsystem in Afrika durchgeführte Studie ergab, dass Justizentscheidungen, wie Bluthochdruck für den menschlichen Körper, stille Killer sind. Sie haben folgende Konsequenzen:",
-      "women": {
-        "title": "Für Frauen",
-        "item1": "Doppelte hausmännisch-häftliche Zuweisung: Vereinbarung häuslicher Rollen und Haftbeschränkungen.",
-        "item2": "Eheliche Solidarität unter strafrechtlichem Zwang: Unterstützung des inhaftierten Ehepartners trotz rechtlichem Druck.",
-        "item3": "Gefängnis-sexuelle Perversionen: Sexueller Missbrauch, der weibliche Häftlinge zum Ziel hat.",
-        "item4": "Sexueller Missbrauch unter Justizautorität: Ausbeutung durch Autoritätspersonen im Justizsystem."
+      "title": "Wort des Programmkoordinators",
+      "intro": "Das Ausbildungsinstitut Lafaom‑Mao mobilisiert den ökologischen Übergang als Hebel für Autonomie, Wiedereingliederung und Ausbildung im Justizbereich und bereitet schutzbedürftige Gruppen darauf vor, Berufe und Projekte im Zusammenhang mit dem Umweltschutz nachhaltig zu integrieren.",
+      "section1": {
+        "title": "I. Beitrag des Projekts zum Umweltsektor",
+        "description": "Das Ausbildungsinstitut Lafaom‑Mao entwickelt einen innovativen Ansatz, der berufliche Ausbildung im Justizbereich, Wiederherstellung der sozialen Autonomie und ökologischen Übergang miteinander verknüpft. Unsere Mission besteht darin, Lebensassistenten im Justizbereich auszubilden, deren Rolle es ist, Menschen, deren soziales Gleichgewicht durch eine Gerichtsentscheidung gestört wurde, in die Autonomie zu begleiten:",
+        "item1": "Personen unter gerichtlicher Aufsicht,",
+        "item2": "ehemalige Häftlinge in der Wiedereingliederung,",
+        "item3": "Kinder und Jugendliche in Not,",
+        "item4": "Familien und Angehörige von Inhaftierten,",
+        "item5": "Personen, die mit ihrem ursprünglichen Lebensumfeld gebrochen haben.",
+        "footer": "Dank einer kompetenzbasierten Pädagogik stützt sich das Institut auf seine Anwendungszentren, in denen diese Zielgruppen betreut, begleitet und auf eine nachhaltige Umorientierung vorbereitet werden. In diesem Rahmen integrieren wir Berufe und Projekte im Zusammenhang mit dem Umweltschutz vollumfänglich."
       },
-      "children": {
-        "title": "Für Kinder",
-        "item1": "Schulabbruch im Zusammenhang mit:",
-        "item2": "Inhaftierung eines Elternteils/Betreuers: Störung der familiären Betreuung.",
-        "item3": "Trennung der Eltern: Emotionale und soziale Instabilität."
+      "section2": {
+        "title": "II. Entwicklung von an den Justiz- und Sozialbereich angepassten Umweltkompetenzen",
+        "description": "Die Ausbildungsgänge umfassen operative Module, die es den Begünstigten ermöglichen, Kompetenzen zu erwerben, die direkt in der grünen Wirtschaft anwendbar sind, insbesondere:",
+        "item1": "Abfallmanagement und Kreislaufwirtschaft,",
+        "item2": "Aufforstung, ökologische Restaurierung und Pflege von Naturräumen,",
+        "item3": "nachhaltige Landwirtschaft und Agroökologie,",
+        "item4": "Teilnahme an internationalen Umweltschutzprojekten,",
+        "item5": "Umweltbewusstsein und ökologische Mediation.",
+        "footer": "Diese Kompetenzen sind in die Ausbildungsrahmenpläne der Lebensassistenten im Justizbereich integriert, damit diese selbst Zielgruppen zu einer nachhaltigen Autonomie begleiten können."
       },
-      "elderly": {
-        "title": "Für ältere Menschen",
-        "item1": "Entzug der kindlichen Unterstützung: Verlust der Hilfe von inhaftierten Kindern.",
-        "item2": "Elterliche Verwundbarkeit: Erhöhte Zerbrechlichkeit durch Abwesenheit von Nachkommen.",
-        "item3": "Sozio-affektives Entwöhnen: Emotionale Isolation durch Inhaftierung von Angehörigen."
+      "section3": {
+        "title": "III. Berufliche Integration durch Umweltaktivität",
+        "description": "Die Anwendungszentren von Lafaom‑Mao bilden Räume für Experimente, Situationsarbeit und Übergang. Sie ermöglichen:",
+        "item1": "die Aufnahme und Betreuung von Personen in der Wiedereingliederung oder im sozialen Bruch,",
+        "item2": "die unmittelbare praktische Anwendung von Umweltkompetenzen,",
+        "item3": "die schrittweise Integration in Lehrwerkstätten, territoriale Projekte oder internationale Partnerschaften im Umweltbereich.",
+        "footer": "Dieser Ansatz fördert eine nachhaltige berufliche Integration und stärkt gleichzeitig die lokalen Kapazitäten im Umweltsektor."
       },
-      "human": {
-        "title": "Für den Menschen",
-        "item1": "Gesundheitsverwundbarkeit: Erhöhte Gesundheitsrisiken in Haft.",
-        "item2": "Soziale Verwundbarkeit: Ausschluss und Stigmatisierung im Zusammenhang mit Inhaftierung."
-      },
-      "conclusion": "In absoluten Zahlen ist die Anzahl der Opfer von Justizentscheidungen in Afrika höher als die von Naturkatastrophen oder Kriegen. Das Justizsystem ist ungeeignet für das soziale Modell. In den letzten beiden Jahren ging es darum, Geldgeber davon zu überzeugen, basierend auf dem 'Nexus'-Ansatz, dass dies eine Situation ist, die in den humanitären Sektor fällt. Dies ist eine Krise, die zu den permanenten humanitären Notfällen zu zählen ist. Der größte Erfolg war, sie dazu zu bringen zu akzeptieren, dass Interventionen in diesem Sektor spezifisches Know-how und spezifisches Verhalten erfordern. Das von Sozialarbeitsfachkräften, die wir genannt haben: Lebensassistenten im Justizbereich (LAJ).",
-      "institute": "Mit den Akademieinspektoren des Ministeriums für nationale Bildung des Senegal konnten wir in Ziguinchor das LAFAOM-MAO Ausbildungsinstitut einrichten, das auf die 12-monatige Ausbildung von Lebensassistenten im Justizbereich spezialisiert ist. Eine Ausbildung, die auf dem Mao-Pädagogiksystem basiert.",
-      "quote": "Lebensassistent im Justizbereich zu sein bedeutet, individualisierte Interventionspläne für verschiedene Mündel umzusetzen, um die verheerenden Auswirkungen von Justizentscheidungen zu reduzieren. Es geht darum, die Justiz menschlicher und damit effektiver zu machen.",
-      "final": "Am LAFAOM-MAO Ausbildungsinstitut wissen wir, dass es wichtig ist, dass der Lebensassistent im Justizbereich einen respektablen akademischen Hintergrund hat, um einer Person in einer verwundbaren Situation zu helfen. Die pädagogischen Prinzipien, die wir anwenden, ermöglichen es uns jedoch, alle akademischen Niveaus an die gewünschte Funktionalität anzupassen. Das ist eine Herausforderung, die wir uns gestellt haben."
+      "section4": {
+        "title": "IV. Ein inklusiver und sozial restaurativer ökologischer Übergang",
+        "description": "Durch die Ausrichtung oft marginalisierter Zielgruppen auf Umweltberufe trägt das Institut zu einem gerechten Übergang bei, der Folgendes verbindet:",
+        "item1": "soziale Reparatur,",
+        "item2": "Ermächtigung,",
+        "item3": "bürgerschaftliche Beteiligung,",
+        "item4": "Reduzierung von Ungleichheiten,",
+        "item5": "gerechter Zugang zu den Chancen des ökologischen Übergangs.",
+        "footer": "Die Umwelt wird so zu einem Hebel für den persönlichen Wiederaufbau, die berufliche Wiedereingliederung und den sozialen Zusammenhalt."
+      }
     },
     "activities": {
       "title": "Aktuelle Aktivitäten",
