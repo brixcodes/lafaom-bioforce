@@ -13,14 +13,118 @@
   display: block;
 }
 
+/* Positionner les éléments sur l'image */
+.owl-introSlider .item {
+  position: relative;
+}
+
+.owl-introSlider .wrp-img {
+  position: relative;
+  width: 100%;
+}
+
 /* S'assurer que les images sont visibles immédiatement */
 .owl-introSlider .wrp-img img {
   display: block;
   width: 100%;
   height: auto;
+  min-height: 400px;
+  object-fit: cover;
+}
+
+/* Positionner le texte sur l'image */
+.owl-introSlider .item h1,
+.owl-introSlider .item p,
+.owl-introSlider .item .btn-cta {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  max-width: 90%;
+}
+
+.owl-introSlider .item h1 {
+  top: 30%;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.owl-introSlider .item p {
+  top: 50%;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.owl-introSlider .item .btn-cta {
+  top: 70%;
+  background: #D14B6B;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(209, 75, 107, 0.4);
+}
+
+.owl-introSlider .item .btn-cta:hover {
+  background: #B83D5A;
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 6px 16px rgba(209, 75, 107, 0.6);
 }
 
 /* Précharger la première image en priorité */
 .owl-introSlider .item:first-child .wrp-img img {
   content-visibility: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .owl-introSlider .wrp-img img {
+    min-height: 300px;
+  }
+
+  .owl-introSlider .item h1 {
+    font-size: 1.8rem;
+    top: 25%;
+  }
+
+  .owl-introSlider .item p {
+    font-size: 1rem;
+    top: 45%;
+  }
+
+  .owl-introSlider .item .btn-cta {
+    top: 65%;
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .owl-introSlider .wrp-img img {
+    min-height: 250px;
+  }
+
+  .owl-introSlider .item h1 {
+    font-size: 1.4rem;
+    top: 20%;
+  }
+
+  .owl-introSlider .item p {
+    font-size: 0.9rem;
+    top: 40%;
+  }
+
+  .owl-introSlider .item .btn-cta {
+    top: 60%;
+    padding: 8px 20px;
+    font-size: 13px;
+  }
 }

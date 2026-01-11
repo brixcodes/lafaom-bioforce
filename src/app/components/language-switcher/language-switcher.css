@@ -7,7 +7,7 @@
 .language-switcher .dropdown-toggle-mobile {
   cursor: pointer;
   text-decoration: none;
-  color: white;
+  color: #333;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -25,13 +25,13 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.05);
   font-size: 16px;
   transition: all 0.3s ease;
 }
 
 .language-switcher:hover .language-flag-circle {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(209, 75, 107, 0.1);
   transform: scale(1.05);
 }
 
@@ -39,17 +39,19 @@
 .language-switcher .dropdown-menu-mobile {
   position: absolute;
   top: 100%;
-  left: 0;
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  box-shadow: none;
-  min-width: 150px;
+  right: 0;
+  left: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
+  padding: 5px 0;
 }
 
 /* Afficher le menu quand la classe .show est présente */
@@ -63,21 +65,22 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 15px;
-  color: white;
+  padding: 10px 15px;
+  color: #333;
   text-decoration: none;
   font-size: 14px;
   transition: all 0.3s ease;
 }
 
 .language-switcher .dropdown-menu-mobile a:hover {
-  background-color: transparent;
+  background-color: #f8f9fa;
   color: #D14B6B;
 }
 
 .language-switcher .dropdown-menu-mobile a.active {
   color: #D14B6B;
   font-weight: 500;
+  background-color: #f8f9fa;
 }
 
 .lang-flag {
@@ -87,7 +90,7 @@
 
 .lang-name {
   flex: 1;
-  color: white;
+  color: #333;
 }
 
 .language-switcher .dropdown-menu-mobile a:hover .lang-name {
@@ -104,56 +107,85 @@
   margin-left: auto;
 }
 
-/* Styles pour le header scrollé */
-#header.scrolled .language-switcher .dropdown-toggle-mobile {
-  color: #333;
-}
-
-#header.scrolled .language-switcher .dropdown-toggle-mobile:hover {
-  color: #D14B6B;
-}
-
-#header.scrolled .language-flag-circle {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-#header.scrolled .language-switcher:hover .language-flag-circle {
-  background: rgba(209, 75, 107, 0.1);
-}
-
-#header.scrolled .language-switcher .dropdown-menu-mobile a {
-  color: #333;
-}
-
-#header.scrolled .language-switcher .dropdown-menu-mobile a .lang-name {
-  color: #333;
-}
-
-#header.scrolled .language-switcher .dropdown-menu-mobile a:hover {
-  color: #D14B6B;
-}
-
-#header.scrolled .language-switcher .dropdown-menu-mobile a:hover .lang-name {
-  color: #D14B6B;
-}
-
-#header.scrolled .language-switcher .dropdown-menu-mobile a.active .lang-name {
-  color: #D14B6B;
-}
-
 /* Responsive */
+@media (max-width: 991px) {
+  .language-flag-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 768px) {
+  /* Sélecteur de langue compact sur mobile */
+  .language-switcher {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .language-flag-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .language-switcher .dropdown-toggle-mobile {
+    padding: 5px;
+  }
+
+  /* Menu déroulant mobile */
   .language-switcher .dropdown-menu-mobile {
-    position: static;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    margin-top: 5px;
+    padding: 5px 0;
+  }
+
+  .language-switcher .dropdown-menu-mobile.show {
     opacity: 1;
     visibility: visible;
-    transform: none;
-    box-shadow: none;
-    border: none;
-    background: #f8f9fa;
+    transform: translateY(0);
   }
   
   .language-switcher .dropdown-menu-mobile a {
     color: #333;
+    padding: 10px 15px;
+  }
+
+  .language-switcher .dropdown-menu-mobile a .lang-name {
+    color: #333;
+  }
+
+  .language-switcher .dropdown-menu-mobile a:hover {
+    background-color: #f8f9fa;
+    color: #D14B6B;
+  }
+
+  .language-switcher .dropdown-menu-mobile a:hover .lang-name {
+    color: #D14B6B;
+  }
+
+  .language-switcher .dropdown-menu-mobile a.active {
+    background-color: #f8f9fa;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-flag-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .language-switcher .dropdown-menu-mobile {
+    min-width: 115px;
   }
 }

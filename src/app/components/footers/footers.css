@@ -1,0 +1,98 @@
+/* Footer responsive styles */
+
+/* Gestion du margin-left inline du HTML */
+.footer-our-centers {
+  margin-left: 300px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .footer-our-centers {
+    margin-left: 100px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .footer-our-centers {
+    margin-left: 50px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Layout en colonne sur mobile */
+  .footer-top .d-block {
+    display: flex !important;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-contact {
+    max-width: 100%;
+  }
+
+  .footer-our-centers {
+    margin-left: 0 !important;
+    max-width: 100%;
+  }
+
+  /* Ajuster les tailles d'images */
+  .footer-contact img {
+    max-width: 180px;
+    height: auto;
+  }
+
+  /* Réseaux sociaux */
+  .social-networks a {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Padding du footer */
+  #footer {
+    padding: 30px 15px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Très petits écrans */
+  #footer {
+    padding: 20px 10px 10px;
+  }
+
+  .footer-top .d-block {
+    gap: 25px;
+  }
+
+  .footer-contact img {
+    max-width: 150px;
+  }
+
+  .footer-contact address {
+    font-size: 14px;
+  }
+
+  .footer-our-centers h4 {
+    font-size: 16px;
+  }
+
+  .footer-our-centers h5 {
+    font-size: 15px;
+  }
+
+  .footer-our-centers address {
+    font-size: 14px;
+  }
+
+  .social-networks li {
+    margin-right: 10px;
+  }
+
+  .social-networks a {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-networks i {
+    font-size: 14px;
+  }
+}
