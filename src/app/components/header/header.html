@@ -1,32 +1,10 @@
-<header id="header" class="container-fluid position-absolute" [class.scrolled]="isScrolled">
-    <!-- Top bar: logo, langue, burger -->
-    <div class="header-top d-flex align-items-center justify-content-between">
-        <!-- Logo à gauche -->
-        <div class="header-logo-container">
-            <a href="/" title="LAFAOM-MAO">
-                <img src="logo.png" alt="LAFAOM-MAO" class="header-logo-top">
-            </a>
-        </div>
-
-        <!-- Sélecteur de langue au centre/droite -->
-        <div class="header-right d-flex align-items-center gap-3">
-            <app-language-switcher></app-language-switcher>
-            
-            <!-- Menu burger -->
-            <button class="hamburger hamburger--spring js-hamburger" 
-                    type="button" 
-                    aria-label="Menu"
-                    (click)="toggleMobileMenu()">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-        </div>
-    </div>
-
-    <!-- Menu desktop (caché sur mobile) -->
-    <div class="header-desktop-menu">
+<header id="header" class="container-fluid" [class.scrolled]="isScrolled" style="background: transparent !important;">
+    <!-- Top bar desktop: langue, liens top, login -->
+    <div class="header-top-desktop d-none d-lg-flex align-items-center justify-content-end">
         <ul class="list-inline nav-top">
+            <li class="list-inline-item lang-switch">
+                <app-language-switcher></app-language-switcher>
+            </li>
             <li class="list-inline-item"><a href="/" title="LAFAOM-MAO">{{ 'navigation.home' | translate }}</a></li>
             <li class="list-inline-item dropdown-mobile">
                 <a href="#" title="Guide" class="dropdown-toggle-mobile">
@@ -138,9 +116,40 @@
             'header.spaceCandidate' | translate }}</a>
     </div>
 
+    <!-- Bottom bar desktop: logo -->
+    <div class="header-bottom-desktop d-none d-lg-flex align-items-end justify-content-between">
+        <div class="logo">
+            <a href="/" title="homepage">
+                <img src="logo.png" alt="LAFAOM-MAO" class="header-logo">
+                <span class="sr-only">LAFAOM-MAO</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header mobile: logo, langue, burger -->
+    <div class="header-mobile d-flex d-lg-none align-items-center justify-content-between">
+        <div class="header-logo-container">
+            <a href="/" title="LAFAOM-MAO">
+                <img src="logo.png" alt="LAFAOM-MAO" class="header-logo-mobile">
+            </a>
+        </div>
+
+        <div class="header-right d-flex align-items-center gap-3">
+            <app-language-switcher></app-language-switcher>
+            
+            <button class="hamburger hamburger--spring js-hamburger" 
+                    type="button" 
+                    aria-label="Menu"
+                    (click)="toggleMobileMenu()">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+
     <!-- Menu mobile (sidebar) -->
     <div class="sub-menu">
-        <!-- Header du menu mobile avec logo -->
         <div class="mobile-menu-header">
             <img src="logo.png" alt="LAFAOM-MAO" class="mobile-menu-logo">
             <button class="mobile-menu-close" (click)="toggleMobileMenu()" aria-label="Fermer le menu">
@@ -148,12 +157,10 @@
             </button>
         </div>
 
-        <!-- Barre de recherche -->
         <div class="mobile-search">
             <input type="text" class="mobile-search-input" placeholder="{{ 'header.search' | translate }}">
         </div>
 
-        <!-- Liens version mobile -->
         <div class="display_mobile">
             <ul class="list-inline nav-top">
                 <li class="list-inline-item">
@@ -162,7 +169,6 @@
                     </a>
                 </li>
 
-                <!-- Menu Guide avec accordéon -->
                 <li class="list-inline-item">
                     <div class="mobile-submenu-toggle" 
                          [class.open]="isMobileSubmenuOpen('guide')"
@@ -180,7 +186,6 @@
                     </div>
                 </li>
 
-                <!-- Menu Actualités avec accordéon -->
                 <li class="list-inline-item">
                     <div class="mobile-submenu-toggle" 
                          [class.open]="isMobileSubmenuOpen('news')"
@@ -204,7 +209,6 @@
                     </div>
                 </li>
 
-                <!-- Menu Formations avec accordéon -->
                 <li class="list-inline-item">
                     <div class="mobile-submenu-toggle" 
                          [class.open]="isMobileSubmenuOpen('training')"
@@ -217,7 +221,6 @@
                             {{ 'navigation.coordinatorMessage' | translate }}
                         </a>
                         
-                        <!-- Sous-menu Spécialités -->
                         <div class="mobile-submenu-toggle" 
                              [class.open]="isMobileSubmenuOpen('specialties')"
                              (click)="toggleMobileSubmenu('specialties', $event)">
