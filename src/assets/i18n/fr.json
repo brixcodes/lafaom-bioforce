@@ -162,9 +162,15 @@
       "trainingEndTitle": "Fin de formation",
       "trainingEndDescription": "12 mois après le début de la formation de l'apprenant",
       "diplomaTitle": "Remise des diplômes",
-      "diplomaDescription": "1 mois après le retour du stage d'acculturation en environnement et économie vert",
+      "diplomaDescription": "1 mois après le retour du stage d'acculturation en environnement et économie verte",
       "assignmentTitle": "Affectation au poste de travail",
       "assignmentDescription": "1 mois après la remise des diplômes"
+    },
+    "organizationalChart": {
+      "title":"Organigramme de l'Institut LAFAOM-MAO",
+      "description":"Structure organisationnelle de l'Institut LAFAOM-MAO"
+
+
     },
     "budgetDiscussion": {
       "title": "Mécanisme de financement de l'Institut Lafaom-Mao",

@@ -681,6 +681,10 @@
       "assignmentTitle": "Zuweisung zum Arbeitsplatz",
       "assignmentDescription": "1 Monat nach der Diplomfeier"
     },
+         "organizationalChart": {
+"title": "Organigramm des Instituts LAFAOM-MAO",
+"description": "Organisationsstruktur des Instituts LAFAOM-MAO"
+},
     "budgetDiscussion": {
       "title": "Finanzierungsmechanismus des Lafaom-Mao-Instituts",
       "description": "Das Finanzierungsmodell ist hybrid und dreht sich um ein Opfer einer Justizentscheidung, mit:",
