@@ -852,6 +852,7 @@
       "nextStepsDescription": "If you are called for an interview, prepare in advance.",
       "payByTransfer": "Pay by bank transfer",
       "payOnline": "Pay directly online",
+      "paymentNotAvailable": "Not available at the moment",
       "paymentMethod": "Payment method",
       "phoneMinLength": "Phone must contain at least 8 characters",
       "qualifications": "Qualifications and proposals",

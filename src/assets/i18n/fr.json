@@ -334,6 +334,7 @@
       "paymentMethod": "Méthode de paiement",
       "selectPaymentMethod": "Sélectionner votre méthode de paiement",
       "payOnline": "Payer directement en ligne",
+      "paymentNotAvailable": "Non disponible pour le moment",
       "payByTransfer": "Payer par virement bancaire",
       "bankAccountInfo": "Informations du compte bancaire",
       "bank": "Banque",

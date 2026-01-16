@@ -46,12 +46,16 @@ export class FormTraining implements OnInit {
       address: [''],
       date_of_birth: [''],
       target_session_id: ['', [Validators.required]],
-      payment_method: ['ONLINE', [Validators.required]]
+      payment_method: ['TRANSFER', [Validators.required]]  // TRANSFER par défaut
     });
   }
 
   ngOnInit(): void {
     this.trainingId = this.route.snapshot.paramMap.get('id');
+
+    // Définir la méthode de paiement par défaut sur TRANSFER
+    this.paymentMethod = 'TRANSFER';
+    this.form.patchValue({ payment_method: 'TRANSFER' });
 
     // Pour les formations, pas de pièces jointes par défaut
     this.requiredAttachments = [];
@@ -104,33 +108,14 @@ export class FormTraining implements OnInit {
   onFileChange(event: any, attachmentType: string): void {
     const file = event.target.files[0];
     if (file) {
-      this.uploadFile(file, attachmentType);
+      // Stocker directement le fichier sans l'uploader sur S3
+      this.uploadedFiles[attachmentType] = {
+        file: file,
+        url: '', // Pas besoin d'URL pour l'instant
+        name: file.name
+      };
+      console.log('📎 [FORM-TRAINING] Fichier sélectionné:', this.uploadedFiles[attachmentType]);
     }
-  }
-
-  uploadFile(file: File, attachmentType: string): void {
-    const fileName = `${attachmentType}`;
-    this.uploadingFiles[attachmentType] = true;
-
-    this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
-      next: (response: any) => {
-        this.uploadingFiles[attachmentType] = false;
-        console.log('📎 [FORM-TRAINING] Réponse upload:', response);
-        if (response.data && response.data.length > 0) {
-          this.uploadedFiles[attachmentType] = {
-            file: file,
-            url: response.data[0].url || response.data[0].file_path,
-            name: response.data[0].name
-          };
-          console.log('📎 [FORM-TRAINING] Fichier stocké:', this.uploadedFiles[attachmentType]);
-        }
-      },
-      error: (error: any) => {
-        console.error(`Erreur lors de l'upload du fichier ${attachmentType}:`, error);
-        this.uploadingFiles[attachmentType] = false;
-        this.submitError = `Erreur lors de l'upload du fichier ${attachmentType}: ${error.error?.message || error.message}`;
-      }
-    });
   }
 
   getAttachmentControlName(type: string): string {
@@ -169,17 +154,7 @@ export class FormTraining implements OnInit {
     this.isSubmitting = true;
     this.submitError = null;
 
-    // Préparer les pièces jointes - l'API attend un tableau d'objets { type, url }
-const attachments = Object.keys(this.uploadedFiles).map((key) => {
-  const file = this.uploadedFiles[key];
-  return {
-    type: key,        // 'BANK_TRANSFER_RECEIPT'
-    url: file.url,    // L'URL du fichier
-    name: file.name   // Le nom du fichier
-  };
-});
-
-
+    // ÉTAPE 1: Créer la candidature SANS attachments
     const payload: StudentApplicationCreateInput = {
       email: this.form.value.email,
       target_session_id: this.form.value.target_session_id,
@@ -191,42 +166,76 @@ const attachments = Object.keys(this.uploadedFiles).map((key) => {
       city: this.form.value.city,
       address: this.form.value.address,
       date_of_birth: this.form.value.date_of_birth,
-      payment_method: this.form.value.payment_method || this.paymentMethod,
-      attachments: attachments
+      payment_method: this.form.value.payment_method || this.paymentMethod
+      // PAS d'attachments ici
     };
 
-    console.log('📤 [FORM-TRAINING] Soumission avec pièces jointes:', payload);
-
-
-    console.log('📤 [FORM-TRAINING] Soumission avec pièces jointes:', payload);
+    console.log('📤 [FORM-TRAINING] ÉTAPE 1: Création de la candidature sans attachments:', payload);
 
     this.trainingService.createStudentApplication(payload).subscribe({
       next: (response: StudentApplicationResponse) => {
-        this.isSubmitting = false;
-        console.log('✅ [FORM-TRAINING] Candidature créée avec succès:', response);
+        console.log('✅ [FORM-TRAINING] ÉTAPE 1: Candidature créée avec succès:', response);
+        console.log('📊 [FORM-TRAINING] Structure de response.data:', response.data);
 
-        // Vérifier si c'est un paiement en ligne
-        if (response.data.payment && response.data.payment.payment_link) {
-          // Redirection vers le lien de paiement
-          window.location.href = response.data.payment.payment_link;
+        // ÉTAPE 2: Uploader les attachments si nécessaire
+        if (this.paymentMethod === 'TRANSFER' && this.uploadedFiles['BANK_TRANSFER_RECEIPT']) {
+          // Accéder directement à response.data.id (pas de student_application)
+          const applicationId = (response.data as any).id;
+          const file = this.uploadedFiles['BANK_TRANSFER_RECEIPT'].file;
+
+          console.log('📤 [FORM-TRAINING] ÉTAPE 2: Upload du reçu bancaire pour application:', applicationId);
+
+          this.trainingService.uploadStudentApplicationAttachment(
+            applicationId.toString(),
+            'BANK_TRANSFER_RECEIPT',
+            file
+          ).subscribe({
+            next: (uploadResponse: any) => {
+              console.log('✅ [FORM-TRAINING] ÉTAPE 2: Reçu bancaire uploadé avec succès:', uploadResponse);
+              this.isSubmitting = false;
+
+              // Redirection vers la page de succès
+              this.router.navigate(['/recruitment/success'], {
+                queryParams: {
+                  applicationNumber: (response.data as any).application_number,
+                  subscriptionType: 'FORMATION',
+                  paymentMethod: (response.data as any).payment_method,
+                  amount: (response.data as any).submission_fee,
+                  currency: (response.data as any).currency
+                }
+              });
+            },
+            error: (uploadErr: any) => {
+              console.error('❌ [FORM-TRAINING] ÉTAPE 2: Erreur lors de l\'upload du reçu:', uploadErr);
+              this.isSubmitting = false;
+              this.submitError = uploadErr?.error?.message || 'Erreur lors de l\'upload du reçu bancaire';
+            }
+          });
         } else {
-          // Redirection vers la page de succès avec les informations de paiement
-        this.router.navigate(['/recruitment/success'], {
-      queryParams: {
-        applicationNumber: (response.data as any).application_number,
-        subscriptionType: 'FORMATION',
-        paymentMethod: (response.data as any).payment_method,
-        amount: (response.data as any).payment?.amount ?? (response.data as any).training_fee,
-        currency: (response.data as any).payment?.currency ?? (response.data as any).currency
-      }
-    });
+          // Pas d'upload nécessaire (paiement en ligne)
+          this.isSubmitting = false;
+
+          // Vérifier si c'est un paiement en ligne avec lien
+          if ((response.data as any).payment && (response.data as any).payment.payment_link) {
+            window.location.href = (response.data as any).payment.payment_link;
+          } else {
+            // Redirection vers la page de succès
+            this.router.navigate(['/recruitment/success'], {
+              queryParams: {
+                applicationNumber: (response.data as any).application_number,
+                subscriptionType: 'FORMATION',
+                paymentMethod: (response.data as any).payment_method,
+                amount: (response.data as any).submission_fee,
+                currency: (response.data as any).currency
+              }
+            });
+          }
         }
       },
       error: (err: any) => {
         this.isSubmitting = false;
-        // Si c'est un message d'erreur de l'API, l'afficher tel quel, sinon utiliser une clé de traduction
         this.submitError = err?.error?.message || 'submissionError';
-        console.error('❌ [FORM-TRAINING] Erreur lors de la soumission:', err);
+        console.error('❌ [FORM-TRAINING] ÉTAPE 1: Erreur lors de la création de la candidature:', err);
       }
     });
   }

@@ -179,6 +179,17 @@ export class TrainingService {
   }
 
   /**
+   * Upload attachment to existing student application
+   */
+  uploadStudentApplicationAttachment(applicationId: string, name: string, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('file', file);
+
+    return this.http.post(`${this.baseUrl}/my-student-applications/${applicationId}/attachments`, formData);
+  }
+
+  /**
    * Compter les sessions disponibles (non commencées) d'une formation
    */
   getAvailableSessionsCount(trainingId: string): Observable<number> {
