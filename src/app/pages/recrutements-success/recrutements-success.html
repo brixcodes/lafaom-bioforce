@@ -6,8 +6,9 @@
         </div>
         <div class="page-header-inner">
             <div class="page-title">
-                <span class="d-block page-parent">Candidature</span>
-                <h1>Candidature soumise</h1>
+                <span class="d-block page-parent">{{ subscriptionType === 'FORMATION' ? 'Formation' : 'Candidature'
+                    }}</span>
+                <h1>{{ subscriptionType === 'FORMATION' ? 'Inscription enregistrée' : 'Candidature soumise' }}</h1>
             </div>
         </div>
     </div>
@@ -20,12 +21,27 @@
                     <!-- Success Card -->
                     <div data-wpr-lazyrender="1" class="container-1440">
                         <div class="section-textriche">
-                            <h2 class="title-h2">Candidature soumise avec succès</h2>
+                            <h2 class="title-h2">
+                                {{ subscriptionType === 'FORMATION' ? 'Inscription enregistrée avec succès' :
+                                'Candidature soumise avec succès' }}
+                            </h2>
 
-                            <p>Votre candidature a été enregistrée avec succès dans notre système.</p>
+                            <p>
+                                {{ subscriptionType === 'FORMATION' ?
+                                'Votre inscription à la formation a été enregistrée avec succès dans notre système.' :
+                                'Votre candidature a été enregistrée avec succès dans notre système.' }}
+                            </p>
+
                             <p *ngIf="applicationNumber">
                                 <strong>
-                                    Numéro de candidature : {{ applicationNumber }}
+                                    Numéro de {{ subscriptionType === 'FORMATION' ? 'dossier' : 'candidature' }} : {{
+                                    applicationNumber }}
+                                </strong>
+                            </p>
+
+                            <p *ngIf="subscriptionType === 'FORMATION' && amount">
+                                <strong>
+                                    Montant des frais : {{ amount }} {{ currency || 'EUR' }}
                                 </strong>
                             </p>
                         </div>
@@ -34,11 +50,30 @@
                     <div class="section-textriche">
                         <div class="section-textriche">
                             <h2 class="title-h2">Prochaines étapes</h2>
-                            <p>
-                                Si vous êtes convoqué pour un entretien, préparez-vous en amont.
-                            </p>
-                            <ul>
+
+                            <ul *ngIf="subscriptionType === 'FORMATION'">
+                                <li *ngIf="paymentMethod === 'TRANSFER'">
+                                    Votre reçu de virement a été reçu et sera vérifié par notre équipe comptable.
+                                </li>
+                                <li *ngIf="paymentMethod === 'ONLINE' && !paymentLink">
+                                    Votre paiement a été enregistré avec succès.
+                                </li>
                                 <li>
+                                    Vous recevrez un email de confirmation contenant les détails de votre inscription.
+                                </li>
+                                <li>
+                                    Votre dossier sera étudié par notre équipe pédagogique.
+                                </li>
+                                <li>
+                                    Vous serez informé de la suite de votre admission par email.
+                                </li>
+                            </ul>
+
+                            <ul *ngIf="subscriptionType !== 'FORMATION'">
+                                <li>
+                                    Si vous êtes convoqué pour un entretien, préparez-vous en amont.
+                                </li>
+                                <li *ngIf="!paymentMethod || paymentMethod === 'ONLINE'">
                                     Effectuez le paiement des frais d'étude de dossier en cliquant sur le bouton
                                     <strong>Continuer vers le paiement</strong>
                                 </li>
@@ -54,35 +89,25 @@
                             </ul>
                         </div>
 
+                        <!-- Action Buttons -->
+                        <div class="action-buttons text-center mt-4">
+                            <a [routerLink]="subscriptionType === 'FORMATION' ? '/admission-process' : '/recruitment'"
+                                class="btn btn-secondary me-3">
+                                Retour aux {{ subscriptionType === 'FORMATION' ? 'formations' : 'offres d\'emploi' }}
+                            </a>
 
-
-                        <!-- Next Steps -->
-                        <div data-wpr-lazyrender="1" class="container-1440">
-                            <div class="section-textriche">
-
-                                <ul>
-
-                                </ul>
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="action-buttons text-center">
-                                <a routerLink="/recruitment" class="btn btn-secondary me-3">
-                                     Retour aux offres d'emploi
-                                </a>
-
-                                <a *ngIf="paymentLink" class="btn btn-primary mx-2" [href]="paymentLink" target="_blank"
-                                    rel="noopener">
-                                    Continuer vers le paiement
-                                </a>
-                            </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
+                            <a *ngIf="paymentLink" class="btn btn-primary mx-2" [href]="paymentLink" target="_blank"
+                                rel="noopener">
+                                Continuer vers le paiement
+                            </a>
                         </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

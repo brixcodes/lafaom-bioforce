@@ -76,6 +76,7 @@ export const routes: Routes = [
   { path: 'form-cabinet', component: FormCabinet },
   { path: 'recruitment/candidature/:id', component: JobApplicationSection },
   { path: 'recruitment/success', component: RecrutementsSuccess },
+  { path: 'training/success', component: RecrutementsSuccess },
 
   // ===== PAGES DE PROCESSUS =====
   { path: 'process-recruitment', component: ProcessRecruitment },
@@ -88,7 +89,7 @@ export const routes: Routes = [
   { path: 'ingenierie-systemique', component: WelcomeSupport },
   { path: 'training-schedule', component: TrainingSchedule },
   { path: 'admission-process', component: AdmissionProcess },
-  
+
   // Redirections pour les anciennes URLs (compatibilité)
   { path: 'assistance-technician', redirectTo: 'fondement-associatif', pathMatch: 'full' },
   { path: 'penitentiary-support', redirectTo: 'cadre-operationnel', pathMatch: 'full' },

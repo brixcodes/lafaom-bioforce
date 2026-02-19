@@ -195,7 +195,7 @@ export class FormTraining implements OnInit {
               this.isSubmitting = false;
 
               // Redirection vers la page de succès
-              this.router.navigate(['/recruitment/success'], {
+              this.router.navigate(['/training/success'], {
                 queryParams: {
                   applicationNumber: (response.data as any).application_number,
                   subscriptionType: 'FORMATION',
@@ -220,7 +220,7 @@ export class FormTraining implements OnInit {
             window.location.href = (response.data as any).payment.payment_link;
           } else {
             // Redirection vers la page de succès
-            this.router.navigate(['/recruitment/success'], {
+            this.router.navigate(['/training/success'], {
               queryParams: {
                 applicationNumber: (response.data as any).application_number,
                 subscriptionType: 'FORMATION',

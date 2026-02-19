@@ -12,13 +12,21 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 export class RecrutementsSuccess implements OnInit {
   applicationNumber: string | null = null;
   paymentLink: string | null = null;
+  subscriptionType: string | null = null;
+  paymentMethod: string | null = null;
+  amount: string | null = null;
+  currency: string | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.applicationNumber = params['applicationNumber'] || null;
       this.paymentLink = params['paymentLink'] || null;
+      this.subscriptionType = params['subscriptionType'] || null;
+      this.paymentMethod = params['paymentMethod'] || null;
+      this.amount = params['amount'] || null;
+      this.currency = params['currency'] || null;
     });
   }
 }
