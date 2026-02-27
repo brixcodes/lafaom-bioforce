@@ -53,9 +53,9 @@ export class FormTraining implements OnInit {
   ngOnInit(): void {
     this.trainingId = this.route.snapshot.paramMap.get('id');
 
-    // Définir la méthode de paiement par défaut sur TRANSFER
-    this.paymentMethod = 'TRANSFER';
-    this.form.patchValue({ payment_method: 'TRANSFER' });
+    // Définir la méthode de paiement par défaut sur ONLINE
+    this.paymentMethod = 'ONLINE';
+    this.form.patchValue({ payment_method: 'ONLINE' });
 
     // Pour les formations, pas de pièces jointes par défaut
     this.requiredAttachments = [];
@@ -162,7 +162,7 @@ export class FormTraining implements OnInit {
       last_name: this.form.value.last_name,
       phone_number: this.form.value.phone_number,
       civility: this.form.value.civility,
-      country_code: 'SN', // Sénégal par défaut
+      country_code: this.form.value.country_code || 'SN', // Utilise la valeur du formulaire
       city: this.form.value.city,
       address: this.form.value.address,
       date_of_birth: this.form.value.date_of_birth,

@@ -21,6 +21,7 @@ import { FormRecuitement } from './pages/form-recuitement/form-recuitement';
 import { FormJoboffert } from './pages/form-joboffert/form-joboffert';
 import { FormCabinet } from './pages/form-cabinet/form-cabinet';
 import { RecrutementsSuccess } from './pages/recrutements-success/recrutements-success';
+import { PaymentStatus } from './pages/payment-status/payment-status';
 
 // Composants de candidature
 import { JobApplicationSection } from './components/recrutements/section-1/section-1';
@@ -77,6 +78,8 @@ export const routes: Routes = [
   { path: 'recruitment/candidature/:id', component: JobApplicationSection },
   { path: 'recruitment/success', component: RecrutementsSuccess },
   { path: 'training/success', component: RecrutementsSuccess },
+  { path: 'payment/success', component: PaymentStatus },
+  { path: 'payment/error', component: PaymentStatus },
 
   // ===== PAGES DE PROCESSUS =====
   { path: 'process-recruitment', component: ProcessRecruitment },

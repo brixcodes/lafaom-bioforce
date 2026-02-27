@@ -432,6 +432,19 @@
                                                                         formControlName="address" class="form-control">
                                                                 </div>
                                                                 <div class="col-md-6">
+                                                                    <label for="country_code" class="form-label">{{
+                                                                        'training.application.country' | translate }}
+                                                                        <span class="text-danger">*</span></label>
+                                                                    <select id="country_code"
+                                                                        formControlName="country_code"
+                                                                        class="form-control">
+                                                                        <option value="SN">Sénégal</option>
+                                                                        <option value="CM">Cameroun</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-12">
                                                                     <label for="city" class="form-label">{{
                                                                         'training.application.city' | translate
                                                                         }}</label>
@@ -439,9 +452,6 @@
                                                                         class="form-control">
                                                                 </div>
                                                             </div>
-
-                                                            <!-- Champ pays masqué avec valeur par défaut SN -->
-                                                            <input type="hidden" formControlName="country_code">
 
                                                             <!-- Note sur les documents -->
                                                             <!-- <div class="mb-4">

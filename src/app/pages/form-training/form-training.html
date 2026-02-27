@@ -96,7 +96,19 @@
               </div>
             </div>
             <div class="row mt-4">
-              <div class="col-12 mb-3">
+              <div class="col-12 col-md-6 mb-3">
+                <label class="ml-2">{{ 'training.application.country' | translate }} <span
+                    class="text-danger">*</span></label>
+                <select class="form-control" formControlName="country_code">
+                  <option value="SN">Sénégal</option>
+                  <option value="CM">Cameroun</option>
+                </select>
+                <div class="text-danger mt-1 ml-3"
+                  *ngIf="form.get('country_code')?.touched && form.get('country_code')?.invalid">
+                  Veuillez choisir votre pays
+                </div>
+              </div>
+              <div class="col-12 col-md-6 mb-3">
                 <label class="ml-2">{{ 'training.modal.availableSessions' | translate }} <span
                     class="text-danger">*</span></label>
                 <select class="form-control" formControlName="target_session_id" (change)="onSessionChange($event)">
@@ -110,7 +122,6 @@
                   {{ 'training.application.sessionRequired' | translate }}
                 </div>
               </div>
-              <input type="hidden" class="form-control" formControlName="country_code" placeholder="SN">
               <input type="hidden" formControlName="payment_method">
             </div>
 
@@ -120,23 +131,28 @@
                 <h3 class="title-h2">{{ 'training.application.paymentMethod' | translate }}</h3>
                 <span class="d-block card p-3 shadow" style="border-radius: 1rem;">
                   <div class="mb-3">
-                    <div class="form-check form-check-inline" style="opacity: 0.5;">
+                    <div class="form-check form-check-inline">
                       <input class="form-check-input mr-3" style="width: 25px; height: 25px; margin-top: 40px;"
-                        type="radio" name="paymentMethod" id="pmOnline" disabled [checked]="paymentMethod==='ONLINE'">
+                        type="radio" name="paymentMethod" id="pmOnline" [checked]="paymentMethod==='ONLINE'"
+                        (change)="onPaymentMethodChange('ONLINE')">
                       <div>
-                        <p class="form-check-label mb-0" style="text-transform: none; color: #6c757d;">
+                        <p class="form-check-label mb-0" style="text-transform: none; cursor: pointer;" for="pmOnline">
                           <strong>{{ 'training.application.payOnline' | translate }}</strong>
                         </p>
-                        <small class="text-muted">{{ 'training.application.paymentNotAvailable' | translate }}</small>
+                        <small class="text-muted">{{ 'training.application.payWithCardOrMobile' | translate }}
+                          (ElyonPay)</small>
                       </div>
                     </div>
                     <div class="form-check form-check-inline ml-5">
                       <input class="form-check-input mr-3" type="radio"
                         style="width: 25px; height: 25px; margin-top: 40px;" name="paymentMethod" id="pmTransfer"
                         [checked]="paymentMethod==='TRANSFER'" (change)="onPaymentMethodChange('TRANSFER')">
-                      <p class="form-check-label" style="text-transform: none; cursor: pointer;" for="pmTransfer">
-                        <strong>{{ 'training.application.payByTransfer' | translate }}</strong>
-                      </p>
+                      <div>
+                        <p class="form-check-label mb-0" style="text-transform: none; cursor: pointer;"
+                          for="pmTransfer">
+                          <strong>{{ 'training.application.payByTransfer' | translate }}</strong>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </span>

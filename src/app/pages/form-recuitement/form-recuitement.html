@@ -67,7 +67,7 @@
               </div>
             </div>
             <div class="row mt-4">
-              <div class="col-12 col-md-6 mb-3">
+              <div class="col-12 col-md-4 mb-3">
                 <label class="ml-2">Civilité <span class="text-danger">*</span></label>
                 <select class="form-control" formControlName="civility">
                   <option value="">--</option>
@@ -75,13 +75,24 @@
                   <option value="Mme">Mme</option>
                   <option value="Mlle">Mlle</option>
                 </select>
-                <div class="text-danger mt-4 ml-3"
+                <div class="text-danger mt-1 ml-3"
                   *ngIf="form.get('civility')?.touched && form.get('civility')?.invalid">Champ
                   obligatoire</div>
               </div>
-              <input type="hidden" class="form-control" formControlName="country_code" placeholder="SN">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">{{ 'recruitment.application.country' | translate }} <span
+                    class="text-danger">*</span></label>
+                <select class="form-control" formControlName="country_code">
+                  <option value="SN">Sénégal</option>
+                  <option value="CM">Cameroun</option>
+                </select>
+                <div class="text-danger mt-1 ml-3"
+                  *ngIf="form.get('country_code')?.touched && form.get('country_code')?.invalid">
+                  Veuillez choisir votre pays
+                </div>
+              </div>
 
-              <div class="col-12 col-md-6 mb-3">
+              <div class="col-12 col-md-4 mb-3">
                 <label class="ml-2">Ville <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" formControlName="city">
                 <div class="text-danger mt-4 ml-3" *ngIf="form.get('city')?.touched && form.get('city')?.invalid">Champ

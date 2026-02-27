@@ -223,7 +223,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
       if (filters.types.length > 0) {
         // Vérifier si la formation a une spécialité (specialty_id existe et n'est pas null/undefined/0)
         const hasSpecialty = training.specialty_id != null && training.specialty_id !== 0;
-        
+
         // Vérifier si "Séminaire" est sélectionné
         const isSeminarSelected = filters.types.some((type: string) => {
           const typeLower = type.toLowerCase().trim();
@@ -256,7 +256,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
             console.log(`Formation ${training.id} exclue (n'a pas de spécialité, ce n'est pas une formation)`);
             return false;
           }
-          
+
           // Vérifier que la durée est supérieure ou égale à 8 jours
           const durationInDays = this.convertDurationToDays(training.duration, training.duration_unit);
           if (durationInDays < 8) {
@@ -271,15 +271,15 @@ export class FormationsListSection implements OnInit, OnDestroy {
         // Le filtre contient maintenant "Titre de la formation - durée"
         // On compare le titre de la formation avec le filtre sélectionné
         const trainingTitle = training.title || '';
-        
+
         const matchesDuration = filters.durations.some((filterValue: string) => {
           // Extraire le titre du filtre (tout ce qui précède " - ")
           const filterTitle = filterValue.split(' - ')[0]?.trim() || filterValue.trim();
-          
+
           // Comparer les titres (insensible à la casse)
           return trainingTitle.toLowerCase() === filterTitle.toLowerCase() ||
-                 trainingTitle.toLowerCase().includes(filterTitle.toLowerCase()) ||
-                 filterTitle.toLowerCase().includes(trainingTitle.toLowerCase());
+            trainingTitle.toLowerCase().includes(filterTitle.toLowerCase()) ||
+            filterTitle.toLowerCase().includes(trainingTitle.toLowerCase());
         });
 
         if (!matchesDuration) {
@@ -299,27 +299,27 @@ export class FormationsListSection implements OnInit, OnDestroy {
       // Filtre par frais - maintenant basé sur le nom de la formation + type de frais
       if (filters.fees.length > 0) {
         const trainingTitle = training.title || '';
-        
+
         const matchesFee = filters.fees.some((filterValue: string) => {
           // Le filtre contient "Frais inscription : nom formation = (prix devise)" ou "Frais formation : nom formation = (prix devise)"
           // Extraire le nom de la formation du filtre (entre " : " et " = ")
           const match = filterValue.match(/Frais (inscription|formation) : (.+?) = \(/);
           if (!match) return false;
-          
+
           const feeType = match[1]; // "inscription" ou "formation"
           const filterTitle = match[2]?.trim() || '';
-          
+
           // Comparer le titre de la formation
           if (trainingTitle.toLowerCase() !== filterTitle.toLowerCase() &&
-              !trainingTitle.toLowerCase().includes(filterTitle.toLowerCase()) &&
-              !filterTitle.toLowerCase().includes(trainingTitle.toLowerCase())) {
+            !trainingTitle.toLowerCase().includes(filterTitle.toLowerCase()) &&
+            !filterTitle.toLowerCase().includes(trainingTitle.toLowerCase())) {
             return false;
           }
-          
+
           // Vérifier que la formation a des sessions avec les frais correspondants
           const sessions = this.trainingSessions.get(training.id.toString()) || [];
           if (sessions.length === 0) return false;
-          
+
           // Vérifier si au moins une session a les frais correspondants (>= 2)
           return sessions.some((session: any) => {
             if (feeType === 'inscription') {
@@ -667,7 +667,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
     if (isNaN(durationNum)) return 0;
 
     const unit = durationUnit ? durationUnit.toUpperCase() : '';
-    
+
     // Convertir en jours selon l'unité
     switch (unit) {
       case 'HOURS':
@@ -969,7 +969,7 @@ export class FormationsListSection implements OnInit, OnDestroy {
       last_name: formValue.last_name,
       phone_number: formValue.phone_number,
       civility: formValue.civility,
-      country_code: 'SN', // Cameroun - cohérent avec le compte CinetPay
+      country_code: formValue.country_code || 'SN', // Utilise la valeur du formulaire
       city: formValue.city,
       address: formValue.address,
       date_of_birth: formValue.date_of_birth,

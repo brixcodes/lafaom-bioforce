@@ -767,6 +767,7 @@
       "personalInfo": "Personal information",
       "civility": "Civility",
       "selectCivility": "Select",
+      "country": "Country",
       "mr": "Mr.",
       "mrs": "Mrs.",
       "dateOfBirth": "Date of birth",
@@ -852,6 +853,7 @@
       "nextStepsDescription": "If you are called for an interview, prepare in advance.",
       "payByTransfer": "Pay by bank transfer",
       "payOnline": "Pay directly online",
+      "payWithCardOrMobile": "Pay by card or mobile",
       "paymentNotAvailable": "Not available at the moment",
       "paymentMethod": "Payment method",
       "phoneMinLength": "Phone must contain at least 8 characters",
@@ -932,10 +934,10 @@
       "assignmentTitle": "Assignment to work position",
       "assignmentDescription": "1 month after the diploma ceremony"
     },
-      "organizationalChart": {
-"title": "Organizational Chart of the LAFAOM-MAO Institute",
-"description": "Organizational Structure of the LAFAOM-MAO Institute"
-},
+    "organizationalChart": {
+      "title": "Organizational Chart of the LAFAOM-MAO Institute",
+      "description": "Organizational Structure of the LAFAOM-MAO Institute"
+    },
     "budgetDiscussion": {
       "title": "Lafaom-Mao Institute Financing Mechanism",
       "description": "The financing model is hybrid around a victim of a judicial decision, with:",

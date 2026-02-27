@@ -167,10 +167,8 @@
       "assignmentDescription": "1 mois après la remise des diplômes"
     },
     "organizationalChart": {
-      "title":"Organigramme de l'Institut LAFAOM-MAO",
-      "description":"Structure organisationnelle de l'Institut LAFAOM-MAO"
-
-
+      "title": "Organigramme de l'Institut LAFAOM-MAO",
+      "description": "Structure organisationnelle de l'Institut LAFAOM-MAO"
     },
     "budgetDiscussion": {
       "title": "Mécanisme de financement de l'Institut Lafaom-Mao",
@@ -299,6 +297,7 @@
       "personalInfo": "Informations personnelles",
       "civility": "Civilité",
       "selectCivility": "Sélectionner",
+      "country": "Pays",
       "mr": "M.",
       "mrs": "Mme",
       "dateOfBirth": "Date de naissance",
@@ -334,6 +333,7 @@
       "paymentMethod": "Méthode de paiement",
       "selectPaymentMethod": "Sélectionner votre méthode de paiement",
       "payOnline": "Payer directement en ligne",
+      "payWithCardOrMobile": "Payer par carte ou mobile",
       "paymentNotAvailable": "Non disponible pour le moment",
       "payByTransfer": "Payer par virement bancaire",
       "bankAccountInfo": "Informations du compte bancaire",
@@ -492,6 +492,7 @@
       "personalInfo": "Vos informations personnelles",
       "civility": "Civilité",
       "selectCivility": "Sélectionner",
+      "country": "Pays",
       "mr": "M.",
       "mrs": "Mme",
       "firstName": "Prénom",

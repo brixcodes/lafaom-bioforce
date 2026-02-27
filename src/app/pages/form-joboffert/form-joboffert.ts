@@ -8,10 +8,12 @@ import { JobOffer } from '../../models/job.models';
 import { JobApplicationCreateInput, JobAttachmentInput } from '../../models/job-application.models';
 import { Subscription } from 'rxjs';
 
+import { TranslatePipe } from '../../pipes/translate.pipe';
+
 @Component({
   selector: 'app-form-joboffert',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './form-joboffert.html',
   styleUrls: ['./form-joboffert.css']
 })
@@ -69,13 +71,13 @@ export class FormJoboffert implements OnInit, OnDestroy {
       jobOffer: this.jobOffer,
       error: this.error
     });
-    
+
     // Toujours recharger la page pour s'assurer que les données sont bien chargées
     if (typeof window !== 'undefined') {
       console.log('🌐 [FORM-JOBOFFERT] Window disponible, vérification du sessionStorage');
       const reloadFlag = sessionStorage.getItem('form-joboffert-reloaded');
       console.log('🔍 [FORM-JOBOFFERT] Flag de rechargement:', reloadFlag);
-      
+
       // Vérifier si on vient d'une autre page (pas de rechargement en boucle)
       if (!reloadFlag) {
         console.log('🔄 [FORM-JOBOFFERT] Premier chargement, rechargement de la page');
@@ -90,7 +92,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
         return;
       }
     }
-    
+
     console.log('📋 [FORM-JOBOFFERT] Chargement de l\'offre d\'emploi');
     // Récupérer l'ID de l'offre depuis les paramètres de route
     this.route.params.subscribe((params: any) => {
@@ -121,18 +123,18 @@ export class FormJoboffert implements OnInit, OnDestroy {
         next: (jobOffer: JobOffer) => {
           console.log('✅ [FORM-JOBOFFERT] Offre d\'emploi chargée:', jobOffer);
           this.jobOffer = jobOffer;
-          
+
           // Définir les pièces jointes requises
-          this.requiredAttachments = jobOffer.attachment && jobOffer.attachment.length > 0 
-            ? jobOffer.attachment 
+          this.requiredAttachments = jobOffer.attachment && jobOffer.attachment.length > 0
+            ? jobOffer.attachment
             : ['CV', 'Lettre de motivation', 'Copie de la pièce d\'identité'];
-          
+
           console.log('📋 [FORM-JOBOFFERT] Pièces jointes requises:', this.requiredAttachments);
-          
+
           this.applicationForm.patchValue({
             job_offer_id: jobOffer.id
           });
-          
+
           this.loading = false;
         },
         error: (error: any) => {
@@ -147,7 +149,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
   onFileSelected(event: any, attachmentType: string) {
     const file = event.target.files[0];
     console.log(`Fichier sélectionné pour ${attachmentType}:`, file);
-    
+
     if (file) {
       this.uploadFile(file, attachmentType);
     }
@@ -156,15 +158,15 @@ export class FormJoboffert implements OnInit, OnDestroy {
   uploadFile(file: File, attachmentType: string) {
     const fileName = `${attachmentType}_${Date.now()}_${file.name}`;
     console.log(`Début de l'upload pour ${attachmentType}:`, fileName);
-    
+
     this.uploadingFiles[attachmentType] = true;
-    
+
     this.subscription.add(
       this.jobApplicationService.uploadAttachment(fileName, file).subscribe({
         next: (response: any) => {
           console.log('Réponse de l\'upload:', response);
           this.uploadingFiles[attachmentType] = false;
-          
+
           if (response.data && response.data.length > 0) {
             this.uploadedFiles[attachmentType] = {
               file: file,
@@ -205,7 +207,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
     console.log('Formulaire valide:', this.applicationForm.valid);
     console.log('Fichiers uploadés:', Object.keys(this.uploadedFiles));
     console.log('Fichiers requis:', this.requiredAttachments);
-    
+
     if (!this.applicationForm.valid) {
       console.log('Formulaire invalide - champs manquants');
       return false;
@@ -230,7 +232,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
       errors: this.applicationForm.errors
     });
     console.log('📎 [FORM-JOBOFFERT] Fichiers uploadés:', Object.keys(this.uploadedFiles));
-    
+
     this.submitting = true;
     this.error = null;
 
@@ -243,7 +245,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
         url: fileData.url
       });
     }
-    
+
     console.log('Données de candidature à envoyer:', {
       ...this.applicationForm.value,
       attachments: attachments
@@ -251,7 +253,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
 
     // Préparer les données en convertissant date_of_birth si nécessaire
     const formValue = { ...this.applicationForm.value };
-    
+
     // Convertir date_of_birth de string vers date si présent
     if (formValue.date_of_birth && formValue.date_of_birth.trim() !== '') {
       formValue.date_of_birth = new Date(formValue.date_of_birth).toISOString().split('T')[0];
@@ -259,7 +261,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
       // Supprimer le champ si vide pour éviter l'erreur de validation
       delete formValue.date_of_birth;
     }
-    
+
     const applicationData: JobApplicationCreateInput = {
       ...formValue,
       attachments: attachments
@@ -271,7 +273,7 @@ export class FormJoboffert implements OnInit, OnDestroy {
           console.log('Réponse de la candidature:', response);
           this.success = true;
           this.submitting = false;
-          
+
           // Rediriger vers la page de paiement si disponible
           if (response.data && response.data.payment && response.data.payment.payment_link) {
             console.log('Redirection vers le paiement:', response.data.payment.payment_link);

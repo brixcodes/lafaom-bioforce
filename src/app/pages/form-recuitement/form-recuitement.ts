@@ -8,9 +8,11 @@ import { ConfigService } from '../../services/config.service';
 import { JobAttachmentInput, JobApplicationCreateInput } from '../../models/job-application.models';
 import { JobOffersService } from '../../services/job-offers.service';
 
+import { TranslatePipe } from '../../pipes/translate.pipe';
+
 @Component({
   selector: 'app-form-recuitement',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './form-recuitement.html',
   styleUrl: './form-recuitement.css'
 })
@@ -217,7 +219,7 @@ export class FormRecuitement {
         last_name: this.form.value.lastName,
         payment_method: this.paymentMethod,
         civility: this.form.value.civility || undefined,
-        country_code: this.form.value.country_code || 'SN', // Sénégal par défaut
+        country_code: this.form.value.country_code || 'SN', // Utilise la valeur du formulaire
         city: this.form.value.city || undefined,
         address: this.form.value.address || undefined,
         date_of_birth: this.form.value.date_of_birth || undefined,

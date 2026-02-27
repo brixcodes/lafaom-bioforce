@@ -1,0 +1,108 @@
+<div class="content">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="has-background container-full"
+            style="background-image: url('https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg')">
+            <img decoding="async"
+                src="https://theangarabucket.s3.eu-north-1.amazonaws.com/public/job-applications/20251012_064544_actualite_s3.jpg"
+                alt="">
+        </div>
+        <div class="page-header-inner">
+            <div class="page-title">
+                <span class="d-block page-parent">Paiement</span>
+                <h1>{{ isSuccess ? 'Confirmation de paiement' : 'Statut du paiement' }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Status Content -->
+    <div class="gab-recrutement-cabinet">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
+                    <!-- Loading state -->
+                    <div *ngIf="loading" class="text-center py-5">
+                        <div class="loading-wrapper">
+                            <div class="payment-spinner"></div>
+                            <p class="mt-4">Vérification de votre paiement en cours, veuillez patienter...</p>
+                        </div>
+                    </div>
+
+                    <!-- Result state -->
+                    <div *ngIf="!loading">
+
+                        <!-- Status icon + title -->
+                        <div class="text-center mb-4">
+                            <div class="status-icon-circle" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+                                <svg *ngIf="isSuccess" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <svg *ngIf="!isSuccess" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <div data-wpr-lazyrender="1" class="container-1440">
+                            <div class="section-textriche">
+                                <h2 class="title-h2">
+                                    {{ isSuccess ? 'Paiement réussi !' : 'Paiement échoué' }}
+                                </h2>
+                                <p>
+                                    {{ isSuccess
+                                    ? 'Votre transaction a été traitée avec succès. Votre candidature est désormais
+                                    validée dans notre système.'
+                                    : 'Désolé, une erreur est survenue lors du traitement de votre paiement ou la
+                                    transaction a été annulée.' }}
+                                </p>
+
+                                <p *ngIf="transactionId">
+                                    <strong>ID de transaction : {{ transactionId }}</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Next steps -->
+                        <div class="section-textriche">
+                            <div class="section-textriche">
+                                <h2 class="title-h2">Prochaines étapes</h2>
+
+                                <ul *ngIf="isSuccess">
+                                    <li>Votre paiement a été enregistré avec succès.</li>
+                                    <li>Vous recevrez un email de confirmation contenant les détails de votre
+                                        transaction.</li>
+                                    <li>Votre dossier sera étudié par notre équipe.</li>
+                                    <li>Vous serez informé de la suite par email.</li>
+                                </ul>
+
+                                <ul *ngIf="!isSuccess">
+                                    <li>Votre paiement n'a pas pu être traité.</li>
+                                    <li>Aucun montant n'a été débité de votre compte.</li>
+                                    <li>Vous pouvez réessayer en retournant à la page de candidature.</li>
+                                    <li>Si le problème persiste, contactez notre équipe d'assistance.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons text-center mt-4">
+                                <a routerLink="/" class="btn btn-secondary me-3">
+                                    Retour à l'accueil
+                                </a>
+                                <a *ngIf="!isSuccess" routerLink="/training" class="btn btn-primary mx-2">
+                                    Réessayer
+                                </a>
+                            </div>
+                            <br><br><br><br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
