@@ -46,9 +46,11 @@ export class PaymentStatus implements OnInit {
 
                 if (this.payment) {
                     this.amount = this.payment.product_amount ?? this.payment.amount;
+
                     // La SOURCE DE VÉRITÉ est uniquement le statut retourné par l'API
-                    // Jamais l'URL. ACCEPTED = validé, tout autre statut = non validé
-                    this.isSuccess = this.payment.status === 'ACCEPTED';
+                    // On harmonise en majuscules pour éviter les erreurs de casse (ex: 'accepted' vs 'ACCEPTED')
+                    const status = (this.payment.status || '').toUpperCase();
+                    this.isSuccess = status === 'ACCEPTED';
                 } else {
                     this.isSuccess = false;
                 }
