@@ -10,7 +10,11 @@
         <div class="page-header-inner">
             <div class="page-title">
                 <span class="d-block page-parent">Paiement</span>
-                <h1>{{ isSuccess ? 'Confirmation de paiement' : 'Statut du paiement' }}</h1>
+                <h1>
+                    {{ loading || isSuccess === null
+                    ? 'Vérification en cours...'
+                    : (isSuccess ? 'Confirmation de paiement' : 'Statut du paiement') }}
+                </h1>
             </div>
         </div>
     </div>
@@ -21,16 +25,18 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
 
-                    <!-- Loading state -->
-                    <div *ngIf="loading" class="text-center py-5">
+                    <!-- Loading state — affiché tant que isSuccess est null OU loading est true -->
+                    <div *ngIf="loading || isSuccess === null" class="text-center py-5">
                         <div class="loading-wrapper">
                             <div class="payment-spinner"></div>
-                            <p>Vérification de votre paiement en cours...</p>
+                            <p>Vérification de votre paiement en cours...<br>
+                                <small>Cela peut prendre quelques secondes.</small>
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Result state -->
-                    <div *ngIf="!loading">
+                    <!-- Result state — affiché UNIQUEMENT quand isSuccess est un boolean (API a répondu) -->
+                    <div *ngIf="!loading && isSuccess !== null">
 
                         <!-- Icon status -->
                         <div class="status-icon-circle" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
@@ -63,8 +69,16 @@
                                     <strong>Transaction :</strong> <span class="id-text">{{ transactionId }}</span>
                                 </div>
                                 <div class="info-badge" *ngIf="amount">
-                                    <strong>Montant :</strong> {{ amount | number:'1.0-0' }} {{ payment?.currency ||
-                                    'XAF' }}
+                                    <strong>Montant :</strong> {{ amount | number:'1.0-0' }} {{
+                                    payment?.payment_currency ||
+                                    payment?.product_currency || 'XAF' }}
+                                </div>
+                                <!-- Statut de paiement pour transparence -->
+                                <div class="info-badge" *ngIf="payment?.status">
+                                    <strong>Statut :</strong>
+                                    <span [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
+                                        {{ payment.status }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +112,7 @@
                             <a *ngIf="isSuccess" routerLink="/admission-process" class="btn btn-primary mx-2">
                                 Voir les formations
                             </a>
-                            <a *ngIf="!isSuccess" routerLink="//admission-process" class="btn btn-primary mx-2">
+                            <a *ngIf="!isSuccess" routerLink="/admission-process" class="btn btn-primary mx-2">
                                 Réessayer le paiement
                             </a>
                         </div>

@@ -11,7 +11,8 @@ import { ApiService } from '../../services/api.service';
     styleUrl: './payment-status.css'
 })
 export class PaymentStatus implements OnInit {
-    isSuccess: boolean = false;
+    /** null = encore inconnu, true = confirmé ACCEPTED, false = refusé/annulé/erreur */
+    isSuccess: boolean | null = null;
     transactionId: string | null = null;
     loading: boolean = true;
     payment: any = null;
@@ -23,39 +24,40 @@ export class PaymentStatus implements OnInit {
     ) { }
 
     ngOnInit() {
-        // Détecter si on est sur la page de succès ou d'erreur
-        // snapshot.url contient tous les segments de la route (ex: ['payment', 'success'])
-        const urlSegments = this.route.snapshot.url.map(segment => segment.path);
-        this.isSuccess = urlSegments.includes('success');
-
         this.route.queryParams.subscribe(params => {
             this.transactionId = params['id'] || params['transaction_id'] || null;
             if (this.transactionId) {
                 this.checkStatus(this.transactionId);
             } else {
+                // Pas d'ID de transaction → on ne peut rien vérifier
+                // On utilise l'URL uniquement comme indication de fallback
+                const urlSegments = this.route.snapshot.url.map(seg => seg.path);
+                this.isSuccess = urlSegments.includes('success');
                 this.loading = false;
             }
         });
     }
 
     checkStatus(id: string) {
+        this.loading = true;
         this.apiService.get(`payments/check-status/${id}`).subscribe({
             next: (res: any) => {
-                console.log('✅ [PAYMENT-STATUS] Statut mis à jour:', res);
                 this.payment = res.data;
 
                 if (this.payment) {
-                    this.amount = this.payment.amount;
-                    // Si l'API confirme que le paiement est ACCEPTED, on force isSuccess à true
-                    if (this.payment.status === 'ACCEPTED') {
-                        this.isSuccess = true;
-                    }
+                    this.amount = this.payment.product_amount ?? this.payment.amount;
+                    // La SOURCE DE VÉRITÉ est uniquement le statut retourné par l'API
+                    // Jamais l'URL. ACCEPTED = validé, tout autre statut = non validé
+                    this.isSuccess = this.payment.status === 'ACCEPTED';
+                } else {
+                    this.isSuccess = false;
                 }
 
                 this.loading = false;
             },
             error: (err) => {
-                console.error('❌ [PAYMENT-STATUS] Erreur lors de la vérification:', err);
+                console.error('❌ [PAYMENT-STATUS] Erreur:', err);
+                this.isSuccess = false;
                 this.loading = false;
             }
         });
