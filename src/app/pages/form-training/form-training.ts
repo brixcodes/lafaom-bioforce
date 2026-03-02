@@ -21,7 +21,7 @@ export class FormTraining implements OnInit {
   selectedSession: any | null = null;
   isSubmitting = false;
   submitError: string | null = null;
-  paymentMethod: 'ONLINE' | 'TRANSFER' = 'ONLINE';
+  paymentMethod: 'ONLINE' | 'TRANSFER' = 'TRANSFER';
   requiredAttachments: string[] = [];
   uploadedFiles: { [key: string]: { file: File, url: string, name: string } } = {};
   uploadingFiles: { [key: string]: boolean } = {};
@@ -53,9 +53,9 @@ export class FormTraining implements OnInit {
   ngOnInit(): void {
     this.trainingId = this.route.snapshot.paramMap.get('id');
 
-    // Définir la méthode de paiement par défaut sur ONLINE
-    this.paymentMethod = 'ONLINE';
-    this.form.patchValue({ payment_method: 'ONLINE' });
+    // Définir la méthode de paiement par défaut sur TRANSFER
+    this.paymentMethod = 'TRANSFER';
+    this.form.patchValue({ payment_method: 'TRANSFER' });
 
     // Pour les formations, pas de pièces jointes par défaut
     this.requiredAttachments = [];

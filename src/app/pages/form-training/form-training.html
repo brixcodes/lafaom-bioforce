@@ -142,13 +142,14 @@
                 <h3 class="title-h2">{{ 'training.application.paymentMethod' | translate }}</h3>
                 <span class="d-block card p-3 shadow" style="border-radius: 1rem;">
                   <div class="mb-3">
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline" style="opacity: 0.6; cursor: not-allowed;">
                       <input class="form-check-input mr-3" style="width: 25px; height: 25px; margin-top: 40px;"
                         type="radio" name="paymentMethod" id="pmOnline" [checked]="paymentMethod==='ONLINE'"
-                        (change)="onPaymentMethodChange('ONLINE')">
+                        [disabled]="true" (change)="onPaymentMethodChange('ONLINE')">
                       <div>
-                        <p class="form-check-label mb-0" style="text-transform: none; cursor: pointer;" for="pmOnline">
+                        <p class="form-check-label mb-0" style="text-transform: none;" for="pmOnline">
                           <strong>{{ 'training.application.payOnline' | translate }}</strong>
+                          <span class="badge badge-secondary ml-2" style="font-size: 0.7rem;">Indisponible</span>
                         </p>
                         <small class="text-muted">{{ 'training.application.payWithCardOrMobile' | translate }}
                           (ElyonPay)</small>

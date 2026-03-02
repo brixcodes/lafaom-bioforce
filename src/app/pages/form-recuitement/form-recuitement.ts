@@ -22,7 +22,7 @@ export class FormRecuitement {
   requiredAttachments: string[] = [];
   isSubmitting = false;
   submitError: string | null = null;
-  paymentMethod: 'ONLINE' | 'TRANSFER' = 'ONLINE';
+  paymentMethod: 'ONLINE' | 'TRANSFER' = 'TRANSFER';
 
   constructor(
     private fb: FormBuilder,
