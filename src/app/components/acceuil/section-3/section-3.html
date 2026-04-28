@@ -1,0 +1,54 @@
+<div class="gab-centers container-1440 py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h2 class="title">{{ 'home.hero.functionalCenters.title' | translate }}</h2>
+            <p class="subtitle text-muted">{{ 'home.hero.functionalCenters.description' | translate }}</p>
+        </div>
+    </div>
+    <div class="row centers-grid">
+        <div class="col-lg-6 mb-4">
+            <div class="center-card training-center h-100 p-4">
+                <div class="card-content d-flex flex-column h-100">
+                    <div class="icon-box mb-3">
+                        <i class="icon-book-open"></i>
+                    </div>
+                    <h3 class="center-title">{{ 'home.hero.functionalCenters.center1.title' | translate }}</h3>
+                    <p class="center-description flex-grow-1">{{ 'home.hero.functionalCenters.center1.description' | translate }}</p>
+                    <div class="center-footer mt-3">
+                        <span class="badge badge-pink">RECONNUE PAR L'ACTE N° 25-2102102G/SG/BFP/AB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="center-card research-center h-100 p-4">
+                <div class="card-content d-flex flex-column h-100">
+                    <div class="icon-box mb-3">
+                        <i class="icon-layers"></i>
+                    </div>
+                    <h3 class="center-title">{{ 'home.hero.functionalCenters.center2.title' | translate }}</h3>
+                    <p class="center-description flex-grow-1">{{ 'home.hero.functionalCenters.center2.description' | translate }}</p>
+                    <div class="center-footer mt-3">
+                        <a routerLink="/research-center/presentation" class="btn btn-outline-pink">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="missions-box p-4 border-pink">
+                <h4 class="mb-3">{{ 'home.hero.missions.title' | translate }}</h4>
+                <p class="mb-4">{{ 'home.hero.missions.intro' | translate }}</p>
+                <ul class="list-unstyled missions-list text-start">
+                    <li class="mb-2"><i class="icon-check-circle me-2"></i> {{ 'home.hero.missions.item1' | translate }}</li>
+                    <li class="mb-2"><i class="icon-check-circle me-2"></i> {{ 'home.hero.missions.item2' | translate }}</li>
+                    <li class="mb-2"><i class="icon-check-circle me-2"></i> {{ 'home.hero.missions.item3' | translate }}</li>
+                    <li class="mb-2"><i class="icon-check-circle me-2"></i> {{ 'home.hero.missions.item4' | translate }}</li>
+                </ul>
+                <p class="mt-4 fw-bold">{{ 'home.hero.missions.goal' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>

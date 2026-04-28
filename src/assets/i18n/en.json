@@ -84,7 +84,8 @@
       "description": "The LAFAOM-MAO Institute of Ziguinchor, member of the inter-African LAFAOM-MAO network, trains Judicial Life Assistants (JLA) to support people affected by judicial decisions.",
       "mission": "Our mission is to make justice more human and effective by reducing the devastating impacts on women, children and the elderly, victims of social and health vulnerabilities.",
       "institute": "WE ARE THE LAFAOM-MAO TRAINING INSTITUTE.",
-      "discoverBioforce": "Discover the LAFAOM-MAO Institute"
+      "discoverBioforce": "Discover the LAFAOM-MAO Institute",
+      "goal": "The institute aims to build a critical mass of professionals in the Prison-Justice field and strengthen the capacities of associations and structures acting in this field."
     },
     "stats": {
       "title": "Key figures",
@@ -960,6 +961,26 @@
       "formation": "Training",
       "organisation": "Organization"
     },
+    "boardMeetingApril": {
+      "title": "Board of Directors of April 25, 2026",
+      "subtitle": "Major decisions for centers deployment",
+      "intro": "The LAFAOM Board of Directors, meeting on April 25, 2026, made strategic decisions regarding the operational launch of two major poles of the Institute.",
+      "resolution1": {
+        "title": "1. Launch of the Laboratory for the Analysis of Forms of Organization and Mutations",
+        "description": "The Board has approved the official launch of the Laboratory for the Analysis of Forms of Organization and Mutations (LAFAOM) for June 5, 2026. This center will be the engine of innovation and institutional engineering."
+      },
+      "resolution2": {
+        "title": "2. Launch of the Experimental and Practical Center",
+        "description": "The launch of the Experimental and Practical Center is set for July 7, 2026. This date will coincide with the end of the first training phase of the inaugural promotion at the Place of Learning and Training for the Accompaniment of Persons Obliged by Judicial Measures, allowing direct practical application of acquired knowledge."
+      },
+      "majorDecisions": "Major decisions:"
+    },
+    "siteLaunch": {
+      "title": "Official Launch of the LAFAOM-MAO Platform",
+      "subtitle": "The website is now online",
+      "date": "April 28, 2026",
+      "description": "We are pleased to announce the official launch of our digital platform. This tool will centralize information, facilitate applications, and showcase our centers of excellence."
+    },
     "admissionLaunch": "Schedule of openings and training path at LAFAOM-MAO Institute",
     "keyDatesTitle": "Activity Calendar",
     "keyDates": {
@@ -1164,9 +1185,31 @@
     "presentation": {
       "title": "Institutional Presentation of the LAFAOM-MAO Research Center",
       "subtitle": "LAFAOM-MAO Institute, Ziguinchor (Senegal) - Ateba Ombala Marc Foundation",
+      "functionalCenters": {
+        "title": "Our Functional Centers",
+        "description": "The LAFAOM-MAO Institute already has two operational centers dedicated to its mission of excellence.",
+        "center1": {
+          "title": "Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires",
+          "description": "Recognized by Act N° 25-2102102G/SG/BFP/AB, this center trains professionals (JLA) responsible for implementing individualized intervention plans.",
+          "badge": "RECOGNIZED BY ACT N° 25-2102102G/SG/BFP/AB"
+        },
+        "center2": {
+          "title": "Laboratoire d’Analyse des Formes d’Organisation et des Mutations",
+          "description": "Scientific hub dedicated to social diplomatic, social phylogeny, and modeling institutional dynamics."
+        }
+      },
+      "missions": {
+        "title": "Institute Missions",
+        "intro": "Judicial universe professionals are called to:",
+        "item1": "Welcome and support affected persons",
+        "item2": "Manage reception facilities for relatives and families",
+        "item3": "Support penitentiary services and ensure socio-educational and legal follow-up",
+        "item4": "Manage the Mao IT platform for the network and sponsorship system.",
+        "goal": "The institute aims to build a critical mass of professionals in the Prison-Justice field and strengthen the capacities of associations and structures acting in this field."
+      },
       "section1": {
         "title": "1. Institutional Identity",
-        "description": "The LAFAOM–MAO research center is the scientific unit of the LAFAOM–MAO Institute, created by the Ateba Ombala Marc Foundation.",
+        "description": "The LAFAOM-MAO Institute relies on two major centers: the Place of Learning and Training for the Accompaniment of Persons Obliged by Judicial Measures (Training Center) and the Laboratory for the Analysis of Forms of Organization and Mutations (Research Center).",
         "item1": "A center of excellence dedicated to the study, modeling and engineering of contemporary institutions",
         "item2": "A regional, African and international vocation",
         "item3": "The Ziguinchor school, producer of new paradigms for law and social sciences"

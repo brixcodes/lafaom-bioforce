@@ -716,6 +716,28 @@
         "description": "Der Rat hat ein Finanzierungsschema genehmigt, das öffentliche Ressourcen, private Partnerschaften, Mäzenatentum und Beiträge aus Umweltprojekten kombiniert und die Nachhaltigkeit und Agilität des Instituts garantiert."
       },
       "footer": "Details zu diesen Beschlüssen werden in den spezialisierten Rubriken der Website des LAFAOM‑MAO-Instituts präsentiert."
+    },
+    "boardMeetingApril": {
+      "title": "Verwaltungsrat vom 25. April 2026",
+      "subtitle": "Wichtige Entscheidungen für den Einsatz der Zentren",
+      "intro": "Der Verwaltungsrat von LAFAOM hat auf seiner Sitzung am 25. April 2026 strategische Entscheidungen bezüglich des operativen Starts von zwei wichtigen Polen des Instituts getroffen.",
+      "resolution1": {
+        "title": "1. Start des Laboratoire d’Analyse des Formes d’Organisation et des Mutations",
+        "description": "Der Rat hat den offiziellen Start des Laboratoire d’Analyse des Formes d’Organisation et des Mutations (LAFAOM) für den 5. Juni 2026 beschlossen. Dieses Zentrum wird der Motor für Innovation und institutionelles Engineering sein."
+      },
+      "resolution2": {
+        "title": "2. Start des Experimentellen und Praktischen Zentrums",
+        "description": "Der Start des Experimentellen und Praktischen Zentrums ist für den 7. Juli 2026 festgelegt. Dieses Datum fällt mit dem Ende der ersten Ausbildungsphase des Einführungskurses am Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires zusammen und ermöglicht eine direkte praktische Anwendung des erworbenen Wissens."
+      },
+      "majorDecisions": "Hauptentscheidungen:",
+      "dateResearch": "5. Juni 2026:",
+      "dateExperimental": "7. Juli 2026:"
+    },
+    "siteLaunch": {
+      "title": "Offizieller Start der LAFAOM-MAO Plattform",
+      "subtitle": "Die Website ist nun online",
+      "date": "28. April 2026",
+      "description": "Wir freuen uns, den offiziellen Start unserer digitalen Plattform bekannt zu geben. Dieses Tool wird Informationen zentralisieren, Bewerbungen erleichtern und unsere Exzellenzzentren präsentieren."
     }
   },
   "recruitment": {
@@ -1231,9 +1253,31 @@
     "presentation": {
       "title": "Institutionelle Präsentation des LAFAOM-MAO Forschungszentrums",
       "subtitle": "LAFAOM-MAO Institut, Ziguinchor (Senegal) - Ateba Ombala Marc Stiftung",
+      "functionalCenters": {
+        "title": "Unsere funktionalen Zentren",
+        "description": "Das Institut LAFAOM-MAO verfügt bereits über zwei operative Zentren, die seiner Exzellenzmission gewidmet sind.",
+        "center1": {
+          "title": "Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires",
+          "description": "Dieses durch den Erlass Nr. 25-2102102G/SG/BFP/AB anerkannte Zentrum bildet Fachkräfte (AVUJ) aus, die für die Umsetzung individualisierter Interventionspläne verantwortlich sind.",
+          "badge": "ANERKANNT DURCH ERLASS NR. 25-2102102G/SG/BFP/AB"
+        },
+        "center2": {
+          "title": "Laboratoire d’Analyse des Formes d’Organisation et des Mutations",
+          "description": "Wissenschaftlicher Pol, der der sozialen Diplomatik, der sozialen Phylogenie und der Modellierung institutioneller Dynamiken gewidmet ist."
+        }
+      },
+      "missions": {
+        "title": "Missionen des Instituts",
+        "intro": "Fachkräfte der Justizwelt sind aufgerufen:",
+        "item1": "Betroffene Personen aufzunehmen und zu begleiten",
+        "item2": "Aufnahmeeinrichtungen für Angehörige und Familien betroffener Personen zu verwalten",
+        "item3": "Strafvollzugsdienste zu unterstützen und die sozialpädagogische und rechtliche Nachbetreuung sicherzustellen",
+        "item4": "Die Mao-Informatikplattform für das Netzwerk und das Patenschaftssystem zu verwalten.",
+        "goal": "Das Institut zielt darauf ab, eine kritische Masse an Fachkräften im Bereich Gefängnis-Justiz aufzubauen und die Kapazitäten von Vereinen und Strukturen in diesem Bereich zu stärken."
+      },
       "section1": {
         "title": "1. Institutionelle Identität",
-        "description": "Das LAFAOM-MAO Forschungszentrum ist die wissenschaftliche Einheit des LAFAOM-MAO Instituts, gegründet von der Ateba Ombala Marc Stiftung.",
+        "description": "Das Institut LAFAOM-MAO stützt sich auf zwei Hauptzentren: den Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires (Ausbildungszentrum) und das Laboratoire d’Analyse des Formes d’Organisation et des Mutations (Forschungszentrum).",
         "item1": "Ein Exzellenzzentrum für das Studium, die Modellierung und das Engineering zeitgenössischer Institutionen",
         "item2": "Mit regionaler, afrikanischer und internationaler Berufung",
         "item3": "Die Ziguinchor-Schule, Produzentin neuer Paradigmen für Recht und Sozialwissenschaften"

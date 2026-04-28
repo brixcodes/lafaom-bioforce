@@ -146,6 +146,28 @@
       },
       "footer": "Les détails de ces résolutions sont présentés dans les rubriques spécialisées du site de l'Institut LAFAOM‑MAO."
     },
+    "boardMeetingApril": {
+      "title": "Conseil d'administration du 25 avril 2026",
+      "subtitle": "Décisions majeures pour le déploiement des centres",
+      "intro": "Le Conseil d'administration de LAFAOM, réuni le 25 avril 2026, a pris des décisions stratégiques concernant le lancement opérationnel de deux pôles majeurs de l'Institut.",
+      "resolution1": {
+        "title": "1. Lancement du Laboratoire d’Analyse des Formes d’Organisation et des Mutations",
+        "description": "Le Conseil a acté le lancement officiel du Laboratoire d’Analyse des Formes d’Organisation et des Mutations (LAFAOM) pour le 5 juin 2026. Ce centre sera le moteur de l'innovation et de l'ingénierie institutionnelle."
+      },
+      "resolution2": {
+        "title": "2. Lancement du Centre Expérimental et Pratique",
+        "description": "Le lancement du Centre Expérimental et Pratique est fixé au 7 juillet 2026. Cette date coïncidera avec la fin de la première phase de formation de la promotion inaugurale au Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires, permettant une mise en pratique directe des acquis."
+      },
+      "dateResearch": "5 juin 2026 :",
+      "dateExperimental": "7 juillet 2026 :",
+      "majorDecisions": "Décisions majeures :"
+    },
+    "siteLaunch": {
+      "title": "Ouverture officielle de la plateforme LAFAOM-MAO",
+      "subtitle": "Le site est désormais en ligne",
+      "date": "28 avril 2026",
+      "description": "Nous avons le plaisir d'annoncer l'ouverture officielle de notre plateforme numérique. Cet outil permettra de centraliser l'information, de faciliter les candidatures et de présenter nos centres d'excellence."
+    },
     "categoriesList": {
       "governance": "gouvernance",
       "formation": "Formation",
@@ -1267,9 +1289,31 @@
     "presentation": {
       "title": "Présentation Institutionnelle du Centre de Recherche LAFAOM-MAO",
       "subtitle": "Institut LAFAOM-MAO, Ziguinchor (Sénégal) - Fondation Ateba Ombala Marc",
+      "functionalCenters": {
+        "title": "Nos Centres Fonctionnels",
+        "description": "L'Institut LAFAOM-MAO dispose déjà de deux centres opérationnels dédiés à sa mission d'excellence.",
+        "center1": {
+          "title": "Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires",
+          "description": "Reconnue par l'acte N° 25-2102102G/SG/BFP/AB, ce centre forme des professionnels (AVUJ) chargés de mettre en œuvre les plans d'intervention individualisée.",
+          "badge": "RECONNUE PAR L'ACTE N° 25-2102102G/SG/BFP/AB"
+        },
+        "center2": {
+          "title": "Laboratoire d’Analyse des Formes d’Organisation et des Mutations",
+          "description": "Pôle scientifique dédié à la diplomatique sociale, la phylogénie sociale et la modélisation des dynamiques institutionnelles."
+        }
+      },
+      "missions": {
+        "title": "Missions de l'Institut",
+        "intro": "Les professionnels de l'univers judiciaire sont appelés à :",
+        "item1": "Accueillir et accompagner les personnes affectées",
+        "item2": "Gérer des établissements d'accueil pour les proches et familles des personnes affectées",
+        "item3": "Appuyer les services pénitentiaires et assurer le suivi socio-éducatif et juridique des personnes affectées",
+        "item4": "Gérer la plateforme informatique Mao pour le réseau et le système de parrainage.",
+        "goal": "L'institut vise à constituer une masse critique de professionnels dans le domaine Prison-Justice et à renforcer les capacités des associations et structures agissant dans ce champ."
+      },
       "section1": {
         "title": "1. Identité institutionnelle",
-        "description": "Le Centre de recherche LAFAOM–MAO (Laboratoire d'Analyse des Formes d'Organisation et des Mutations) est l'unité scientifique de l'Institut LAFAOM–MAO, créé par la Fondation Ateba Ombala Marc.",
+        "description": "L'Institut LAFAOM-MAO s'appuie sur deux centres majeurs : le Lieu d’Apprentissage et de Formation à l’Accompagnement des Obligés par Mesures judiciaires (Centre de Formation) et le Laboratoire d’Analyse des Formes d’Organisation et des Mutations (Centre de Recherche).",
         "item1": "Un pôle d'excellence dédié à l'étude, à la modélisation et à l'ingénierie des institutions contemporaines",
         "item2": "Une vocation régionale, africaine et internationale",
         "item3": "L'École de Ziguinchor, productrice de paradigmes nouveaux pour le droit et les sciences sociales"
