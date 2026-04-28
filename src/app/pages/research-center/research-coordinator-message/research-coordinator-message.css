@@ -1,0 +1,35 @@
+.no-bullet {
+    list-style-type: none !important;
+}
+
+.custom-bullet {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.custom-bullet li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.research-section h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.research-section h3 {
+    margin-top: 1.5rem;
+    font-weight: 600;
+}
+
+.research-section h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.wysiwyg p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+

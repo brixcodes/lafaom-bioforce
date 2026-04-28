@@ -38,6 +38,10 @@ import { WelcomeSupport } from './pages/specializations/welcome-support/welcome-
 import { TrainingSchedule } from './pages/specializations/training-schedule/training-schedule';
 import { AdmissionProcess } from './pages/specializations/admission-process/admission-process';
 
+// Pages du Centre de Recherche
+import { ResearchPresentation } from './pages/research-center/research-presentation/research-presentation';
+import { ResearchCoordinatorMessage } from './pages/research-center/research-coordinator-message/research-coordinator-message';
+
 // Pages d'actualités détaillées
 import { KeyDates } from './pages/news/key-dates/key-dates';
 import { OrganizationalChart } from './pages/news/organizational-chart/organizational-chart';
@@ -92,6 +96,10 @@ export const routes: Routes = [
   { path: 'ingenierie-systemique', component: WelcomeSupport },
   { path: 'training-schedule', component: TrainingSchedule },
   { path: 'admission-process', component: AdmissionProcess },
+
+  // ===== PAGES DU CENTRE DE RECHERCHE =====
+  { path: 'research-center/presentation', component: ResearchPresentation },
+  { path: 'research-center/coordinator-message', component: ResearchCoordinatorMessage },
 
   // Redirections pour les anciennes URLs (compatibilité)
   { path: 'assistance-technician', redirectTo: 'fondement-associatif', pathMatch: 'full' },

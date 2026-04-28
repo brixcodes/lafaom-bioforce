@@ -1,0 +1,7 @@
+.no-bullet {
+    list-style-type: none !important;
+}
+
+.custom-bullet {
+    list-style-type: circle;
+}

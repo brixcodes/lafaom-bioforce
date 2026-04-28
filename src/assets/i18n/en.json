@@ -48,7 +48,10 @@
     "jobRecruitmentProcess": "Job Recruitment Process",
     "recruitmentProcess": "Recruitment",
     "trainingProcess": "Training",
-    "trainingRecruitmentProcess": "Training Recruitment Process"
+    "trainingRecruitmentProcess": "Training Recruitment Process",
+    "research": "Research",
+    "researchPresentation": "Research Center Presentation",
+    "researchCoordinator": "Coordinator's Message"
   },
   "header": {
     "title": "LAFAOM",
@@ -395,6 +398,27 @@
       "dateOfBirth": "Date of birth",
       "deadline": "Deadline",
       "dragDrop": "Drag and drop your file here",
+      "bankAccountInfo": "Bank Account Information (RIB)",
+      "bank": "Bank",
+      "bankName": "BANQUE ATLANTIQUE SENEGAL",
+      "holder": "Account Holder",
+      "holderName": "LAFAOM (LA FONDATION ATEBA OMBALA MARC)",
+      "addressText": "KADIOR, ZIGUINCHOR, SENEGAL",
+      "iban": "IBAN",
+      "ibanText": "SN08 SN13 7030 0108 6039 0000 0274",
+      "swift": "SWIFT Code (BIC)",
+      "swiftText": "ATSNSNDAXXX",
+      "bankCode": "Bank Code",
+      "bankCodeText": "SN137",
+      "branchCode": "Branch Code",
+      "branchCodeText": "03001",
+      "accountNumber": "Account Number",
+      "accountNumberText": "086039000002",
+      "key": "RIB Key",
+      "keyText": "74",
+      "securityNote": "Security Note: This information allows third parties to send you money. Be sure to share these details only with trusted people or organizations to avoid any unauthorized withdrawal attempts.",
+      "mobilePaymentTitle": "Mobile Payment",
+      "mobilePaymentNote": "The number present on the site (+221 77 490 16 31) can also receive deposits for payments.",
       "email": "Email",
       "emailRequired": "Email is required",
       "error": "Error",
@@ -795,6 +819,27 @@
       "submit": "Submit application",
       "submitting": "Submitting...",
       "success": "Application submitted successfully!",
+      "bankAccountInfo": "Bank Account Information (RIB)",
+      "bank": "Bank",
+      "bankName": "BANQUE ATLANTIQUE SENEGAL",
+      "holder": "Account Holder",
+      "holderName": "LAFAOM (LA FONDATION ATEBA OMBALA MARC)",
+      "addressText": "KADIOR, ZIGUINCHOR, SENEGAL",
+      "iban": "IBAN",
+      "ibanText": "SN08 SN13 7030 0108 6039 0000 0274",
+      "swift": "SWIFT Code (BIC)",
+      "swiftText": "ATSNSNDAXXX",
+      "bankCode": "Bank Code",
+      "bankCodeText": "SN137",
+      "branchCode": "Branch Code",
+      "branchCodeText": "03001",
+      "accountNumber": "Account Number",
+      "accountNumberText": "086039000002",
+      "key": "RIB Key",
+      "keyText": "74",
+      "securityNote": "Security Note: This information allows third parties to send you money. Be sure to share these details only with trusted people or organizations to avoid any unauthorized withdrawal attempts.",
+      "mobilePaymentTitle": "Mobile Payment",
+      "mobilePaymentNote": "The number present on the site (+221 77 490 16 31) can also receive deposits for payments.",
       "redirecting": "You will be redirected to the payment page...",
       "accountNumber": "Account number",
       "addressRequired": "Address is required",
@@ -1114,5 +1159,201 @@
     "description1": "The institute trains new professionals specialized in the use of MAO software, 'Mentoring Assisted by Orbiter'.",
     "description2": "The practice of the social worker profession based on systemic engineering.",
     "imageAlt": "Training in Systemic Engineering MAO"
+  },
+  "research": {
+    "presentation": {
+      "title": "Institutional Presentation of the LAFAOM-MAO Research Center",
+      "subtitle": "LAFAOM-MAO Institute, Ziguinchor (Senegal) - Ateba Ombala Marc Foundation",
+      "section1": {
+        "title": "1. Institutional Identity",
+        "description": "The LAFAOM–MAO research center is the scientific unit of the LAFAOM–MAO Institute, created by the Ateba Ombala Marc Foundation.",
+        "item1": "A center of excellence dedicated to the study, modeling and engineering of contemporary institutions",
+        "item2": "A regional, African and international vocation",
+        "item3": "The Ziguinchor school, producer of new paradigms for law and social sciences"
+      },
+      "section2": {
+        "title": "2. Scientific Vision",
+        "description": "The Center develops a research program structured around an innovative methodological triplet: document – lineage – flow.",
+        "fullDescription": "This program aims to provide social sciences with tools adapted to complex realities of the 21st century, integrating epistemological upheavals from relativity, evolution and thermodynamics."
+      },
+      "section3": {
+        "title": "3. The Three Methodological Pillars"
+      },
+      "section3_1": {
+        "title": "3.1. Social Diplomatics",
+        "description": "Object: to analyze legal, administrative and political documents as dated events, inscribed in power relations.",
+        "quote": "Shift the object 'law = fixed text' to 'document = dated event' and introduce the document's own time.",
+        "applications": "Among the applications:",
+        "item1": "Re-examination of colonial and post-colonial archives",
+        "item2": "Analysis of international agreements as situated diplomatic acts",
+        "item3": "Study of ignored social dualities (written law / lived law)"
+      },
+      "section3_2": {
+        "title": "3.2. Social Phylogeny",
+        "description": "Object: to map institutional lineages, identify 'social genes' transmitted, hybridized or transformed over time.",
+        "quote": "Treat institutions as lineages, isolate a 'social genome'.",
+        "applications": "Among the applications:",
+        "item1": "Sequencing of African legal codes",
+        "item2": "Identification of colonial, customary and international heritages",
+        "item3": "Institutional engineering for reforms and harmonization (OHADA, ZLECAf)"
+      },
+      "section3_3": {
+        "title": "3.3. Electromechanical Modeling of Power Dynamics",
+        "description": "Object: to measure flows, frictions and energy losses in political and administrative systems.",
+        "quote": "Measure flows, frictions, energy losses of the political system… A law passed = injected energy.",
+        "applications": "Among the applications:",
+        "item1": "Analysis of regime stability",
+        "item2": "Modeling of coups and political transitions",
+        "item3": "Evaluation of administrative effectiveness",
+        "item4": "Engineering of preventive stability"
+      },
+      "section4": {
+        "title": "4. Strategic Objectives",
+        "item1": "Produce a science of living institutions, adapted to contemporary African realities",
+        "item2": "Train a new generation of researchers, capable of thinking in terms of documents, lineages and flows from Master 1 level",
+        "item3": "Equip public policymakers, regional organizations and international partners with operational models",
+        "item4": "Establish a reference center in Africa for the analysis of institutional mutations",
+        "quote": "The Institute takes law and social sciences out of the nineteenth century, it is a foundational work"
+      },
+      "section5": {
+        "title": "5. Priority Application Areas"
+      },
+      "section5_1": {
+        "title": "5.1. Social Diplomatics",
+        "item1": "Re-examination of post-colonial France-Africa agreements",
+        "item2": "Analysis of independence documents",
+        "item3": "Study of ignored social dualities",
+        "item4": "The 'surrender documents' and 'disguised protectorates'"
+      },
+      "section5_2": {
+        "title": "5.2. Social Phylogeny",
+        "item1": "Mapping of the 'OHADA genome'",
+        "item2": "Analysis of French, English, and customary influences",
+        "item3": "Realistic harmonization tools for ZLECAf"
+      },
+      "section5_3": {
+        "title": "5.3. Electromechanical Modeling",
+        "item1": "Modeling of coups in the Sahel (2020–2024)",
+        "item2": "Identification of political entropy thresholds",
+        "item3": "Engineering of preventive stability"
+      },
+      "section6": {
+        "title": "6. Added Value for Partners",
+        "item1": "Unique expertise in social diplomatics, institutional phylogeny and electromechanical modeling",
+        "item2": "Operational tools for legal reforms, governance, political stability and regional integration",
+        "item3": "Research capacity directly applicable by States, regional organizations, donors and NGOs",
+        "item4": "Advanced training platform for executives, magistrates, researchers and decision-makers"
+      },
+      "section7": {
+        "title": "7. The LAFAOM–MAO Institute: Forging the Tools Missing from Social Sciences for a Century",
+        "description": "For a century, social sciences have described, commented, interpreted — but they neither measure nor model institutional dynamics.",
+        "item1": "Social diplomatics introduces dating and causality into reading norms, transforming text into event",
+        "item2": "Electromechanical modeling provides a physics of power, allowing quantification of flows, frictions and political entropy",
+        "item3": "Social phylogeny finally provides a genetics of law, capable of tracing normative mutations and anticipating institutional rejections",
+        "comparison": "These three tools constitute a new scientific infrastructure, equivalent to what the microscope was for biology or the telescope for astronomy: they make visible what social sciences could only imagine."
+      },
+      "section8": {
+        "title": "8. Epistemological Difference: Classical University vs LAFAOM–MAO Institute",
+        "intro": "The classical university rests on a disciplinary division inherited from the 19th century: law, sociology, history. Its methods - case law commentary, descriptive statistics - aim to explain anomalies within a fixed framework.",
+        "comparison": "The LAFAOM–MAO Institute, meanwhile, changes the paradigm:",
+        "item1": "It is transdisciplinary, combining diplomatics, phylogeny and physics to treat institutions as living systems",
+        "item2": "It adopts 20th-21st century methods: dating, sequencing, dissipative modeling",
+        "item3": "Its object is no longer the anomaly, but the laboratory of the future: African political systems as space for epistemological innovation",
+        "conclusion": "Thus, where classical university observes, the Institute experiments; where university teaches knowledge, the Institute forges tools; where university analyzes structures, the Institute models mutations. This difference founds the African scientific revolution that LAFAOM–MAO embodies: a science of living institutions, rooted in reality and open to complexity."
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "The LAFAOM–MAO research center is a major institutional actor for the refoundation of social sciences and law in Africa.",
+        "summary": "It provides conceptual and operational tools to understand, anticipate and transform contemporary institutional dynamics. The center is forging the tools that social sciences have been missing for 100 years."
+      }
+    },
+    "coordinator": {
+      "title": "Message from the Coordinator of the LAFAOM-MAO Research Center",
+      "subtitle": "Laboratory for the Analysis of Forms of Organization and Mutations",
+      "intro": "The LAFAOM–MAO Research Center is the scientific unit of the LAFAOM–MAO Institute, created by the Ateba Ombala Marc Foundation. The 'Mao' complement refers to strategy, long-term vision, and the principal contradiction.",
+      "location": "Ziguinchor, Senegal",
+      "sections": {
+        "context": {
+          "title": "1. Context and Justification",
+          "p1": "African political and administrative systems are undergoing rapid transformations: institutional recompositions, political instabilities, legal reforms, regional integrations, tensions between written norms and social practices.",
+          "p2": "Yet, the analytical tools available — inherited from the 19th century — allow neither for measuring, nor modeling, nor anticipating these dynamics.",
+          "p3": "The LAFAOM–MAO Center responds to this gap by developing a science of living institutions, based on three new instruments:",
+          "item1": "Social Diplomatics (document)",
+          "item2": "Social Phylogeny (lineage)",
+          "item3": "Electromechanical Modeling (flux)",
+          "p4": "These tools allow for analyzing institutions as dated systems, lineages, and crossed by political energy flows."
+        },
+        "problematic": {
+          "title": "2. General Problematic",
+          "intro": "African States and regional organizations lack:",
+          "item1": "tools to read political documents as dated events;",
+          "item2": "methods to map institutional lineages;",
+          "item3": "models to measure flows, frictions, and entropy in political systems.",
+          "limitations": "This absence of instruments limits:",
+          "limit1": "the quality of reforms;",
+          "limit2": "the capacity for anticipation;",
+          "limit3": "political stability;",
+          "limit4": "regional integration.",
+          "conclusion": "The LAFAOM–MAO Center proposes a scientific and operational response to these challenges."
+        },
+        "objectives": {
+          "title": "3. Operational Objectives",
+          "general": {
+            "title": "3.1. General Objective",
+            "text": "Develop and deploy innovative scientific tools to analyze, model, and transform African institutions."
+          },
+          "specific": {
+            "title": "3.2. Specific Objectives",
+            "item1": "Produce dated documentary analyses (social diplomatics).",
+            "item2": "Map national and regional institutional lineages (social phylogeny).",
+            "item3": "Model political and administrative energy flows (electromechanical modeling).",
+            "item4": "Train a new generation of researchers and public executives.",
+            "item5": "Equip States, regional organizations, and donors with operational models.",
+            "item6": "Establish an African reference pole in institutional engineering."
+          }
+        },
+        "results": {
+          "title": "4. Expected Results",
+          "scientific": {
+            "title": "4.1. Scientific Results",
+            "item1": "Production of document-lineage-flow models applicable to African political systems.",
+            "item2": "Creation of an institutional database (documents, lineages, flows).",
+            "item3": "Scientific publications and strategic reports."
+          },
+          "operational": {
+            "title": "4.2. Operational Results",
+            "item1": "Decision-making tools for governments and regional organizations.",
+            "item2": "Models for political stability and institutional entropy.",
+            "item3": "Mappings of normative heritages (OHADA, AfCFTA, ECOWAS, ECCAS).",
+            "item4": "Recommendations for legal and administrative reforms."
+          },
+          "capacity": {
+            "title": "4.3. Capacity Reinforcement Results",
+            "item1": "Training of 50 young researchers per year.",
+            "item2": "Workshops for public executives, judges, parliamentarians.",
+            "item3": "Creation of Master/Doctorate training modules."
+          }
+        },
+        "methodology": {
+          "title": "5. Methodological Approach",
+          "intro": "The approach is based on the founding triptych:",
+          "diplomatic": {
+            "title": "5.1. Social Diplomatics (Document)",
+            "text": "Analysis of documents as dated events.",
+            "methods": "Methods: dating, contextualization, analysis of power relations."
+          },
+          "phylogeny": {
+            "title": "5.2. Social Phylogeny (Lineage)",
+            "text": "Mapping of institutional lineages.",
+            "methods": "Methods: normative sequencing, institutional genetics, hybridization."
+          },
+          "modeling": {
+            "title": "5.3. Electromechanical Modeling (Flux)",
+            "text": "Measurement of political energy flows.",
+            "methods": "Methods: dissipative modeling, entropy thresholds, systems dynamics."
+          }
+        }
+      }
+    }
   }
 }

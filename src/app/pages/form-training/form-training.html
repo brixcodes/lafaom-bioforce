@@ -170,49 +170,32 @@
                 </span>
 
                 <div class="container" *ngIf="paymentMethod === 'TRANSFER'">
-                  <div class="featured" data-action="">
-                    <div class="d-flex justify-content-between align-items-center align-items-center">
-                      <div>
                         <h2 class="h3 has-border-l mt-3"
-                          style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
+                          style="text-transform:none;margin-bottom:2rem;font-size:2.5rem;">
                           <span class="text-dark">{{ 'training.application.bankAccountInfo' | translate }} : </span>
                         </h2>
 
-                        <ul style="line-height: 0%;" class="text-dark">
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.bank' |
-                              translate }} :</strong>
-                            CBAO Groupe Attijariwafa Bank</li>
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.agency' |
-                              translate }} :</strong>
-                            Cap Skirring</li>
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.bankCode' |
-                              translate }} :</strong> SN08</li>
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.branchCode'
-                              | translate }} :</strong> SN012</li>
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{
-                              'training.application.accountNumber' | translate }} :</strong> 03205 036214856601-87</li>
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{
-                              'training.application.beneficiary' | translate }} :</strong> Association LAFAOM</li>
+                        <ul style="line-height: 1.8;" class="text-dark list-unstyled ml-4">
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.bank' | translate }} :</strong> {{ 'training.application.bankName' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.holder' | translate }} :</strong> {{ 'training.application.holderName' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.address' | translate }} :</strong> {{ 'training.application.addressText' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.iban' | translate }} :</strong> {{ 'training.application.ibanText' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.swift' | translate }} :</strong> {{ 'training.application.swiftText' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.bankCode' | translate }} :</strong> {{ 'training.application.bankCodeText' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.branchCode' | translate }} :</strong> {{ 'training.application.branchCodeText' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.accountNumber' | translate }} :</strong> {{ 'training.application.accountNumberText' | translate }}</li>
+                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">{{ 'training.application.key' | translate }} :</strong> {{ 'training.application.keyText' | translate }}</li>
                         </ul>
 
-                        <br>
-                        <h2 class="h3 has-border-l mt-3"
-                          style="text-transform:none;margin-bottom:3.4rem;font-size:3rem;">
-                          <span class="text-dark">Informations des comptes Moneygram, Wester Union : </span>
-                        </h2>
+                        <div class="alert alert-info mt-4" style="border-radius: 1rem; border: none; background-color: #f0f7ff;">
+                          <i class="fas fa-info-circle mr-2 text-primary"></i>
+                          {{ 'training.application.securityNote' | translate }}
+                        </div>
 
-                        <ul style="line-height: 0%;" class="text-dark">
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">Bénéficiaire
-                              :</strong>TSAFACK EP TINDO Annette Pulcherie</li>
-                          <li class="mb-2 text-dark"><strong class="text-dark mr-2">Email
-                              :</strong> annetteandbertin@gmail.com</li>
-                          <li class="mb-2 text-dark">
-                            <strong class="text-dark mr-2">Numéro de compte :</strong> +242 05 615 9715
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                        <div class="alert alert-success mt-3" style="border-radius: 1rem; border: none; background-color: #f0fff4;">
+                          <i class="fas fa-mobile-alt mr-2 text-success"></i>
+                          <strong>{{ 'training.application.mobilePaymentTitle' | translate }} :</strong> {{ 'training.application.mobilePaymentNote' | translate }}
+                        </div>
                 </div>
               </div>
             </div>

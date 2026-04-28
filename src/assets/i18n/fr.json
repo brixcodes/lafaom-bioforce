@@ -50,7 +50,10 @@
     "jobOffers": "Offres d'emploi",
     "guide": "Guide",
     "recruitmentProcess": "Recrutement",
-    "trainingProcess": "Formation"
+    "trainingProcess": "Formation",
+    "research": "Recherche",
+    "researchPresentation": "Présentation du Centre de Recherche",
+    "researchCoordinator": "Mot du Coordonnateur"
   },
   "header": {
     "title": "LAFAOM",
@@ -75,59 +78,6 @@
     "senegal": "Sénégal",
     "location": "Quartier Cadior lot 457",
     "commune": "Commune de Ziguinchor"
-  },
-  "training": {
-    "title": "Nos Formations",
-    "subtitle": "Découvrez nos programmes de formation",
-    "viewDetails": "Voir les détails",
-    "apply": "Postuler",
-    "duration": "Durée",
-    "price": "Prix",
-    "location": "Lieu",
-    "availableSessions": "Sessions disponibles",
-    "noSessions": "Aucune session disponible",
-    "modal": {
-      "title": "Détails de la formation",
-      "description": "Description",
-      "objectives": "Objectifs",
-      "prerequisites": "Prérequis",
-      "program": "Programme",
-      "selectSession": "Sélectionner une session",
-      "sessionDate": "Date de la session",
-      "sessionPrice": "Prix de la session",
-      "applyNow": "Postuler maintenant",
-      "viewDetails": "Voir la fiche en détails",
-      "training": "Formation",
-      "register": "Je m'inscris"
-    },
-    "application": {
-      "title": "Candidature",
-      "personalInfo": "Informations personnelles",
-      "firstName": "Prénom",
-      "lastName": "Nom",
-      "email": "Email",
-      "phone": "Téléphone",
-      "civility": "Civilité",
-      "country": "Pays",
-      "city": "Ville",
-      "address": "Adresse",
-      "dateOfBirth": "Date de naissance",
-      "attachments": "Pièces jointes",
-      "cv": "CV",
-      "motivationLetter": "Lettre de motivation",
-      "identityCopy": "Copie de la pièce d'identité",
-      "uploadFile": "Télécharger un fichier",
-      "fileUploaded": "Fichier téléchargé",
-      "fileUploading": "Téléchargement en cours...",
-      "removeFile": "Supprimer le fichier",
-      "submitApplication": "Soumettre la candidature",
-      "submitting": "Soumission en cours...",
-      "success": "Candidature soumise avec succès !",
-      "error": "Erreur lors de la soumission",
-      "required": "Ce champ est obligatoire",
-      "invalidEmail": "Email invalide",
-      "selectSession": "Veuillez sélectionner une session"
-    }
   },
   "news": {
     "title": "Actualités",
@@ -336,12 +286,31 @@
       "payWithCardOrMobile": "Payer par carte ou mobile",
       "paymentNotAvailable": "Non disponible pour le moment",
       "payByTransfer": "Payer par virement bancaire",
-      "bankAccountInfo": "Informations du compte bancaire",
+      "bankAccountInfo": "Coordonnées Bancaires (RIB)",
       "bank": "Banque",
+      "bankName": "BANQUE ATLANTIQUE SENEGAL",
+      "holder": "Titulaire",
+      "holderName": "LAFAOM (LA FONDATION ATEBA OMBALA MARC)",
+      "addressText": "KADIOR, ZIGUINCHOR, SENEGAL",
+      "iban": "IBAN",
+      "ibanText": "SN08 SN13 7030 0108 6039 0000 0274",
+      "swift": "Code SWIFT (BIC)",
+      "swiftText": "ATSNSNDAXXX",
+      "bankCode": "Code Banque",
+      "bankCodeText": "SN137",
+      "branchCode": "Code Guichet",
+      "branchCodeText": "03001",
+      "accountNumber": "Numéro de Compte",
+      "accountNumberText": "086039000002",
+      "key": "Clé RIB",
+      "keyText": "74",
+      "securityNote": "Note de sécurité : Ces informations permettent à des tiers de vous envoyer de l'argent. Assurez-vous de ne partager ces coordonnées qu'avec des personnes ou organismes de confiance pour éviter toute tentative de prélèvement non autorisé.",
+      "mobilePaymentTitle": "Paiement Mobile",
+      "mobilePaymentNote": "Le numéro présent sur le site (+221 77 490 16 31) peut également recevoir des dépôts pour les paiements.",
       "agency": "Agence",
-      "bankCode": "Code banque",
-      "branchCode": "Code guichet",
-      "accountNumber": "Numéro de compte",
+      "bankCodeLabel": "Code banque",
+      "branchCodeLabel": "Code guichet",
+      "accountNumberLabel": "Numéro de compte",
       "beneficiary": "Bénéficiaire",
       "requiredDocument": "Document requis",
       "uploadBankReceipt": "Veuillez télécharger le reçu de virement bancaire au format PDF :",
@@ -517,6 +486,27 @@
       "submitting": "Soumission en cours...",
       "success": "Candidature soumise avec succès !",
       "redirecting": "Vous allez être redirigé vers la page de paiement...",
+      "bankAccountInfo": "Coordonnées Bancaires (RIB)",
+      "bank": "Banque",
+      "bankName": "BANQUE ATLANTIQUE SENEGAL",
+      "holder": "Titulaire",
+      "holderName": "LAFAOM (LA FONDATION ATEBA OMBALA MARC)",
+      "addressText": "KADIOR, ZIGUINCHOR, SENEGAL",
+      "iban": "IBAN",
+      "ibanText": "SN08 SN13 7030 0108 6039 0000 0274",
+      "swift": "Code SWIFT (BIC)",
+      "swiftText": "ATSNSNDAXXX",
+      "bankCode": "Code Banque",
+      "bankCodeText": "SN137",
+      "branchCode": "Code Guichet",
+      "branchCodeText": "03001",
+      "accountNumber": "Numéro de Compte",
+      "accountNumberText": "086039000002",
+      "key": "Clé RIB",
+      "keyText": "74",
+      "securityNote": "Note de sécurité : Ces informations permettent à des tiers de vous envoyer de l'argent. Assurez-vous de ne partager ces coordonnées qu'avec des personnes ou organismes de confiance pour éviter toute tentative de prélèvement non autorisé.",
+      "mobilePaymentTitle": "Paiement Mobile",
+      "mobilePaymentNote": "Le numéro présent sur le site (+221 77 490 16 31) peut également recevoir des dépôts pour les paiements.",
       "formValid": "Formulaire valide",
       "uploadedFiles": "Fichiers uploadés",
       "requiredFiles": "Fichiers requis",
@@ -1272,5 +1262,201 @@
     "description1": "L'institut former des nouveaux professionnels spécialisés dans l'utilisation du logiciel MAO, « mentorat assisté par orbiteur ».",
     "description2": "La pratique du métier de travailleur social à partir de l'ingénierie systémique.",
     "imageAlt": "Formation à l'Ingénierie systémique MAO"
+  },
+  "research": {
+    "presentation": {
+      "title": "Présentation Institutionnelle du Centre de Recherche LAFAOM-MAO",
+      "subtitle": "Institut LAFAOM-MAO, Ziguinchor (Sénégal) - Fondation Ateba Ombala Marc",
+      "section1": {
+        "title": "1. Identité institutionnelle",
+        "description": "Le Centre de recherche LAFAOM–MAO (Laboratoire d'Analyse des Formes d'Organisation et des Mutations) est l'unité scientifique de l'Institut LAFAOM–MAO, créé par la Fondation Ateba Ombala Marc.",
+        "item1": "Un pôle d'excellence dédié à l'étude, à la modélisation et à l'ingénierie des institutions contemporaines",
+        "item2": "Une vocation régionale, africaine et internationale",
+        "item3": "L'École de Ziguinchor, productrice de paradigmes nouveaux pour le droit et les sciences sociales"
+      },
+      "section2": {
+        "title": "2. Vision scientifique",
+        "description": "Le Centre développe un programme de recherche structuré autour d'un triptyque méthodologique innovant : document – lignée – flux.",
+        "fullDescription": "Ce programme vise à doter les sciences sociales d'outils adaptés aux réalités complexes du XXIe siècle, en intégrant les ruptures épistémologiques issues de la relativité, de l'évolution et de la thermodynamique."
+      },
+      "section3": {
+        "title": "3. Les trois piliers méthodologiques"
+      },
+      "section3_1": {
+        "title": "3.1. Diplomatique sociale",
+        "description": "Objet : analyser les documents juridiques, administratifs et politiques comme des événements datés, inscrits dans des rapports de force.",
+        "quote": "Déplacer l'objet 'loi = texte figé' vers 'document = événement daté' et d'introduire le temps propre du document.",
+        "applications": "Parmi les applications :",
+        "item1": "Relecture des archives coloniales et post‑coloniales",
+        "item2": "Analyse des accords internationaux comme actes diplomatiques situés",
+        "item3": "Étude des dualités sociales ignorées (droit écrit / droit vécu)"
+      },
+      "section3_2": {
+        "title": "3.2. Phylogénie sociale",
+        "description": "Objet : cartographier les lignées institutionnelles, identifier les « gènes sociaux » transmis, hybridés ou transformés au fil du temps.",
+        "quote": "Traiter les institutions comme des lignées, isoler un 'génome social'.",
+        "applications": "Parmi les applications :",
+        "item1": "Séquençage des codes juridiques africains",
+        "item2": "Identification des héritages coloniaux, coutumiers et internationaux",
+        "item3": "Ingénierie institutionnelle pour les réformes et harmonisations (OHADA, ZLECAf)"
+      },
+      "section3_3": {
+        "title": "3.3. Modélisation électromécanique des dynamiques de pouvoir",
+        "description": "Objet : mesurer les flux, frictions et pertes d'énergie dans les systèmes politiques et administratifs.",
+        "quote": "Mesurer flux, frictions, pertes d'énergie du système politique… Une loi votée = énergie injectée.",
+        "applications": "Parmi les applications :",
+        "item1": "Analyse de la stabilité des régimes",
+        "item2": "Modélisation des coups d'État et transitions politiques",
+        "item3": "Évaluation de l'efficacité administrative",
+        "item4": "Ingénierie de stabilité préventive"
+      },
+      "section4": {
+        "title": "4. Objectifs stratégiques",
+        "item1": "Produire une science des institutions vivantes, adaptée aux réalités africaines contemporaines",
+        "item2": "Former une nouvelle génération de chercheurs, capables de penser en termes de documents, de lignées et de flux dès le Master 1",
+        "item3": "Outiller les décideurs publics, les organisations régionales et les partenaires internationaux avec des modèles opérationnels",
+        "item4": "Constituer un pôle de référence en Afrique pour l'analyse des mutations institutionnelles",
+        "quote": "L'Institut fait sortir le droit et les sciences sociales du XIXe, c'est un travail de fondation"
+      },
+      "section5": {
+        "title": "5. Domaines d'application prioritaires"
+      },
+      "section5_1": {
+        "title": "5.1. Diplomatique sociale",
+        "item1": "Relecture des accords post‑coloniaux France–Afrique",
+        "item2": "Analyse des documents d'indépendance",
+        "item3": "Étude des dualités sociales ignorées",
+        "item4": "Les « documents de reddition » et les « protectorats déguisés »"
+      },
+      "section5_2": {
+        "title": "5.2. Phylogénie sociale",
+        "item1": "Cartographie du « génome OHADA »",
+        "item2": "Analyse des influences françaises, anglaises, coutumières",
+        "item3": "Outils d'harmonisation réaliste pour la ZLECAf"
+      },
+      "section5_3": {
+        "title": "5.3. Modélisation électromécanique",
+        "item1": "Modélisation des coups d'État au Sahel (2020–2024)",
+        "item2": "Identification des seuils d'entropie politique",
+        "item3": "Ingénierie de stabilité préventive"
+      },
+      "section6": {
+        "title": "6. Valeur ajoutée pour les partenaires",
+        "item1": "Une expertise unique en diplomatique sociale, phylogénie institutionnelle et modélisation électromécanique",
+        "item2": "Des outils opérationnels pour les réformes juridiques, la gouvernance, la stabilité politique et l'intégration régionale",
+        "item3": "Une capacité de recherche appliquée directement mobilisable par les États, les organisations régionales, les bailleurs et les ONG",
+        "item4": "Une plateforme de formation avancée pour cadres, magistrats, chercheurs et décideurs"
+      },
+      "section7": {
+        "title": "7. L'Institut LAFAOM–MAO : forge des outils manquants aux sciences sociales depuis un siècle",
+        "description": "Depuis un siècle, les sciences sociales décrivent, commentent, interprètent — mais elles ne mesurent ni modélisent les dynamiques institutionnelles.",
+        "item1": "La diplomatique sociale introduit la datation et la causalité dans la lecture des normes, transformant le texte en événement",
+        "item2": "La modélisation électromécanique apporte une physique du pouvoir, permettant de quantifier flux, frictions et entropie politique",
+        "item3": "La phylogénie sociale donne enfin une génétique du droit, capable de retracer les mutations normatives et d'anticiper les rejets institutionnels",
+        "comparison": "Ces trois outils constituent une infrastructure scientifique nouvelle, équivalente à ce que furent le microscope pour la biologie ou le télescope pour l'astronomie : ils permettent de voir ce que les sciences sociales ne pouvaient qu'imaginer."
+      },
+      "section8": {
+        "title": "8. Différence épistémologique : Université classique vs Institut LAFAOM–MAO",
+        "intro": "L'université classique repose sur un découpage disciplinaire hérité du XIXe siècle : droit, sociologie, histoire. Ses méthodes — commentaire d'arrêt, statistiques descriptives — visent à expliquer des anomalies dans un cadre figé.",
+        "comparison": "L'Institut LAFAOM–MAO, lui, change de paradigme :",
+        "item1": "Il est transdisciplinaire, combinant diplomatique, phylogénie et physique pour traiter les institutions comme des systèmes vivants",
+        "item2": "Il adopte les méthodes du XXe–XXIe siècle : datation, séquençage, modélisation dissipative",
+        "item3": "Son objet n'est plus l'anomalie, mais le laboratoire du futur : les systèmes politiques africains comme espace d'innovation épistémologique",
+        "conclusion": "Ainsi, là où l'université classique observe, l'Institut expérimente ; là où l'université enseigne des savoirs, l'Institut forge des outils ; là où l'université analyse des structures, l'Institut modélise des mutations. Cette différence fonde la révolution scientifique africaine que LAFAOM–MAO incarne : une science des institutions vivantes, enracinée dans le réel et ouverte à la complexité."
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "Le Centre de recherche LAFAOM–MAO constitue un acteur institutionnel majeur pour la refondation des sciences sociales et du droit en Afrique.",
+        "summary": "Il apporte des outils conceptuels et opérationnels permettant de comprendre, d'anticiper et de transformer les dynamiques institutionnelles contemporaines. Le centre est en train de forger les outils qui manquent aux sciences sociales depuis 100 ans."
+      }
+    },
+    "coordinator": {
+      "title": "Mot du Coordonnateur du Centre de Recherche LAFAOM-MAO",
+      "subtitle": "Laboratoire d’Analyse des Formes d’Organisation et des Mutations",
+      "intro": "Le Centre de recherche LAFAOM–MAO est l’unité scientifique de l’Institut LAFAOM–MAO, créé par la Fondation Ateba Ombala Marc. Le complément 'Mao' fait référence à la stratégie, au long terme, à la contradiction principale.",
+      "location": "Ziguinchor, Sénégal",
+      "sections": {
+        "context": {
+          "title": "1. Contexte et justification",
+          "p1": "Les systèmes politiques et administratifs africains connaissent des transformations rapides : recompositions institutionnelles, instabilités politiques, réformes juridiques, intégrations régionales, tensions entre normes écrites et pratiques sociales.",
+          "p2": "Pourtant, les outils analytiques disponibles — hérités du XIXᵉ siècle — ne permettent ni de mesurer, ni de modéliser, ni d’anticiper ces dynamiques.",
+          "p3": "Le Centre LAFAOM–MAO répond à cette lacune en développant une science des institutions vivantes, fondée sur trois instruments nouveaux :",
+          "item1": "Diplomatique sociale (document)",
+          "item2": "Phylogénie sociale (lignée)",
+          "item3": "Modélisation électromécanique (flux)",
+          "p4": "Ces outils permettent d’analyser les institutions comme des systèmes datés, lignés et traversés par des flux d’énergie politique."
+        },
+        "problematic": {
+          "title": "2. Problématique générale",
+          "intro": "Les États africains et les organisations régionales manquent :",
+          "item1": "d’outils pour lire les documents politiques comme des événements datés ;",
+          "item2": "de méthodes pour cartographier les lignées institutionnelles ;",
+          "item3": "de modèles pour mesurer les flux, frictions et entropies dans les systèmes politiques.",
+          "limitations": "Cette absence d’instruments limite :",
+          "limit1": "la qualité des réformes ;",
+          "limit2": "la capacité d’anticipation ;",
+          "limit3": "la stabilité politique ;",
+          "limit4": "l’intégration régionale.",
+          "conclusion": "Le Centre LAFAOM–MAO propose une réponse scientifique et opérationnelle à ces défis."
+        },
+        "objectives": {
+          "title": "3. Objectifs opérationnels",
+          "general": {
+            "title": "3.1. Objectif général",
+            "text": "Développer et déployer des outils scientifiques innovants permettant d’analyser, modéliser et transformer les institutions africaines."
+          },
+          "specific": {
+            "title": "3.2. Objectifs spécifiques",
+            "item1": "Produire des analyses documentaires datées (diplomatique sociale).",
+            "item2": "Cartographier les lignées institutionnelles nationales et régionales (phylogénie sociale).",
+            "item3": "Modélisation des flux d’énergie politique et administrative (modélisation électromécanique).",
+            "item4": "Former une nouvelle génération de chercheurs et de cadres publics.",
+            "item5": "Outiller les États, organisations régionales et bailleurs avec des modèles opérationnels.",
+            "item6": "Constituer un pôle de référence africain en ingénierie institutionnelle."
+          }
+        },
+        "results": {
+          "title": "4. Résultats attendus",
+          "scientific": {
+            "title": "4.1. Résultats scientifiques",
+            "item1": "Production de modèles document‑lignée‑flux applicables aux systèmes politiques africains.",
+            "item2": "Création d’une base de données institutionnelle (documents, lignées, flux).",
+            "item3": "Publications scientifiques et rapports stratégiques."
+          },
+          "operational": {
+            "title": "4.2. Résultats opérationnels",
+            "item1": "Outils d’aide à la décision pour les gouvernements et organisations régionales.",
+            "item2": "Modèles de stabilité politique et d’entropie institutionnelle.",
+            "item3": "Cartographies des héritages normatifs (OHADA, ZLECAf, CEDEAO, CEEAC).",
+            "item4": "Recommandations pour les réformes juridiques et administratives."
+          },
+          "capacity": {
+            "title": "4.3. Résultats en renforcement de capacités",
+            "item1": "Formation de 50 jeunes chercheurs par an.",
+            "item2": "Ateliers pour cadres publics, magistrats, parlementaires.",
+            "item3": "Création de modules de formation Master/Doctorat."
+          }
+        },
+        "methodology": {
+          "title": "5. Approche méthodologique",
+          "intro": "L’approche repose sur le triptyque fondateur :",
+          "diplomatic": {
+            "title": "5.1. Diplomatique sociale (Document)",
+            "text": "Analyse des documents comme événements datés.",
+            "methods": "Méthodes : datation, contextualisation, analyse des rapports de force."
+          },
+          "phylogeny": {
+            "title": "5.2. Phylogénie sociale (Lignée)",
+            "text": "Cartographie des lignées institutionnelles.",
+            "methods": "Méthodes : séquençage normatif, génétique institutionnelle, hybridation."
+          },
+          "modeling": {
+            "title": "5.3. Modélisation électromécanique (Flux)",
+            "text": "Mesure des flux d’énergie politique.",
+            "methods": "Méthodes : modélisation dissipative, seuils d’entropie, dynamique des systèmes."
+          }
+        }
+      }
+    }
   }
 }

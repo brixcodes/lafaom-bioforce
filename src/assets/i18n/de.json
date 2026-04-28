@@ -48,7 +48,10 @@
     "jobRecruitmentProcess": "Stellenrekrutierungsprozess",
     "recruitmentProcess": "Rekrutierung",
     "trainingProcess": "Ausbildung",
-    "trainingRecruitmentProcess": "Ausbildungsrekrutierungsprozess"
+    "trainingRecruitmentProcess": "Ausbildungsrekrutierungsprozess",
+    "research": "Forschung",
+    "researchPresentation": "Präsentation des Forschungszentrums",
+    "researchCoordinator": "Botschaft des Koordinators"
   },
   "header": {
     "title": "LAFAOM",
@@ -1223,5 +1226,119 @@
     "description1": "Das Institut bildet neue Fachkräfte aus, die auf die Nutzung der MAO-Software spezialisiert sind, 'Mentoring Assisted by Orbiter'.",
     "description2": "Die Ausübung des Berufs des Sozialarbeiters auf der Grundlage systemischer Ingenieurwissenschaft.",
     "imageAlt": "Ausbildung in Systemischer Ingenieurwissenschaft MAO"
+  },
+  "research": {
+    "presentation": {
+      "title": "Institutionelle Präsentation des LAFAOM-MAO Forschungszentrums",
+      "subtitle": "LAFAOM-MAO Institut, Ziguinchor (Senegal) - Ateba Ombala Marc Stiftung",
+      "section1": {
+        "title": "1. Institutionelle Identität",
+        "description": "Das LAFAOM-MAO Forschungszentrum ist die wissenschaftliche Einheit des LAFAOM-MAO Instituts, gegründet von der Ateba Ombala Marc Stiftung.",
+        "item1": "Ein Exzellenzzentrum für das Studium, die Modellierung und das Engineering zeitgenössischer Institutionen",
+        "item2": "Mit regionaler, afrikanischer und internationaler Berufung",
+        "item3": "Die Ziguinchor-Schule, Produzentin neuer Paradigmen für Recht und Sozialwissenschaften"
+      },
+      "section2": {
+        "title": "2. Wissenschaftliche Vision",
+        "description": "Das Zentrum entwickelt ein Forschungsprogramm um ein innovatives methodisches Triplett strukturiert: Dokument – Abstammung – Fluss.",
+        "fullDescription": "Dieses Programm zielt darauf ab, die Sozialwissenschaften mit Werkzeugen auszustatten, die an die komplexen Realitäten des 21. Jahrhunderts angepasst sind."
+      },
+      "section3": {
+        "title": "3. Die drei methodologischen Säulen"
+      },
+      "section3_1": {
+        "title": "3.1. Soziale Diplomatik",
+        "description": "Ziel: Rechtliche, administrative und politische Dokumente als datierte Ereignisse im Kontext von Machtverhältnissen analysieren.",
+        "quote": "Das Objekt von 'Gesetz = fester Text' zu 'Dokument = datiertes Ereignis' verschieben.",
+        "applications": "Zu den Anwendungen gehören:",
+        "item1": "Überprüfung kolonialer und postkolonialer Archive",
+        "item2": "Analyse internationaler Abkommen als politische Akte",
+        "item3": "Untersuchung übersehener sozialer Dualitäten"
+      },
+      "section3_2": {
+        "title": "3.2. Soziale Phylogenie",
+        "description": "Ziel: Institutionelle Abstammungslinien kartografieren und 'soziale Gene' identifizieren.",
+        "quote": "Institutionen als Abstammungslinien behandeln, ein 'soziales Genom' isolieren.",
+        "applications": "Zu den Anwendungen gehören:",
+        "item1": "Sequenzierung afrikanischer Gesetzeskodices",
+        "item2": "Identifizierung kolonialer, gewohnheitsrechtlicher und internationaler Erbschaften",
+        "item3": "Institutionelles Engineering für Reformen und Harmonisierung"
+      },
+      "section3_3": {
+        "title": "3.3. Elektromechanische Modellierung von Machtdynamiken",
+        "description": "Ziel: Flüsse, Reibungen und Energieverluste in politischen und administrativen Systemen messen.",
+        "quote": "Messungen von Flüssen, Reibungen, Energieverlusten des politischen Systems durchführen.",
+        "applications": "Zu den Anwendungen gehören:",
+        "item1": "Analyse der Stabilität von Regimen",
+        "item2": "Modellierung von Coups und politischen Übergängen",
+        "item3": "Bewertung der administrativen Effizienz",
+        "item4": "Engineering präventiver Stabilität"
+      },
+      "section4": {
+        "title": "4. Strategische Ziele",
+        "item1": "Eine Wissenschaft lebender Institutionen entwickeln",
+        "item2": "Eine neue Generation von Forschern ausbilden",
+        "item3": "Politische Entscheidungsträger mit operativen Modellen ausstatten",
+        "item4": "Ein Referenzzentrum in Afrika für die Analyse institutioneller Mutationen",
+        "quote": "Das Institut führt Recht und Sozialwissenschaften aus dem neunzehnten Jahrhundert heraus"
+      },
+      "section5": {
+        "title": "5. Prioritäre Anwendungsbereiche"
+      },
+      "section5_1": {
+        "title": "5.1. Soziale Diplomatik",
+        "item1": "Überprüfung postkolonialer Vereinbarungen",
+        "item2": "Analyse von Unabhängigkeitsdokumenten",
+        "item3": "Studium übersehener sozialer Dualitäten",
+        "item4": "Die 'Übergabedokumente' und 'getarnten Protektorate'"
+      },
+      "section5_2": {
+        "title": "5.2. Soziale Phylogenie",
+        "item1": "Kartierung des 'OHADA-Genoms'",
+        "item2": "Analyse französischer, englischer und gewohnheitsrechtlicher Einflüsse",
+        "item3": "Realistische Harmonisierungsinstrumente"
+      },
+      "section5_3": {
+        "title": "5.3. Elektromechanische Modellierung",
+        "item1": "Modellierung von Coups in der Sahel-Region",
+        "item2": "Identifizierung von Schwellenwerten politischer Entropie",
+        "item3": "Engineering präventiver Stabilität"
+      },
+      "section6": {
+        "title": "6. Mehrwert für Partner",
+        "item1": "Einzigartige Expertise in sozialer Diplomatik",
+        "item2": "Einsatzfähige Werkzeuge für Rechtsreformen",
+        "item3": "Forschungskapazität direkt anwendbar durch Staaten",
+        "item4": "Fortgeschrittene Schulungsplattform"
+      },
+      "section7": {
+        "title": "7. Das LAFAOM-MAO Institut: Werkzeuge für die Sozialwissenschaften",
+        "description": "Seit einem Jahrhundert beschreiben die Sozialwissenschaften, aber sie messen und modellieren nicht.",
+        "item1": "Soziale Diplomatik führt Datierung und Kausalität ein",
+        "item2": "Elektromechanische Modellierung bietet eine Physik der Macht",
+        "item3": "Soziale Phylogenie stellt finale Genetik des Rechts zur Verfügung",
+        "comparison": "Diese drei Werkzeuge bilden eine neue wissenschaftliche Infrastruktur."
+      },
+      "section8": {
+        "title": "8. Epistemologischer Unterschied: Klassische Universität vs. LAFAOM-MAO Institut",
+        "intro": "Die klassische Universität basiert auf einer Disziplinaraufteilung des 19. Jahrhunderts.",
+        "comparison": "Das LAFAOM-MAO Institut ändert das Paradigma:",
+        "item1": "Es ist transdisziplinär",
+        "item2": "Es wendet Methoden des 20.-21. Jahrhunderts an",
+        "item3": "Sein Objekt ist nicht die Anomalie, sondern das Labor der Zukunft",
+        "conclusion": "Wo die klassische Universität beobachtet, experimentiert das Institut; wo die Universität Wissen lehrt, schmiedet das Institut Werkzeuge; wo die Universität Strukturen analysiert, modelliert das Institut Mutationen."
+      },
+      "conclusion": {
+        "title": "Fazit",
+        "description": "Das LAFAOM-MAO Forschungszentrum ist ein wichtiger institutioneller Akteur",
+        "summary": "Es stellt konzeptionelle und operative Werkzeuge bereit. Das Zentrum schmiedet Werkzeuge, die den Sozialwissenschaften seit 100 Jahren fehlen."
+      }
+    },
+    "coordinator": {
+      "title": "Botschaft des Koordinators des LAFAOM-MAO Forschungszentrums",
+      "subtitle": "Botschaft des Koordinators",
+      "intro": "Willkommen im LAFAOM-MAO Forschungszentrum",
+      "message": "Die Botschaft des Koordinators wird hier präsentiert."
+    }
   }
 }
