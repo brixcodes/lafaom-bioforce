@@ -27,12 +27,15 @@
                 </div>
             </li>
             <li class="list-inline-item dropdown-mobile">
-                <a href="#" title="Recherche" class="dropdown-toggle-mobile">
-                    {{ 'navigation.research' | translate }}
+                <a href="#" title="Nos Centres" class="dropdown-toggle-mobile">
+                    {{ 'navigation.ourCenters' | translate }}
                     <span class="dropdown-arrow"><i class="icon-arrow-down"></i></span>
                 </a>
                 <div class="dropdown-menu-mobile dropdown-menu-transparent">
                     <ul class="list-unstyled">
+                        <li style="padding: 6px 10px; font-size:0.7rem; font-weight:700; color:#D14B6B; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #f0d0d8;">
+                            {{ 'navigation.researchCenterLabel' | translate }}
+                        </li>
                         <li>
                             <a href="/research-center/presentation" title="Présentation du Centre de Recherche">
                                 {{ 'navigation.researchPresentation' | translate }}
@@ -41,6 +44,14 @@
                         <li>
                             <a href="/research-center/coordinator-message" title="Mot du coordonnateur">
                                 {{ 'navigation.researchCoordinator' | translate }}
+                            </a>
+                        </li>
+                        <li style="padding: 6px 10px; font-size:0.7rem; font-weight:700; color:#D14B6B; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #f0d0d8; margin-top:6px;">
+                            {{ 'navigation.trainingCenterLabel' | translate }}
+                        </li>
+                        <li>
+                            <a href="/training-center/presentation" title="Centre de Formation">
+                                {{ 'navigation.trainingCenterPresentation' | translate }}
                             </a>
                         </li>
                     </ul>
@@ -208,17 +219,22 @@
 
                 <li class="list-inline-item">
                     <div class="mobile-submenu-toggle"
-                         [class.open]="isMobileSubmenuOpen('research')"
-                         (click)="toggleMobileSubmenu('research', $event)">
-                        <span>{{ 'navigation.research' | translate }}</span>
+                         [class.open]="isMobileSubmenuOpen('ourCenters')"
+                         (click)="toggleMobileSubmenu('ourCenters', $event)">
+                        <span>{{ 'navigation.ourCenters' | translate }}</span>
                         <span class="dropdown-arrow"><i class="icon-arrow-down"></i></span>
                     </div>
-                    <div class="mobile-submenu-content" [class.open]="isMobileSubmenuOpen('research')">
+                    <div class="mobile-submenu-content" [class.open]="isMobileSubmenuOpen('ourCenters')">
+                        <span style="display:block; padding: 6px 0; font-size:0.7rem; font-weight:700; color:#D14B6B; text-transform:uppercase; letter-spacing:1px;">{{ 'navigation.researchCenterLabel' | translate }}</span>
                         <a href="/research-center/presentation" title="Présentation du Centre de Recherche">
                             {{ 'navigation.researchPresentation' | translate }}
                         </a>
                         <a href="/research-center/coordinator-message" title="Mot du coordonnateur">
                             {{ 'navigation.researchCoordinator' | translate }}
+                        </a>
+                        <span style="display:block; padding: 6px 0 4px; margin-top:6px; font-size:0.7rem; font-weight:700; color:#D14B6B; text-transform:uppercase; letter-spacing:1px;">{{ 'navigation.trainingCenterLabel' | translate }}</span>
+                        <a href="/training-center/presentation" title="Centre de Formation">
+                            {{ 'navigation.trainingCenterPresentation' | translate }}
                         </a>
                     </div>
                 </li>

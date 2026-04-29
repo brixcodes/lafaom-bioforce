@@ -53,7 +53,11 @@
     "trainingProcess": "Formation",
     "research": "Recherche",
     "researchPresentation": "Présentation du Centre de Recherche",
-    "researchCoordinator": "Mot du Coordonnateur"
+    "researchCoordinator": "Mot du Coordonnateur",
+    "ourCenters": "Nos Centres",
+    "researchCenterLabel": "Centre de Recherche",
+    "trainingCenterLabel": "Centre de Formation",
+    "trainingCenterPresentation": "Institut de Formation Lafaom-Mao"
   },
   "header": {
     "title": "LAFAOM",
@@ -1501,6 +1505,57 @@
           }
         }
       }
+    }
+  },
+  "trainingCenter": {
+    "presentation": {
+      "title": "Institut de Formation Lafaom-Mao : Centre de Formation des Auxiliaires de Vie en Univers Judiciaire",
+      "subtitle": "Institut LAFAOM-MAO – Ziguinchor, Sénégal",
+      "officialAct": "Acte N° 25-2102102G/SG/BFP/AB",
+      "instituteName": "Institut de Formation Lafaom-Mao : Centre de Formation des Auxiliaires de Vie en Univers Judiciaire",
+      "instituteDescription": "L'Institut Lafaom-Mao, basé à Ziguinchor au Sénégal (quartier Codior, lot 457), est une institution de référence du Programme Mao. Reconnu par l'acte N° 25-2102102G/SG/BFP/AB, ce centre international se consacre à la formation de professionnels spécialisés dans l'accompagnement des personnes affectées par une décision de justice (pupilles).",
+      "locationLabel": "Localisation",
+      "locationValue": "Ziguinchor, Sénégal – Quartier Codior, lot 457",
+      "actLabel": "Acte de reconnaissance",
+      "actValue": "N° 25-2102102G/SG/BFP/AB",
+      "durationLabel": "Durée de formation",
+      "durationValue": "12 mois",
+      "typeLabel": "Vocation",
+      "typeValue": "Centre international",
+      "missionTitle": "Vision et Missions de l'Institut",
+      "missionIntro": "L'objectif principal de l'institut est de constituer une masse critique de professionnels dans le domaine \"Prison-Justice\" afin de rendre la justice plus humaine et efficace. Les missions fondamentales incluent :",
+      "mission1": "Accueillir, écouter et accompagner les personnes affectées.",
+      "mission2": "Gérer des établissements d'accueil pour les proches et les familles des personnes affectées.",
+      "mission3": "Appuyer les services pénitentiaires et assurer le suivi socio-éducatif et juridique.",
+      "mission4": "Gérer la plateforme informatique Mao pour le réseau et le système de parrainage.",
+      "offerTitle": "Offre de Formation : Auxiliaire de Vie en Univers Judiciaire (AVUJ)",
+      "offerDescription": "Le parcours de formation s'étend sur une durée totale de 12 mois. Il est ouvert à tous, quels que soient l'âge, le niveau scolaire ou l'expérience professionnelle, grâce à un système de savoirs individualisés qui garantit l'acquisition des compétences nécessaires. La formation est sanctionnée par un certificat d'aptitude reconnu par le Ministère de l'Éducation Nationale.",
+      "specializationsTitle": "Domaines de Spécialisation",
+      "tableCol1": "Domaine de Formation",
+      "tableCol2": "Missions Principales",
+      "spec1Name": "Accueil, Écoute et Accompagnement",
+      "spec1Missions": "Restructuration et fluidité de la socialité, rétablissement et substitution.",
+      "spec2Name": "Appui aux Services Juridiques",
+      "spec2Missions": "Construction du réseau des services judiciaires, accès au réseau et contournement.",
+      "spec3Name": "Technicien d'Assistance",
+      "spec3Missions": "Construction et viabilisation du réseau, redevabilité.",
+      "cursusTitle": "Organisation du Cursus",
+      "cursusIntro": "Le programme est structuré pour allier théorie, pratique et immersion professionnelle :",
+      "months": "mois",
+      "phase1Title": "Phase d'Accompagnement au Centre",
+      "phase1Description": "Les apprenants bénéficient d'un encadrement pédagogique, d'un hébergement et d'outils spécifiques pour la réalisation d'un chef-d'œuvre et d'un projet collectif.",
+      "phase2Title": "Phase de Stage",
+      "phase2Description": "Une immersion hors du centre dans une institution partenaire disposant d'une expérience avancée dans le domaine justice-prison à travers le monde.",
+      "audienceTitle": "Public Cible et Débouchés",
+      "audienceIntro": "Ces formations s'adressent à un public large et diversifié :",
+      "audience1": "Salarié(e)s et personnes en formation professionnelle.",
+      "audience2": "Personnes sans activité ou à la recherche d'un emploi.",
+      "audience3": "Personnes en contrat d'apprentissage ou autre contrat particulier.",
+      "opportunitiesTitle": "Opportunités professionnelles",
+      "opportunitiesText": "À la fin de leur cursus, les lauréats de l'institut bénéficient de propositions de postes de travail au sein des organisations du réseau Lafaom-Mao.",
+      "ctaTitle": "Rejoignez l'Institut de Formation Lafaom-Mao",
+      "ctaSubtitle": "Inscrivez-vous dès maintenant et donnez un nouvel élan dans l'univers judiciaire.",
+      "ctaButton": "Processus d'admission"
     }
   }
 }

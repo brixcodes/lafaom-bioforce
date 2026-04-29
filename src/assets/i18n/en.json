@@ -51,7 +51,11 @@
     "trainingRecruitmentProcess": "Training Recruitment Process",
     "research": "Research",
     "researchPresentation": "Research Center Presentation",
-    "researchCoordinator": "Coordinator's Message"
+    "researchCoordinator": "Coordinator's Message",
+    "ourCenters": "Our Centers",
+    "researchCenterLabel": "Research Center",
+    "trainingCenterLabel": "Training Center",
+    "trainingCenterPresentation": "Lafaom-Mao Training Institute"
   },
   "header": {
     "title": "LAFAOM",
@@ -1397,6 +1401,57 @@
           }
         }
       }
+    }
+  },
+  "trainingCenter": {
+    "presentation": {
+      "title": "Lafaom-Mao Training Institute: Training Center for Life Assistants in the Judicial Universe",
+      "subtitle": "LAFAOM-MAO Institute – Ziguinchor, Senegal",
+      "officialAct": "Act N° 25-2102102G/SG/BFP/AB",
+      "instituteName": "Lafaom-Mao Training Institute: Training Center for Life Assistants in the Judicial Universe",
+      "instituteDescription": "The Lafaom-Mao Institute, based in Ziguinchor, Senegal (Codior neighborhood, lot 457), is a reference institution of the Mao Program. Recognized by Act N° 25-2102102G/SG/BFP/AB, this international center is dedicated to training professionals specialized in supporting people affected by a judicial decision (wards).",
+      "locationLabel": "Location",
+      "locationValue": "Ziguinchor, Senegal – Codior neighborhood, lot 457",
+      "actLabel": "Recognition Act",
+      "actValue": "N° 25-2102102G/SG/BFP/AB",
+      "durationLabel": "Training Duration",
+      "durationValue": "12 months",
+      "typeLabel": "Vocation",
+      "typeValue": "International Center",
+      "missionTitle": "Vision and Missions of the Institute",
+      "missionIntro": "The main objective of the institute is to build a critical mass of professionals in the 'Prison-Justice' field in order to make justice more human and effective. The fundamental missions include:",
+      "mission1": "Welcome, listen and support affected persons.",
+      "mission2": "Manage reception facilities for relatives and families of affected persons.",
+      "mission3": "Support penitentiary services and ensure socio-educational and legal follow-up.",
+      "mission4": "Manage the Mao IT platform for the network and sponsorship system.",
+      "offerTitle": "Training Offer: Life Assistant in the Judicial Universe (LAJU)",
+      "offerDescription": "The training program spans a total duration of 12 months. It is open to everyone, regardless of age, educational level or professional experience, through a system of individualized knowledge that guarantees the acquisition of necessary competencies. The training is certified by a certificate of aptitude recognized by the Ministry of National Education.",
+      "specializationsTitle": "Areas of Specialization",
+      "tableCol1": "Training Domain",
+      "tableCol2": "Main Missions",
+      "spec1Name": "Welcome, Listening and Support",
+      "spec1Missions": "Restructuring and fluidity of sociality, restoration and substitution.",
+      "spec2Name": "Support for Legal Services",
+      "spec2Missions": "Building the judicial services network, access to the network and bypassing.",
+      "spec3Name": "Technical Assistant",
+      "spec3Missions": "Building and making the network viable, accountability.",
+      "cursusTitle": "Curriculum Organization",
+      "cursusIntro": "The program is structured to combine theory, practice and professional immersion:",
+      "months": "months",
+      "phase1Title": "Center Support Phase",
+      "phase1Description": "Learners benefit from pedagogical supervision, accommodation and specific tools for the realization of a masterpiece and a collective project.",
+      "phase2Title": "Internship Phase",
+      "phase2Description": "An immersion outside the center in a partner institution with advanced experience in the justice-prison field around the world.",
+      "audienceTitle": "Target Audience and Career Opportunities",
+      "audienceIntro": "These training programs are aimed at a wide and diverse audience:",
+      "audience1": "Employees and persons in professional training.",
+      "audience2": "Persons without activity or seeking employment.",
+      "audience3": "Persons in apprenticeship contracts or other specific contracts.",
+      "opportunitiesTitle": "Professional Opportunities",
+      "opportunitiesText": "At the end of their curriculum, graduates of the institute receive job position proposals within the organizations of the Lafaom-Mao network.",
+      "ctaTitle": "Join the Lafaom-Mao Training Institute",
+      "ctaSubtitle": "Register now and give a new boost in the judicial universe.",
+      "ctaButton": "Admission Process"
     }
   }
 }

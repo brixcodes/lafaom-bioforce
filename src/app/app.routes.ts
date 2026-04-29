@@ -42,6 +42,9 @@ import { AdmissionProcess } from './pages/specializations/admission-process/admi
 import { ResearchPresentation } from './pages/research-center/research-presentation/research-presentation';
 import { ResearchCoordinatorMessage } from './pages/research-center/research-coordinator-message/research-coordinator-message';
 
+// Pages du Centre de Formation
+import { TrainingCenterPresentation } from './pages/training-center/training-center-presentation/training-center-presentation';
+
 // Pages d'actualités détaillées
 import { KeyDates } from './pages/news/key-dates/key-dates';
 import { OrganizationalChart } from './pages/news/organizational-chart/organizational-chart';
@@ -100,6 +103,9 @@ export const routes: Routes = [
   // ===== PAGES DU CENTRE DE RECHERCHE =====
   { path: 'research-center/presentation', component: ResearchPresentation },
   { path: 'research-center/coordinator-message', component: ResearchCoordinatorMessage },
+
+  // ===== PAGES DU CENTRE DE FORMATION =====
+  { path: 'training-center/presentation', component: TrainingCenterPresentation },
 
   // Redirections pour les anciennes URLs (compatibilité)
   { path: 'assistance-technician', redirectTo: 'fondement-associatif', pathMatch: 'full' },
